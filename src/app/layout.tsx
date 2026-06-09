@@ -9,7 +9,7 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: { default: "SVTECH - The Foundation of Success", template: "%s | SVTECH" },
+  title: { default: "DTG - The Foundation of Success", template: "%s | DTG" },
   description: "Nhà tích hợp giải pháp công nghệ hàng đầu Việt Nam",
 };
 
