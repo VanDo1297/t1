@@ -1,4 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SVTECH Next.js UI
+
+Homepage UI recreation built with Next.js 16 App Router. Homepage content is editable in `content/home.md`.
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+## Vercel
+
+Import the repository into Vercel. The default Next.js build and start settings are sufficient.
+
+## Docker / AWS EC2
+
+The app uses Next.js standalone output and includes a multi-stage Docker image:
+
+```bash
+docker build -t svtech-web .
+docker run --rm -p 3000:3000 svtech-web
+```
+
+On EC2, place Nginx or an Application Load Balancer in front of port `3000`, then terminate TLS at the proxy/load balancer.
 
 ## Getting Started
 
@@ -34,3 +58,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# ch1
