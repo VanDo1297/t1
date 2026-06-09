@@ -22,14 +22,14 @@ export function HomePage({ content }: { content: HomeContent }) {
   return <main>
     <section className="hero container">
       <Reveal className="hero-copy"><h1>{content.heroTitle}</h1></Reveal>
-      <div className="hero-banner">
+      <Reveal className="hero-banner" delay={200}>
         <video className="hero-video" src="https://homepage.dtgsoft.vn/api/v1/public/media/54cabb07-4d47-4c49-829f-1bd933ff5e29/file" autoPlay muted loop playsInline />
         <p className="hero-banner-label">DTG - Nhà tích hợp giải pháp hàng đầu Việt Nam</p>
-      </div>
+      </Reveal>
     </section>
     <section className="partners section"><div className="container"><Reveal><Link href="/khach-hang-doi-tac" className="outline-label">{content.partnerTitle}</Link></Reveal></div><LogoMarquee images={partners} folder="partners" /></section>
     <section className="services section container"><Reveal className="section-copy"><span className="eyebrow">{content.serviceEyebrow}</span><h2>{content.serviceTitle}</h2><p>{content.serviceDescription}</p><Link className="text-link" href="/dich-vu">Tất cả dịch vụ <Icon name="arrow" /></Link></Reveal><Reveal className="service-image" delay={120}><Image src="/assets/svtech/services.png" alt="Dịch vụ công nghệ DTG" width={948} height={635} /></Reveal></section>
-    <section className="why section"><div className="container"><Reveal><span className="eyebrow">{content.whyEyebrow}</span><h2>{content.whyTitle}</h2><p className="lead">{content.body}</p></Reveal><div className="reason-grid">{reasons.map(([stat, title, desc], index) => <Reveal className="reason-card" delay={index * 100} key={title}><strong><CountUp value={parseInt(stat)} suffix="+" /></strong><h3>{title}</h3><p>{desc}</p></Reveal>)}</div></div><Image className="team-image" src="/assets/svtech/team.webp" alt="Đội ngũ DTG" width={2560} height={755} /></section>
+    <section className="why section"><div className="container"><Reveal><span className="eyebrow">{content.whyEyebrow}</span><h2>{content.whyTitle}</h2><p className="lead">{content.body}</p></Reveal><div className="reason-grid">{reasons.map(([stat, title, desc], index) => <Reveal className="reason-card" delay={index * 100} key={title}><strong><CountUp value={parseInt(stat)} suffix="+" /></strong><h3>{title}</h3><p>{desc}</p></Reveal>)}</div></div><Reveal><Image className="team-image" src="/assets/svtech/team.webp" alt="Đội ngũ DTG" width={2560} height={755} /></Reveal></section>
     <SectionLabel text={content.customerTitle}/><HexMarquee images={clients} folder="clients" reverse/>
     <section className="fields section container"><Reveal className="fields-heading"><div className="fields-top"><span className="outline-label">LĨNH VỰC HOẠT ĐỘNG</span><Link className="primary-button" href="/gioi-thieu/linh-vuc-hoat-dong">Tìm hiểu thêm <Icon name="arrow" /></Link></div><h2>Đáp ứng mọi nhu cầu<br />chuyển đổi số</h2></Reveal><div className="field-grid">{fields.map(([image,title], index)=><Reveal className="field-item" delay={index*100} key={title}><Image src={`/assets/svtech/${image}`} alt="" width={206} height={201}/><span>0{index+1}</span><h3>{title}</h3></Reveal>)}</div></section>
     <SectionLabel text="CHỨNG CHỈ NĂNG LỰC"/><HexMarquee images={certificates} folder="why/certificates"/>
