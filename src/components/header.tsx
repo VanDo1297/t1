@@ -6,8 +6,8 @@ import { useState } from "react";
 import { Icon } from "./icons";
 
 const nav = [
-  { label: "GIỚI THIỆU", href: "/gioi-thieu", children: [["Tại sao chọn DTG", "/gioi-thieu/tai-sao-chon-svtech"], ["Lĩnh vực hoạt động", "/gioi-thieu/linh-vuc-hoat-dong"], ["Câu chuyện thương hiệu", "/gioi-thieu/cau-chuyen-thuong-hieu"], ["Khách hàng - Đối tác", "/khach-hang-doi-tac"]] },
-  { label: "DTG LIFE", href: "/svtech-life" },
+  { label: "GIỚI THIỆU", href: "/gioi-thieu", children: [["Tại sao chọn DTG", "/gioi-thieu/tai-sao-chon-dtg"], ["Lĩnh vực hoạt động", "/gioi-thieu/linh-vuc-hoat-dong"], ["Câu chuyện thương hiệu", "/gioi-thieu/cau-chuyen-thuong-hieu"], ["Khách hàng - Đối tác", "/khach-hang-doi-tac"]] },
+  { label: "DTG LIFE", href: "/dtg-life" },
   { label: "DỊCH VỤ", href: "/dich-vu" },
   { label: "GIẢI PHÁP", href: "/giai-phap" },
   { label: "TIN TỨC", href: "/tin-tuc-su-kien" },

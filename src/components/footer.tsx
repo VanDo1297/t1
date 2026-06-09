@@ -16,7 +16,7 @@ export function Footer() {
       <p>(028) 3868 3639</p>
       <p>info@dtgcorp.com.vn</p>
     </div>
-    <div><h3>Giới thiệu</h3><Link href="/gioi-thieu/cau-chuyen-thuong-hieu">Câu chuyện thương hiệu</Link><Link href="/gioi-thieu">Lịch sử hình thành và phát triển</Link><Link href="/gioi-thieu">Ban lãnh đạo</Link><Link href="/gioi-thieu">Năng lực nhân sự</Link><Link href="/svtech-life">Văn hóa DTG</Link><Link href="/gioi-thieu">Chứng nhận nổi bật</Link></div>
+    <div><h3>Giới thiệu</h3><Link href="/gioi-thieu/cau-chuyen-thuong-hieu">Câu chuyện thương hiệu</Link><Link href="/gioi-thieu">Lịch sử hình thành và phát triển</Link><Link href="/gioi-thieu">Ban lãnh đạo</Link><Link href="/gioi-thieu">Năng lực nhân sự</Link><Link href="/dtg-life">Văn hóa DTG</Link><Link href="/gioi-thieu">Chứng nhận nổi bật</Link></div>
     <div><h3>Dịch vụ</h3><Link href="/dich-vu">Dịch vụ CNTT</Link><Link href="/dich-vu">Tích hợp hệ thống</Link><Link href="/dich-vu">Dịch vụ giám sát vận hành</Link><Link href="/dich-vu">Dịch vụ bảo mật</Link></div>
     <div><h3>Giải pháp</h3><Link href="/giai-phap">Giải pháp cho màn hình ghép</Link><Link href="/giai-phap">Giải pháp chuyển đổi số</Link></div>
     <div><h3>Liên kết</h3><Link href="/tin-tuc-su-kien">Tin dự án</Link><Link href="/tin-tuc-su-kien">Tin nội bộ</Link><Link href="/tin-tuc-su-kien">Tin công nghệ</Link><Link href="/tuyen-dung">Tuyển dụng</Link><Link href="/lien-he">Liên hệ</Link>

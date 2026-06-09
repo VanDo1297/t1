@@ -7,11 +7,11 @@ export default async function PlaceholderPage({ params }: PageProps<"/[...slug]"
   const { slug } = await params;
   const titles: Record<string, string> = {
     "gioi-thieu": "Giới thiệu",
-    "tai-sao-chon-svtech": "Tại sao chọn DTG",
+    "tai-sao-chon-dtg": "Tại sao chọn DTG",
     "linh-vuc-hoat-dong": "Lĩnh vực hoạt động",
     "cau-chuyen-thuong-hieu": "Câu chuyện thương hiệu",
     "khach-hang-doi-tac": "Khách hàng - Đối tác",
-    "svtech-life": "DTG Life",
+    "dtg-life": "DTG Life",
     "dich-vu": "Dịch vụ",
     "giai-phap": "Giải pháp",
     "tin-tuc-su-kien": "Tin tức & Sự kiện",
