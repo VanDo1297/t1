@@ -9,8 +9,8 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: { default: "DTG - The Foundation of Success", template: "%s | DTG" },
-  description: "Nhà tích hợp giải pháp công nghệ hàng đầu Việt Nam",
+  title: { default: "DTG — Công ty Cổ phần Công nghệ", template: "%s | DTG" },
+  description: "Tiên phong giải pháp công nghệ tích hợp AI Agent và an ninh mạng, kiến tạo không gian số an toàn cho tương lai.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

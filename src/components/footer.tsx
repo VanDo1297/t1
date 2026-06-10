@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "./icons";
 
 export function Footer() {
   return <footer className="footer"><div className="container footer-grid">

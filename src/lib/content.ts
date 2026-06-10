@@ -2,12 +2,33 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 
+type Stat = { value: string; label: string; description: string };
+type ContentCard = { title: string; description: string };
+type NewsItem = { category: string; title: string };
+
 export type HomeContent = {
-  heroTitle: string; heroSubtitle: string; partnerTitle: string;
-  serviceEyebrow: string; serviceTitle: string; serviceDescription: string;
-  whyEyebrow: string; whyTitle: string; customerTitle: string;
-  newsEyebrow: string; newsTitle: string; contactTitle: string;
-  contactDescription: string; body: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  aboutTitle: string;
+  aboutDescription: string;
+  stats: Stat[];
+  solutionsTitle: string;
+  solutionsDescription: string;
+  solutions: string[];
+  servicesTitle: string;
+  servicesDescription: string;
+  services: ContentCard[];
+  productsTitle: string;
+  productsDescription: string;
+  products: ContentCard[];
+  partnerTitle: string;
+  customerTitle: string;
+  contactTitle: string;
+  contactDescription: string;
+  newsTitle: string;
+  newsDescription: string;
+  news: NewsItem[];
+  body: string;
 };
 
 export function getHomeContent(): HomeContent {

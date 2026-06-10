@@ -1,48 +1,57 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { HomeContent } from "@/lib/content";
+import { CountUp } from "./count-up";
 import { Icon } from "./icons";
 import { Reveal } from "./reveal";
-import { CountUp } from "./count-up";
-
 
 const partners = ["AI2-2.png", "AI3-3.png", "Global1-2.png", "Global2-2.png", "Net1-2.png", "Net2-2.png", "Security2-2.png", "Security3-2.png"];
 const clients = ["Logo-Sacombank-new-1.png", "Logo-Home-Credit.png", "Coteccons-1.png", "Logo-Viettel-Vector-Moi-01-1-scaled.png", "VNG_Corp._logo.svg_-1.png", "Sun-group-logo-1.png", "Logo-Mega-Market-1.webp", "First-Solar-1.png"];
-const certificates = ["HPE-Accredited-Solutions-Expert.png", "IBM-Certified-Database-Administrator-DB2.png", "Juniper-Networks-Certified-Expert-Data-Center-JNCIE-DC.png", "Oracle-Database-Administration-Certified-Professional.png"];
-const fields = [["field-1.png", "Hạ tầng & Điện toán đám mây"], ["field-2.png", "Dữ liệu & Trí tuệ nhân tạo"], ["field-3.png", "An toàn thông tin"]];
-const services = [["Công nghệ thông tin", "/assets/svtech/services/service-1.jpg"], ["Tích hợp hệ thống", "/assets/svtech/services/service-2.jpg"], ["An ninh bảo mật", "/assets/svtech/services/service-3.jpg"], ["Giám sát vận hành", "/assets/svtech/services/service-4.jpg"]];
-const solutions = [["Chính phủ", "/assets/svtech/services/service-1.jpg"], ["Doanh nghiệp", "/assets/svtech/services/service-2.jpg"], ["Giáo dục", "/assets/svtech/services/service-3.jpg"], ["Tài chính – Ngân hàng", "/assets/svtech/services/service-4.jpg"], ["Bệnh viện", "/assets/svtech/services/service-1.jpg"]];
-const reasons = [["23+", "Năm kinh nghiệm", "Đồng hành chuyển đổi số và hạ tầng CNTT"], ["170+", "Kỹ sư & Chuyên gia", "Đội ngũ chứng chỉ quốc tế"], ["500+", "Chứng chỉ & Chứng nhận", "Tuân thủ tiêu chuẩn ngành và bảo mật"]];
-const news = [
-  ["Sự kiện", "Công Ty Cổ Phần Công Nghệ DTG đồng hành cùng Công ty CP Chăn nuôi C.P. Việt Nam", "/assets/svtech/news/news-1.jpg"],
-  ["Hợp tác", "DTG và CYFIRMA: Dấu ấn hợp tác chiến lược với danh hiệu MSSP xuất sắc", "/assets/svtech/news/news-2.jpg"],
-  ["Sự kiện", "DTG CORP - HÀNH TRÌNH KẾT NỐI TRÍ TUỆ, CẢM XÚC & CÔNG NGHỆ", "/assets/svtech/news/news-3.jpg"],
+const serviceImages = [
+  "/assets/svtech/services/service-1.jpg",
+  "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/vector-1738324830509-8ec5b04e7297?q=80&w=1324&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1688413399498-e35ed74b554f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
+const productImages = ["field-1.png", "field-2.png", "field-3.png"];
 
 export function HomePage({ content }: { content: HomeContent }) {
-  return <main>
-    <section className="hero">
+  return <main className="dtg-home">
+    <section className="hero dtg-video-hero">
       <video className="hero-video" src="https://homepage.dtgsoft.vn/api/v1/public/media/54cabb07-4d47-4c49-829f-1bd933ff5e29/file" autoPlay muted loop playsInline />
-      <div className="hero-overlay">
-        <Reveal className="hero-copy"><h1>{content.heroTitle}</h1></Reveal>
-        <Reveal delay={200}><p className="hero-banner-label">DTG - Nhà tích hợp giải pháp hàng đầu Việt Nam</p></Reveal>
+      <div className="hero-overlay"><Reveal className="hero-copy"><span className="dtg-hero-kicker">CÔNG TY CỔ PHẦN CÔNG NGHỆ DTG</span><h1>{content.heroTitle}</h1><p>{content.heroSubtitle}</p><Link className="primary-button" href="#about">Khám phá DTG <Icon name="arrow" /></Link></Reveal></div>
+    </section>
+
+    <section id="about" className="dtg-about section container">
+      <Reveal><span className="outline-label">VỀ CHÚNG TÔI</span><h2>{content.aboutTitle}</h2><p>{content.aboutDescription}</p></Reveal>
+      <div className="dtg-stat-grid">{content.stats.map((stat, index) => <Reveal className="dtg-stat-card" delay={index * 90} key={stat.label}><strong><AnimatedStat value={stat.value}/></strong><h3>{stat.label}</h3><p>{stat.description}</p></Reveal>)}</div>
+    </section>
+
+    <section className="dtg-solutions section">
+      <div className="container dtg-heading light"><Reveal><span className="outline-label light">GIẢI PHÁP</span><h2>{content.solutionsTitle}</h2><p>{content.solutionsDescription}</p></Reveal></div>
+      <div className="container dtg-sector-grid">{content.solutions.map((solution, index) => <Reveal className="dtg-sector-card" delay={index * 70} key={solution}><span>0{index + 1}</span><h3>{solution}</h3><Link href="/giai-phap">Khám phá <Icon name="arrow" /></Link></Reveal>)}</div>
+    </section>
+
+    <section className="dtg-services section container">
+      <Reveal className="dtg-heading"><span className="outline-label">DỊCH VỤ</span><h2>{content.servicesTitle}</h2><p>{content.servicesDescription}</p></Reveal>
+      <div className="dtg-service-grid">{content.services.map((service, index) => <Reveal delay={index * 80} key={service.title}><Link href="/dich-vu" className="dtg-service-card"><Image src={serviceImages[index]} alt="" width={600} height={450}/><div><h3>{service.title}</h3><p>{service.description}</p></div><span className="dtg-service-arrow-wrap"><span className="dtg-service-arrow"><Icon name="arrow"/></span></span></Link></Reveal>)}</div>
+    </section>
+
+    <section className="dtg-products section">
+      <div className="container"><Reveal className="dtg-heading light"><span className="outline-label light">SẢN PHẨM</span><h2>{content.productsTitle}</h2><p>{content.productsDescription}</p></Reveal>
+        <div className="dtg-product-grid">{content.products.map((product,index)=><Reveal delay={index*90} key={product.title}><Link href="/san-pham" className="dtg-product-card"><Image src={`/assets/svtech/${productImages[index]}`} alt="" width={700} height={520}/><div><h3>{product.title}</h3><p>{product.description}</p></div><span className="dtg-service-arrow-wrap"><span className="dtg-service-arrow"><Icon name="arrow"/></span></span></Link></Reveal>)}</div>
       </div>
     </section>
-    <section className="partners section"><div className="container"><Reveal><Link href="/khach-hang-doi-tac" className="outline-label">{content.partnerTitle}</Link></Reveal></div><LogoMarquee images={partners} folder="partners" /></section>
-    <section className="services section container"><Reveal className="section-copy"><span className="eyebrow">{content.serviceEyebrow}</span><h2>{content.serviceTitle}</h2><p>{content.serviceDescription}</p><Link className="text-link" href="/dich-vu">Tất cả dịch vụ <Icon name="arrow" /></Link></Reveal><Reveal className="service-image" delay={120}><Image src="/assets/svtech/services.png" alt="Dịch vụ công nghệ DTG" width={948} height={635} /></Reveal></section>
-    <section className="why section"><div className="container"><Reveal><span className="eyebrow">{content.whyEyebrow}</span><h2>{content.whyTitle}</h2><p className="lead">{content.body}</p></Reveal><div className="reason-grid">{reasons.map(([stat, title, desc], index) => <Reveal className="reason-card" delay={index * 100} key={title}><strong><CountUp value={parseInt(stat)} suffix="+" /></strong><h3>{title}</h3><p>{desc}</p></Reveal>)}</div></div><Reveal><Image className="team-image" src="/assets/svtech/team.webp" alt="Đội ngũ DTG" width={2560} height={755} /></Reveal></section>
+
+    <SectionLabel text={content.partnerTitle}/><HexMarquee images={partners} folder="partners"/>
     <SectionLabel text={content.customerTitle}/><HexMarquee images={clients} folder="clients" reverse/>
-    <section className="fields section container"><Reveal className="fields-heading"><div className="fields-top"><span className="outline-label">LĨNH VỰC HOẠT ĐỘNG</span><Link className="primary-button" href="/gioi-thieu/linh-vuc-hoat-dong">Tìm hiểu thêm <Icon name="arrow" /></Link></div><h2>Đáp ứng mọi nhu cầu<br />chuyển đổi số</h2></Reveal><div className="field-grid">{fields.map(([image,title], index)=><Reveal className="field-item" delay={index*100} key={title}><Image src={`/assets/svtech/${image}`} alt="" width={206} height={201}/><span>0{index+1}</span><h3>{title}</h3></Reveal>)}</div></section>
-    <SectionLabel text="CHỨNG CHỈ NĂNG LỰC"/><HexMarquee images={certificates} folder="why/certificates"/>
-    <section className="home-services section container"><Reveal><h2 className="home-services-title">DỊCH VỤ</h2><p className="home-services-desc">Cung cấp đa dạng dịch vụ giúp doanh nghiệp tối ưu hạ tầng, nâng cao hiệu quả vận hành và đảm bảo an toàn trong hành trình chuyển đổi số.</p></Reveal><div className="home-services-grid">{services.map(([title, image], index) => <Reveal className="home-service-card" delay={index * 100} key={title}><Image src={image} alt={title} width={300} height={300} /><h3>{title}</h3></Reveal>)}</div></section>
-    <section className="home-solutions section"><div className="container"><Reveal><h2 className="home-solutions-title">GIẢI PHÁP</h2><p className="home-solutions-desc">Đồng hành cùng mọi lĩnh vực, chúng tôi ứng dụng công nghệ để giải quyết bài toán vận hành và thúc đẩy chuyển đổi số toàn diện.</p></Reveal><div className="home-solutions-grid">{solutions.map(([title, image], index) => <Reveal className="home-solution-card" delay={index * 100} key={title}><Image src={image} alt={title} width={300} height={400} /><h3>{title}</h3><span className="solution-line" /></Reveal>)}</div></div></section>
-    <section className="news section container"><Reveal><span className="eyebrow">{content.newsEyebrow}</span><h2>{content.newsTitle}</h2></Reveal><div className="news-grid">{news.map(([tag, title, image], index) => <Reveal className="news-card" delay={index * 100} key={title}><div className="news-visual"><Image src={image} alt={title} width={400} height={250} /></div><small>{tag}</small><h3>{title}</h3><Link href="/tin-tuc-su-kien">Xem chi tiết <Icon name="arrow" /></Link></Reveal>)}</div></section>
-    <section className="contact section"><div className="container contact-inner"><Reveal><h2>{content.contactTitle}</h2><p>{content.contactDescription}</p></Reveal><Reveal delay={100}><form className="contact-form"><input placeholder="Họ và tên" /><input placeholder="Email doanh nghiệp" /><textarea placeholder="Nội dung cần tư vấn" /><button type="button">Gửi yêu cầu <Icon name="arrow" /></button></form></Reveal></div></section>
+
+    <section id="contact" className="why-contact section container"><Reveal><span className="outline-label light">LIÊN HỆ</span><h2>{content.contactTitle}</h2><p>{content.contactDescription}</p></Reveal><Reveal delay={100}><form><input placeholder="Họ và tên"/><input placeholder="Email"/><input placeholder="Số điện thoại"/><input placeholder="Tên doanh nghiệp"/><textarea placeholder="Nội dung cần tư vấn"/><button type="button">GỬI YÊU CẦU TƯ VẤN <Icon name="arrow"/></button></form></Reveal></section>
+
+    <section className="news section container"><Reveal className="dtg-heading"><span className="outline-label">TIN TỨC</span><h2>{content.newsTitle}</h2><p>{content.newsDescription}</p></Reveal><div className="news-grid">{content.news.map((item,index)=><Reveal className="news-card" delay={index*90} key={item.title}><div className="dtg-news-visual"><Image className="dtg-news-image" src={`/assets/svtech/news/news-${index+1}.jpg`} alt="" width={700} height={440}/></div><small>{item.category}</small><h3>{item.title}</h3><Link href="/tin-tuc-su-kien">Xem thêm <Icon name="arrow"/></Link></Reveal>)}</div></section>
   </main>;
 }
 
-function LogoMarquee({ images, folder, reverse = false }: { images: string[]; folder: string; reverse?: boolean }) {
-  return <div className={`logo-marquee ${reverse ? "reverse" : ""}`}><div className="logo-marquee-track">{[...images, ...images].map((image,index)=><div className="logo-marquee-item" key={`${image}-${index}`}><Image src={`/assets/svtech/${folder}/${image}`} alt="" width={210} height={140}/></div>)}</div></div>;
-}
 function SectionLabel({text}:{text:string}) { return <div className="container why-section-label"><Reveal><span className="outline-label">{text}</span></Reveal></div>; }
-function HexMarquee({images,folder,reverse=false}:{images:string[];folder:string;reverse?:boolean}) { return <div className={`logo-marquee why-marquee ${reverse?"reverse":""}`}><div className="logo-marquee-track">{[...images,...images].map((image,i)=><div className="logo-marquee-item" key={`${image}-${i}`}><Image src={`/assets/svtech/${folder}/${image}`} alt="" width={210} height={140}/></div>)}</div></div>; }
+function HexMarquee({images,folder,reverse=false}:{images:string[];folder:string;reverse?:boolean}) { return <Reveal><div className={`logo-marquee why-marquee ${reverse?"reverse":""}`}><div className="logo-marquee-track">{[...images,...images].map((image,i)=><div className="logo-marquee-item" key={`${image}-${i}`}><Image src={`/assets/svtech/${folder}/${image}`} alt="" width={210} height={140}/></div>)}</div></div></Reveal>; }
+function AnimatedStat({value}:{value:string}) { const match=value.match(/^(\d+)(.*)$/); return match?<CountUp value={Number(match[1])} suffix={match[2]}/>:value; }

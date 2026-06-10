@@ -6,13 +6,13 @@ import { useState } from "react";
 import { Icon } from "./icons";
 
 const nav = [
-  { label: "GIỚI THIỆU", href: "/gioi-thieu", children: [["Tại sao chọn DTG", "/gioi-thieu/tai-sao-chon-dtg"], ["Lĩnh vực hoạt động", "/gioi-thieu/linh-vuc-hoat-dong"], ["Câu chuyện thương hiệu", "/gioi-thieu/cau-chuyen-thuong-hieu"], ["Khách hàng - Đối tác", "/khach-hang-doi-tac"]] },
-  { label: "DTG LIFE", href: "/dtg-life" },
-  { label: "DỊCH VỤ", href: "/dich-vu" },
-  { label: "GIẢI PHÁP", href: "/giai-phap" },
-  { label: "TIN TỨC", href: "/tin-tuc-su-kien" },
+  { label: "GIỚI THIỆU", href: "/gioi-thieu", children: [["Câu chuyện thương hiệu", "/gioi-thieu/cau-chuyen-thuong-hieu"], ["Lịch sử hình thành và phát triển", "/gioi-thieu/lich-su-hinh-thanh"], ["Ban lãnh đạo", "/gioi-thieu/ban-lanh-dao"], ["Năng lực nhân sự", "/gioi-thieu/nang-luc-nhan-su"], ["Văn hóa DTG", "/gioi-thieu/van-hoa-dtg"], ["Chứng nhận nổi bật", "/gioi-thieu/chung-nhan-noi-bat"]] },
+  { label: "DỊCH VỤ", href: "/dich-vu", children: [["Dịch vụ CNTT", "/dich-vu/it"], ["Tích hợp hệ thống", "/dich-vu/tich-hop-he-thong"], ["Giám sát vận hành", "/dich-vu/giam-sat-van-hanh"], ["Dịch vụ bảo mật", "/dich-vu/bao-mat"]] },
+  { label: "GIẢI PHÁP", href: "/giai-phap", children: [["Giải pháp cho màn hình ghép", "/giai-phap/giai-phap-cho-man-hinh-ghep"], ["Giải pháp chuyển đổi số", "/giai-phap/giai-phap-chuyen-doi-so"]] },
+  { label: "SẢN PHẨM", href: "/san-pham" },
+  { label: "TIN TỨC", href: "/tin-tuc", children: [["Tin dự án", "/tin-tuc/du-an"], ["Tin nội bộ", "/tin-tuc/noi-bo"], ["Tin công nghệ", "/tin-tuc/cong-nghe"]] },
+  { label: "TUYỂN DỤNG", href: "/tuyen-dung" },
   { label: "LIÊN HỆ", href: "/lien-he" },
-  { label: "TUYỂN DỤNG", href: "/co-hoi-viec-lam", children: [["Cùng thỏa chí", "/co-hoi-viec-lam"], ["Việc làm", "/tuyen-dung"], ["Thực tập", "/thuc-tap"], ["Blog nghề nghiệp", "/blog-nghe-nghiep"]] },
 ];
 
 export function Header() {

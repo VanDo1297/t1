@@ -14,13 +14,14 @@ export function Reveal({ children, className = "", delay = 0 }: { children: Reac
       if (rect.top < window.innerHeight && rect.bottom > 0) reveal();
     };
 
+    node.classList.add("reveal-ready");
     revealIfVisible();
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         reveal();
         observer.unobserve(node);
       }
-    }, { threshold: 0.01, rootMargin: "0px 0px 8% 0px" });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
     observer.observe(node);
     window.addEventListener("load", revealIfVisible, { once: true });
 
