@@ -69,3 +69,27 @@ export function getBrandStoryContent(): BrandStoryContent {
   const { data } = matter(file);
   return data as BrandStoryContent;
 }
+
+export type ServicesContent = {
+  title: string;
+  subtitle: string;
+  introTitle: string;
+  introDescription: string;
+  groups: {
+    id: string;
+    number: string;
+    title: string;
+    description: string;
+    image: string;
+    items: ContentCard[];
+  }[];
+  benefits: { number: string; title: string; description: string }[];
+  contactTitle: string;
+  contactDescription: string;
+};
+
+export function getServicesContent(): ServicesContent {
+  const file = fs.readFileSync(path.join(process.cwd(), "content/services.md"), "utf8");
+  const { data } = matter(file);
+  return data as ServicesContent;
+}

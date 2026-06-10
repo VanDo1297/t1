@@ -7,7 +7,7 @@ import { Icon } from "./icons";
 
 const nav = [
   { label: "GIỚI THIỆU", href: "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-brand", children: [["Câu chuyện thương hiệu", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-brand"], ["Lịch sử hình thành và phát triển", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-history"], ["Ban lãnh đạo", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-leadership"], ["Năng lực nhân sự", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-workforce"], ["Văn hóa DTG", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-culture"], ["Chứng nhận nổi bật", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-certs"]] },
-  { label: "DỊCH VỤ", href: "/dich-vu", children: [["Dịch vụ CNTT", "/dich-vu/it"], ["Tích hợp hệ thống", "/dich-vu/tich-hop-he-thong"], ["Giám sát vận hành", "/dich-vu/giam-sat-van-hanh"], ["Dịch vụ bảo mật", "/dich-vu/bao-mat"]] },
+  { label: "DỊCH VỤ", href: "/dich-vu", children: [["Công nghệ thông tin", "/dich-vu#cong-nghe-thong-tin"], ["Tích hợp hệ thống", "/dich-vu#tich-hop-he-thong"], ["An ninh bảo mật", "/dich-vu#an-ninh-bao-mat"], ["Giám sát vận hành", "/dich-vu#giam-sat-van-hanh"]] },
   { label: "GIẢI PHÁP", href: "/giai-phap", children: [["Giải pháp cho màn hình ghép", "/giai-phap/giai-phap-cho-man-hinh-ghep"], ["Giải pháp chuyển đổi số", "/giai-phap/giai-phap-chuyen-doi-so"]] },
   { label: "SẢN PHẨM", href: "/san-pham" },
   { label: "TIN TỨC", href: "/tin-tuc", children: [["Tin dự án", "/tin-tuc/du-an"], ["Tin nội bộ", "/tin-tuc/noi-bo"], ["Tin công nghệ", "/tin-tuc/cong-nghe"]] },

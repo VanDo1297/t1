@@ -18,6 +18,7 @@ export function BrandStoryPage({ content }: { content: BrandStoryContent }) {
   const changePrinciple = (direction: number) => {
     setActivePrinciple(current => (current + direction + content.principles.length) % content.principles.length);
   };
+  const principleOrder = [-1, 0, 1].map(offset => (activePrinciple + offset + content.principles.length) % content.principles.length);
 
   return <main className="brand-page">
     <section className="brand-hero">
@@ -38,7 +39,7 @@ export function BrandStoryPage({ content }: { content: BrandStoryContent }) {
         <div className="brand-principle-heading"><Reveal><span className="outline-label light">ĐỊNH HƯỚNG PHÁT TRIỂN</span><h2>Kiến tạo và phát triển</h2></Reveal><Reveal delay={100}><p>Ba định hướng cốt lõi dẫn lối DTG không ngừng đổi mới, nâng cao năng lực và tạo dựng những giá trị bền vững cho khách hàng, nhân viên và cộng đồng.</p></Reveal></div>
         <div className="brand-principle-stage">
           <div className="brand-principle-controls"><button type="button" aria-label="Định hướng trước" onClick={()=>changePrinciple(-1)}>←</button><button type="button" aria-label="Định hướng tiếp theo" onClick={()=>changePrinciple(1)}>→</button></div>
-          <div className="brand-principle-grid">{content.principles.map((item,index)=><Reveal delay={index*90} key={item.title}><article className={`brand-principle-card ${index===activePrinciple?"active":""}`} onClick={()=>setActivePrinciple(index)}><div><Image src={principleImages[index]} alt="" width={900} height={900}/></div><span>0{index+1}</span><h3>{item.title}</h3><p>{item.description}</p></article></Reveal>)}</div>
+          <div className="brand-principle-grid">{principleOrder.map((itemIndex,position)=>{const item=content.principles[itemIndex];return <article className={`brand-principle-card ${position===1?"active":""}`} onClick={()=>setActivePrinciple(itemIndex)} key={`${activePrinciple}-${position}`}><div><Image src={principleImages[itemIndex]} alt="" width={900} height={900}/></div><span>0{itemIndex+1}</span><h3>{item.title}</h3><p>{item.description}</p></article>;})}</div>
         </div>
       </div>
     </section>
