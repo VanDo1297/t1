@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Icon } from "./icons";
 
 const nav = [
-  { label: "GIỚI THIỆU", href: "/gioi-thieu", children: [["Câu chuyện thương hiệu", "/gioi-thieu/cau-chuyen-thuong-hieu"], ["Lịch sử hình thành và phát triển", "/gioi-thieu/lich-su-hinh-thanh"], ["Ban lãnh đạo", "/gioi-thieu/ban-lanh-dao"], ["Năng lực nhân sự", "/gioi-thieu/nang-luc-nhan-su"], ["Văn hóa DTG", "/gioi-thieu/van-hoa-dtg"], ["Chứng nhận nổi bật", "/gioi-thieu/chung-nhan-noi-bat"]] },
+  { label: "GIỚI THIỆU", href: "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-brand", children: [["Câu chuyện thương hiệu", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-brand"], ["Lịch sử hình thành và phát triển", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-history"], ["Ban lãnh đạo", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-leadership"], ["Năng lực nhân sự", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-workforce"], ["Văn hóa DTG", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-culture"], ["Chứng nhận nổi bật", "/gioi-thieu/cau-chuyen-thuong-hieu#about-intro-certs"]] },
   { label: "DỊCH VỤ", href: "/dich-vu", children: [["Dịch vụ CNTT", "/dich-vu/it"], ["Tích hợp hệ thống", "/dich-vu/tich-hop-he-thong"], ["Giám sát vận hành", "/dich-vu/giam-sat-van-hanh"], ["Dịch vụ bảo mật", "/dich-vu/bao-mat"]] },
   { label: "GIẢI PHÁP", href: "/giai-phap", children: [["Giải pháp cho màn hình ghép", "/giai-phap/giai-phap-cho-man-hinh-ghep"], ["Giải pháp chuyển đổi số", "/giai-phap/giai-phap-chuyen-doi-so"]] },
   { label: "SẢN PHẨM", href: "/san-pham" },

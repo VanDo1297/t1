@@ -52,3 +52,20 @@ export function getWhyChooseContent(): WhyChooseContent {
   const { data } = matter(file);
   return data as WhyChooseContent;
 }
+
+export type BrandStoryContent = {
+  title: string;
+  introParagraphs: string[];
+  principles: ContentCard[];
+  history: { year: string; title: string; description: string }[];
+  leaders: { name: string; role: string }[];
+  cultureValues: string[];
+  cultureActivities: string[];
+  certificates: { title: string; image: string }[];
+};
+
+export function getBrandStoryContent(): BrandStoryContent {
+  const file = fs.readFileSync(path.join(process.cwd(), "content/brand-story.md"), "utf8");
+  const { data } = matter(file);
+  return data as BrandStoryContent;
+}
