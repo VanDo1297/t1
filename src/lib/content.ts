@@ -4,17 +4,23 @@ import matter from "gray-matter";
 
 type Stat = { value: string; label: string; description: string };
 type ContentCard = { title: string; description: string };
-type NewsItem = { category: string; title: string };
+type NewsItem = { category: string; title: string; description: string; date: string; image: string };
+type SolutionItem = { title: string; description: string };
+type Solution = { title: string; tag: string; description: string; modules: SolutionItem[] };
+type AssessmentOption = { title: string; description: string };
+type AssessmentStep = { label: string; title: string; options: AssessmentOption[] };
 
 export type HomeContent = {
   heroTitle: string;
   heroSubtitle: string;
+  heroPrimaryButton: string;
+  heroSecondaryButton: string;
   aboutTitle: string;
   aboutDescription: string;
   stats: Stat[];
   solutionsTitle: string;
   solutionsDescription: string;
-  solutions: string[];
+  solutions: Solution[];
   servicesTitle: string;
   servicesDescription: string;
   services: ContentCard[];
@@ -22,9 +28,12 @@ export type HomeContent = {
   productsDescription: string;
   products: ContentCard[];
   partnerTitle: string;
+  partnerNames: string[];
   customerTitle: string;
-  contactTitle: string;
-  contactDescription: string;
+  customerNames: string[];
+  assessmentTitle: string;
+  assessmentDescription: string;
+  assessmentSteps: AssessmentStep[];
   newsTitle: string;
   newsDescription: string;
   news: NewsItem[];
