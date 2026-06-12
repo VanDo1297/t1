@@ -87,10 +87,6 @@ export function WhyChooseSection() {
           <ProcessTimeline />
         </div>
 
-        {/* CTA */}
-        <div className="mt-16">
-          <CtaBox />
-        </div>
       </div>
     </section>
   );

@@ -36,7 +36,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-end pb-40">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -70,15 +70,11 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <a
-              href="/documents/dtg-company-profile.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href="/about">
               <Button variant="gradient" size="lg" className="glow-border">
                 {t("ctaProfile")}
               </Button>
-            </a>
+            </Link>
             <Link href="/contact">
               <Button variant="outline" size="lg">
                 {t("ctaContact")}

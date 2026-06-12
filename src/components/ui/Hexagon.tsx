@@ -7,11 +7,13 @@ export function Hexagon({
   children: React.ReactNode;
   size?: "sm" | "lg";
 }) {
-  const w = size === "lg" ? 206 : 165;
-  const h = size === "lg" ? 203 : 163;
+  const sizeClass =
+    size === "lg"
+      ? "w-[130px] h-[128px] lg:w-[206px] lg:h-[203px]"
+      : "w-[110px] h-[108px] lg:w-[165px] lg:h-[163px]";
 
   return (
-    <div className="relative flex-shrink-0" style={{ width: w, height: h }}>
+    <div className={`relative flex-shrink-0 ${sizeClass}`}>
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 206 203"

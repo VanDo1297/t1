@@ -34,7 +34,7 @@ export function CaseStudiesSection() {
         >
           {logos.map((client, i) => (
             <Hexagon key={`${client.name}-${i}`} size="lg">
-              <div className="relative w-28 h-12">
+              <div className="relative w-16 h-8 lg:w-28 lg:h-12">
                 <Image
                   src={client.logo}
                   alt={client.name}

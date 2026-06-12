@@ -34,7 +34,7 @@ export function PartnersSlider() {
         >
           {logos.map((partner, i) => (
             <Hexagon key={`${partner.name}-${i}`} size="lg">
-              <div className="relative w-36 h-16">
+              <div className="relative w-20 h-10 lg:w-36 lg:h-16">
                 <Image
                   src={partner.logo}
                   alt={partner.name}
