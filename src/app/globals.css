@@ -18,6 +18,12 @@ html {
 
 body {
   font-family: var(--font-body);
+  background-color: #ffffff;
+  color: #1e293b;
+}
+
+/* Dark section utility */
+.section-dark {
   background-color: var(--color-surface);
   color: #e2e8f0;
 }
@@ -83,6 +89,40 @@ body {
 
 @keyframes border-rotate {
   to { transform: rotate(360deg); }
+}
+
+/* Shimmer sweep on hover */
+.shimmer-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shimmer-hover:hover::after {
+  animation: shimmer-sweep 0.5s linear;
+}
+
+@keyframes shimmer-sweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 /* Scrollbar */

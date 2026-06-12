@@ -10,7 +10,7 @@ export function Footer() {
   const tNav = useTranslations("nav");
 
   return (
-    <footer className="bg-surface border-t border-white/5">
+    <footer className="bg-surface text-slate-200 border-t border-white/5">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
@@ -24,18 +24,26 @@ export function Footer() {
             <p className="text-sm text-slate-400 leading-relaxed">
               {t("description")}
             </p>
-            <div className="space-y-2 text-sm text-slate-400">
+            <div className="space-y-3 text-sm text-slate-400">
+              <div className="flex items-start gap-2">
+                <MapPin size={14} className="text-primary mt-0.5" />
+                <span>41 Trần Khắc Chân, Phường Cầu Kiệu, Thành phố Hồ Chí Minh, Việt Nam</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Phone size={14} className="text-primary mt-0.5" />
+                <div>
+                  <p>DTG TP.HCM: (028) 3865 9999</p>
+                  <p>DTG Hà Nội: 0916 868 989</p>
+                  <p>DTG Hải Phòng: 0912 193 833</p>
+                </div>
+              </div>
               <div className="flex items-center gap-2">
                 <Phone size={14} className="text-primary" />
-                <span>(028) 3636 5678</span>
+                <span>Fax: (028) 3868 3639</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={14} className="text-primary" />
-                <span>info@dtgsoft.vn</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <MapPin size={14} className="text-primary mt-0.5" />
-                <span>TP. Hồ Chí Minh, Việt Nam</span>
+                <span>info@dtgcorp.com.vn</span>
               </div>
             </div>
           </div>

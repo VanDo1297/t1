@@ -1,0 +1,32 @@
+"use client";
+
+export function Hexagon({
+  children,
+  size = "lg",
+}: {
+  children: React.ReactNode;
+  size?: "sm" | "lg";
+}) {
+  const w = size === "lg" ? 206 : 165;
+  const h = size === "lg" ? 203 : 163;
+
+  return (
+    <div className="relative flex-shrink-0" style={{ width: w, height: h }}>
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 206 203"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M205.5 60.7898V140.826C205.5 147.557 201.709 153.707 195.707 156.732L110.595 199.622C108.113 200.869 105.359 201.523 102.58 201.523C99.7892 201.523 97.0352 200.869 94.5407 199.609L10.2684 156.93C4.27892 153.892 0.5 147.754 0.5 141.049V60.2093C0.5 53.4789 4.29126 47.3289 10.2931 44.3033L93.4663 2.40181C95.9485 1.15452 98.7024 0.5 101.481 0.5H103.778C106.569 0.5 109.323 1.15452 111.817 2.41416L195.732 44.8961C201.721 47.934 205.5 54.0717 205.5 60.7774V60.7898Z"
+          stroke="#2D5078"
+          strokeMiterlimit="10"
+        />
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center">
+        {children}
+      </div>
+    </div>
+  );
+}

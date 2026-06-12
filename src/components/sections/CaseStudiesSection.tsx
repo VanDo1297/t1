@@ -4,38 +4,52 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Hexagon } from "@/components/ui/Hexagon";
 import { CASE_STUDIES, CLIENT_LOGOS } from "@/lib/constants";
 
 export function CaseStudiesSection() {
   const t = useTranslations("caseStudies");
+  const logos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
+  const itemW = 206;
+  const gap = 32;
 
   return (
-    <section className="py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading kicker={t("kicker")} title={t("title")} />
+    <section className="pt-20 pb-14 bg-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10">
+        <SectionHeading
+          kicker={t("kicker")}
+          title={t("title")}
+          className="[&_span]:text-primary !text-left"
+        />
+      </div>
 
-        {/* Client logos */}
-        <div className="flex flex-wrap justify-center gap-8 mb-16">
-          {CLIENT_LOGOS.map((client, i) => (
-            <motion.div
-              key={client.name}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="relative w-24 h-14 group"
-            >
-              <Image
-                src={client.logo}
-                alt={client.name}
-                fill
-                className="object-contain grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
-              />
-            </motion.div>
+      <div className="relative overflow-hidden">
+        <motion.div
+          className="flex items-center"
+          style={{ gap }}
+          animate={{ x: [-(itemW + gap) * CLIENT_LOGOS.length, 0] }}
+          transition={{
+            x: { duration: 22, repeat: Infinity, ease: "linear" },
+          }}
+        >
+          {logos.map((client, i) => (
+            <Hexagon key={`${client.name}-${i}`} size="lg">
+              <div className="relative w-28 h-12">
+                <Image
+                  src={client.logo}
+                  alt={client.name}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </Hexagon>
           ))}
-        </div>
+        </motion.div>
+      </div>
 
-        {/* Case study cards */}
+      <div className="mt-10 border-b border-slate-200" />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-16">
         <div className="grid sm:grid-cols-2 gap-6">
           {CASE_STUDIES.map((cs, i) => (
             <motion.div
@@ -44,7 +58,7 @@ export function CaseStudiesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative rounded-2xl overflow-hidden"
+              className="group relative rounded-2xl overflow-hidden shadow-lg"
             >
               <div className="relative h-64">
                 <Image
@@ -53,13 +67,13 @@ export function CaseStudiesSection() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-primary transition-colors">
+                <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-sky-300 transition-colors">
                   {t(`${cs.key}.title`)}
                 </h3>
-                <p className="text-sm text-slate-400">{t(`${cs.key}.desc`)}</p>
+                <p className="text-sm text-slate-300">{t(`${cs.key}.desc`)}</p>
               </div>
             </motion.div>
           ))}

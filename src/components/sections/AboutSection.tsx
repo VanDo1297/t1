@@ -4,20 +4,20 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
-import { Shield, Database, Cloud, Network } from "lucide-react";
+import { Lightbulb, Users, ShieldCheck, Handshake } from "lucide-react";
 
 const orbitItems = [
-  { key: "security", Icon: Shield, angle: 0, color: "#ef4444" },
-  { key: "data", Icon: Database, angle: 90, color: "#3b82f6" },
-  { key: "cloud", Icon: Cloud, angle: 180, color: "#8b5cf6" },
-  { key: "network", Icon: Network, angle: 270, color: "#06b6d4" },
-] as const;
+  { key: "cloud", Icon: Lightbulb },
+  { key: "security", Icon: ShieldCheck },
+  { key: "data", Icon: Users },
+  { key: "network", Icon: Handshake },
+];
 
 export function AboutSection() {
   const t = useTranslations("about");
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-24 relative bg-white text-surface">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Text */}
@@ -30,78 +30,112 @@ export function AboutSection() {
             <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">
               {t("kicker")}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-surface mb-6">
               {t("title")}
             </h2>
-            <p className="text-slate-300 leading-relaxed mb-4">
+            <p className="text-surface-lighter leading-relaxed mb-4">
               {t("description1")}
             </p>
-            <p className="text-slate-400 leading-relaxed mb-8">
+            <p className="text-surface-lighter leading-relaxed mb-8">
               {t("description2")}
             </p>
             <Link href="/about">
-              <Button variant="outline" className="glow-border-hover">
+              <Button variant="outline">
                 {t("cta")}
               </Button>
             </Link>
           </motion.div>
 
-          {/* Right: Orbit Infographic */}
+          {/* Right: Orbit Infographic - 420x420 grid */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center"
+            className="hidden lg:flex justify-center"
           >
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-              {/* Center Logo Pulse */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/30 flex items-center justify-center"
-                >
-                  <span className="text-2xl font-bold gradient-text">DTG</span>
-                </motion.div>
+            <div className="relative" style={{ width: 500, height: 420 }}>
+              {/* 4 corners - items */}
+              {/* Top-left */}
+              <div className="absolute top-10 left-0 flex items-center gap-2 flex-row">
+                <div className="w-10 h-10 rounded-full border border-surface/30 flex items-center justify-center">
+                  <Lightbulb size={18} className="text-surface" />
+                </div>
+                <div className="">
+                  <h4 className="text-xs font-bold text-surface uppercase">{t("orbit.cloud")}</h4>
+                  <p className="text-[11px] text-surface-lighter">{t("orbit.cloudDesc")}</p>
+                </div>
               </div>
 
-              {/* Orbit ring */}
-              <div className="absolute inset-4 rounded-full border border-white/5" />
+              {/* Top-right */}
+              <div className="absolute top-10 right-0 flex items-center gap-2  flex-row-reverse">
+                <div className="w-10 h-10 rounded-full border border-surface/30 flex items-center justify-center">
+                  <ShieldCheck size={18} className="text-surface" />
+                </div>
+                <div className="text-right">
+                  <h4 className="text-xs font-bold text-surface uppercase">{t("orbit.security")}</h4>
+                  <p className="text-[11px] text-surface-lighter">{t("orbit.securityDesc")}</p>
+                </div>
+              </div>
 
-              {/* Orbit items */}
-              {orbitItems.map(({ key, Icon, angle, color }, i) => {
-                const radius = 140;
-                const rad = ((angle - 90) * Math.PI) / 180;
-                const x = Math.cos(rad) * radius;
-                const y = Math.sin(rad) * radius;
+              {/* Bottom-left */}
+              <div className="absolute bottom-10 left-0 flex items-center gap-2 flex-row">
+                <div className="w-10 h-10 rounded-full border border-surface/30 flex items-center justify-center">
+                  <Users size={18} className="text-surface" />
+                </div>
+                <div className="text-left">
+                  <h4 className="text-xs font-bold text-surface uppercase">{t("orbit.data")}</h4>
+                  <p className="text-[11px] text-surface-lighter">{t("orbit.dataDesc")}</p>
+                </div>
+              </div>
 
-                return (
-                  <motion.div
-                    key={key}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group cursor-pointer"
-                    style={{ x, y }}
-                    whileHover={{ scale: 1.2 }}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + i * 0.1 }}
-                  >
-                    <div
-                      className="w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:shadow-lg"
-                      style={{
-                        backgroundColor: `${color}15`,
-                        border: `1px solid ${color}30`,
-                      }}
-                    >
-                      <Icon size={28} style={{ color }} />
-                    </div>
-                    <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xs text-slate-400 whitespace-nowrap group-hover:text-white transition-colors">
-                      {t(`orbit.${key}`)}
-                    </span>
-                  </motion.div>
-                );
-              })}
+              {/* Bottom-right */}
+              <div className="absolute bottom-10 right-0 flex items-center gap-2 flex-row-reverse">
+                <div className="w-10 h-10 rounded-full border border-surface/30 flex items-center justify-center">
+                  <Handshake size={18} className="text-surface" />
+                </div>
+                <div className="text-right">
+                  <h4 className="text-xs font-bold text-surface uppercase">{t("orbit.network")}</h4>
+                  <p className="text-[11px] text-surface-lighter">{t("orbit.networkDesc")}</p>
+                </div>
+              </div>
+
+              <div className="absolute" style={{ width: 320, height: 320, top: 60, left: 90 }}>
+                {/* Rings via SVG */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 360" fill="none">
+                  <circle cx="180" cy="180" r="175" stroke="#0f172a" strokeWidth="2" strokeDasharray="8 6" opacity="0.3" />
+                  <circle cx="180" cy="180" r="130" stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="6 5" opacity="0.4" />
+                  <circle cx="180" cy="180" r="85" stroke="#0ea5e9" strokeWidth="1" opacity="0.3" />
+                </svg>
+
+                {/* Animated dots */}
+                <motion.div
+                  className="absolute inset-[2%]"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                >
+                  <div className="absolute w-5 h-5 rounded-full bg-surface/50" style={{ top: "50%", left: 0, transform: "translate(-50%, -50%)" }} />
+                </motion.div>
+                <motion.div
+                  className="absolute inset-[15%]"
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                >
+                  <div className="absolute w-5 h-5 rounded-full bg-orange-400" style={{ bottom: 0, left: "50%", transform: "translate(-50%, 50%)" }} />
+                </motion.div>
+                <motion.div
+                  className="absolute inset-[28%]"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                >
+                  <div className="absolute w-4 h-4 rounded-full bg-primary" style={{ top: 0, left: "50%", transform: "translate(-50%, -50%)" }} />
+                </motion.div>
+
+                {/* Center text */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-sm font-bold text-surface">{t("orbitCenter")}</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

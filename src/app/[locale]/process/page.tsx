@@ -68,11 +68,12 @@ export default function ProcessPage() {
         <SectionHeading
           kicker="QUY TRÌNH TRIỂN KHAI"
           title="Quy Trình Triển Khai Chuẩn 6 Bước"
+          className="!text-left"
         />
 
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/0 -translate-x-1/2" />
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-surface -translate-x-1/2" />
 
           <div className="space-y-12">
             {PROCESS_STEPS.map((step, i) => {
@@ -91,8 +92,8 @@ export default function ProcessPage() {
                   }`}
                 >
                   {/* Node */}
-                  <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full bg-surface border-2 border-primary flex items-center justify-center z-10">
-                    <span className="text-lg font-bold text-primary">
+                  <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full bg-white border-2 border-surface flex items-center justify-center z-10">
+                    <span className="text-lg font-bold text-surface">
                       {details.icon}
                     </span>
                   </div>
@@ -103,7 +104,7 @@ export default function ProcessPage() {
                       isEven ? "md:pr-16 md:text-right" : "md:pl-16"
                     }`}
                   >
-                    <div className="glass-card rounded-xl p-6">
+                    <div className="bg-surface rounded-xl p-6">
                       <h3 className="text-lg font-semibold text-white mb-3">
                         Bước {step.step}: {t(`steps.${step.step}.title`)}
                       </h3>

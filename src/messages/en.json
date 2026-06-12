@@ -22,11 +22,16 @@
     "description1": "DTG is proud to be one of the leading system integrators in Vietnam, providing a comprehensive IT solution ecosystem: Information Security, Data Infrastructure, Cloud Computing, and advanced Network & System Administration.",
     "description2": "With a team of experienced experts holding top international certifications, partnering closely with world-leading technology companies, we are committed to delivering optimal, secure, and superior solutions.",
     "cta": "Learn more about DTG capabilities",
+    "orbitCenter": "Core Values",
     "orbit": {
-      "security": "Information Security",
-      "data": "Data Infrastructure",
-      "cloud": "Cloud Computing",
-      "network": "Network & Admin"
+      "security": "Trust",
+      "securityDesc": "is the foundation of everything",
+      "data": "Unity",
+      "dataDesc": "is our strength",
+      "cloud": "Knowledge & Innovation",
+      "cloudDesc": "is the foundation of growth",
+      "network": "Partnership",
+      "networkDesc": "with our customers"
     }
   },
   "whyChoose": {
@@ -52,7 +57,8 @@
         "2": { "title": "Consulting & Design", "desc": "Analyze optimal solutions, advise advanced technology architecture." },
         "3": { "title": "Deployment & Integration", "desc": "Provide genuine equipment, install and integrate systems." },
         "4": { "title": "Training & Handover", "desc": "In-depth technical guidance, staff training and documentation." },
-        "5": { "title": "Operations & Optimization", "desc": "Regular maintenance, 24/7 support and continuous optimization." }
+        "5": { "title": "Operations & Optimization", "desc": "Regular maintenance, 24/7 support and continuous optimization." },
+        "6": { "title": "Support & Maintenance", "desc": "24/7/365 technical support, periodic maintenance and system upgrade consulting." }
       }
     },
     "cta": {

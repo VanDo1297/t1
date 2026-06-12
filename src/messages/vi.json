@@ -22,11 +22,16 @@
     "description1": "DTG tự hào là một trong những đơn vị tích hợp hệ thống hàng đầu tại Việt Nam, chuyên cung cấp hệ sinh thái giải pháp và dịch vụ CNTT toàn diện: An toàn thông tin, Hạ tầng dữ liệu, Điện toán đám mây, cùng hệ thống Mạng và quản trị tiên tiến.",
     "description2": "Sở hữu đội ngũ chuyên gia giàu kinh nghiệm, nắm giữ các chứng chỉ quốc tế cao cấp nhất, kết hợp chặt chẽ cùng các đối tác công nghệ hàng đầu thế giới, chúng tôi cam kết mang đến những giải pháp tối ưu, an toàn và hiệu quả vượt trội.",
     "cta": "Tìm hiểu thêm về năng lực DTG",
+    "orbitCenter": "Giá trị cốt lõi",
     "orbit": {
-      "security": "An toàn thông tin",
-      "data": "Hạ tầng dữ liệu",
-      "cloud": "Điện toán đám mây",
-      "network": "Mạng & Quản trị"
+      "security": "Sự tin cậy",
+      "securityDesc": "là khởi đầu của tất cả",
+      "data": "Đoàn kết",
+      "dataDesc": "là sức mạnh",
+      "cloud": "Tri thức & Sáng tạo",
+      "cloudDesc": "là nền tảng phát triển",
+      "network": "Đồng hành",
+      "networkDesc": "cùng khách hàng"
     }
   },
   "whyChoose": {
@@ -70,7 +75,8 @@
         "2": { "title": "Tư Vấn & Thiết Kế", "desc": "Phân tích tối ưu phương án, tư vấn mô hình kiến trúc công nghệ tiên tiến." },
         "3": { "title": "Triển Khai & Tích Hợp", "desc": "Cung cấp thiết bị chính hãng, thi công lắp đặt và tích hợp hệ thống hoàn thiện." },
         "4": { "title": "Đào Tạo & Chuyển Giao", "desc": "Hướng dẫn kỹ thuật chuyên sâu, huấn luyện nhân sự và bàn giao hồ sơ tài liệu." },
-        "5": { "title": "Vận Hành & Tối Ưu", "desc": "Bảo trì định kỳ, hỗ trợ 24/7 và liên tục tối ưu hóa hiệu năng hệ thống." }
+        "5": { "title": "Vận Hành & Tối Ưu", "desc": "Bảo trì định kỳ, hỗ trợ 24/7 và liên tục tối ưu hóa hiệu năng hệ thống." },
+        "6": { "title": "Hỗ Trợ & Bảo Trì", "desc": "Hỗ trợ kỹ thuật 24/7/365, bảo trì định kỳ và tư vấn nâng cấp hệ thống." }
       }
     },
     "cta": {

@@ -22,7 +22,7 @@ export function SectionHeading({ kicker, title, className = "" }: SectionHeading
           {kicker}
         </span>
       )}
-      <h2 className="text-3xl md:text-4xl font-bold gradient-text">{title}</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-surface">{title}</h2>
     </motion.div>
   );
 }

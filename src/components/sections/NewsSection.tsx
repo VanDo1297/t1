@@ -19,14 +19,14 @@ export function NewsSection() {
   const t = useTranslations("news");
 
   return (
-    <section className="py-24 bg-surface-light/30">
+    <section className="py-24 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between mb-12">
           <div>
             <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">
               {t("kicker")}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold gradient-text">
+            <h2 className="text-3xl md:text-4xl font-bold text-surface">
               {t("title")}
             </h2>
           </div>
@@ -52,7 +52,7 @@ export function NewsSection() {
               transition={{ delay: i * 0.1 }}
             >
               <Link href={`/news/${item.slug}`}>
-                <div className="group rounded-2xl overflow-hidden bg-surface-light/50 border border-white/5 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <div className="group rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src={item.image}
@@ -68,11 +68,11 @@ export function NewsSection() {
                       >
                         {t(`tags.${item.tag}`)}
                       </span>
-                      <span className="text-xs text-slate-500">
+                      <span className="text-xs text-surface-lighter">
                         {item.date}
                       </span>
                     </div>
-                    <h3 className="text-base font-semibold text-white group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+                    <h3 className="text-base font-semibold text-surface group-hover:text-primary transition-colors line-clamp-2 leading-snug">
                       {t(`items.${item.slug}`)}
                     </h3>
                   </div>

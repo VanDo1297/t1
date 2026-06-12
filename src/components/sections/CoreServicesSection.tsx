@@ -28,9 +28,9 @@ export function CoreServicesSection() {
   const t = useTranslations("services");
 
   return (
-    <section className="py-24 bg-surface-light/30">
+    <section className="py-24 bg-white text-surface">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading kicker={t("kicker")} title={t("title")} />
+        <SectionHeading kicker={t("kicker")} title={t("title")} className="!text-left" />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {CORE_SERVICES.map((service, i) => {
@@ -44,7 +44,7 @@ export function CoreServicesSection() {
                 transition={{ delay: i * 0.1 }}
               >
                 <Link href={`/solutions/${service.slug}`}>
-                  <div className="glass-card rounded-2xl p-6 h-full group cursor-pointer transition-all duration-300">
+                  <div className="bg-surface rounded-2xl p-6 h-full group cursor-pointer transition-all duration-300 border border-white/10 hover:border-primary/30 hover:shadow-xl shimmer-hover">
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                       <Icon
                         size={28}

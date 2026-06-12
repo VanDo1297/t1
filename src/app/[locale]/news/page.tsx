@@ -27,10 +27,10 @@ export default function NewsPage() {
   return (
     <div className="pt-24 pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading kicker={t("kicker")} title={t("title")} />
+        <SectionHeading kicker={t("kicker")} title={t("title")} className="!text-left" />
 
         {/* Filter tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="flex flex-wrap gap-2 mb-12">
           {["all", "event", "technology", "company", "press"].map((tag) => (
             <button
               key={tag}
@@ -38,7 +38,7 @@ export default function NewsPage() {
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 activeTag === tag
                   ? "bg-primary text-white"
-                  : "bg-surface-light text-slate-400 hover:text-white"
+                  : "bg-slate-100 text-surface-lighter hover:text-surface hover:bg-slate-200"
               }`}
             >
               {t(`tags.${tag}`)}
@@ -63,7 +63,7 @@ export default function NewsPage() {
                 transition={{ delay: i * 0.1 }}
               >
                 <Link href={`/news/${item.slug}`}>
-                  <div className="group rounded-2xl overflow-hidden bg-surface-light/50 border border-white/5 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
+                  <div className="group rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                     <div className="relative h-48 overflow-hidden">
                       <Image
                         src={item.image}
@@ -79,11 +79,11 @@ export default function NewsPage() {
                         >
                           {t(`tags.${item.tag}`)}
                         </span>
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-surface-lighter">
                           {item.date}
                         </span>
                       </div>
-                      <h3 className="text-base font-semibold text-white group-hover:text-primary transition-colors line-clamp-2">
+                      <h3 className="text-base font-semibold text-surface group-hover:text-primary transition-colors line-clamp-2">
                         {t(`items.${item.slug}`)}
                       </h3>
                     </div>

@@ -18,18 +18,18 @@ export function CtaBox() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center py-12 px-6 rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 border border-white/5"
+        className="text-center py-12 px-6 rounded-2xl bg-gradient-to-r from-primary to-accent"
       >
         <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
           {t("subtitle")}
         </h3>
-        <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
+        <p className="text-white/80 mb-8 max-w-2xl mx-auto">
           {t("message")}
         </p>
         <Button
-          variant="gradient"
+          variant="outline"
           size="lg"
-          className="glow-border"
+          className="!border-white !text-white hover:!bg-white/10"
           onClick={() => setIsModalOpen(true)}
         >
           {t("button")}

@@ -53,7 +53,7 @@ export function MetricsSection() {
           <div className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan drop-shadow-[0_0_10px_rgba(14,165,233,0.3)]">
             <CountUp end={metric.value} suffix={metric.suffix} />
           </div>
-          <p className="mt-2 text-sm text-slate-400">{t(metric.label)}</p>
+          <p className="mt-2 text-sm text-surface-lighter">{t(metric.label)}</p>
         </motion.div>
       ))}
     </div>
