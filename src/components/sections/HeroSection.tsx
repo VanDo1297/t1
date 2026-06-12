@@ -20,7 +20,7 @@ export function HeroSection() {
   }, [keywords.length]);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-svh lg:min-h-[max(100svh,800px)] flex items-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0">
         <video
@@ -36,7 +36,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-end pb-40">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-svh lg:min-h-[max(100svh,800px)] flex items-end pb-40">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
