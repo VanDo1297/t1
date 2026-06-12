@@ -51,7 +51,6 @@ export function HomePage({ content }: { content: HomeContent }) {
     </section>
 
     <section id="about" className="dtg-about-stats section container">
-      <Reveal className="dtg-stat-heading"><span className="outline-label">22+ NĂM KINH NGHIỆM</span><h2>{content.aboutTitle}</h2></Reveal>
       <div className="dtg-stat-grid">{content.stats.map((stat, index) => <Reveal className="dtg-stat-card" delay={index * 70} key={stat.label}><strong><AnimatedStat value={stat.value}/></strong><h3>{stat.label}</h3><p>{stat.description}</p></Reveal>)}</div>
     </section>
 
@@ -100,5 +99,5 @@ function AssessmentResult({answers,onReset}:{answers:string[];onReset:()=>void})
 }
 
 function SectionLabel({text}:{text:string}) { return <div className="container why-section-label"><Reveal><span className="outline-label">{text}</span></Reveal></div>; }
-function TextMarquee({items,reverse=false}:{items:string[];reverse?:boolean}) { return <Reveal><div className={`dtg-text-marquee ${reverse?"reverse":""}`}><div>{[...items,...items].map((item,index)=><span key={`${item}-${index}`}>{item}</span>)}</div></div></Reveal>; }
+function TextMarquee({items,reverse=false}:{items:string[];reverse?:boolean}) { return <Reveal><div className={`logo-marquee why-marquee ${reverse?"reverse":""}`}><div className="logo-marquee-track">{[...items,...items].map((item,index)=><div className="logo-marquee-item dtg-logo-text" key={`${item}-${index}`}>{item}</div>)}</div></div></Reveal>; }
 function AnimatedStat({value}:{value:string}) { const match=value.match(/^(\d+)(.*)$/); return match?<CountUp value={Number(match[1])} suffix={match[2]}/>:value; }
