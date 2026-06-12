@@ -1,0 +1,165 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Về chúng tôi",
+    "solutions": "Giải pháp & Dịch vụ",
+    "process": "Quy trình",
+    "partners": "Đối tác",
+    "news": "Tin tức",
+    "contact": "Liên hệ"
+  },
+  "hero": {
+    "title": "DTG - Nâng Tầm Hạ Tầng Số",
+    "titleHighlight": "Bứt Phá Kỷ Nguyên AI & Chuyển Đổi Số",
+    "subtitle": "Chuyên gia tích hợp hệ thống hàng đầu: Từ hạ tầng Hybrid Cloud, bảo mật thông minh đến các giải pháp tích hợp dữ liệu lớn và AI chuyên sâu cho doanh nghiệp.",
+    "ctaProfile": "Xem hồ sơ năng lực",
+    "ctaContact": "Liên hệ tư vấn",
+    "keywords": ["AI", "Chuyển đổi số", "Hạ tầng thông minh"]
+  },
+  "about": {
+    "kicker": "VỀ CHÚNG TÔI",
+    "title": "DTG – Đối Tác Công Nghệ Số, Đồng Hành Chuyển Đổi Số",
+    "description1": "DTG tự hào là một trong những đơn vị tích hợp hệ thống hàng đầu tại Việt Nam, chuyên cung cấp hệ sinh thái giải pháp và dịch vụ CNTT toàn diện: An toàn thông tin, Hạ tầng dữ liệu, Điện toán đám mây, cùng hệ thống Mạng và quản trị tiên tiến.",
+    "description2": "Sở hữu đội ngũ chuyên gia giàu kinh nghiệm, nắm giữ các chứng chỉ quốc tế cao cấp nhất, kết hợp chặt chẽ cùng các đối tác công nghệ hàng đầu thế giới, chúng tôi cam kết mang đến những giải pháp tối ưu, an toàn và hiệu quả vượt trội.",
+    "cta": "Tìm hiểu thêm về năng lực DTG",
+    "orbit": {
+      "security": "An toàn thông tin",
+      "data": "Hạ tầng dữ liệu",
+      "cloud": "Điện toán đám mây",
+      "network": "Mạng & Quản trị"
+    }
+  },
+  "whyChoose": {
+    "title": "Tại Sao Chọn DTG?",
+    "metrics": {
+      "yearsExperience": "Năm Kinh Nghiệm Vững Vàng",
+      "projectsDeployed": "Dự Án Triển Khai Thành Công",
+      "techPartners": "Đối Tác Công Nghệ Toàn Cầu",
+      "enterpriseClients": "Khách Hàng Doanh Nghiệp Tin Tưởng"
+    },
+    "values": {
+      "experience": {
+        "title": "23+ Năm Tiên Phong Kỷ Nguyên Số",
+        "desc": "Uy tín vững chắc qua hơn hai thập kỷ đồng hành cùng thị trường CNTT Việt Nam."
+      },
+      "experts": {
+        "title": "Đội Ngũ Chuyên Gia Quốc Tế",
+        "desc": "Sở hữu các kỹ sư cấp cao nắm giữ các chứng chỉ công nghệ toàn cầu khắt khe nhất."
+      },
+      "solutions": {
+        "title": "Giải Pháp Toàn Diện & Tiên Phong",
+        "desc": "Làm chủ các xu hướng công nghệ mới (AI, Cloud, Cyber Security) để thiết kế giải pháp tối ưu nhất."
+      },
+      "nationwide": {
+        "title": "Triển Khai Toàn Quốc",
+        "desc": "Mạng lưới dịch vụ phủ rộng, đảm bảo khả năng ứng cứu kỹ thuật và bàn giao nhanh chóng."
+      },
+      "support": {
+        "title": "Hỗ Trợ Kỹ Thuật 24/7 Tận Tâm",
+        "desc": "Hệ thống trực vận hành liên tục, sẵn sàng xử lý sự cố thời gian thực."
+      },
+      "quality": {
+        "title": "Cam Kết Chất Lượng Đầu Ra",
+        "desc": "Đặt yếu tố an toàn thông tin và hiệu suất đầu tư (ROI) của khách hàng làm kim chỉ nam."
+      }
+    },
+    "process": {
+      "title": "Quy Trình Tạo Giá Trị",
+      "steps": {
+        "1": { "title": "Khảo Sát & Đánh Giá", "desc": "Tiếp nhận yêu cầu chiến lược, khảo sát thực tế và đánh giá hiện trạng hạ tầng công nghệ." },
+        "2": { "title": "Tư Vấn & Thiết Kế", "desc": "Phân tích tối ưu phương án, tư vấn mô hình kiến trúc công nghệ tiên tiến." },
+        "3": { "title": "Triển Khai & Tích Hợp", "desc": "Cung cấp thiết bị chính hãng, thi công lắp đặt và tích hợp hệ thống hoàn thiện." },
+        "4": { "title": "Đào Tạo & Chuyển Giao", "desc": "Hướng dẫn kỹ thuật chuyên sâu, huấn luyện nhân sự và bàn giao hồ sơ tài liệu." },
+        "5": { "title": "Vận Hành & Tối Ưu", "desc": "Bảo trì định kỳ, hỗ trợ 24/7 và liên tục tối ưu hóa hiệu năng hệ thống." }
+      }
+    },
+    "cta": {
+      "subtitle": "Hệ thống của bạn đã sẵn sàng cho kỷ nguyên AI & Chuyển đổi số?",
+      "message": "Hãy để đội ngũ chuyên gia SI hàng đầu của DTG đồng hành cùng doanh nghiệp của bạn từ những bước khảo sát đầu tiên.",
+      "button": "GỬI YÊU CẦU: TƯ VẤN | KHẢO SÁT | BÁO GIÁ"
+    }
+  },
+  "services": {
+    "kicker": "GIẢI PHÁP & DỊCH VỤ",
+    "title": "Giải Pháp Công Nghệ Cốt Lõi",
+    "network": { "title": "Hạ tầng mạng & Viễn thông", "desc": "Thiết kế, triển khai hạ tầng mạng doanh nghiệp toàn diện." },
+    "server": { "title": "Hệ thống máy chủ & Lưu trữ", "desc": "Giải pháp máy chủ, lưu trữ SAN/NAS chuyên dụng cao cấp." },
+    "security": { "title": "Giải pháp Bảo mật toàn diện", "desc": "An toàn thông tin, bảo mật mạng và dữ liệu doanh nghiệp." },
+    "cloud": { "title": "Điện toán đám mây & Ảo hóa", "desc": "Cloud, Hybrid Cloud và ảo hóa hạ tầng." },
+    "conference": { "title": "Giải pháp Hội nghị Truyền hình", "desc": "Hệ thống hội nghị truyền hình chất lượng cao." },
+    "ai": { "title": "Trí tuệ nhân tạo", "desc": "AI Engine & Solutions cho doanh nghiệp." },
+    "viewDetail": "Xem chi tiết"
+  },
+  "partners": {
+    "kicker": "ĐỐI TÁC CHIẾN LƯỢC",
+    "title": "Đối Tác Công Nghệ Toàn Cầu"
+  },
+  "caseStudies": {
+    "kicker": "DỰ ÁN TIÊU BIỂU",
+    "title": "Khách Hàng & Dự Án Tiêu Biểu",
+    "evn": { "title": "Trung tâm dữ liệu dự phòng (DR) cho EVN HCM", "desc": "Triển khai hệ thống trung tâm dữ liệu dự phòng toàn diện." },
+    "bca": { "title": "Hạ tầng lưu trữ & máy chủ cho Bộ Công An", "desc": "Cung cấp hạ tầng lưu trữ và hệ thống máy chủ chuyên sâu." },
+    "vinhomes": { "title": "Hệ thống LED & Camera cho Vinhomes", "desc": "Tích hợp hệ thống màn hình LED và mạng lưới Camera giám sát." },
+    "hospital": { "title": "Hạ tầng CNTT cho bệnh viện Đồng Nai", "desc": "Triển khai toàn diện hạ tầng Công nghệ thông tin tích hợp." }
+  },
+  "news": {
+    "kicker": "DÒNG CHẢY CÔNG NGHỆ",
+    "title": "Tin Tức & Sự Kiện Nổi Bật",
+    "viewAll": "Xem tất cả tin tức",
+    "tags": {
+      "all": "Tất cả",
+      "event": "Sự Kiện Chiến Lược",
+      "technology": "Xu Hướng Công Nghệ",
+      "company": "Tin Tức DTG",
+      "press": "Thông Cáo Báo Chí"
+    },
+    "items": {
+      "dtg-hop-tac-ha-tang-ai": "DTG Thắt Chặt Hợp Tác Chiến Lược Cùng Đối Tác Hàng Đầu: Tăng Tốc Giải Pháp Hạ Tầng AI",
+      "hybrid-cloud-architecture": "Xây Dựng Kiến Trúc Hybrid Cloud Vững Chắc: Bước Đệm Bứt Phá Trong Kỷ Nguyên Số",
+      "dtg-certifications": "Đội Ngũ Chuyên Gia DTG Hoàn Thành Chuỗi Chứng Chỉ Cao Cấp Từ Các Hãng Công Nghệ Toàn Cầu"
+    }
+  },
+  "contact": {
+    "title": "Liên Hệ & Yêu Cầu Tư Vấn",
+    "info": {
+      "title": "Thông Tin Liên Hệ",
+      "phone": "Hotline",
+      "email": "Email",
+      "address": "Địa chỉ"
+    },
+    "form": {
+      "title": "Gửi Yêu Cầu Tư Vấn",
+      "name": "Họ và tên",
+      "company": "Tên công ty / Tổ chức",
+      "phoneEmail": "Số điện thoại / Email",
+      "solution": "Mảng giải pháp quan tâm",
+      "message": "Nội dung yêu cầu",
+      "submit": "Gửi yêu cầu",
+      "success": "Yêu cầu đã được gửi thành công!",
+      "solutionOptions": {
+        "network": "Hạ tầng mạng",
+        "server": "Máy chủ & Lưu trữ",
+        "security": "Bảo mật toàn diện",
+        "maintenance": "Dịch vụ bảo trì",
+        "ai": "Giải pháp AI",
+        "cloud": "Điện toán đám mây"
+      }
+    }
+  },
+  "footer": {
+    "description": "Đơn vị tích hợp hệ thống hàng đầu, tiên phong trong kỷ nguyên AI và Chuyển đổi số.",
+    "quickLinks": "Liên kết nhanh",
+    "services": "Dịch vụ",
+    "newsletter": "Đăng ký nhận bản tin",
+    "newsletterPlaceholder": "Email của bạn",
+    "subscribe": "Đăng ký",
+    "copyright": "© 2026 DTG. Tất cả quyền được bảo lưu.",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản sử dụng"
+  },
+  "common": {
+    "learnMore": "Tìm hiểu thêm",
+    "readMore": "Đọc thêm",
+    "backToHome": "Về trang chủ"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "solutions": "Solutions & Services",
+    "process": "Process",
+    "partners": "Partners",
+    "news": "News",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "DTG - Elevating Digital Infrastructure",
+    "titleHighlight": "Breaking Through the AI & Digital Transformation Era",
+    "subtitle": "Leading system integration experts: From Hybrid Cloud infrastructure, intelligent security to big data integration and enterprise AI solutions.",
+    "ctaProfile": "View Company Profile",
+    "ctaContact": "Contact Us",
+    "keywords": ["AI", "Digital Transformation", "Smart Infrastructure"]
+  },
+  "about": {
+    "kicker": "ABOUT US",
+    "title": "DTG – Your Digital Technology Partner",
+    "description1": "DTG is proud to be one of the leading system integrators in Vietnam, providing a comprehensive IT solution ecosystem: Information Security, Data Infrastructure, Cloud Computing, and advanced Network & System Administration.",
+    "description2": "With a team of experienced experts holding top international certifications, partnering closely with world-leading technology companies, we are committed to delivering optimal, secure, and superior solutions.",
+    "cta": "Learn more about DTG capabilities",
+    "orbit": {
+      "security": "Information Security",
+      "data": "Data Infrastructure",
+      "cloud": "Cloud Computing",
+      "network": "Network & Admin"
+    }
+  },
+  "whyChoose": {
+    "title": "Why Choose DTG?",
+    "metrics": {
+      "yearsExperience": "Years of Solid Experience",
+      "projectsDeployed": "Successfully Deployed Projects",
+      "techPartners": "Global Technology Partners",
+      "enterpriseClients": "Trusted Enterprise Clients"
+    },
+    "values": {
+      "experience": { "title": "23+ Years Pioneering Digital Era", "desc": "Solid reputation through over two decades in Vietnam's IT market." },
+      "experts": { "title": "International Expert Team", "desc": "Senior engineers with the most rigorous global technology certifications." },
+      "solutions": { "title": "Comprehensive & Pioneering Solutions", "desc": "Mastering new technology trends (AI, Cloud, Cyber Security)." },
+      "nationwide": { "title": "Nationwide Deployment", "desc": "Extensive service network ensuring rapid technical response." },
+      "support": { "title": "Dedicated 24/7 Technical Support", "desc": "Continuous operation, real-time incident handling." },
+      "quality": { "title": "Output Quality Commitment", "desc": "Information security and ROI as the guiding compass for every project." }
+    },
+    "process": {
+      "title": "Value Creation Process",
+      "steps": {
+        "1": { "title": "Survey & Assessment", "desc": "Receive strategic requirements, conduct in-depth surveys." },
+        "2": { "title": "Consulting & Design", "desc": "Analyze optimal solutions, advise advanced technology architecture." },
+        "3": { "title": "Deployment & Integration", "desc": "Provide genuine equipment, install and integrate systems." },
+        "4": { "title": "Training & Handover", "desc": "In-depth technical guidance, staff training and documentation." },
+        "5": { "title": "Operations & Optimization", "desc": "Regular maintenance, 24/7 support and continuous optimization." }
+      }
+    },
+    "cta": {
+      "subtitle": "Is your system ready for the AI & Digital Transformation era?",
+      "message": "Let DTG's leading SI expert team accompany your enterprise from the very first survey steps.",
+      "button": "REQUEST: CONSULTING | SURVEY | QUOTATION"
+    }
+  },
+  "services": {
+    "kicker": "SOLUTIONS & SERVICES",
+    "title": "Core Technology Solutions",
+    "network": { "title": "Network & Telecom Infrastructure", "desc": "Design and deploy comprehensive enterprise network infrastructure." },
+    "server": { "title": "Server & Storage Systems", "desc": "Premium SAN/NAS server and storage solutions." },
+    "security": { "title": "Comprehensive Security Solutions", "desc": "Enterprise information security, network and data protection." },
+    "cloud": { "title": "Cloud & Virtualization", "desc": "Cloud, Hybrid Cloud and infrastructure virtualization." },
+    "conference": { "title": "Video Conferencing Solutions", "desc": "High-quality video conferencing systems." },
+    "ai": { "title": "Artificial Intelligence", "desc": "AI Engine & Solutions for enterprises." },
+    "viewDetail": "View Details"
+  },
+  "partners": {
+    "kicker": "STRATEGIC PARTNERS",
+    "title": "Global Technology Partners"
+  },
+  "caseStudies": {
+    "kicker": "FEATURED PROJECTS",
+    "title": "Clients & Featured Projects",
+    "evn": { "title": "DR Data Center for EVN HCM", "desc": "Comprehensive disaster recovery data center deployment." },
+    "bca": { "title": "Storage & Server Infrastructure for Ministry of Public Security", "desc": "Advanced storage infrastructure and server systems." },
+    "vinhomes": { "title": "LED & Camera Systems for Vinhomes", "desc": "Integrated LED display and surveillance camera network." },
+    "hospital": { "title": "IT Infrastructure for Dong Nai Hospitals", "desc": "Comprehensive integrated IT infrastructure deployment." }
+  },
+  "news": {
+    "kicker": "TECHNOLOGY INSIGHTS",
+    "title": "News & Featured Events",
+    "viewAll": "View all news",
+    "tags": {
+      "all": "All",
+      "event": "Strategic Events",
+      "technology": "Technology Trends",
+      "company": "DTG News",
+      "press": "Press Releases"
+    },
+    "items": {
+      "dtg-hop-tac-ha-tang-ai": "DTG Strengthens Strategic Partnerships: Accelerating AI Infrastructure Solutions",
+      "hybrid-cloud-architecture": "Building Robust Hybrid Cloud Architecture: A Springboard for the Digital Era",
+      "dtg-certifications": "DTG Expert Team Completes Premium Certification Series from Global Tech Companies"
+    }
+  },
+  "contact": {
+    "title": "Contact & Consultation Request",
+    "info": {
+      "title": "Contact Information",
+      "phone": "Hotline",
+      "email": "Email",
+      "address": "Address"
+    },
+    "form": {
+      "title": "Send Consultation Request",
+      "name": "Full name",
+      "company": "Company / Organization",
+      "phoneEmail": "Phone / Email",
+      "solution": "Solution of interest",
+      "message": "Request details",
+      "submit": "Submit request",
+      "success": "Your request has been submitted successfully!",
+      "solutionOptions": {
+        "network": "Network Infrastructure",
+        "server": "Server & Storage",
+        "security": "Comprehensive Security",
+        "maintenance": "Maintenance Services",
+        "ai": "AI Solutions",
+        "cloud": "Cloud Computing"
+      }
+    }
+  },
+  "footer": {
+    "description": "Leading system integrator, pioneering in the AI and Digital Transformation era.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "newsletter": "Subscribe to Newsletter",
+    "newsletterPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "copyright": "© 2026 DTG. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "backToHome": "Back to Home"
+  }
+}
