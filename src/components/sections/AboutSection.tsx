@@ -1,133 +1,132 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { Lightbulb, Users, ShieldCheck, Handshake } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-export function AboutSection() {
-  const t = useTranslations("about");
+const metrics = [
+  {
+    value: "90 %",
+    label: "reduction in MTTR",
+    description: "Drive innovation and digital transformation with AI.",
+  },
+  {
+    prefix: "up to",
+    value: "30.9 B",
+    label: "inline attacks blocked per day",
+    description:
+      "Proactively monitor, analyze and prevent sophisticated threats in real time with less complexity, enabling secure growth and innovation for your organization.",
+  },
+  {
+    value: "480 B",
+    label: "endpoints scanned daily",
+    description:
+      "Enable better, faster security with an integrated suite of battle-tested, AI-driven products.",
+  },
+];
+
+function MetricCard({
+  metric,
+  delay,
+}: {
+  metric: (typeof metrics)[number];
+  delay: number;
+}) {
+  const { ref, animationProps } = useScrollAnimation({
+    preset: "fadeUpSm",
+    delay,
+    once: true,
+  });
 
   return (
-    <section className="py-24 relative bg-white text-surface">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">
-              {t("kicker")}
+    <motion.div
+      ref={ref}
+      {...animationProps}
+      className="group relative min-h-[380px] overflow-hidden rounded-[28px] border border-white/14 bg-[#151515] px-8 py-10 transition duration-300 hover:border-[#fa582d]/75 sm:px-10"
+    >
+      <div
+        className="absolute inset-0 opacity-[0.16] transition duration-300 group-hover:opacity-[0.26]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(135deg, #fa582d 0px, #fa582d 2px, transparent 2px, transparent 32px)",
+        }}
+      />
+
+      <div className="relative z-10 flex h-full min-h-[300px] flex-col">
+        <div className="mb-5 flex items-end gap-3">
+          {metric.prefix && (
+            <span className="pb-2 text-[22px] font-medium leading-none text-white/60">
+              {metric.prefix}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-surface mb-6">
-              {t("title")}
-            </h2>
-            <p className="text-surface-lighter leading-relaxed mb-4">
-              {t("description1")}
-            </p>
-            <p className="text-surface-lighter leading-relaxed mb-8">
-              {t("description2")}
-            </p>
-            <Link href="/about">
-              <Button variant="outline">
-                {t("cta")}
-              </Button>
+          )}
+          <span className="text-[62px] font-medium leading-none text-[#fa582d] sm:text-[72px]">
+            {metric.value}
+          </span>
+        </div>
+        <h3 className="mb-6 max-w-[420px] text-[26px] font-medium leading-[1.25] text-white sm:text-[30px]">
+          {metric.label}
+        </h3>
+        <p className="mt-auto max-w-[430px] text-[15px] font-medium leading-[1.55] text-white/55">
+          {metric.description}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+export function AboutSection() {
+  const { ref: headerRef, animationProps: headerAnim } = useScrollAnimation({
+    preset: "fadeUp",
+  });
+
+  return (
+    <section id="why-palo" className="relative overflow-hidden bg-[#141414] py-20 text-white sm:py-24 lg:py-28">
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(255,255,255,0.45) 1px, transparent 1.5px)",
+            backgroundSize: "13px 13px",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1720px] px-5 sm:px-8 lg:px-[10rem]">
+        <motion.div ref={headerRef} {...headerAnim} className="mb-14 sm:mb-16">
+          <span className="mb-4 block text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#fa582d]">
+            Why Palo Alto Networks
+          </span>
+
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-5xl">
+              <h2 className="text-[34px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]">
+                Platformization empowers you to
+                <br className="hidden sm:block" />
+                harness AI-ready infrastructure.
+              </h2>
+              <p className="mt-1 text-[34px] font-medium italic leading-[1.2] text-[#fa582d] sm:text-[40px] lg:text-[44.666px]">
+                And leverage services powered by
+                <br className="hidden sm:block" />
+                Precision AI<sup className="text-[60%]">®</sup> to keep everything secure.
+              </p>
+            </div>
+
+            <Link
+              href="/about"
+              className="group inline-flex shrink-0 items-center gap-3 self-start rounded-full border border-[#fa582d] px-7 py-3 text-[14.8px] font-semibold leading-[1.4] text-[#fa582d] transition-shadow duration-150 ease-in-out hover:shadow-[0_0_16px_rgba(250,88,45,0.3)] lg:mt-4"
+            >
+              See our platform approach
+              <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          {/* Right: Orbit Infographic */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center"
-          >
-              <div className="relative w-[300px] h-[260px] lg:w-[500px] lg:h-[420px]">
-                {/* Top-left */}
-                <div className="absolute top-0 left-0 lg:top-10 flex flex-col lg:flex-row items-center gap-1 lg:gap-2">
-                  <div className="w-7 h-7 lg:w-10 lg:h-10 rounded-full border border-surface/30 flex items-center justify-center">
-                    <Lightbulb className="w-3.5 h-3.5 lg:w-[18px] lg:h-[18px] text-surface" />
-                  </div>
-                  <div className="text-center lg:text-left">
-                    <h4 className="text-[9px] lg:text-xs font-bold text-surface uppercase">{t("orbit.cloud")}</h4>
-                    <p className="hidden lg:block text-[11px] text-surface-lighter">{t("orbit.cloudDesc")}</p>
-                  </div>
-                </div>
-
-                {/* Top-right */}
-                <div className="absolute top-0 right-0 lg:top-10 flex flex-col lg:flex-row-reverse items-center gap-1 lg:gap-2">
-                  <div className="w-7 h-7 lg:w-10 lg:h-10 rounded-full border border-surface/30 flex items-center justify-center">
-                    <ShieldCheck className="w-3.5 h-3.5 lg:w-[18px] lg:h-[18px] text-surface" />
-                  </div>
-                  <div className="text-center lg:text-right">
-                    <h4 className="text-[9px] lg:text-xs font-bold text-surface uppercase">{t("orbit.security")}</h4>
-                    <p className="hidden lg:block text-[11px] text-surface-lighter">{t("orbit.securityDesc")}</p>
-                  </div>
-                </div>
-
-                {/* Bottom-left */}
-                <div className="absolute bottom-0 left-0 lg:bottom-10 flex flex-col lg:flex-row items-center gap-1 lg:gap-2">
-                  <div className="w-7 h-7 lg:w-10 lg:h-10 rounded-full border border-surface/30 flex items-center justify-center">
-                    <Users className="w-3.5 h-3.5 lg:w-[18px] lg:h-[18px] text-surface" />
-                  </div>
-                  <div className="text-center lg:text-left">
-                    <h4 className="text-[9px] lg:text-xs font-bold text-surface uppercase">{t("orbit.data")}</h4>
-                    <p className="hidden lg:block text-[11px] text-surface-lighter">{t("orbit.dataDesc")}</p>
-                  </div>
-                </div>
-
-                {/* Bottom-right */}
-                <div className="absolute bottom-0 right-0 lg:bottom-10 flex flex-col lg:flex-row-reverse items-center gap-1 lg:gap-2">
-                  <div className="w-7 h-7 lg:w-10 lg:h-10 rounded-full border border-surface/30 flex items-center justify-center">
-                    <Handshake className="w-3.5 h-3.5 lg:w-[18px] lg:h-[18px] text-surface" />
-                  </div>
-                  <div className="text-center lg:text-right">
-                    <h4 className="text-[9px] lg:text-xs font-bold text-surface uppercase">{t("orbit.network")}</h4>
-                    <p className="hidden lg:block text-[11px] text-surface-lighter">{t("orbit.networkDesc")}</p>
-                  </div>
-                </div>
-
-                {/* Center: orbit circles */}
-                <div className="absolute w-[180px] h-[180px] top-[40px] left-[60px] lg:w-[320px] lg:h-[320px] lg:top-[60px] lg:left-[90px]">
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 360" fill="none">
-                    <circle cx="180" cy="180" r="175" stroke="#0f172a" strokeWidth="2" strokeDasharray="8 6" opacity="0.3" />
-                    <circle cx="180" cy="180" r="130" stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="6 5" opacity="0.4" />
-                    <circle cx="180" cy="180" r="85" stroke="#0ea5e9" strokeWidth="1" opacity="0.3" />
-                  </svg>
-
-                  <motion.div
-                    className="absolute inset-[2%]"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  >
-                    <div className="absolute w-3 h-3 lg:w-5 lg:h-5 rounded-full bg-surface" style={{ top: "50%", left: 0, transform: "translate(-60%, -50%)" }} />
-                  </motion.div>
-                  <motion.div
-                    className="absolute inset-[15%]"
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                  >
-                    <div className="absolute w-3 h-3 lg:w-5 lg:h-5 rounded-full bg-orange-400" style={{ bottom: 0, left: "50%", transform: "translate(-50%, 60%)" }} />
-                  </motion.div>
-                  <motion.div
-                    className="absolute inset-[28%]"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                  >
-                    <div className="absolute w-2.5 h-2.5 lg:w-4 lg:h-4 rounded-full bg-primary" style={{ top: 0, left: "50%", transform: "translate(-50%, -70%)" }} />
-                  </motion.div>
-
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-[10px] lg:text-sm font-bold text-surface">{t("orbitCenter")}</span>
-                  </div>
-                </div>
-              </div>
-          </motion.div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {metrics.map((metric, index) => (
+            <MetricCard key={metric.label} metric={metric} delay={index * 0.08} />
+          ))}
         </div>
       </div>
     </section>

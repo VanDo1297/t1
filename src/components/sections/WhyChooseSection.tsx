@@ -1,92 +1,133 @@
 "use client";
 
-import { useState } from "react";
-import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import {
-  Award,
-  Users,
-  Lightbulb,
-  Globe,
-  HeadphonesIcon,
-  ShieldCheck,
-} from "lucide-react";
-import { MetricsSection } from "./MetricsSection";
-import { ProcessTimeline } from "./ProcessTimeline";
-import { CtaBox } from "./CtaBox";
-import { Card } from "@/components/ui/Card";
+import { ArrowRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const valueIcons = [Award, Users, Lightbulb, Globe, HeadphonesIcon, ShieldCheck];
-const valueKeys = [
-  "experience",
-  "experts",
-  "solutions",
-  "nationwide",
-  "support",
-  "quality",
-] as const;
+const metrics = [
+  {
+    value: "90 %",
+    label: "reduction in MTTR",
+    description: "Drive innovation and digital transformation with AI.",
+  },
+  {
+    prefix: "up to",
+    value: "30.9 B",
+    label: "inline attacks blocked per day",
+    description:
+      "Proactively monitor, analyze and prevent sophisticated threats in real time with less complexity, enabling secure growth and innovation for your organization.",
+  },
+  {
+    value: "480 B",
+    label: "endpoints scanned daily",
+    description:
+      "Enable better, faster security with an integrated suite of battle-tested, AI-driven products.",
+  },
+];
 
-export function WhyChooseSection() {
-  const t = useTranslations("whyChoose");
+function MetricCard({
+  metric,
+  delay,
+}: {
+  metric: (typeof metrics)[number];
+  delay: number;
+}) {
+  const { ref, animationProps } = useScrollAnimation({
+    preset: "fadeUpSm",
+    delay,
+    once: true,
+  });
 
   return (
-    <section className="py-24 bg-white text-surface relative">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-surface">
-            {t("title")}
-          </h2>
+    <motion.div
+      ref={ref}
+      {...animationProps}
+      className="group relative min-h-[380px] overflow-hidden rounded-[28px] border border-white/14 bg-[#151515] px-8 py-10 transition duration-300 hover:border-[#fa582d]/75 sm:px-10"
+    >
+      <div
+        className="absolute inset-0 opacity-[0.16] transition duration-300 group-hover:opacity-[0.26]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(135deg, #fa582d 0px, #fa582d 2px, transparent 2px, transparent 32px)",
+        }}
+      />
+
+      <div className="relative z-10 flex h-full min-h-[300px] flex-col">
+        <div className="mb-5 flex items-end gap-3">
+          {metric.prefix && (
+            <span className="pb-2 text-[22px] font-medium leading-none text-white/60">
+              {metric.prefix}
+            </span>
+          )}
+          <span className="text-[62px] font-medium leading-none text-[#fa582d] sm:text-[72px]">
+            {metric.value}
+          </span>
+        </div>
+        <h3 className="mb-6 max-w-[420px] text-[26px] font-medium leading-[1.25] text-white sm:text-[30px]">
+          {metric.label}
+        </h3>
+        <p className="mt-auto max-w-[430px] text-[15px] font-medium leading-[1.55] text-white/55">
+          {metric.description}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+export function WhyChooseSection() {
+  const { ref: headerRef, animationProps: headerAnim } = useScrollAnimation({
+    preset: "fadeUp",
+  });
+
+  return (
+    <section className="relative overflow-hidden bg-[#141414] py-20 text-white sm:py-24 lg:py-28">
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(255,255,255,0.45) 1px, transparent 1.5px)",
+            backgroundSize: "13px 13px",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1720px] px-5 sm:px-8 lg:px-[10rem]">
+        <motion.div ref={headerRef} {...headerAnim} className="mb-14 sm:mb-16">
+          <span className="mb-4 block text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#fa582d]">
+            Why Palo Alto Networks
+          </span>
+
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-5xl">
+              <h2 className="text-[34px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]">
+                Platformization empowers you to
+                <br className="hidden sm:block" />
+                harness AI-ready infrastructure.
+              </h2>
+              <p className="mt-1 text-[34px] font-medium italic leading-[1.2] text-[#fa582d] sm:text-[40px] lg:text-[44.666px]">
+                And leverage services powered by
+                <br className="hidden sm:block" />
+                Precision AI<sup className="text-[60%]">®</sup> to keep everything secure.
+              </p>
+            </div>
+
+            <Link
+              href="/about"
+              className="group inline-flex shrink-0 items-center gap-3 self-start rounded-full border border-[#fa582d] px-7 py-3 text-[14.8px] font-semibold leading-[1.4] text-[#fa582d] transition-shadow duration-150 ease-in-out hover:shadow-[0_0_16px_rgba(250,88,45,0.3)] lg:mt-4"
+            >
+              See our platform approach
+              <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
+          </div>
         </motion.div>
 
-        {/* Tier 1: Metrics */}
-        <MetricsSection />
-
-        {/* Tier 2: 6 Value Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
-          {valueKeys.map((key, i) => {
-            const Icon = valueIcons[i];
-            return (
-              <motion.div
-                key={key}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <Card className="h-full">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <Icon size={24} className="text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    {t(`values.${key}.title`)}
-                  </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">
-                    {t(`values.${key}.desc`)}
-                  </p>
-                </Card>
-              </motion.div>
-            );
-          })}
+        <div className="grid gap-6 md:grid-cols-3">
+          {metrics.map((metric, index) => (
+            <MetricCard key={metric.label} metric={metric} delay={index * 0.08} />
+          ))}
         </div>
-
-        {/* Tier 3: Process */}
-        <div className="mt-20">
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-2xl md:text-3xl font-bold text-center text-surface mb-12"
-          >
-            {t("process.title")}
-          </motion.h3>
-          <ProcessTimeline />
-        </div>
-
       </div>
     </section>
   );

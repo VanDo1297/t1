@@ -10,9 +10,33 @@ export function Footer() {
   const tNav = useTranslations("nav");
 
   return (
-    <footer className="bg-surface text-slate-200 border-t border-white/5">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="border-t border-white/10 bg-[#0b0b0b] text-white">
+      <div className="mx-auto w-full max-w-[1720px] px-5 py-20 sm:px-8 lg:px-[10rem]">
+        <div className="mb-16 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-end">
+          <div>
+            <h2 className="mb-6 max-w-3xl text-[40px] font-medium leading-[1.2] sm:text-[52px] lg:text-[58px]">
+              Get the latest news, invites to events, and threat alerts
+            </h2>
+            <p className="max-w-2xl text-[17px] font-medium leading-[1.55] text-white/62">
+              {t("description")}
+            </p>
+          </div>
+          <form className="flex flex-col gap-4 sm:flex-row" onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="email"
+              placeholder={t("newsletterPlaceholder")}
+              className="min-h-14 flex-1 border-b border-white/35 bg-transparent px-0 text-[18px] text-white placeholder-white/45 outline-none transition focus:border-[#fa582d]"
+            />
+            <button
+              type="submit"
+              className="rounded-full bg-[#fa582d] px-8 py-4 text-[14.8px] font-semibold leading-[1.4] text-black transition hover:bg-[#ff724f]"
+            >
+              {t("subscribe")}
+            </button>
+          </form>
+        </div>
+
+        <div className="grid grid-cols-1 gap-12 border-t border-white/10 pt-14 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
             <Image
@@ -20,17 +44,15 @@ export function Footer() {
               alt="DTG"
               width={140}
               height={45}
+              className="brightness-0 invert"
             />
-            <p className="text-sm text-slate-400 leading-relaxed">
-              {t("description")}
-            </p>
-            <div className="space-y-3 text-sm text-slate-400">
+            <div className="space-y-3 text-[14px] font-medium leading-[1.5] text-white/55">
               <div className="flex items-start gap-2">
-                <MapPin size={14} className="text-primary mt-0.5" />
+                <MapPin size={14} className="mt-1 text-[#fa582d]" />
                 <span>41 Trần Khắc Chân, Phường Cầu Kiệu, Thành phố Hồ Chí Minh, Việt Nam</span>
               </div>
               <div className="flex items-start gap-2">
-                <Phone size={14} className="text-primary mt-0.5" />
+                <Phone size={14} className="mt-1 text-[#fa582d]" />
                 <div>
                   <p>DTG TP.HCM: (028) 3865 9999</p>
                   <p>DTG Hà Nội: 0916 868 989</p>
@@ -38,11 +60,11 @@ export function Footer() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Phone size={14} className="text-primary" />
+                <Phone size={14} className="text-[#fa582d]" />
                 <span>Fax: (028) 3868 3639</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail size={14} className="text-primary" />
+                <Mail size={14} className="text-[#fa582d]" />
                 <span>info@dtgcorp.com.vn</span>
               </div>
             </div>
@@ -50,16 +72,16 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+            <h4 className="mb-5 text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#fa582d]">
               {t("quickLinks")}
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {["about", "solutions", "process", "partners", "news", "contact"].map(
                 (key) => (
                   <li key={key}>
                     <Link
                       href={`/${key}`}
-                      className="text-sm text-slate-400 hover:text-primary transition-colors"
+                      className="text-[15px] font-medium text-white/62 transition-colors hover:text-white"
                     >
                       {tNav(key)}
                     </Link>
@@ -71,10 +93,10 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+            <h4 className="mb-5 text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#fa582d]">
               {t("services")}
             </h4>
-            <ul className="space-y-2 text-sm text-slate-400">
+            <ul className="space-y-3 text-[15px] font-medium text-white/62">
               <li>Hạ tầng mạng & Viễn thông</li>
               <li>Máy chủ & Lưu trữ</li>
               <li>Bảo mật toàn diện</li>
@@ -86,35 +108,25 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+            <h4 className="mb-5 text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#fa582d]">
               {t("newsletter")}
             </h4>
-            <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder={t("newsletterPlaceholder")}
-                className="w-full rounded-lg border border-white/10 bg-surface-light px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-primary focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="w-full rounded-lg bg-primary hover:bg-primary-dark px-4 py-2.5 text-sm font-medium text-white transition-colors"
-              >
-                {t("subscribe")}
-              </button>
-            </form>
+            <p className="text-[15px] font-medium leading-[1.55] text-white/62">
+              {t("description")}
+            </p>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-slate-500">{t("copyright")}</p>
-          <div className="flex gap-6 text-sm text-slate-500">
-            <span className="hover:text-slate-300 cursor-pointer transition-colors">
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex w-full max-w-[1720px] flex-col items-center justify-between gap-4 px-5 py-6 sm:flex-row sm:px-8 lg:px-[10rem]">
+          <p className="text-[13px] font-medium text-white/45">{t("copyright")}</p>
+          <div className="flex gap-6 text-[13px] font-medium text-white/45">
+            <span className="cursor-pointer transition-colors hover:text-white">
               {t("privacy")}
             </span>
-            <span className="hover:text-slate-300 cursor-pointer transition-colors">
+            <span className="cursor-pointer transition-colors hover:text-white">
               {t("terms")}
             </span>
           </div>

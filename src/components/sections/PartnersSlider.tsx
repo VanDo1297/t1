@@ -1,52 +1,61 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Hexagon } from "@/components/ui/Hexagon";
 import { PARTNER_LOGOS } from "@/lib/constants";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-export function PartnersSlider() {
-  const t = useTranslations("partners");
-  const logos = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
-  const itemW = 200;
-  const gap = 32;
+function PartnerLogo({ partner, index }: { partner: { name: string; logo: string }; index: number }) {
+  const { ref, animationProps } = useScrollAnimation({
+    preset: "fadeIn",
+    delay: index * 0.03,
+    once: true,
+  });
 
   return (
-    <section className="pt-20 pb-14 bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10">
-        <SectionHeading
-          kicker={t("kicker")}
-          title={t("title")}
-          className="[&_span]:text-primary !text-left"
+    <motion.div
+      ref={ref}
+      {...animationProps}
+      className="group flex h-40 items-center justify-center border-b border-r border-white/12 bg-white/[0.03] px-8 transition duration-300 hover:bg-white/[0.07]"
+    >
+      <div className="relative h-14 w-40 grayscale invert opacity-75 transition duration-300 group-hover:opacity-100">
+        <Image
+          src={partner.logo}
+          alt={partner.name}
+          fill
+          className="object-contain"
         />
       </div>
+    </motion.div>
+  );
+}
 
-      <div className="relative overflow-hidden border-t border-b border-slate-200 py-10">
-        <motion.div
-          className="flex items-center"
-          style={{ gap }}
-          animate={{ x: [0, -(itemW + gap) * PARTNER_LOGOS.length] }}
-          transition={{
-            x: { duration: 28, repeat: Infinity, ease: "linear" },
-          }}
+export function PartnersSlider() {
+  const logos = [...PARTNER_LOGOS, ...PARTNER_LOGOS].slice(0, 12);
+
+  const { ref: headingRef, animationProps: headingAnim } = useScrollAnimation({
+    preset: "fadeUp",
+  });
+
+  return (
+    <section className="relative overflow-hidden bg-[#f4f4f2] text-[#141414]">
+      <div className="mx-auto w-full max-w-[1720px] px-5 py-20 text-center sm:px-8 sm:py-24 lg:px-[10rem]">
+        <motion.h2
+          ref={headingRef}
+          {...headingAnim}
+          className="text-[40px] font-medium leading-[1.15] text-[#141414] sm:text-[58px] lg:text-[70px]"
         >
-          {logos.map((partner, i) => (
-            <Hexagon key={`${partner.name}-${i}`} size="lg">
-              <div className="relative w-20 h-10 lg:w-36 lg:h-16">
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </Hexagon>
-          ))}
-        </motion.div>
+          Trusted by the best
+        </motion.h2>
       </div>
 
+      <div className="bg-[#141414] py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto grid w-full max-w-[1720px] grid-cols-2 border-l border-t border-white/12 px-5 sm:grid-cols-3 sm:px-8 lg:grid-cols-4 lg:px-[10rem] xl:grid-cols-6">
+          {logos.map((partner, index) => (
+            <PartnerLogo key={`${partner.name}-${index}`} partner={partner} index={index} />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

@@ -103,7 +103,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
       />
       <Button
         type="submit"
-        variant="gradient"
+        variant="primary"
         size="lg"
         className="w-full"
         disabled={isLoading}
