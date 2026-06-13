@@ -42,7 +42,7 @@ export function HeroSection() {
           {Array.from({ length: 24 }).map((_, index) => (
             <motion.span
               key={index}
-              className="absolute bottom-0 top-0 w-[0.74rem] bg-[#315dff]"
+              className="absolute bottom-0 top-0 w-[0.74rem] bg-[#c75435]"
               style={{
                 left: `${index * 4.05}%`,
                 clipPath:
@@ -94,7 +94,7 @@ export function HeroSection() {
               <Button
                 variant="primary"
                 size="lg"
-                className="!h-[58px] !rounded-full !bg-[#315dff] !px-9 !text-[0.925rem] !font-semibold !leading-[1.4] !tracking-[0.01rem] !text-white hover:!bg-[#244cff]"
+                className="!h-[58px] !rounded-full !bg-[#c75435] !px-9 !text-[0.925rem] !font-semibold !leading-[1.4] !tracking-[0.01rem] !text-white hover:!bg-[#d96547]"
               >
                 {t("ctaProfile")}
                 <ArrowRight size={22} className="ml-4" />
@@ -104,7 +104,7 @@ export function HeroSection() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="!rounded-none !px-0 !text-[0.925rem] !font-semibold !leading-[1.4] !tracking-[0.01rem] !text-white underline decoration-white decoration-2 underline-offset-[10px] hover:!bg-transparent hover:!text-[#b9f3ff]"
+                className="!rounded-none !px-0 !text-[0.925rem] !font-semibold !leading-[1.4] !tracking-[0.01rem] !text-white underline decoration-white decoration-2 underline-offset-[10px] hover:!bg-transparent hover:!text-[#d96547]"
               >
                 {t("ctaContact")}
               </Button>

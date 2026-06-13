@@ -16,9 +16,9 @@ function PartnerLogo({ partner, index }: { partner: { name: string; logo: string
     <motion.div
       ref={ref}
       {...animationProps}
-      className="group flex h-40 items-center justify-center border-b border-r border-white/12 bg-white/[0.03] px-8 transition duration-300 hover:bg-white/[0.07]"
+      className="group flex h-40 items-center justify-center border-b border-r border-[#141414]/12 bg-[#141414]/[0.03] px-8 transition duration-300 hover:bg-[#c75435]/5"
     >
-      <div className="relative h-14 w-40 grayscale invert opacity-75 transition duration-300 group-hover:opacity-100">
+      <div className="relative h-14 w-40 grayscale opacity-75 transition duration-300 group-hover:opacity-100">
         <Image
           src={partner.logo}
           alt={partner.name}
@@ -49,8 +49,8 @@ export function PartnersSlider() {
         </motion.h2>
       </div>
 
-      <div className="bg-[#141414] py-20 sm:py-24 lg:py-28">
-        <div className="mx-auto grid w-full max-w-[1720px] grid-cols-2 border-l border-t border-white/12 px-5 sm:grid-cols-3 sm:px-8 lg:grid-cols-4 lg:px-[10rem] xl:grid-cols-6">
+      <div className="bg-white py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto grid w-full max-w-[1720px] grid-cols-2 border-l border-t border-[#141414]/12 px-5 sm:grid-cols-3 sm:px-8 lg:grid-cols-4 lg:px-[10rem] xl:grid-cols-6">
           {logos.map((partner, index) => (
             <PartnerLogo key={`${partner.name}-${index}`} partner={partner} index={index} />
           ))}

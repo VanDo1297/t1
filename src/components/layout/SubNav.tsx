@@ -12,6 +12,7 @@ const navItems = [
 
 export function SubNav() {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const isLightSurface = activeId !== null;
 
   useEffect(() => {
     const sectionIds = navItems.map((item) => item.href.replace("#", ""));
@@ -39,7 +40,11 @@ export function SubNav() {
   }, []);
 
   return (
-    <div className="sticky top-0 z-40 bg-black/70 backdrop-blur-xl">
+    <div
+      className={`sticky top-0 z-40 backdrop-blur-xl transition-colors duration-300 ${
+        isLightSurface ? "bg-white/95" : "bg-black/72"
+      }`}
+    >
       <div className="mx-auto w-full max-w-[1720px] px-5 sm:px-8 lg:px-[10rem]">
         <div className="flex h-[49px] items-center justify-between gap-6">
           <nav className="flex flex-1 items-center justify-between gap-8 overflow-x-auto scrollbar-none">
@@ -50,10 +55,14 @@ export function SubNav() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`whitespace-nowrap border-b-2 py-[13px] text-[16px] font-semibold leading-[1.4] tracking-[0.22em] transition-colors hover:text-[#fa582d] ${
+                  className={`whitespace-nowrap border-b-2 py-[13px] text-[16px] font-semibold leading-[1.4] tracking-[0.22em] transition-colors hover:text-[#c75435] ${
                     isActive
-                      ? "border-[#fa582d] text-white"
-                      : "border-transparent text-white/70"
+                      ? isLightSurface
+                        ? "border-[#c75435] text-[#141414]"
+                        : "border-[#c75435] text-white"
+                      : isLightSurface
+                        ? "border-transparent text-[#141414]/60"
+                        : "border-transparent text-white/72"
                   }`}
                 >
                   {item.label}
@@ -64,7 +73,7 @@ export function SubNav() {
 
           <a
             href="#contact"
-            className="shrink-0 rounded-full bg-[#fa582d] px-7 py-3 text-[14.8px] font-semibold leading-[1.4] tracking-[0.01rem] text-black transition hover:bg-[#ff724f]"
+            className="shrink-0 rounded-full bg-[#c75435] px-7 py-3 text-[14.8px] font-semibold leading-[1.4] tracking-[0.01rem] text-white transition hover:bg-[#d96547]"
           >
             Demos and trials
           </a>

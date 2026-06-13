@@ -34,8 +34,8 @@ function SolutionItem({ solution, index }: { solution: string; index: number }) 
       {...animationProps}
       className={`border-l-2 px-5 py-4 text-[18px] font-semibold leading-[1.35] transition ${
         index === 0
-          ? "border-[#fa582d] bg-white/[0.06] text-white"
-          : "border-white/12 text-white/55 hover:border-[#fa582d] hover:text-white"
+          ? "border-[#c75435] bg-[#c75435]/10 text-[#141414]"
+          : "border-[#141414]/12 text-[#141414]/55 hover:border-[#c75435] hover:text-[#141414]"
       }`}
     >
       {solution}
@@ -54,11 +54,11 @@ export function SolutionsMatrixSection() {
   });
 
   return (
-    <section id="solutions" className="relative overflow-hidden bg-[#141414] py-24 text-white sm:py-28 lg:py-36">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(250,88,45,0.12),transparent_25%)]" />
+    <section id="solutions" className="relative overflow-hidden bg-white py-24 text-[#141414] sm:py-28 lg:py-36">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(199,84,53,0.12),transparent_25%)]" />
       <div className="relative z-10 mx-auto grid w-full max-w-[1720px] gap-14 px-5 sm:px-8 lg:grid-cols-[520px_minmax(0,1fr)] lg:px-[10rem]">
         <motion.div ref={headingRef} {...headingAnim}>
-          <h2 className="text-[40px] font-medium leading-[1.14] text-white sm:text-[58px] lg:text-[70px]">
+          <h2 className="text-[40px] font-medium leading-[1.14] text-[#141414] sm:text-[58px] lg:text-[70px]">
             Secure whatever,
             <br />
             whenever, wherever —
@@ -77,32 +77,32 @@ export function SolutionsMatrixSection() {
           <motion.div
             ref={contentRef}
             {...contentAnim}
-            className="relative min-h-[560px] overflow-hidden border border-white/12 bg-white/[0.04] p-8 sm:p-10"
+            className="relative min-h-[560px] overflow-hidden border border-[#141414]/12 bg-white/[0.03] p-8 sm:p-10"
           >
             <div
               className="absolute inset-y-0 right-0 w-1/2 opacity-[0.16]"
               style={{
                 backgroundImage:
-                  "repeating-linear-gradient(135deg, #fa582d 0px, #fa582d 6px, transparent 6px, transparent 24px)",
+                  "repeating-linear-gradient(135deg, #c75435 0px, #c75435 6px, transparent 6px, transparent 24px)",
               }}
             />
             <div className="relative z-10 flex min-h-[480px] flex-col">
-              <span className="mb-8 block text-[13px] font-semibold uppercase leading-[1.4] tracking-[2.6px] text-[#fa582d]">
+              <span className="mb-8 block text-[13px] font-semibold uppercase leading-[1.4] tracking-[2.6px] text-[#c75435]">
                 FEATURED SOLUTION
               </span>
-              <h3 className="max-w-3xl text-[38px] font-medium leading-[1.16] text-white sm:text-[52px]">
+              <h3 className="max-w-3xl text-[38px] font-medium leading-[1.16] text-[#141414] sm:text-[52px]">
                 Secure AI apps, agents, models and data.
               </h3>
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 {features.map((feature) => (
-                  <div key={feature} className="border border-white/12 bg-[#141414] p-5 text-[17px] font-medium leading-[1.45] text-white/72">
+                  <div key={feature} className="border border-[#141414]/12 bg-white p-5 text-[17px] font-medium leading-[1.45] text-[#141414]/72">
                     {feature}
                   </div>
                 ))}
               </div>
               <a
                 href="#contact"
-                className="mt-auto inline-flex w-fit items-center rounded-full border-2 border-[#fa582d] px-7 py-4 text-[14.8px] font-semibold leading-[1.4] text-white transition duration-300 hover:bg-[#fa582d] hover:text-black"
+                className="mt-auto inline-flex w-fit items-center rounded-full border-2 border-[#c75435] px-7 py-4 text-[14.8px] font-semibold leading-[1.4] text-[#141414] transition duration-300 hover:bg-[#c75435] hover:text-white"
               >
                 Explore solutions
                 <ArrowRight size={20} className="ml-4" />

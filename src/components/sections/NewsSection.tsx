@@ -39,7 +39,7 @@ function InsightCard({ item, index }: { item: (typeof insights)[number]; index: 
     <motion.article
       ref={ref}
       {...animationProps}
-      className="group flex min-h-[560px] flex-col overflow-hidden border border-white/12 bg-white/[0.035] transition duration-300 hover:border-[#fa582d]/75"
+      className="group flex min-h-[560px] flex-col overflow-hidden border border-[#141414]/12 bg-[#141414]/[0.03] transition duration-300 hover:border-[#c75435]/75"
     >
       <div className="relative h-60 overflow-hidden">
         <Image
@@ -50,13 +50,13 @@ function InsightCard({ item, index }: { item: (typeof insights)[number]; index: 
         />
       </div>
       <div className="flex flex-1 flex-col p-7">
-        <span className="mb-6 text-[12px] font-semibold uppercase leading-[1.4] tracking-[0.22em] text-[#fa582d]">
+        <span className="mb-6 text-[12px] font-semibold uppercase leading-[1.4] tracking-[0.22em] text-[#c75435]">
           {item.type}
         </span>
-        <h3 className="text-[24px] font-medium leading-[1.22] text-white">
+        <h3 className="text-[24px] font-medium leading-[1.22] text-[#141414]">
           {item.title}
         </h3>
-        <span className="mt-auto inline-flex items-center pt-10 text-[14.8px] font-semibold leading-[1.4] text-white underline decoration-white/80 decoration-2 underline-offset-[10px] transition group-hover:text-[#fa582d] group-hover:decoration-[#fa582d]">
+        <span className="mt-auto inline-flex items-center pt-10 text-[14.8px] font-semibold leading-[1.4] text-[#141414] underline decoration-[#141414]/80 decoration-2 underline-offset-[10px] transition group-hover:text-[#c75435] group-hover:decoration-[#c75435]">
           Read more
           <ArrowRight size={18} className="ml-3 transition-transform group-hover:translate-x-1" />
         </span>
@@ -71,14 +71,14 @@ export function NewsSection() {
   });
 
   return (
-    <section className="relative overflow-hidden bg-[#141414] py-24 text-white sm:py-28 lg:py-36">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(250,88,45,0.14),transparent_24%)]" />
+    <section className="relative overflow-hidden bg-white py-24 text-[#141414] sm:py-28 lg:py-36">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(199,84,53,0.14),transparent_24%)]" />
       <div className="relative z-10 mx-auto w-full max-w-[1720px] px-5 sm:px-8 lg:px-[10rem]">
         <div className="mb-14 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <motion.h2
             ref={headingRef}
             {...headingAnim}
-            className="max-w-5xl text-[40px] font-medium leading-[1.15] text-white sm:text-[58px] lg:text-[70px]"
+            className="max-w-5xl text-[40px] font-medium leading-[1.15] text-[#141414] sm:text-[58px] lg:text-[70px]"
           >
             Staying ahead demands
             <br />
@@ -86,7 +86,7 @@ export function NewsSection() {
           </motion.h2>
           <a
             href="/news"
-            className="inline-flex items-center text-[14.8px] font-semibold leading-[1.4] tracking-[0.01rem] text-white underline decoration-white decoration-2 underline-offset-[10px] transition hover:text-[#fa582d] hover:decoration-[#fa582d]"
+            className="inline-flex items-center text-[14.8px] font-semibold leading-[1.4] tracking-[0.01rem] text-[#141414] underline decoration-[#141414] decoration-2 underline-offset-[10px] transition hover:text-[#c75435] hover:decoration-[#c75435]"
           >
             View all
             <ArrowRight size={18} className="ml-3" />

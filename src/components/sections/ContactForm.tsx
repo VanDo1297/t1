@@ -50,7 +50,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
     return (
       <div className="flex flex-col items-center justify-center py-8 text-center">
         <CheckCircle size={48} className="text-green-400 mb-4" />
-        <p className="text-lg font-medium text-white">{t("success")}</p>
+        <p className="text-lg font-medium text-[#141414]">{t("success")}</p>
       </div>
     );
   }
@@ -78,11 +78,11 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         {...register("phoneEmail")}
       />
       <div className="space-y-1">
-        <label className="block text-sm font-medium text-slate-300">
+        <label className="block text-sm font-medium text-[#141414]/70">
           {t("solution")}
         </label>
         <select
-          className="w-full rounded-lg border border-white/10 bg-surface px-4 py-3 text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="w-full rounded-lg border border-[#141414]/10 bg-surface px-4 py-3 text-[#141414] focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           {...register("solution")}
         >
           <option value="">-- {t("solution")} --</option>

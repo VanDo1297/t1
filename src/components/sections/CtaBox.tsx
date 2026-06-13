@@ -21,12 +21,12 @@ export function CtaBox() {
         {...headingAnim}
         className="mb-16 grid gap-8 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-end"
       >
-        <h2 className="max-w-5xl text-[40px] font-medium leading-[1.15] text-white sm:text-[58px] lg:text-[70px]">
+        <h2 className="max-w-5xl text-[40px] font-medium leading-[1.15] text-[#141414] sm:text-[58px] lg:text-[70px]">
           Our customers are securing their digital transformation
         </h2>
         <a
           href="#testimonials"
-          className="inline-flex items-center text-[14.8px] font-semibold leading-[1.4] text-white underline decoration-white decoration-2 underline-offset-[10px] transition hover:text-[#fa582d] hover:decoration-[#fa582d]"
+          className="inline-flex items-center text-[14.8px] font-semibold leading-[1.4] text-[#141414] underline decoration-[#141414] decoration-2 underline-offset-[10px] transition hover:text-[#c75435] hover:decoration-[#c75435]"
         >
           See testimonials
           <ArrowRight size={18} className="ml-3" />
@@ -44,13 +44,13 @@ export function CtaBox() {
           className="absolute right-0 top-0 h-full w-1/2 opacity-[0.18]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(135deg, #fa582d 0px, #fa582d 6px, transparent 6px, transparent 26px)",
+              "repeating-linear-gradient(135deg, #c75435 0px, #c75435 6px, transparent 6px, transparent 26px)",
           }}
         />
         <div className="relative z-10 flex min-h-[620px] items-center justify-center sm:min-h-[662px]">
           <button
             type="button"
-            className="flex h-24 w-24 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition duration-300 hover:border-[#fa582d] hover:bg-[#fa582d] hover:text-black"
+            className="flex h-24 w-24 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition duration-300 hover:border-[#c75435] hover:bg-[#c75435] hover:text-black"
             aria-label="Play customer story"
           >
             <Play size={34} fill="currentColor" />

@@ -104,15 +104,15 @@ export default function ProcessPage() {
                       isEven ? "md:pr-16 md:text-right" : "md:pl-16"
                     }`}
                   >
-                    <div className="bg-surface rounded-xl p-6">
-                      <h3 className="text-lg font-semibold text-white mb-3">
+                    <div className="rounded-xl border border-[#141414]/10 bg-white p-6">
+                      <h3 className="text-lg font-semibold text-[#141414] mb-3">
                         Bước {step.step}: {t(`steps.${step.step}.title`)}
                       </h3>
                       <ul className="space-y-2">
                         {details.details.map((d, j) => (
                           <li
                             key={j}
-                            className="text-sm text-slate-400 flex items-start gap-2"
+                            className="text-sm text-[#141414]/60 flex items-start gap-2"
                           >
                             <span className="text-primary mt-1">•</span>
                             {d}

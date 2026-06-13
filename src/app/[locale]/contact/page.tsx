@@ -81,9 +81,9 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-surface rounded-2xl p-8"
+            className="rounded-2xl border border-[#141414]/10 bg-white p-8"
           >
-            <h3 className="text-2xl font-bold text-white mb-6">
+            <h3 className="text-2xl font-bold text-[#141414] mb-6">
               {t("form.title")}
             </h3>
             <ContactForm />

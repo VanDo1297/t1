@@ -19,10 +19,10 @@ export default function HomePage() {
       <StatsSection />
       <AboutSection />
       <CoreServicesSection />
-      <WhyChooseSection />
       <ServicesResponseSection />
+      <WhyChooseSection />
       <SolutionsMatrixSection />
-      <div className="bg-[#141414] px-5 py-24 sm:px-8 sm:py-28 lg:px-[10rem] lg:py-36">
+      <div className="bg-white px-5 py-24 sm:px-8 sm:py-28 lg:px-[10rem] lg:py-36">
         <CtaBox />
       </div>
       <PartnersSlider />

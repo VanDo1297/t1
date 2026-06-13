@@ -36,11 +36,11 @@ export function SolutionDetailPage({ serviceKey, slug }: Props) {
             {t(`${serviceKey}.desc`)}
           </p>
 
-          <div className="bg-surface rounded-2xl p-8 mb-8">
-            <h2 className="text-xl font-semibold text-white mb-4">
+          <div className="rounded-2xl border border-[#141414]/10 bg-white p-8 mb-8">
+            <h2 className="text-xl font-semibold text-[#141414] mb-4">
               Giải pháp DTG cung cấp
             </h2>
-            <p className="text-slate-400 leading-relaxed">
+            <p className="text-[#141414]/60 leading-relaxed">
               DTG cung cấp giải pháp toàn diện cho mảng {t(`${serviceKey}.title`).toLowerCase()},
               từ khảo sát, thiết kế kiến trúc, triển khai đến vận hành và tối ưu hóa.
               Đội ngũ chuyên gia của chúng tôi sở hữu các chứng chỉ quốc tế cao cấp nhất,

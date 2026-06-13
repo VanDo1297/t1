@@ -43,31 +43,31 @@ function MetricCard({
     <motion.div
       ref={ref}
       {...animationProps}
-      className="group relative min-h-[380px] overflow-hidden rounded-[28px] border border-white/14 bg-[#151515] px-8 py-10 transition duration-300 hover:border-[#fa582d]/75 sm:px-10"
+      className="group relative min-h-[380px] overflow-hidden rounded-[28px] border border-[#141414]/14 bg-white px-8 py-10 transition duration-300 hover:border-[#c75435]/75 sm:px-10"
     >
       <div
         className="absolute inset-0 opacity-[0.16] transition duration-300 group-hover:opacity-[0.26]"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(135deg, #fa582d 0px, #fa582d 2px, transparent 2px, transparent 32px)",
+            "repeating-linear-gradient(135deg, #c75435 0px, #c75435 2px, transparent 2px, transparent 32px)",
         }}
       />
 
       <div className="relative z-10 flex h-full min-h-[300px] flex-col">
         <div className="mb-5 flex items-end gap-3">
           {metric.prefix && (
-            <span className="pb-2 text-[22px] font-medium leading-none text-white/60">
+            <span className="pb-2 text-[22px] font-medium leading-none text-[#141414]/60">
               {metric.prefix}
             </span>
           )}
-          <span className="text-[62px] font-medium leading-none text-[#fa582d] sm:text-[72px]">
+          <span className="text-[62px] font-medium leading-none text-[#c75435] sm:text-[72px]">
             {metric.value}
           </span>
         </div>
-        <h3 className="mb-6 max-w-[420px] text-[26px] font-medium leading-[1.25] text-white sm:text-[30px]">
+        <h3 className="mb-6 max-w-[420px] text-[26px] font-medium leading-[1.25] text-[#141414] sm:text-[30px]">
           {metric.label}
         </h3>
-        <p className="mt-auto max-w-[430px] text-[15px] font-medium leading-[1.55] text-white/55">
+        <p className="mt-auto max-w-[430px] text-[15px] font-medium leading-[1.55] text-[#141414]/55">
           {metric.description}
         </p>
       </div>
@@ -81,7 +81,7 @@ export function WhyChooseSection() {
   });
 
   return (
-    <section className="relative overflow-hidden bg-[#141414] py-20 text-white sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-white py-20 text-[#141414] sm:py-24 lg:py-28">
       <div className="absolute inset-0">
         <div
           className="absolute inset-0 opacity-[0.12]"
@@ -95,18 +95,18 @@ export function WhyChooseSection() {
 
       <div className="relative z-10 mx-auto w-full max-w-[1720px] px-5 sm:px-8 lg:px-[10rem]">
         <motion.div ref={headerRef} {...headerAnim} className="mb-14 sm:mb-16">
-          <span className="mb-4 block text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#fa582d]">
+          <span className="mb-4 block text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#c75435]">
             Why Palo Alto Networks
           </span>
 
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-5xl">
-              <h2 className="text-[34px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]">
+              <h2 className="text-[34px] font-medium leading-[1.2] text-[#141414] sm:text-[40px] lg:text-[44.666px]">
                 Platformization empowers you to
                 <br className="hidden sm:block" />
                 harness AI-ready infrastructure.
               </h2>
-              <p className="mt-1 text-[34px] font-medium italic leading-[1.2] text-[#fa582d] sm:text-[40px] lg:text-[44.666px]">
+              <p className="mt-1 text-[34px] font-medium italic leading-[1.2] text-[#c75435] sm:text-[40px] lg:text-[44.666px]">
                 And leverage services powered by
                 <br className="hidden sm:block" />
                 Precision AI<sup className="text-[60%]">®</sup> to keep everything secure.
@@ -115,7 +115,7 @@ export function WhyChooseSection() {
 
             <Link
               href="/about"
-              className="group inline-flex shrink-0 items-center gap-3 self-start rounded-full border border-[#fa582d] px-7 py-3 text-[14.8px] font-semibold leading-[1.4] text-[#fa582d] transition-shadow duration-150 ease-in-out hover:shadow-[0_0_16px_rgba(250,88,45,0.3)] lg:mt-4"
+              className="group inline-flex shrink-0 items-center gap-3 self-start rounded-full border border-[#c75435] px-7 py-3 text-[14.8px] font-semibold leading-[1.4] text-[#c75435] transition-shadow duration-150 ease-in-out hover:shadow-[0_0_16px_rgba(199,84,53,0.3)] lg:mt-4"
             >
               See our platform approach
               <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />

@@ -1,7 +1,17 @@
 "use client";
 
 import { useRef } from "react";
-import { useInView, useScroll, useTransform, type MotionValue } from "framer-motion";
+import {
+  useInView,
+  useScroll,
+  useTransform,
+  type HTMLMotionProps,
+  type MotionValue,
+  type UseInViewOptions,
+} from "framer-motion";
+
+type MotionTransition = NonNullable<HTMLMotionProps<"div">["transition"]>;
+type AnimationEase = MotionTransition extends { ease?: infer Ease } ? Ease : never;
 
 /**
  * Animation presets for scroll-triggered enter/exit animations.
@@ -60,9 +70,9 @@ interface UseScrollAnimationOptions {
   /** Delay in seconds (default: 0) */
   delay?: number;
   /** Easing curve (default: [0.25, 0.1, 0.25, 1]) */
-  ease?: number[] | string;
+  ease?: AnimationEase;
   /** IntersectionObserver margin (default: "-20% 0px -20% 0px") */
-  margin?: string;
+  margin?: UseInViewOptions["margin"];
   /** Only animate on first appearance (default: false) */
   once?: boolean;
 }
@@ -121,7 +131,7 @@ export function useScrollAnimation({
 export function getScrollAnimationProps(
   preset: AnimationPreset,
   isInView: boolean,
-  options: { duration?: number; delay?: number; ease?: number[] | string } = {}
+  options: { duration?: number; delay?: number; ease?: AnimationEase } = {}
 ) {
   const { duration = 0.75, delay = 0, ease = [0.25, 0.1, 0.25, 1] } = options;
   const hidden = presets[preset];

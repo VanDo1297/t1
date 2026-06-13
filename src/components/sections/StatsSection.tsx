@@ -39,7 +39,7 @@ function CircleProgress({
             cy="54"
             r={radius}
             fill="none"
-            stroke="#fa582d"
+            stroke="#c75435"
             strokeWidth={strokeW}
             strokeLinecap="round"
             strokeDasharray={circumference}
@@ -49,16 +49,16 @@ function CircleProgress({
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-3xl font-semibold leading-[1.2] text-white sm:text-4xl lg:text-[44px]">
+          <span className="text-3xl font-semibold leading-[1.2] text-[#141414] sm:text-4xl lg:text-[44px]">
             {value} %
           </span>
         </div>
       </div>
       <div className="text-center">
-        <p className="text-2xl font-medium leading-[1.25] text-[#fa582d] sm:text-3xl">
+        <p className="text-2xl font-medium leading-[1.25] text-[#c75435] sm:text-3xl">
           {label}
         </p>
-        <p className="mt-2 whitespace-pre-line text-[12px] font-semibold uppercase leading-[1.4] tracking-[0.2em] text-white">
+        <p className="mt-2 whitespace-pre-line text-[12px] font-semibold uppercase leading-[1.4] tracking-[0.2em] text-[#141414]">
           {sublabel}
         </p>
       </div>
@@ -80,21 +80,21 @@ function StatBar({
 
   return (
     <div ref={ref}>
-      <p className="mb-2 text-[14px] font-medium uppercase leading-[1.5] tracking-[0.02rem] text-white sm:text-[17.6px]">
+      <p className="mb-2 text-[14px] font-medium uppercase leading-[1.5] tracking-[0.02rem] text-[#141414] sm:text-[17.6px]">
         {label}
       </p>
       <div className="flex items-center gap-4">
         <motion.div
           className="h-7 rounded-r-full"
           style={{
-            background: "linear-gradient(90deg, rgba(250,88,45,0.15) 0%, #fa582d 100%)",
+            background: "linear-gradient(90deg, rgba(199,84,53,0.15) 0%, #c75435 100%)",
           }}
           initial={{ width: 0 }}
           animate={isInView ? { width: `${value}%` } : {}}
           transition={{ duration: 0.75, delay, ease: "easeOut" }}
         />
         <motion.span
-          className="text-[48px] font-bold leading-none text-white sm:text-[56px]"
+          className="text-[48px] font-bold leading-none text-[#141414] sm:text-[56px]"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: delay + 0.4, ease: "easeOut" }}
@@ -130,20 +130,20 @@ export function StatsSection() {
   });
 
   return (
-    <section className="relative bg-[#141414] text-white">
+    <section className="relative bg-white text-[#141414]">
       <div className="absolute inset-0 opacity-25">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(250,88,45,0.16),transparent_28%),radial-gradient(circle_at_20%_60%,rgba(49,93,255,0.16),transparent_32%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(199,84,53,0.16),transparent_28%),radial-gradient(circle_at_20%_60%,rgba(49,93,255,0.16),transparent_32%)]" />
       </div>
       <div className="absolute top-0 right-0 h-[52%] w-[45%] overflow-hidden opacity-[0.16]">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(-45deg, #fa582d 0px, #fa582d 1px, transparent 1px, transparent 9px)",
+              "repeating-linear-gradient(-45deg, #c75435 0px, #c75435 1px, transparent 1px, transparent 9px)",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#141414]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1720px] px-5 pt-10 pb-20 sm:px-8 sm:pt-14 sm:pb-28 lg:px-[10rem] lg:pt-16 lg:pb-36">
@@ -151,9 +151,9 @@ export function StatsSection() {
         <motion.h2
           ref={headingRef}
           {...headingAnim}
-          className="mb-20 max-w-5xl text-[44px] font-medium leading-[1.15] text-white sm:text-[52px] lg:text-[58px]"
+          className="mb-20 max-w-5xl text-[44px] font-medium leading-[1.15] text-[#141414] sm:text-[52px] lg:text-[58px]"
         >
-          A new <span className="text-[#fa582d]">AI world</span> is here
+          A new <span className="text-[#c75435]">AI world</span> is here
         </motion.h2>
 
         {/* Row 1: Good News heading (left) + Circles (right) */}
@@ -164,10 +164,10 @@ export function StatsSection() {
             {...goodNewsAnim}
             className="lg:w-[38%] lg:shrink-0"
           >
-            <span className="mb-4 block text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#fa582d]">
+            <span className="mb-4 block text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#c75435]">
               THE GOOD NEWS
             </span>
-            <h3 className="text-[34px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]">
+            <h3 className="text-[34px] font-medium leading-[1.2] text-[#141414] sm:text-[40px] lg:text-[44.666px]">
               AI is rapidly
               <br />
               transforming your
@@ -228,10 +228,10 @@ export function StatsSection() {
             {...badNewsAnim}
             className="lg:flex-1 lg:pl-16"
           >
-            <span className="mb-4 block text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#fa582d]">
+            <span className="mb-4 block text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#c75435]">
               THE BAD NEWS
             </span>
-            <h3 className="text-[34px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]">
+            <h3 className="text-[34px] font-medium leading-[1.2] text-[#141414] sm:text-[40px] lg:text-[44.666px]">
               Attackers are
               <br />
               supercharging their
