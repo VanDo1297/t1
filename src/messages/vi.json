@@ -310,6 +310,36 @@
     "noResults": "Không tìm thấy kết quả cho \"{query}\"",
     "hint": "Nhập để tìm kiếm trên tất cả trang và phần"
   },
+  "aboutDtg": {
+    "kicker": "ABOUT DTG",
+    "heading": "DTG – 23 Năm <accent>Đổi Mới</accent> & Tin Cậy",
+    "subtitle": "Đồng hành cùng doanh nghiệp trong hành trình Chuyển đổi số và An toàn thông tin.",
+    "stats": {
+      "0": { "value": "23+", "label": "Years Experience", "desc": "Triển khai CNTT & An toàn thông tin từ năm 2002" },
+      "1": { "value": "500+", "label": "Customers", "desc": "Doanh nghiệp, cơ quan nhà nước và tổ chức giáo dục" },
+      "2": { "value": "30+", "label": "Technology Partners", "desc": "Cisco, Dell, HPE, Microsoft, Fortinet, Palo Alto, ..." },
+      "3": { "value": "24/7", "label": "Support Service", "desc": "SLA chuyên nghiệp và đội ngũ kỹ sư giàu kinh nghiệm" }
+    },
+    "commitment": {
+      "kicker": "OUR COMMITMENT",
+      "heading": "Empowering <accent>Digital Transformation</accent> with Secure Technologies",
+      "desc": "DTG cung cấp giải pháp hạ tầng CNTT, Trung tâm dữ liệu, An toàn thông tin và Chuyển đổi số giúp khách hàng xây dựng nền tảng công nghệ vững chắc cho tương lai."
+    },
+    "recognitionKicker": "INDUSTRY RECOGNITION",
+    "recognition": {
+      "0": { "label": "Top 5 System Integrator in Southern Vietnam" },
+      "1": { "label": "Top 10 Digital Transformation Company" },
+      "2": { "label": "Cyber Security Excellence Awards" },
+      "3": { "label": "Strategic Partner Certifications" }
+    },
+    "why": {
+      "kicker": "WHY DTG",
+      "heading": "More than technology. We deliver <accent>trusted digital transformation</accent> outcomes.",
+      "point1": "23 năm kinh nghiệm.",
+      "point2": "500+ dự án thành công.",
+      "point3": "Được tin chọn bởi các tổ chức hàng đầu tại Việt Nam."
+    }
+  },
   "common": {
     "learnMore": "Tìm hiểu thêm",
     "readMore": "Đọc thêm",

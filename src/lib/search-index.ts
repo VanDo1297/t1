@@ -12,51 +12,74 @@ export interface SearchItem {
  */
 export function buildSearchIndex(
   messages: Record<string, unknown>,
-  locale: string
+  _locale: string
 ): SearchItem[] {
   const items: SearchItem[] = [];
   const m = messages as Record<string, Record<string, unknown>>;
 
-  // Hero
+  // Hero → trang chủ
   if (m.hero) {
     items.push({
       id: "hero",
       title: String(m.hero.title || ""),
       content: [m.hero.subtitle, m.hero.titleHighlight].filter(Boolean).join(" "),
       section: "Home",
-      href: `/${locale}`,
+      href: "/",
     });
   }
 
-  // About
+  // About → trang chủ #about hoặc /about
   if (m.about) {
     items.push({
       id: "about",
       title: String(m.about.title || ""),
       content: [m.about.description1, m.about.description2].filter(Boolean).join(" "),
       section: String(m.about.kicker || "About"),
-      href: `/${locale}/about`,
+      href: "/about",
     });
   }
 
-  // Services
+  // AboutDtg
+  if (m.aboutDtg) {
+    const ad = m.aboutDtg as Record<string, unknown>;
+    items.push({
+      id: "about-dtg",
+      title: String(ad.heading || ""),
+      content: String(ad.subtitle || ""),
+      section: String(ad.kicker || "About DTG"),
+      href: "/about",
+    });
+  }
+
+  // Services → /solutions
   if (m.services) {
     const svc = m.services as Record<string, unknown>;
-    for (const key of ["network", "server", "security", "cloud", "conference", "ai"]) {
-      const item = svc[key] as Record<string, string> | undefined;
-      if (item) {
+    // Section title
+    items.push({
+      id: "services",
+      title: String(svc.title || ""),
+      content: "",
+      section: String(svc.kicker || "Services"),
+      href: "/solutions",
+    });
+    // Individual services - dynamic from keys
+    const skipKeys = ["kicker", "title", "viewDetail", "_items"];
+    for (const [key, val] of Object.entries(svc)) {
+      if (skipKeys.includes(key) || typeof val !== "object" || val === null) continue;
+      const item = val as Record<string, string>;
+      if (item.title) {
         items.push({
           id: `service-${key}`,
           title: item.title,
-          content: item.desc,
+          content: item.desc || "",
           section: String(svc.kicker || "Services"),
-          href: `/${locale}/solutions/${key}`,
+          href: "/solutions",
         });
       }
     }
   }
 
-  // Why Choose / Values
+  // Why Choose
   if (m.whyChoose) {
     const wc = m.whyChoose as Record<string, unknown>;
     items.push({
@@ -64,41 +87,45 @@ export function buildSearchIndex(
       title: String(wc.title || ""),
       content: "",
       section: "Why Choose",
-      href: `/${locale}#why-palo`,
+      href: "/",
     });
 
     const values = wc.values as Record<string, Record<string, string>> | undefined;
     if (values) {
       for (const [key, val] of Object.entries(values)) {
-        items.push({
-          id: `value-${key}`,
-          title: val.title,
-          content: val.desc,
-          section: "Why Choose",
-          href: `/${locale}#why-palo`,
-        });
+        if (val.title) {
+          items.push({
+            id: `value-${key}`,
+            title: val.title,
+            content: val.desc || "",
+            section: "Why Choose",
+            href: "/",
+          });
+        }
       }
     }
   }
 
-  // Case Studies
+  // Case Studies - dynamic
   if (m.caseStudies) {
     const cs = m.caseStudies as Record<string, unknown>;
-    for (const key of ["evn", "bca", "vinhomes", "hospital"]) {
-      const item = cs[key] as Record<string, string> | undefined;
-      if (item) {
+    const skipKeys = ["kicker", "title", "_items"];
+    for (const [key, val] of Object.entries(cs)) {
+      if (skipKeys.includes(key) || typeof val !== "object" || val === null) continue;
+      const item = val as Record<string, string>;
+      if (item.title) {
         items.push({
           id: `case-${key}`,
           title: item.title,
-          content: item.desc,
+          content: item.desc || "",
           section: String(cs.kicker || "Case Studies"),
-          href: `/${locale}#engage`,
+          href: "/",
         });
       }
     }
   }
 
-  // News
+  // News - dynamic
   if (m.news) {
     const news = m.news as Record<string, unknown>;
     const newsItems = news.items as Record<string, string> | undefined;
@@ -109,7 +136,7 @@ export function buildSearchIndex(
           title,
           content: "",
           section: String(news.kicker || "News"),
-          href: `/${locale}/news/${slug}`,
+          href: `/news/${slug}`,
         });
       }
     }
@@ -122,8 +149,34 @@ export function buildSearchIndex(
       title: String((m.contact as Record<string, unknown>).title || "Contact"),
       content: "",
       section: "Contact",
-      href: `/${locale}/contact`,
+      href: "/contact",
     });
+  }
+
+  // Partners
+  if (m.partners) {
+    items.push({
+      id: "partners",
+      title: String((m.partners as Record<string, unknown>).title || "Partners"),
+      content: "",
+      section: String((m.partners as Record<string, unknown>).kicker || "Partners"),
+      href: "/partners",
+    });
+  }
+
+  // Process
+  if (m.whyChoose) {
+    const wc = m.whyChoose as Record<string, unknown>;
+    const process = wc.process as Record<string, unknown> | undefined;
+    if (process) {
+      items.push({
+        id: "process",
+        title: String(process.title || ""),
+        content: "",
+        section: "Process",
+        href: "/process",
+      });
+    }
   }
 
   return items;

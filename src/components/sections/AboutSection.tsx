@@ -24,12 +24,15 @@ function MetricCard({
   });
 
   const prefix = metricKey === "attacks" ? t(`${metricKey}.prefix`) : undefined;
+  const description = t(`${metricKey}.desc`);
 
   return (
     <motion.div
       ref={ref}
       {...animationProps}
-      className="group relative overflow-hidden rounded-[28px] border border-[#141414]/14 bg-white p-5 shadow-[0_26px_80px_rgba(0,0,0,0.22)] transition duration-300 hover:border-[#2563eb]/75 sm:p-7 lg:p-10"
+      tabIndex={0}
+      title={description}
+      className="group relative flex h-[240px] w-full rounded-[28px] border border-[#141414]/14 bg-white p-5 shadow-[0_26px_80px_rgba(0,0,0,0.22)] outline-none transition duration-300 hover:border-[#2563eb]/75 focus-visible:border-[#2563eb] focus-visible:ring-2 focus-visible:ring-[#2563eb]/35 sm:h-[280px] sm:p-7 lg:h-[300px] lg:p-10"
     >
       <div className="relative z-10 flex h-full flex-col">
         <div className="mb-5 flex items-end gap-3">
@@ -45,9 +48,9 @@ function MetricCard({
         <h3 className="mb-6 max-w-[420px] text-[22px] font-medium leading-[1.25] text-[#141414] sm:text-[26px] lg:text-[30px]">
           {t(`${metricKey}.label`)}
         </h3>
-        <p className="mt-auto max-w-[430px] text-[14px] font-medium leading-[1.55] text-[#141414]/55 sm:text-[15px] lg:text-[17px]">
-          {t(`${metricKey}.desc`)}
-        </p>
+      </div>
+      <div className="pointer-events-none absolute left-5 right-5 top-[calc(100%+12px)] z-30 translate-y-2 rounded-2xl border border-white/12 bg-[#09162a] p-4 text-[14px] font-medium leading-[1.5] text-white opacity-0 shadow-[0_24px_80px_rgba(0,0,0,0.35)] transition duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 sm:left-7 sm:right-7 lg:left-10 lg:right-10">
+        {description}
       </div>
     </motion.div>
   );
@@ -60,14 +63,17 @@ export function AboutSection() {
   });
 
   return (
-    <section id="why-palo" className="relative overflow-hidden bg-primary-dark py-12 text-white sm:py-16 lg:py-24">
-      <div className="absolute inset-0">
+    <section id="why-palo" className="relative bg-primary-dark py-12 text-white sm:py-16 lg:py-24">
+      {/* Animated background — starfield */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="bg-starfield absolute -inset-[5%]" />
+        <div className="bg-starfield-twinkle absolute inset-0" />
         <div
-          className="absolute inset-0 opacity-[0.12]"
+          className="absolute -left-[10%] -top-[10%] h-[120%] w-[120%]"
           style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(255,255,255,0.45) 1px, transparent 1.5px)",
-            backgroundSize: "13px 13px",
+            background:
+              "radial-gradient(circle at 25% 40%, rgba(37,99,235,0.14), transparent 40%), radial-gradient(circle at 75% 60%, rgba(37,99,235,0.08), transparent 35%)",
+            animation: "ai-world-drift 16s ease-in-out infinite alternate",
           }}
         />
       </div>
@@ -99,14 +105,6 @@ export function AboutSection() {
         </motion.div>
 
         <div className="relative">
-          <div
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[calc(100%+5rem)] w-full -translate-x-1/2 -translate-y-1/2 opacity-45"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(135deg, #2563eb 0px, #2563eb 2px, transparent 2px, transparent 32px), radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.22), transparent 58%)",
-              maskImage: "linear-gradient(90deg, transparent, black 6%, black 94%, transparent)",
-            }}
-          />
           <MobileCarousel gridClassName="gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {metricKeys.map((key, index) => (
               <MetricCard key={key} metricKey={key} delay={index * 0.08} />

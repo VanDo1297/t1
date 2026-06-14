@@ -324,16 +324,21 @@ export function CoreServicesSection() {
           data-platform-index={index}
           className="relative z-0 scroll-mt-[100px] border-t border-white/12"
         >
-          {/* Diagonal stripe pattern right */}
-          <div className="pointer-events-none absolute right-0 top-0 z-0 h-full w-[45%] overflow-hidden opacity-[0.12]">
+          {/* Animated background — grid zoom + glow */}
+          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
             <div
-              className="absolute inset-0"
+              className="bg-grid-zoom absolute inset-0"
               style={{
-                backgroundImage:
-                  "repeating-linear-gradient(135deg, #2563eb 0px, #2563eb 2px, transparent 2px, transparent 28px)",
+                maskImage: "radial-gradient(ellipse at 70% 50%, black 0%, transparent 70%)",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-primary-dark" />
+            <div
+              className="absolute -right-[8%] top-[10%] h-[80%] w-[50%]"
+              style={{
+                background: "radial-gradient(circle at 60% 40%, rgba(37,99,235,0.14), transparent 55%)",
+                animation: "ai-world-drift 16s ease-in-out infinite alternate",
+              }}
+            />
           </div>
 
           <div className="relative z-10 mx-auto w-full max-w-[1720px] px-5 pb-16 pt-24 sm:px-8 sm:pb-20 sm:pt-28 lg:px-[10rem] lg:pb-24 lg:pt-32">

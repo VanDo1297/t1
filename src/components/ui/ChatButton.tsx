@@ -3,18 +3,33 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const STORAGE_KEY = "dtg-chat-messages";
+const defaultMessage = { role: "bot" as const, text: "Xin chào! Tôi có thể giúp gì cho bạn?" };
+
+function loadMessages(): { role: "user" | "bot"; text: string }[] {
+  if (typeof window === "undefined") return [defaultMessage];
+  try {
+    const stored = sessionStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch {}
+  return [defaultMessage];
+}
+
 export function ChatButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<
     { role: "user" | "bot"; text: string }[]
-  >([
-    {
-      role: "bot",
-      text: "Xin chào! Tôi có thể giúp gì cho bạn?",
-    },
-  ]);
+  >(loadMessages);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Save to sessionStorage on change
+  useEffect(() => {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+  }, [messages]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -143,26 +158,12 @@ export function ChatButton() {
         )}
       </AnimatePresence>
 
-      {/* Float Button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30 transition hover:scale-110 active:scale-90"
-      >
-        {isOpen ? (
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        ) : (
+      {/* Float Button — ẩn khi chatbox đang mở */}
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30 transition hover:scale-110 active:scale-90"
+        >
           <svg
             width="24"
             height="24"
@@ -175,8 +176,8 @@ export function ChatButton() {
           >
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
-        )}
-      </button>
+        </button>
+      )}
     </div>
   );
 }

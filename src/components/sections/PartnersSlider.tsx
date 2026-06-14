@@ -40,7 +40,11 @@ export function PartnersSlider() {
           {t("heading")} <span className="text-primary">{t("headingAccent")}</span>
         </motion.h2>
 
-        <MobileCarousel gridClassName="gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6" slideWidth="40%">
+        <MobileCarousel
+          gridClassName="gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"
+          slideWidth="72%"
+          showControls
+        >
           {PARTNER_LOGOS.map((partner) => (
             <PartnerCard key={partner.name} partner={partner} />
           ))}

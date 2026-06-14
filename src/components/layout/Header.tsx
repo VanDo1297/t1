@@ -8,7 +8,6 @@ import { useLocale } from "next-intl";
 import Image from "next/image";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV_ITEMS } from "@/lib/constants";
 import { SearchDialog } from "@/components/ui/SearchDialog";
 
 export function Header() {
@@ -20,6 +19,24 @@ export function Header() {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isOverHero, setIsOverHero] = useState(true);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  // Dynamic nav items from Sanity CMS
+  const navItems: { key: string; href: string }[] = (() => {
+    try {
+      const raw = t.raw("_items") as any[];
+      if (Array.isArray(raw)) return raw;
+    } catch {}
+    // Fallback
+    return [
+      { key: "home", href: "/" },
+      { key: "about", href: "/about" },
+      { key: "solutions", href: "/solutions" },
+      { key: "process", href: "/process" },
+      { key: "partners", href: "/partners" },
+      { key: "news", href: "/news" },
+      { key: "contact", href: "/contact" },
+    ];
+  })();
 
   const switchLocale = (newLocale: string) => {
     router.replace(pathname, { locale: newLocale as "vi" | "en" });
@@ -79,7 +96,7 @@ export function Header() {
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
-              {NAV_ITEMS.filter((item) => item.key !== "contact").map((item) => {
+              {navItems.filter((item) => item.key !== "contact").map((item) => {
                 const isActive =
                   item.href === "/"
                     ? pathname === "/"
@@ -196,7 +213,7 @@ export function Header() {
             className="lg:hidden border-t border-white/12 bg-primary-dark/95 backdrop-blur-xl"
           >
             <nav className="px-4 py-4 space-y-1">
-              {NAV_ITEMS.map((item) => {
+              {navItems.map((item) => {
                 const isActive =
                   item.href === "/"
                     ? pathname === "/"

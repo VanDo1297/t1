@@ -292,6 +292,36 @@
     "noResults": "No results found for \"{query}\"",
     "hint": "Type to search across all pages and sections"
   },
+  "aboutDtg": {
+    "kicker": "ABOUT DTG",
+    "heading": "DTG – 23 Years of <accent>Innovation</accent> & Trust",
+    "subtitle": "Accompanying businesses on their journey of Digital Transformation and Information Security.",
+    "stats": {
+      "0": { "value": "23+", "label": "Years Experience", "desc": "Deploying IT & Information Security since 2002" },
+      "1": { "value": "500+", "label": "Customers", "desc": "Enterprises, government agencies and educational institutions" },
+      "2": { "value": "30+", "label": "Technology Partners", "desc": "Cisco, Dell, HPE, Microsoft, Fortinet, Palo Alto, ..." },
+      "3": { "value": "24/7", "label": "Support Service", "desc": "Professional SLA and experienced engineering team" }
+    },
+    "commitment": {
+      "kicker": "OUR COMMITMENT",
+      "heading": "Empowering <accent>Digital Transformation</accent> with Secure Technologies",
+      "desc": "DTG provides IT infrastructure, Data Center, Information Security and Digital Transformation solutions to help customers build a solid technology foundation for the future."
+    },
+    "recognitionKicker": "INDUSTRY RECOGNITION",
+    "recognition": {
+      "0": { "label": "Top 5 System Integrator in Southern Vietnam" },
+      "1": { "label": "Top 10 Digital Transformation Company" },
+      "2": { "label": "Cyber Security Excellence Awards" },
+      "3": { "label": "Strategic Partner Certifications" }
+    },
+    "why": {
+      "kicker": "WHY DTG",
+      "heading": "More than technology. We deliver <accent>trusted digital transformation</accent> outcomes.",
+      "point1": "23 years of experience.",
+      "point2": "500+ successful projects.",
+      "point3": "Trusted by leading organizations in Vietnam."
+    }
+  },
   "common": {
     "learnMore": "Learn More",
     "readMore": "Read More",

@@ -15,6 +15,7 @@ import { useTranslations } from "next-intl";
 const statKeys = ["researchers", "malware", "incidents", "partners"] as const;
 
 const trustedServiceClients = [...CLIENT_LOGOS, ...CLIENT_LOGOS].slice(0, 12);
+const mobileTrustedServiceClients = CLIENT_LOGOS.slice(0, 8);
 
 function AnimatedSectionBlock({
   children,
@@ -81,7 +82,31 @@ function TrustedServiceClients() {
         {t("heading")} <span className="text-[#2563eb]">{t("headingAccent")}</span>
       </motion.h2>
 
-      <div className="mt-20 grid grid-cols-2 items-center gap-x-12 gap-y-16 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-20 lg:gap-y-20">
+      <div className="mt-12 overflow-hidden sm:hidden">
+        <div className="trusted-logo-marquee flex w-max gap-3">
+          {[0, 1].map((track) => (
+            <div key={track} className="flex shrink-0 gap-3">
+              {mobileTrustedServiceClients.map((client) => (
+                <div
+                  key={`${client.name}-${track}`}
+                  className="flex h-36 w-[72vw] max-w-[320px] shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] px-8"
+                >
+                  <div className="relative h-14 w-full max-w-[150px] opacity-90 grayscale brightness-0 invert">
+                    <Image
+                      src={client.logo}
+                      alt={client.name}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-20 hidden items-center gap-x-12 gap-y-16 sm:grid sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-20 lg:gap-y-20">
         {trustedServiceClients.map((client, index) => (
           <motion.div
             key={`${client.name}-${index}`}
@@ -111,13 +136,21 @@ export function ServicesResponseSection() {
 
   return (
     <section className="relative overflow-hidden bg-primary-dark py-12 text-white sm:py-16 lg:py-24">
+      {/* Animated background — fast grid glide + glow */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute bottom-[-18%] right-[8%] h-[640px] w-[640px] rounded-full bg-[#2563eb]/10 blur-3xl" />
         <div
-          className="absolute bottom-0 right-0 h-[58%] w-[56%] opacity-[0.12]"
+          className="bg-grid-glide absolute inset-0"
           style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, #2563eb 0px, #2563eb 3px, transparent 3px, transparent 18px)",
+            maskImage: "radial-gradient(ellipse at 65% 70%, black 0%, transparent 65%)",
+          }}
+        />
+        <div
+          className="absolute -bottom-[10%] -right-[5%] h-[100%] w-[60%]"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 60%, rgba(37,99,235,0.14), transparent 45%)",
+            animation: "ai-world-drift 16s ease-in-out infinite alternate",
           }}
         />
       </div>
