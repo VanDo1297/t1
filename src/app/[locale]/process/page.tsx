@@ -63,11 +63,11 @@ export default function ProcessPage() {
   const t = useTranslations("whyChoose.process");
 
   return (
-    <div className="pt-24 pb-16">
+    <div className="pt-32 pb-16">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          kicker="QUY TRÌNH TRIỂN KHAI"
-          title="Quy Trình Triển Khai Chuẩn 6 Bước"
+          kicker={t("kicker")}
+          title={t("title")}
           className="!text-left"
         />
 

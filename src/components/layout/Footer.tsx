@@ -40,11 +40,10 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <Image
-              src="/assets/svtech/dtg-logo.png"
+              src="/assets/svtech/dtg-logo-color.png"
               alt="DTG"
               width={140}
               height={45}
-              className="brightness-0 invert"
             />
             <div className="space-y-3 text-[14px] font-medium leading-[1.5] text-white/62">
               <div className="flex items-start gap-2">

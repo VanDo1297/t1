@@ -46,6 +46,7 @@ export const sectionWhyChoose = defineType({
     }),
 
     // Process
+    defineField({ name: "kickerQuyTrinh", title: "Nhãn quy trình (vd: QUY TRÌNH TRIỂN KHAI)", type: "string" }),
     defineField({ name: "tieuDeQuyTrinh", title: "Tiêu đề quy trình", type: "string" }),
     defineField({
       name: "danhSachBuoc",

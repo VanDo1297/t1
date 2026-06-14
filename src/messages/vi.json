@@ -69,7 +69,8 @@
       }
     },
     "process": {
-      "title": "Quy Trình Tạo Giá Trị",
+      "kicker": "QUY TRÌNH TRIỂN KHAI",
+      "title": "Quy Trình Triển Khai Chuẩn 6 Bước",
       "steps": {
         "1": { "title": "Khảo Sát & Đánh Giá", "desc": "Tiếp nhận yêu cầu chiến lược, khảo sát thực tế và đánh giá hiện trạng hạ tầng công nghệ." },
         "2": { "title": "Tư Vấn & Thiết Kế", "desc": "Phân tích tối ưu phương án, tư vấn mô hình kiến trúc công nghệ tiên tiến." },

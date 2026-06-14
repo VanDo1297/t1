@@ -88,6 +88,7 @@ async function run() {
         _key: k(), _type: "object", key: vKey,
         tieuDe: d.whyChoose.values[vKey].title, moTa: d.whyChoose.values[vKey].desc,
       })),
+      kickerQuyTrinh: d.whyChoose.process.kicker || "",
       tieuDeQuyTrinh: d.whyChoose.process.title,
       danhSachBuoc: stepKeys.map((sKey) => ({
         _key: k(), _type: "object",

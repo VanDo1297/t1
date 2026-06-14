@@ -104,7 +104,7 @@ function transformWhyChoose(doc: AnyDoc) {
 
   return {
     title: doc.title, metrics, values, _metrics,
-    process: { title: doc.tieuDeQuyTrinh, steps },
+    process: { kicker: doc.kickerQuyTrinh || "", title: doc.tieuDeQuyTrinh, steps },
     cta: { subtitle: doc.ctaSubtitle, message: doc.ctaMessage, button: doc.ctaButton },
   };
 }

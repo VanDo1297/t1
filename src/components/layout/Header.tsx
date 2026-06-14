@@ -86,11 +86,11 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
               <Image
-                src="/assets/svtech/dtg-logo.png"
+                src="/assets/svtech/dtg-logo-color.png"
                 alt="DTG"
                 width={120}
                 height={40}
-                className="brightness-0 invert transition-all group-hover:opacity-80"
+                className="transition-all group-hover:opacity-80"
               />
             </Link>
 

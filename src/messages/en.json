@@ -51,7 +51,8 @@
       "quality": { "title": "Output Quality Commitment", "desc": "Information security and ROI as the guiding compass for every project." }
     },
     "process": {
-      "title": "Value Creation Process",
+      "kicker": "DEPLOYMENT PROCESS",
+      "title": "Standard 6-Step Deployment Process",
       "steps": {
         "1": { "title": "Survey & Assessment", "desc": "Receive strategic requirements, conduct in-depth surveys." },
         "2": { "title": "Consulting & Design", "desc": "Analyze optimal solutions, advise advanced technology architecture." },
