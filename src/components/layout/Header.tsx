@@ -6,9 +6,10 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { useRouter } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_ITEMS } from "@/lib/constants";
+import { SearchDialog } from "@/components/ui/SearchDialog";
 
 export function Header() {
   const t = useTranslations("nav");
@@ -18,11 +19,24 @@ export function Header() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isOverHero, setIsOverHero] = useState(true);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const switchLocale = (newLocale: string) => {
     router.replace(pathname, { locale: newLocale as "vi" | "en" });
     setIsLangOpen(false);
   };
+
+  // Cmd+K / Ctrl+K shortcut
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const updateHeaderTheme = () => {
@@ -46,7 +60,7 @@ export function Header() {
       className={`absolute left-0 right-0 top-0 z-50 border-b backdrop-blur transition-colors duration-300 [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif] ${
         isOverHero
           ? "border-white/20 bg-black/25"
-          : "border-[#141414]/10 bg-white/95"
+          : "border-white/12 bg-primary-dark/95"
       }`}
     >
       <div className="mx-auto w-full max-w-[1720px] px-5 sm:px-8 lg:px-[10rem]">
@@ -59,9 +73,7 @@ export function Header() {
                 alt="DTG"
                 width={120}
                 height={40}
-                className={`transition-all brightness-0 group-hover:opacity-80 ${
-                  isOverHero ? "invert" : ""
-                }`}
+                className="brightness-0 invert transition-all group-hover:opacity-80"
               />
             </Link>
 
@@ -82,8 +94,8 @@ export function Header() {
                           ? "text-white"
                           : "text-white/82 hover:text-white"
                         : isActive
-                          ? "text-[#141414]"
-                          : "text-[#141414]/72 hover:text-[#c75435]"
+                          ? "text-white"
+                          : "text-white/72 hover:text-[#2563eb]"
                     }`}
                   >
                     {t(item.key)}
@@ -93,11 +105,23 @@ export function Header() {
             </nav>
           </div>
 
-          {/* Right side: Language + Mobile toggle */}
+          {/* Right side: Search + Contact + Language + Mobile toggle */}
           <div className="flex items-center gap-3">
+            {/* Search button */}
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="flex items-center gap-2 rounded-full px-3 py-2 text-[14px] font-semibold text-white/70 transition hover:bg-white/10 hover:text-white"
+              aria-label="Search"
+            >
+              <Search size={18} />
+              <kbd className="hidden rounded border border-white/20 px-1.5 py-0.5 text-[10px] text-white/40 sm:inline-block">
+                ⌘K
+              </kbd>
+            </button>
+
             <Link
               href="/contact"
-              className="hidden sm:inline-flex min-w-[176px] justify-center rounded-full bg-[#c75435] px-7 py-4 text-[14.5px] font-semibold leading-[1.4] tracking-[0.01rem] text-white transition hover:bg-[#d96547]"
+              className="hidden sm:inline-flex min-w-[176px] justify-center rounded-full bg-[#2563eb] px-7 py-4 text-[14.5px] font-semibold leading-[1.4] tracking-[0.01rem] text-white transition hover:bg-[#2563eb]"
             >
               {t("contact")}
             </Link>
@@ -108,7 +132,7 @@ export function Header() {
                 className={`flex items-center gap-1 rounded-full px-3 py-2 text-[14px] font-semibold leading-[1.4] tracking-[0.02rem] transition-colors ${
                   isOverHero
                     ? "text-white/88 hover:bg-white/10 hover:text-white"
-                    : "text-[#141414]/72 hover:bg-[#141414]/5 hover:text-[#141414]"
+                    : "text-white/72 hover:bg-white/10 hover:text-white"
                 }`}
               >
                 {locale === "vi" ? "🇻🇳 VI" : "🇺🇸 EN"}
@@ -153,7 +177,7 @@ export function Header() {
               className={`rounded-full p-2 transition-colors lg:hidden ${
                 isOverHero
                   ? "text-white hover:bg-white/10"
-                  : "text-[#141414] hover:bg-[#141414]/5"
+                  : "text-white hover:bg-white/10"
               }`}
             >
               {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -169,7 +193,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden border-t border-[#141414]/10 bg-white/95 backdrop-blur-xl"
+            className="lg:hidden border-t border-white/12 bg-primary-dark/95 backdrop-blur-xl"
           >
             <nav className="px-4 py-4 space-y-1">
               {NAV_ITEMS.map((item) => {
@@ -185,7 +209,7 @@ export function Header() {
                     className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
                       isActive
                         ? "text-primary bg-primary/10"
-                        : "text-[#141414] hover:bg-[#141414]/5"
+                        : "text-white hover:bg-white/10"
                     }`}
                   >
                     {t(item.key)}
@@ -196,6 +220,7 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+      <SearchDialog open={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   );
 }

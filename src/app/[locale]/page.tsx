@@ -22,7 +22,7 @@ export default function HomePage() {
       <ServicesResponseSection />
       <WhyChooseSection />
       <SolutionsMatrixSection />
-      <div className="bg-white px-5 py-24 sm:px-8 sm:py-28 lg:px-[10rem] lg:py-36">
+      <div className="bg-primary-dark px-5 py-24 sm:px-8 sm:py-28 lg:px-[10rem] lg:py-36">
         <CtaBox />
       </div>
       <PartnersSlider />

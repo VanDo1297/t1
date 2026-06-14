@@ -10,14 +10,14 @@ export function Footer() {
   const tNav = useTranslations("nav");
 
   return (
-    <footer className="border-t border-[#141414]/10 bg-white text-[#141414]">
+    <footer className="border-t border-white/12 bg-primary-dark text-white">
       <div className="mx-auto w-full max-w-[1720px] px-5 py-20 sm:px-8 lg:px-[10rem]">
         <div className="mb-16 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-end">
           <div>
             <h2 className="mb-6 max-w-3xl text-[40px] font-medium leading-[1.2] sm:text-[52px] lg:text-[58px]">
               Get the latest news, invites to events, and threat alerts
             </h2>
-            <p className="max-w-2xl text-[17px] font-medium leading-[1.55] text-[#141414]/62">
+            <p className="max-w-2xl text-[17px] font-medium leading-[1.55] text-white/68">
               {t("description")}
             </p>
           </div>
@@ -25,18 +25,18 @@ export function Footer() {
             <input
               type="email"
               placeholder={t("newsletterPlaceholder")}
-              className="min-h-14 flex-1 border-b border-[#141414]/35 bg-transparent px-0 text-[18px] text-[#141414] placeholder-[#141414]/45 outline-none transition focus:border-[#c75435]"
+              className="min-h-14 flex-1 border-b border-white/35 bg-transparent px-0 text-[18px] text-white placeholder-white/45 outline-none transition focus:border-[#2563eb]"
             />
             <button
               type="submit"
-              className="rounded-full bg-[#c75435] px-8 py-4 text-[14.8px] font-semibold leading-[1.4] text-white transition hover:bg-[#d96547]"
+              className="rounded-full bg-[#2563eb] px-8 py-4 text-[14.8px] font-semibold leading-[1.4] text-white transition hover:bg-[#2563eb]"
             >
               {t("subscribe")}
             </button>
           </form>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 border-t border-[#141414]/10 pt-14 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 border-t border-white/12 pt-14 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
             <Image
@@ -44,15 +44,15 @@ export function Footer() {
               alt="DTG"
               width={140}
               height={45}
-              className="brightness-0"
+              className="brightness-0 invert"
             />
-            <div className="space-y-3 text-[14px] font-medium leading-[1.5] text-[#141414]/55">
+            <div className="space-y-3 text-[14px] font-medium leading-[1.5] text-white/62">
               <div className="flex items-start gap-2">
-                <MapPin size={14} className="mt-1 text-[#c75435]" />
+                <MapPin size={14} className="mt-1 text-[#2563eb]" />
                 <span>41 Trần Khắc Chân, Phường Cầu Kiệu, Thành phố Hồ Chí Minh, Việt Nam</span>
               </div>
               <div className="flex items-start gap-2">
-                <Phone size={14} className="mt-1 text-[#c75435]" />
+                <Phone size={14} className="mt-1 text-[#2563eb]" />
                 <div>
                   <p>DTG TP.HCM: (028) 3865 9999</p>
                   <p>DTG Hà Nội: 0916 868 989</p>
@@ -60,11 +60,11 @@ export function Footer() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Phone size={14} className="text-[#c75435]" />
+                <Phone size={14} className="text-[#2563eb]" />
                 <span>Fax: (028) 3868 3639</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail size={14} className="text-[#c75435]" />
+                <Mail size={14} className="text-[#2563eb]" />
                 <span>info@dtgcorp.com.vn</span>
               </div>
             </div>
@@ -72,7 +72,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="mb-5 text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#c75435]">
+            <h4 className="mb-5 text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#2563eb]">
               {t("quickLinks")}
             </h4>
             <ul className="space-y-3">
@@ -81,7 +81,7 @@ export function Footer() {
                   <li key={key}>
                     <Link
                       href={`/${key}`}
-                      className="text-[15px] font-medium text-[#141414]/62 transition-colors hover:text-[#141414]"
+                      className="text-[15px] font-medium text-white/68 transition-colors hover:text-white"
                     >
                       {tNav(key)}
                     </Link>
@@ -93,10 +93,10 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="mb-5 text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#c75435]">
+            <h4 className="mb-5 text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#2563eb]">
               {t("services")}
             </h4>
-            <ul className="space-y-3 text-[15px] font-medium text-[#141414]/62">
+            <ul className="space-y-3 text-[15px] font-medium text-white/68">
               <li>Hạ tầng mạng & Viễn thông</li>
               <li>Máy chủ & Lưu trữ</li>
               <li>Bảo mật toàn diện</li>
@@ -108,10 +108,10 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="mb-5 text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#c75435]">
+            <h4 className="mb-5 text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#2563eb]">
               {t("newsletter")}
             </h4>
-            <p className="text-[15px] font-medium leading-[1.55] text-[#141414]/62">
+            <p className="text-[15px] font-medium leading-[1.55] text-white/68">
               {t("description")}
             </p>
           </div>
@@ -119,14 +119,14 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-[#141414]/10">
+      <div className="border-t border-white/12">
         <div className="mx-auto flex w-full max-w-[1720px] flex-col items-center justify-between gap-4 px-5 py-6 sm:flex-row sm:px-8 lg:px-[10rem]">
-          <p className="text-[13px] font-medium text-[#141414]/45">{t("copyright")}</p>
-          <div className="flex gap-6 text-[13px] font-medium text-[#141414]/45">
-            <span className="cursor-pointer transition-colors hover:text-[#141414]">
+          <p className="text-[13px] font-medium text-white/48">{t("copyright")}</p>
+          <div className="flex gap-6 text-[13px] font-medium text-white/48">
+            <span className="cursor-pointer transition-colors hover:text-white">
               {t("privacy")}
             </span>
-            <span className="cursor-pointer transition-colors hover:text-[#141414]">
+            <span className="cursor-pointer transition-colors hover:text-white">
               {t("terms")}
             </span>
           </div>

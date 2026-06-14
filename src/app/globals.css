@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #c75435;
-  --color-primary-dark: #93311f;
+  --color-primary: #2563eb;
+  --color-primary-dark: #09162a;
   --color-dark: #141414;
   --color-light-surface: #f4f4f2;
   --color-surface: #ffffff;
   --color-surface-light: #f4f4f2;
   --color-surface-lighter: #565656;
-  --color-palo-orange: #c75435;
+  --color-palo-orange: #2563eb;
   --color-award-green: #0a7a5a;
   --color-award-green-hover: #0d9068;
   --font-heading: "TT Hoves", Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -21,8 +21,77 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: #ffffff;
-  color: #141414;
+  background-color: var(--color-primary-dark);
+  color: #ffffff;
+}
+
+.ai-world-bg {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(37, 99, 235, 0.34), transparent 24%),
+    radial-gradient(circle at 78% 20%, rgba(57, 122, 255, 0.24), transparent 26%),
+    radial-gradient(circle at 62% 78%, rgba(37, 99, 235, 0.2), transparent 28%),
+    linear-gradient(120deg, rgba(9, 22, 42, 0.2), rgba(9, 22, 42, 0.96));
+  animation: ai-world-drift 16s ease-in-out infinite alternate;
+}
+
+.ai-world-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    repeating-linear-gradient(135deg, rgba(37, 99, 235, 0.16) 0 1px, transparent 1px 18px);
+  background-size: 72px 72px, 72px 72px, 28px 28px;
+  mask-image: radial-gradient(ellipse at 68% 28%, black 0%, transparent 68%);
+  animation: ai-world-grid-shift 22s linear infinite;
+}
+
+.ai-world-scan {
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent),
+    linear-gradient(180deg, transparent, rgba(37, 99, 235, 0.18), transparent);
+  transform: translateX(-55%) rotate(-12deg);
+  animation: ai-world-scan 7s ease-in-out infinite;
+}
+
+@keyframes ai-world-drift {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    transform: scale(1.08) translate3d(-2%, 1.5%, 0);
+    filter: hue-rotate(8deg);
+  }
+}
+
+@keyframes ai-world-grid-shift {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 72px 72px, -72px 72px, 84px 84px;
+  }
+}
+
+@keyframes ai-world-scan {
+  0%, 18% {
+    opacity: 0;
+    transform: translateX(-65%) rotate(-12deg);
+  }
+  42%, 58% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(65%) rotate(-12deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-world-bg,
+  .ai-world-grid,
+  .ai-world-scan {
+    animation: none;
+  }
 }
 
 /* Hide scrollbar utility */
@@ -54,12 +123,12 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: var(--color-primary-dark);
 }
 ::-webkit-scrollbar-thumb {
   background: #b9b9b9;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #c75435;
+  background: #2563eb;
 }

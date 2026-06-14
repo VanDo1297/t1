@@ -132,12 +132,12 @@ function TabContent({
         preset="ttb"
         className="mb-10 flex items-start justify-between"
       >
-        <h3 className="text-[34px] font-semibold uppercase leading-[1.15] tracking-[0.08em] text-[#141414] sm:text-[44px] lg:text-[52px]">
+        <h3 className="text-[30px] font-semibold uppercase leading-[1.18] tracking-[0.08em] text-white sm:text-[36px] lg:text-[40px]">
           {platform.heading}
         </h3>
         <a
           href="#contact"
-          className="mt-2 flex shrink-0 items-center gap-2 text-[14.8px] font-semibold text-[#141414]/70 transition hover:text-[#141414]"
+          className="mt-2 flex shrink-0 items-center gap-2 text-[14.8px] font-semibold text-white/70 transition hover:text-white"
         >
           See all
           <ArrowRight size={16} />
@@ -145,24 +145,24 @@ function TabContent({
       </AnimatedContentBlock>
 
       {/* Content: left text + right awards */}
-      <div className="grid gap-12 lg:grid-cols-2">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,0.58fr)_minmax(360px,0.42fr)]">
         <AnimatedContentBlock
           isActive={isActive}
           preset="ltr"
           delay={0.08}
           className="flex min-w-0 flex-col"
         >
-          <p className="mb-10 text-[15px] font-medium leading-[1.65] text-[#141414]/60 sm:text-[17px]">
+          <p className="mb-10 text-[15px] font-medium leading-[1.65] text-white/68 sm:text-[17px]">
             {platform.desc}
           </p>
 
           <div className="mb-10 flex gap-8">
             {platform.stats.map((stat) => (
               <div key={stat.label}>
-                <div className="text-[40px] font-medium leading-none text-[#141414] sm:text-[52px]">
+                <div className="text-[40px] font-medium leading-none text-white sm:text-[52px]">
                   {stat.value}
                 </div>
-                <p className="mt-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#141414]/45">
+                <p className="mt-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white/55">
                   {stat.label}
                 </p>
               </div>
@@ -171,7 +171,7 @@ function TabContent({
 
           <a
             href="#contact"
-            className="group inline-flex w-fit items-center rounded-full border-2 border-[#c75435] px-7 py-4 text-[14.8px] font-semibold leading-[1.4] text-[#141414] transition duration-300 hover:bg-[#c75435] hover:text-white"
+            className="group inline-flex w-fit items-center rounded-full border-2 border-[#2563eb] px-7 py-4 text-[14.8px] font-semibold leading-[1.4] text-white transition duration-300 hover:bg-[#2563eb]"
           >
             {platform.cta}
             <ArrowRight size={20} className="ml-4 transition-transform group-hover:translate-x-1" />
@@ -182,17 +182,17 @@ function TabContent({
           isActive={isActive}
           preset="rtl"
           delay={0.12}
-          className="grid min-w-0 grid-cols-2 gap-3 lg:gap-4"
+          className="grid min-w-0 content-start gap-3 sm:grid-cols-2 lg:gap-4"
         >
           {platform.awards.map((award) => (
             <div
               key={award.title}
-              className="flex min-h-[120px] flex-col justify-between rounded-lg bg-[linear-gradient(115deg,#c75435_0%,#93311f_100%)] p-5 text-white transition duration-300 hover:bg-[#93311f]"
+              className="flex min-h-[148px] flex-col justify-between rounded-lg bg-[linear-gradient(115deg,#2563eb_0%,#2563eb_100%)] p-4 text-white transition duration-300 hover:bg-[#2563eb]"
             >
-              <p className="text-[20px] font-bold leading-[1.2]">
+              <p className="text-[17px] font-bold leading-[1.2]">
                 {award.source}
               </p>
-              <p className="mt-3 text-[12px] font-medium leading-[1.4] text-white/78">
+              <p className="mt-6 text-[11.5px] font-medium leading-[1.35] text-white/78">
                 {award.title}
               </p>
             </div>
@@ -237,12 +237,12 @@ export function CoreServicesSection() {
   }, []);
 
   return (
-    <section id="platforms" className="relative bg-white text-[#141414]">
+    <section id="platforms" className="relative bg-primary-dark text-white">
       {/* Heading area */}
       <div className="mx-auto w-full max-w-[1720px] px-5 pt-20 sm:px-8 sm:pt-28 lg:px-[10rem] lg:pt-36">
         <motion.div ref={headingRef} {...headingAnim} className="mb-10 max-w-5xl">
-          <div className="mb-6 h-px w-48 bg-[#c75435]" />
-          <h2 className="text-[40px] font-medium leading-[1.15] text-[#141414] sm:text-[52px] lg:text-[64px]">
+          <div className="mb-6 h-px w-48 bg-[#2563eb]" />
+          <h2 className="text-[34px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]">
             Introducing the Platforms,
             <br />
             powered by Precision AI
@@ -251,7 +251,7 @@ export function CoreServicesSection() {
       </div>
 
       {/* Tabs — sticky below SubNav */}
-      <div className="sticky top-[49px] z-50 border-b border-[#141414]/10 bg-white backdrop-blur">
+      <div className="sticky top-[49px] z-50 border-b border-white/12 bg-primary-dark/95 backdrop-blur">
         <div className="mx-auto w-full max-w-[1720px] px-5 sm:px-8 lg:px-[10rem]">
           <div className="flex gap-0 overflow-x-auto scrollbar-none">
             {platforms.map((platform, index) => {
@@ -264,13 +264,13 @@ export function CoreServicesSection() {
                   onClick={() => setActiveIndex(index)}
                   className={`flex shrink-0 items-center gap-3 border-b-2 px-6 py-5 text-[15px] font-semibold leading-[1.4] transition-colors ${
                     isActive
-                      ? "border-[#c75435] text-[#141414]"
-                      : "border-transparent text-[#141414]/45 hover:border-[#c75435] hover:text-[#141414]"
+                      ? "border-[#2563eb] text-white"
+                      : "border-transparent text-white/52 hover:border-[#2563eb] hover:text-white"
                   }`}
                 >
                   <TabIcon
                     size={20}
-                    className={isActive ? "text-[#c75435]" : "text-[#141414]/30"}
+                    className={isActive ? "text-[#2563eb]" : "text-white/38"}
                   />
                   {platform.tab}
                 </a>
@@ -288,7 +288,7 @@ export function CoreServicesSection() {
             sectionRefs.current[index] = node;
           }}
           data-platform-index={index}
-          className="relative z-0 min-h-[calc(100svh-49px)] scroll-mt-[116px] border-t border-[#141414]/10"
+          className="relative z-0 min-h-[calc(100svh-49px)] scroll-mt-[116px] border-t border-white/12"
         >
           {/* Diagonal stripe pattern right */}
           <div className="pointer-events-none absolute right-0 top-0 z-0 h-full w-[45%] overflow-hidden opacity-[0.12]">
@@ -296,10 +296,10 @@ export function CoreServicesSection() {
               className="absolute inset-0"
               style={{
                 backgroundImage:
-                  "repeating-linear-gradient(135deg, #c75435 0px, #c75435 2px, transparent 2px, transparent 28px)",
+                  "repeating-linear-gradient(135deg, #2563eb 0px, #2563eb 2px, transparent 2px, transparent 28px)",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white" />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-primary-dark" />
           </div>
 
           <div className="relative z-10 mx-auto w-full max-w-[1720px] px-5 pb-16 pt-24 sm:px-8 sm:pb-20 sm:pt-28 lg:px-[10rem] lg:pb-24 lg:pt-32">

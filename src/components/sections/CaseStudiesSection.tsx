@@ -42,28 +42,28 @@ function EngagementCard({ card, index }: { card: (typeof engagementCards)[number
     <motion.article
       ref={ref}
       {...animationProps}
-      className="group relative flex min-h-[560px] flex-col overflow-hidden border border-[#141414]/12 bg-[#141414]/[0.03] p-7 text-[#141414] transition duration-300 hover:border-[#c75435]"
+      className="group relative flex min-h-[560px] flex-col overflow-hidden border border-white/14 bg-white/[0.04] p-7 text-white transition duration-300 hover:border-[#2563eb]"
     >
       <div
         className="absolute inset-x-0 top-0 h-40 opacity-[0.12]"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(135deg, #c75435 0px, #c75435 2px, transparent 2px, transparent 28px)",
+            "repeating-linear-gradient(135deg, #2563eb 0px, #2563eb 2px, transparent 2px, transparent 28px)",
         }}
       />
       <div className="relative z-10 flex h-full flex-col">
-        <span className="mb-16 block text-[13px] font-semibold uppercase leading-[1.4] tracking-[2.6px] text-[#c75435]">
+        <span className="mb-16 block text-[13px] font-semibold uppercase leading-[1.4] tracking-[2.6px] text-[#2563eb]">
           {card.tab}
         </span>
-        <h3 className="mb-5 text-[30px] font-medium leading-[1.18] text-[#141414]">
+        <h3 className="mb-5 text-[30px] font-medium leading-[1.18] text-white">
           {card.title}
         </h3>
-        <p className="text-[17px] font-medium leading-[1.5] text-[#141414]/65">
+        <p className="text-[17px] font-medium leading-[1.5] text-white/68">
           {card.desc}
         </p>
         <a
           href="#contact"
-          className="mt-auto inline-flex items-center pt-10 text-[14.8px] font-semibold leading-[1.4] text-[#141414] underline decoration-2 underline-offset-[10px] transition hover:text-[#c75435]"
+          className="mt-auto inline-flex items-center pt-10 text-[14.8px] font-semibold leading-[1.4] text-white underline decoration-2 underline-offset-[10px] transition hover:text-[#2563eb]"
         >
           {card.cta}
           <ArrowRight size={18} className="ml-3 transition-transform group-hover:translate-x-1" />
@@ -79,20 +79,20 @@ export function CaseStudiesSection() {
   });
 
   return (
-    <section id="engage" className="relative overflow-hidden bg-[#f4f4f2] text-[#141414]">
+    <section id="engage" className="relative overflow-hidden bg-primary-dark text-white">
       <div className="mx-auto w-full max-w-[1720px] px-5 py-24 sm:px-8 sm:py-28 lg:px-[10rem]">
         <motion.h2
           ref={headingRef}
           {...headingAnim}
-          className="max-w-5xl text-[40px] font-medium leading-[1.15] text-[#141414] sm:text-[58px] lg:text-[70px]"
+          className="max-w-5xl text-[34px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]"
         >
           Here for you.
           <br />
-          Here for what's next.
+          Here for what&apos;s next.
         </motion.h2>
       </div>
 
-      <div className="bg-white py-20 text-[#141414] sm:py-24 lg:py-28">
+      <div className="bg-primary-dark py-20 text-white sm:py-24 lg:py-28">
         <div className="mx-auto w-full max-w-[1720px] px-5 sm:px-8 lg:px-[10rem]">
           <div className="mb-8 flex gap-4 overflow-x-auto pb-2 scrollbar-none">
             {engagementCards.map((card, index) => (
@@ -101,8 +101,8 @@ export function CaseStudiesSection() {
                 type="button"
                 className={`shrink-0 border px-6 py-4 text-[18px] font-semibold leading-[1.35] transition ${
                   index === 0
-                    ? "border-[#c75435] bg-[#c75435] text-black"
-                    : "border-[#141414]/15 bg-[#141414]/[0.03] text-[#141414]/70 hover:border-[#c75435] hover:text-[#141414]"
+                    ? "border-[#2563eb] bg-[#2563eb] text-black"
+                    : "border-white/15 bg-white/[0.04] text-white/70 hover:border-[#2563eb] hover:text-white"
                 }`}
               >
                 {card.tab}
