@@ -28,12 +28,12 @@ export function buildSearchIndex(
     });
   }
 
-  // About → trang chủ #about hoặc /about
+  // About → /about
   if (m.about) {
     items.push({
       id: "about",
       title: String(m.about.title || ""),
-      content: [m.about.description1, m.about.description2].filter(Boolean).join(" "),
+      content: [m.about.kicker, m.about.description1, m.about.description2].filter(Boolean).join(" "),
       section: String(m.about.kicker || "About"),
       href: "/about",
     });
@@ -109,6 +109,14 @@ export function buildSearchIndex(
   // Case Studies - dynamic
   if (m.caseStudies) {
     const cs = m.caseStudies as Record<string, unknown>;
+    // Index section title
+    items.push({
+      id: "case-studies",
+      title: String(cs.title || ""),
+      content: String(cs.kicker || ""),
+      section: String(cs.kicker || "Case Studies"),
+      href: "/",
+    });
     const skipKeys = ["kicker", "title", "_items"];
     for (const [key, val] of Object.entries(cs)) {
       if (skipKeys.includes(key) || typeof val !== "object" || val === null) continue;
