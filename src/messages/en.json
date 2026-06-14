@@ -134,6 +134,139 @@
       }
     }
   },
+  "subNav": {
+    "whyPalo": "Why Palo Alto Networks?",
+    "platforms": "Platforms",
+    "solutions": "Solutions",
+    "provenSuccess": "Proven Success",
+    "engageWithUs": "Engage with Us",
+    "demosAndTrials": "Demos and trials",
+    "more": "More"
+  },
+  "stats": {
+    "heading": "A new <accent>AI world</accent> is here",
+    "goodNews": "THE GOOD NEWS",
+    "goodNewsTitle": "AI is rapidly\ntransforming your\norganization",
+    "growth": "~1.5X growth",
+    "growthSub": "in usage in last\n12 months",
+    "development": "development",
+    "developmentSub": "enterprises using gen AI\nsoftware",
+    "zeroDay": "Increase in exploited zero days (YoY, 2023)",
+    "ransomware": "Increase in ransomware attacks (YoY, 2023)",
+    "dataBreaches": "Increase in data breaches and leaks (YoY, 2023)",
+    "badNews": "THE BAD NEWS",
+    "badNewsTitle": "Attackers are\nsupercharging their\nspeed and scale."
+  },
+  "whyPalo": {
+    "kicker": "WHY PALO ALTO NETWORKS",
+    "heading": "Platformization empowers you to harness AI-ready infrastructure.",
+    "headingAccent": "And leverage services powered by Precision AI® to keep everything secure.",
+    "cta": "See our platform approach",
+    "metrics": {
+      "mttr": { "value": "90 %", "label": "reduction in MTTR", "desc": "Drive innovation and digital transformation with AI." },
+      "attacks": { "prefix": "up to", "value": "30.9 B", "label": "inline attacks blocked per day", "desc": "Proactively monitor, analyze and prevent sophisticated threats in real time with less complexity, enabling secure growth and innovation for your organization." },
+      "endpoints": { "value": "480 B", "label": "endpoints scanned daily", "desc": "Enable better, faster security with an integrated suite of battle-tested, AI-driven products." }
+    }
+  },
+  "platforms": {
+    "heading": "Introducing the Platforms,\npowered by Precision AI",
+    "seeAll": "See all",
+    "items": {
+      "network": {
+        "tab": "AI-Powered Network Security",
+        "heading": "AI-Powered Network Security",
+        "desc": "Securing everyone and everything from the latest threats in every location. Built for Zero Trust and powered by AI, the Strata™ Network Security Platform proactively monitors, analyzes and prevents sophisticated threats in real time with less complexity, enabling secure growth and innovation for your organization.",
+        "cta": "Explore Network Security",
+        "stats": { "fortune": { "value": "95%", "label": "of the Fortune 100" }, "customers": { "value": "70 K", "label": "customers" } }
+      },
+      "secops": {
+        "tab": "AI-Driven Security Operations",
+        "heading": "AI-Driven Security Operations",
+        "desc": "Transform the SOC and enable better, faster security with the #1 AI-driven SecOps platform powered by unified data, artificial intelligence and automation.",
+        "cta": "Explore SecOps",
+        "stats": { "integrations": { "value": "700+", "label": "partner integrations" }, "endpoints": { "value": "480 B", "label": "endpoints scanned daily" } }
+      },
+      "cloud": {
+        "tab": "Real-Time Cloud Security",
+        "heading": "Real-Time Cloud Security",
+        "desc": "Secure cloud apps, data and infrastructure from code to runtime. Protect cloud-native environments with continuous visibility, posture management, runtime defense and AI-powered risk prioritization.",
+        "cta": "Explore Cloud Security",
+        "stats": { "visibility": { "value": "Code", "label": "to cloud visibility" }, "defense": { "value": "Runtime", "label": "threat defense" } }
+      },
+      "identity": {
+        "tab": "Next-Generation Identity Security",
+        "heading": "Next-Generation Identity Security",
+        "desc": "Control identity chaos across every human, machine and AI agent. Discover, govern and secure every identity with contextual intelligence that keeps access aligned to risk.",
+        "cta": "Explore Identity Security",
+        "stats": { "protected": { "value": "Every", "label": "identity protected" }, "controls": { "value": "Agentic", "label": "AI access controls" } }
+      }
+    }
+  },
+  "servicesResponse": {
+    "heading": "Intelligence-driven.\nResponse-ready.",
+    "kicker": "SERVICES",
+    "title": "Threat Intel & Incident Response",
+    "desc": "Unit 42's world-renowned threat researchers, elite incident responders and expert security consultants will guide you with a threat-informed approach before, during and after an incident.",
+    "cta": "Explore Unit 42",
+    "stats": {
+      "researchers": { "value": "200+", "label": "threat researchers" },
+      "malware": { "value": "30 M", "label": "malware samples analyzed per day" },
+      "incidents": { "value": "1K+", "label": "incident response engagements a year" },
+      "partners": { "value": "150+", "label": "trusted partner of law firms" }
+    },
+    "matters": { "value": "1K+", "label": "Matters per year" },
+    "response": { "value": "24 / 7 / 365", "label": "Incident response" }
+  },
+  "solutionsMatrix": {
+    "heading": "Secure whatever,\nwhenever, wherever —\nwith less complexity.",
+    "featured": "FEATURED SOLUTION",
+    "featuredTitle": "Secure AI apps, agents, models and data.",
+    "exploreCta": "Explore solutions",
+    "items": [
+      "Secure Your AI ecosystem",
+      "Secure your network",
+      "Secure your cloud",
+      "Secure Your Identities",
+      "Automate your SOC",
+      "Threat intel and incident response services",
+      "Solutions by industry"
+    ],
+    "features": [
+      "Secure AI apps, agents, models and data.",
+      "Stop advanced threats at every point of access.",
+      "Reduce complexity with consolidated security.",
+      "Respond faster with real-time intelligence."
+    ]
+  },
+  "ctaBox": {
+    "heading": "Our customers are securing their digital transformation",
+    "cta": "See testimonials",
+    "playLabel": "Play customer story"
+  },
+  "partnersSlider": {
+    "heading": "Trusted by",
+    "headingAccent": "the best"
+  },
+  "engagement": {
+    "heading": "Here for you.\nHere for what's next.",
+    "cards": {
+      "executives": { "tab": "Executives", "title": "Ignite on Tour", "desc": "Meet decision-makers, experts and practitioners for a day of hands-on learning, strategy building and networking.", "cta": "Attend our global roadshow" },
+      "specialists": { "tab": "Specialists", "title": "Executive Briefing Center", "desc": "Get a customized plan to see how our platform can support your organization's priorities.", "cta": "Schedule a briefing" },
+      "partners": { "tab": "Partners", "title": "Under Attack? We're Here.", "desc": "Get immediate help from response experts when an active incident threatens your organization.", "cta": "Get emergency assistance" },
+      "customers": { "tab": "Customers", "title": "AI-powered security platforms", "desc": "See demos, trials and guided experiences for the platforms built to secure what's next.", "cta": "Visit the demo center" }
+    }
+  },
+  "insights": {
+    "heading": "Staying ahead demands\nperspectives you can trust.",
+    "viewAll": "View all",
+    "readMore": "Read more",
+    "items": {
+      "ai-network": { "type": "ARTICLE", "title": "Securing Your AI-Powered Network Transformation: A Guide for C-Suite Leaders" },
+      "ai-era": { "type": "ARTICLE", "title": "A New Era of Cybersecurity with AI" },
+      "cyber-resilience": { "type": "ARTICLE", "title": "When It Comes to Cyber Resilience and AI, Be Sure to Stretch the Limits of Your Imagination" },
+      "magazine": { "type": "MAGAZINE", "title": "Quarterly thought leadership on the issues that matter most to cybersecurity executives" }
+    }
+  },
   "footer": {
     "description": "Leading system integrator, pioneering in the AI and Digital Transformation era.",
     "quickLinks": "Quick Links",
@@ -143,7 +276,21 @@
     "subscribe": "Subscribe",
     "copyright": "© 2026 DTG. All rights reserved.",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "terms": "Terms of Service",
+    "ctaHeading": "Get the latest news, invites to events, and threat alerts",
+    "servicesList": {
+      "network": "Network & Telecom Infrastructure",
+      "server": "Server & Storage",
+      "security": "Comprehensive Security",
+      "cloud": "Cloud Computing",
+      "conference": "Video Conferencing",
+      "ai": "AI & Solutions"
+    }
+  },
+  "search": {
+    "placeholder": "Search...",
+    "noResults": "No results found for \"{query}\"",
+    "hint": "Type to search across all pages and sections"
   },
   "common": {
     "learnMore": "Learn More",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useMemo } from "react";
-import { useMessages, useLocale } from "next-intl";
+import { useMessages, useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { Search, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,6 +18,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
   const locale = useLocale();
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const t = useTranslations("search");
 
   const items = useMemo(
     () => buildSearchIndex(messages as Record<string, unknown>, locale),
@@ -79,7 +80,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search..."
+                placeholder={t("placeholder")}
                 className="flex-1 bg-transparent text-[17px] text-white placeholder-white/35 outline-none"
               />
               {query && (
@@ -99,7 +100,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
             <div className="max-h-[50vh] overflow-y-auto">
               {query.trim() && results.length === 0 && (
                 <div className="px-5 py-10 text-center text-[15px] text-white/40">
-                  No results found for &ldquo;{query}&rdquo;
+                  {t("noResults", { query })}
                 </div>
               )}
 
@@ -131,7 +132,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
             {/* Footer hint */}
             {!query.trim() && (
               <div className="border-t border-white/10 px-5 py-3 text-[12px] text-white/30">
-                Type to search across all pages and sections
+                {t("hint")}
               </div>
             )}
           </motion.div>

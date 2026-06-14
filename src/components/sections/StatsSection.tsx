@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useTranslations } from "next-intl";
 
 function CircleProgress({
   value,
@@ -24,7 +25,7 @@ function CircleProgress({
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-5">
-      <div className="relative h-48 w-48 sm:h-56 sm:w-56 lg:h-64 lg:w-64">
+      <div className="relative h-36 w-36 sm:h-56 sm:w-56 lg:h-64 lg:w-64">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 108 108">
           <circle
             cx="54"
@@ -94,7 +95,7 @@ function StatBar({
           transition={{ duration: 0.75, delay, ease: "easeOut" }}
         />
         <motion.span
-          className="text-[48px] font-bold leading-none text-white sm:text-[56px]"
+          className="text-[32px] font-bold leading-none text-white sm:text-[40px] lg:text-[52px]"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: delay + 0.4, ease: "easeOut" }}
@@ -107,6 +108,8 @@ function StatBar({
 }
 
 export function StatsSection() {
+  const t = useTranslations("stats");
+
   const { ref: headingRef, animationProps: headingAnim } = useScrollAnimation({
     preset: "ltr",
     margin: "-5% 0px -5% 0px",
@@ -150,14 +153,16 @@ export function StatsSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1720px] px-5 pt-10 pb-20 sm:px-8 sm:pt-14 sm:pb-28 lg:px-[10rem] lg:pt-16 lg:pb-36">
+      <div className="relative z-10 mx-auto w-full max-w-[1720px] px-4 pt-10 pb-12 sm:px-8 sm:pt-14 sm:pb-16 lg:px-[10rem] lg:pt-16 lg:pb-24">
         {/* Main heading */}
         <motion.h2
           ref={headingRef}
           {...headingAnim}
-          className="mb-20 max-w-5xl text-[44px] font-bold leading-[1.15] text-white sm:text-[52px] lg:text-[58px]"
+          className="mb-8 max-w-5xl text-[28px] font-bold leading-[1.15] text-white sm:mb-12 sm:text-[40px] lg:mb-16 lg:text-[44.666px]"
         >
-          A new <span className="text-[#2563eb]">AI world</span> is here
+          {t.rich("heading", {
+            accent: (chunks) => <span className="text-[#2563eb]">{chunks}</span>,
+          })}
         </motion.h2>
 
         {/* Row 1: Good News heading (left) + Circles (right) */}
@@ -169,14 +174,10 @@ export function StatsSection() {
             className="lg:w-[38%] lg:shrink-0"
           >
             <span className="mb-4 block text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#2563eb]">
-              THE GOOD NEWS
+              {t("goodNews")}
             </span>
-            <h3 className="text-[34px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]">
-              AI is rapidly
-              <br />
-              transforming your
-              <br />
-              organization
+            <h3 className="whitespace-pre-line text-[28px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]">
+              {t("goodNewsTitle")}
             </h3>
           </motion.div>
 
@@ -188,14 +189,14 @@ export function StatsSection() {
           >
             <CircleProgress
               value={78}
-              label="~1.5X growth"
-              sublabel={"in usage in last\n12 months"}
+              label={t("growth")}
+              sublabel={t("growthSub")}
               delay={0.2}
             />
             <CircleProgress
               value={94}
-              label="development"
-              sublabel={"enterprises using gen AI\nsoftware"}
+              label={t("development")}
+              sublabel={t("developmentSub")}
               delay={0.4}
             />
           </motion.div>
@@ -210,17 +211,17 @@ export function StatsSection() {
             className="space-y-8 lg:w-[54%] lg:shrink-0"
           >
             <StatBar
-              label="Increase in exploited zero days (YoY, 2023)"
+              label={t("zeroDay")}
               value={56}
               delay={0.3}
             />
             <StatBar
-              label="Increase in ransomware attacks (YoY, 2023)"
+              label={t("ransomware")}
               value={73}
               delay={0.5}
             />
             <StatBar
-              label="Increase in data breaches and leaks (YoY, 2023)"
+              label={t("dataBreaches")}
               value={56}
               delay={0.7}
             />
@@ -233,14 +234,10 @@ export function StatsSection() {
             className="lg:flex-1 lg:pl-16"
           >
             <span className="mb-4 block text-[14.4px] font-semibold uppercase leading-[1.4] tracking-[2.88px] text-[#2563eb]">
-              THE BAD NEWS
+              {t("badNews")}
             </span>
-            <h3 className="text-[34px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]">
-              Attackers are
-              <br />
-              supercharging their
-              <br />
-              speed and scale.
+            <h3 className="whitespace-pre-line text-[28px] font-medium leading-[1.2] text-white sm:text-[40px] lg:text-[44.666px]">
+              {t("badNewsTitle")}
             </h3>
           </motion.div>
         </div>

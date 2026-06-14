@@ -152,6 +152,139 @@
       }
     }
   },
+  "subNav": {
+    "whyPalo": "Tại sao chọn Palo Alto Networks?",
+    "platforms": "Nền tảng",
+    "solutions": "Giải pháp",
+    "provenSuccess": "Thành công đã chứng minh",
+    "engageWithUs": "Kết nối với chúng tôi",
+    "demosAndTrials": "Demo và dùng thử",
+    "more": "Thêm"
+  },
+  "stats": {
+    "heading": "Một <accent>thế giới AI</accent> mới đã đến",
+    "goodNews": "TIN TỐT",
+    "goodNewsTitle": "AI đang nhanh chóng\nchuyển đổi\ntổ chức của bạn",
+    "growth": "Tăng trưởng ~1.5X",
+    "growthSub": "mức sử dụng trong\n12 tháng qua",
+    "development": "phát triển",
+    "developmentSub": "doanh nghiệp sử dụng\nphần mềm gen AI",
+    "zeroDay": "Gia tăng lỗ hổng zero-day bị khai thác (so với cùng kỳ, 2023)",
+    "ransomware": "Gia tăng tấn công ransomware (so với cùng kỳ, 2023)",
+    "dataBreaches": "Gia tăng vi phạm và rò rỉ dữ liệu (so với cùng kỳ, 2023)",
+    "badNews": "TIN XẤU",
+    "badNewsTitle": "Kẻ tấn công đang\ntăng cường tốc độ\nvà quy mô."
+  },
+  "whyPalo": {
+    "kicker": "TẠI SAO CHỌN PALO ALTO NETWORKS",
+    "heading": "Nền tảng hóa giúp bạn khai thác hạ tầng sẵn sàng cho AI.",
+    "headingAccent": "Và tận dụng các dịch vụ được hỗ trợ bởi Precision AI® để bảo mật mọi thứ.",
+    "cta": "Xem cách tiếp cận nền tảng",
+    "metrics": {
+      "mttr": { "value": "90 %", "label": "giảm thiểu MTTR", "desc": "Thúc đẩy đổi mới và chuyển đổi số với AI." },
+      "attacks": { "prefix": "lên đến", "value": "30.9 B", "label": "cuộc tấn công trực tuyến được chặn mỗi ngày", "desc": "Chủ động giám sát, phân tích và ngăn chặn các mối đe dọa tinh vi trong thời gian thực với độ phức tạp thấp hơn, cho phép tăng trưởng và đổi mới an toàn cho tổ chức của bạn." },
+      "endpoints": { "value": "480 B", "label": "thiết bị đầu cuối được quét hàng ngày", "desc": "Bảo mật tốt hơn, nhanh hơn với bộ sản phẩm tích hợp, đã được kiểm chứng và được hỗ trợ bởi AI." }
+    }
+  },
+  "platforms": {
+    "heading": "Giới thiệu các Nền tảng,\nđược hỗ trợ bởi Precision AI",
+    "seeAll": "Xem tất cả",
+    "items": {
+      "network": {
+        "tab": "Bảo mật mạng hỗ trợ bởi AI",
+        "heading": "Bảo mật mạng hỗ trợ bởi AI",
+        "desc": "Bảo vệ mọi người và mọi thứ khỏi các mối đe dọa mới nhất ở mọi địa điểm. Được xây dựng cho Zero Trust và hỗ trợ bởi AI, nền tảng Strata™ Network Security chủ động giám sát, phân tích và ngăn chặn các mối đe dọa tinh vi trong thời gian thực với độ phức tạp thấp hơn, cho phép tăng trưởng và đổi mới an toàn cho tổ chức của bạn.",
+        "cta": "Khám phá Bảo mật mạng",
+        "stats": { "fortune": { "value": "95%", "label": "trong Fortune 100" }, "customers": { "value": "70 K", "label": "khách hàng" } }
+      },
+      "secops": {
+        "tab": "Vận hành bảo mật hỗ trợ bởi AI",
+        "heading": "Vận hành bảo mật hỗ trợ bởi AI",
+        "desc": "Chuyển đổi SOC và bảo mật tốt hơn, nhanh hơn với nền tảng SecOps #1 được hỗ trợ bởi AI, dữ liệu hợp nhất, trí tuệ nhân tạo và tự động hóa.",
+        "cta": "Khám phá SecOps",
+        "stats": { "integrations": { "value": "700+", "label": "tích hợp đối tác" }, "endpoints": { "value": "480 B", "label": "thiết bị đầu cuối được quét hàng ngày" } }
+      },
+      "cloud": {
+        "tab": "Bảo mật đám mây thời gian thực",
+        "heading": "Bảo mật đám mây thời gian thực",
+        "desc": "Bảo mật ứng dụng đám mây, dữ liệu và hạ tầng từ mã nguồn đến thời gian chạy. Bảo vệ môi trường cloud-native với khả năng hiển thị liên tục, quản lý tư thế bảo mật, phòng thủ thời gian chạy và ưu tiên rủi ro được hỗ trợ bởi AI.",
+        "cta": "Khám phá Bảo mật đám mây",
+        "stats": { "visibility": { "value": "Code", "label": "đến khả năng hiển thị đám mây" }, "defense": { "value": "Runtime", "label": "phòng thủ mối đe dọa" } }
+      },
+      "identity": {
+        "tab": "Bảo mật danh tính thế hệ mới",
+        "heading": "Bảo mật danh tính thế hệ mới",
+        "desc": "Kiểm soát sự hỗn loạn danh tính trên mọi con người, máy móc và tác nhân AI. Khám phá, quản trị và bảo mật mọi danh tính với trí tuệ ngữ cảnh giữ quyền truy cập phù hợp với rủi ro.",
+        "cta": "Khám phá Bảo mật danh tính",
+        "stats": { "protected": { "value": "Mọi", "label": "danh tính được bảo vệ" }, "controls": { "value": "Agentic", "label": "kiểm soát truy cập AI" } }
+      }
+    }
+  },
+  "servicesResponse": {
+    "heading": "Dựa trên thông tin tình báo.\nSẵn sàng ứng phó.",
+    "kicker": "DỊCH VỤ",
+    "title": "Tình báo mối đe dọa & Ứng phó sự cố",
+    "desc": "Các nhà nghiên cứu mối đe dọa nổi tiếng thế giới, chuyên gia ứng phó sự cố hàng đầu và tư vấn bảo mật chuyên nghiệp của Unit 42 sẽ hướng dẫn bạn với phương pháp tiếp cận dựa trên mối đe dọa trước, trong và sau sự cố.",
+    "cta": "Khám phá Unit 42",
+    "stats": {
+      "researchers": { "value": "200+", "label": "nhà nghiên cứu mối đe dọa" },
+      "malware": { "value": "30 M", "label": "mẫu phần mềm độc hại được phân tích mỗi ngày" },
+      "incidents": { "value": "1K+", "label": "cam kết ứng phó sự cố mỗi năm" },
+      "partners": { "value": "150+", "label": "đối tác tin cậy của các công ty luật" }
+    },
+    "matters": { "value": "1K+", "label": "Vụ việc mỗi năm" },
+    "response": { "value": "24 / 7 / 365", "label": "Ứng phó sự cố" }
+  },
+  "solutionsMatrix": {
+    "heading": "Bảo mật mọi thứ,\nmọi lúc, mọi nơi —\nvới ít phức tạp hơn.",
+    "featured": "GIẢI PHÁP NỔI BẬT",
+    "featuredTitle": "Bảo mật ứng dụng AI, tác nhân, mô hình và dữ liệu.",
+    "exploreCta": "Khám phá giải pháp",
+    "items": [
+      "Bảo mật hệ sinh thái AI của bạn",
+      "Bảo mật mạng của bạn",
+      "Bảo mật đám mây của bạn",
+      "Bảo mật danh tính của bạn",
+      "Tự động hóa SOC của bạn",
+      "Dịch vụ tình báo mối đe dọa và ứng phó sự cố",
+      "Giải pháp theo ngành"
+    ],
+    "features": [
+      "Bảo mật ứng dụng AI, tác nhân, mô hình và dữ liệu.",
+      "Ngăn chặn các mối đe dọa tiên tiến tại mọi điểm truy cập.",
+      "Giảm độ phức tạp với bảo mật hợp nhất.",
+      "Phản hồi nhanh hơn với thông tin tình báo thời gian thực."
+    ]
+  },
+  "ctaBox": {
+    "heading": "Khách hàng của chúng tôi đang bảo mật quá trình chuyển đổi số",
+    "cta": "Xem lời chứng thực",
+    "playLabel": "Phát câu chuyện khách hàng"
+  },
+  "partnersSlider": {
+    "heading": "Được tin tưởng bởi",
+    "headingAccent": "những đơn vị hàng đầu"
+  },
+  "engagement": {
+    "heading": "Luôn ở đây vì bạn.\nLuôn ở đây cho tương lai.",
+    "cards": {
+      "executives": { "tab": "Lãnh đạo", "title": "Ignite on Tour", "desc": "Gặp gỡ các nhà ra quyết định, chuyên gia và người thực hành trong một ngày học hỏi thực tế, xây dựng chiến lược và kết nối.", "cta": "Tham gia chuỗi sự kiện toàn cầu" },
+      "specialists": { "tab": "Chuyên gia", "title": "Trung tâm Tư vấn Điều hành", "desc": "Nhận kế hoạch tùy chỉnh để xem nền tảng của chúng tôi có thể hỗ trợ các ưu tiên của tổ chức bạn như thế nào.", "cta": "Đặt lịch tư vấn" },
+      "partners": { "tab": "Đối tác", "title": "Đang bị tấn công? Chúng tôi ở đây.", "desc": "Nhận trợ giúp ngay lập tức từ các chuyên gia ứng phó khi sự cố đang đe dọa tổ chức của bạn.", "cta": "Nhận hỗ trợ khẩn cấp" },
+      "customers": { "tab": "Khách hàng", "title": "Nền tảng bảo mật hỗ trợ bởi AI", "desc": "Xem demo, dùng thử và trải nghiệm có hướng dẫn cho các nền tảng được xây dựng để bảo mật tương lai.", "cta": "Truy cập trung tâm demo" }
+    }
+  },
+  "insights": {
+    "heading": "Dẫn đầu đòi hỏi\ngóc nhìn đáng tin cậy.",
+    "viewAll": "Xem tất cả",
+    "readMore": "Đọc thêm",
+    "items": {
+      "ai-network": { "type": "BÀI VIẾT", "title": "Bảo mật chuyển đổi mạng hỗ trợ bởi AI: Hướng dẫn cho lãnh đạo cấp cao" },
+      "ai-era": { "type": "BÀI VIẾT", "title": "Kỷ nguyên mới của An ninh mạng với AI" },
+      "cyber-resilience": { "type": "BÀI VIẾT", "title": "Khi nói đến khả năng phục hồi mạng và AI, hãy chắc chắn mở rộng giới hạn trí tưởng tượng" },
+      "magazine": { "type": "TẠP CHÍ", "title": "Tư duy lãnh đạo hàng quý về các vấn đề quan trọng nhất đối với lãnh đạo an ninh mạng" }
+    }
+  },
   "footer": {
     "description": "Đơn vị tích hợp hệ thống hàng đầu, tiên phong trong kỷ nguyên AI và Chuyển đổi số.",
     "quickLinks": "Liên kết nhanh",
@@ -161,7 +294,21 @@
     "subscribe": "Đăng ký",
     "copyright": "© 2026 DTG. Tất cả quyền được bảo lưu.",
     "privacy": "Chính sách bảo mật",
-    "terms": "Điều khoản sử dụng"
+    "terms": "Điều khoản sử dụng",
+    "ctaHeading": "Nhận tin tức mới nhất, lời mời sự kiện và cảnh báo mối đe dọa",
+    "servicesList": {
+      "network": "Hạ tầng mạng & Viễn thông",
+      "server": "Máy chủ & Lưu trữ",
+      "security": "Bảo mật toàn diện",
+      "cloud": "Điện toán đám mây",
+      "conference": "Hội nghị truyền hình",
+      "ai": "AI & Solutions"
+    }
+  },
+  "search": {
+    "placeholder": "Tìm kiếm...",
+    "noResults": "Không tìm thấy kết quả cho \"{query}\"",
+    "hint": "Nhập để tìm kiếm trên tất cả trang và phần"
   },
   "common": {
     "learnMore": "Tìm hiểu thêm",

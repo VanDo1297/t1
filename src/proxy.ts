@@ -8,5 +8,5 @@ export function proxy(request: Parameters<typeof intlMiddleware>[0]) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|assets|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|assets|studio|.*\\..*).*)"],
 };

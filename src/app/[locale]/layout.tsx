@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ChatButton } from "@/components/ui/ChatButton";
 import "../globals.css";
 
 export const metadata = {
@@ -37,11 +38,12 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className="min-h-screen bg-primary-dark text-white antialiased">
+      <body className="min-h-screen overflow-x-hidden bg-primary-dark text-white antialiased">
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main>{children}</main>
           <Footer />
+          <ChatButton />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -15,7 +15,7 @@ export function Footer() {
         <div className="mb-16 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-end">
           <div>
             <h2 className="mb-6 max-w-3xl text-[40px] font-medium leading-[1.2] sm:text-[52px] lg:text-[58px]">
-              Get the latest news, invites to events, and threat alerts
+              {t("ctaHeading")}
             </h2>
             <p className="max-w-2xl text-[17px] font-medium leading-[1.55] text-white/68">
               {t("description")}
@@ -97,12 +97,9 @@ export function Footer() {
               {t("services")}
             </h4>
             <ul className="space-y-3 text-[15px] font-medium text-white/68">
-              <li>Hạ tầng mạng & Viễn thông</li>
-              <li>Máy chủ & Lưu trữ</li>
-              <li>Bảo mật toàn diện</li>
-              <li>Điện toán đám mây</li>
-              <li>Hội nghị truyền hình</li>
-              <li>AI & Solutions</li>
+              {(["network", "server", "security", "cloud", "conference", "ai"] as const).map((key) => (
+                <li key={key}>{t(`servicesList.${key}`)}</li>
+              ))}
             </ul>
           </div>
 

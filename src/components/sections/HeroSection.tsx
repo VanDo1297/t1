@@ -37,30 +37,6 @@ export function HeroSection() {
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-black via-black/65 to-transparent" />
       </div>
 
-      <div className="pointer-events-none absolute right-[5vw] top-[11svh] hidden h-[64svh] w-[38vw] opacity-55 lg:block">
-        <div className="relative h-full w-full">
-          {Array.from({ length: 24 }).map((_, index) => (
-            <motion.span
-              key={index}
-              className="absolute bottom-0 top-0 w-[0.74rem] bg-[#2563eb]"
-              style={{
-                left: `${index * 4.05}%`,
-                clipPath:
-                  index < 6
-                    ? "polygon(48% 30%, 100% 22%, 100% 84%, 48% 76%)"
-                    : index > 17
-                      ? "polygon(0 7%, 82% 15%, 82% 71%, 0 82%)"
-                      : "polygon(0 0, 100% 8%, 100% 95%, 0 87%)",
-                height: `${66 + Math.sin(index / 2.2) * 17}%`,
-                top: `${Math.max(0, 22 - index * 1.15)}%`,
-              }}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 + index * 0.025 }}
-            />
-          ))}
-        </div>
-      </div>
 
       <div className="relative z-10 mx-auto mt-auto flex min-h-svh w-full max-w-[1720px] items-end px-5 pb-28 sm:px-8 lg:px-[10rem]">
         <motion.div

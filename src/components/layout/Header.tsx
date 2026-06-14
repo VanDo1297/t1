@@ -151,7 +151,7 @@ export function Header() {
                       className={`w-full px-4 py-2 text-left text-sm transition-colors ${
                         locale === "vi"
                           ? "text-primary bg-primary/10"
-                          : "text-surface hover:bg-surface/5"
+                          : "text-[#141414] hover:bg-[#141414]/5"
                       }`}
                     >
                       🇻🇳 Tiếng Việt
@@ -161,7 +161,7 @@ export function Header() {
                       className={`w-full px-4 py-2 text-left text-sm transition-colors ${
                         locale === "en"
                           ? "text-primary bg-primary/10"
-                          : "text-surface hover:bg-surface/5"
+                          : "text-[#141414] hover:bg-[#141414]/5"
                       }`}
                     >
                       🇺🇸 English
