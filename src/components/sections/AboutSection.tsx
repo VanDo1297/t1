@@ -31,8 +31,7 @@ function MetricCard({
       ref={ref}
       {...animationProps}
       tabIndex={0}
-      title={description}
-      className="group relative flex h-[240px] w-full rounded-[28px] border border-[#141414]/14 bg-white p-5 shadow-[0_26px_80px_rgba(0,0,0,0.22)] outline-none transition duration-300 hover:border-[#2563eb]/75 focus-visible:border-[#2563eb] focus-visible:ring-2 focus-visible:ring-[#2563eb]/35 sm:h-[280px] sm:p-7 lg:h-[300px] lg:p-10"
+      className="group relative flex h-[240px] w-full overflow-hidden rounded-[28px] border border-[#141414]/14 bg-white p-5 shadow-[0_26px_80px_rgba(0,0,0,0.22)] outline-none transition duration-300 hover:border-[#2563eb]/75 focus-visible:border-[#2563eb] focus-visible:ring-2 focus-visible:ring-[#2563eb]/35 sm:h-[280px] sm:p-7 lg:h-[300px] lg:p-10"
     >
       <div className="relative z-10 flex h-full flex-col">
         <div className="mb-5 flex items-end gap-3">
@@ -49,8 +48,12 @@ function MetricCard({
           {t(`${metricKey}.label`)}
         </h3>
       </div>
-      <div className="pointer-events-none absolute left-5 right-5 top-[calc(100%+12px)] z-30 translate-y-2 rounded-2xl border border-white/12 bg-[#09162a] p-4 text-[14px] font-medium leading-[1.5] text-white opacity-0 shadow-[0_24px_80px_rgba(0,0,0,0.35)] transition duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 sm:left-7 sm:right-7 lg:left-10 lg:right-10">
-        {description}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 translate-y-full opacity-0 transition duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+        <div className="relative overflow-hidden border-t border-white/14 bg-[#09162a]/96 px-5 py-5 text-[14px] font-medium leading-[1.55] text-white shadow-[0_-20px_70px_rgba(0,0,0,0.32)] backdrop-blur-xl sm:px-7 lg:px-10">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2563eb] to-transparent" />
+          <div className="absolute -right-10 -top-14 h-28 w-28 rounded-full bg-[#2563eb]/24 blur-2xl" />
+          <p className="relative z-10">{description}</p>
+        </div>
       </div>
     </motion.div>
   );

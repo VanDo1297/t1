@@ -1,12 +1,26 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
+import { useMessages, useLocale } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import Fuse from "fuse.js";
+import { buildSearchIndex, type SearchItem } from "@/lib/search-index";
 
 const STORAGE_KEY = "dtg-chat-messages";
-const defaultMessage = { role: "bot" as const, text: "Xin chào! Tôi có thể giúp gì cho bạn?" };
 
-function loadMessages(): { role: "user" | "bot"; text: string }[] {
+type Message = {
+  role: "user" | "bot";
+  text: string;
+  links?: { title: string; section: string; href: string }[];
+};
+
+const defaultMessage: Message = {
+  role: "bot",
+  text: "Xin chào! Tôi có thể giúp gì cho bạn? Hãy nhập từ khoá để tìm kiếm thông tin.",
+};
+
+function loadMessages(): Message[] {
   if (typeof window === "undefined") return [defaultMessage];
   try {
     const stored = sessionStorage.getItem(STORAGE_KEY);
@@ -20,13 +34,33 @@ function loadMessages(): { role: "user" | "bot"; text: string }[] {
 
 export function ChatButton() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<
-    { role: "user" | "bot"; text: string }[]
-  >(loadMessages);
+  const [messages, setMessages] = useState<Message[]>(loadMessages);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const siteMessages = useMessages();
+  const locale = useLocale();
+  const router = useRouter();
 
-  // Save to sessionStorage on change
+  const searchItems = useMemo(
+    () => buildSearchIndex(siteMessages as Record<string, unknown>, locale),
+    [siteMessages, locale]
+  );
+
+  const fuse = useMemo(
+    () =>
+      new Fuse(searchItems, {
+        keys: [
+          { name: "title", weight: 2 },
+          { name: "content", weight: 1 },
+          { name: "section", weight: 0.5 },
+        ],
+        threshold: 0.35,
+        includeScore: true,
+        minMatchCharLength: 2,
+      }),
+    [searchItems]
+  );
+
   useEffect(() => {
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
   }, [messages]);
@@ -42,20 +76,48 @@ export function ChatButton() {
     setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
     setInput("");
 
-    // Auto reply
+    // Search with Fuse.js
     setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "bot",
-          text: "Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.",
-        },
-      ]);
-    }, 1000);
+      const results = fuse.search(trimmed, { limit: 5 });
+
+      if (results.length > 0) {
+        const links = results.map((r) => ({
+          title: r.item.title,
+          section: r.item.section,
+          href: r.item.href,
+        }));
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "bot",
+            text: `Tôi tìm thấy ${results.length} kết quả liên quan:`,
+            links,
+          },
+        ]);
+        // Auto navigate to first result
+        setTimeout(() => {
+          router.push(links[0].href);
+        }, 800);
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "bot",
+            text: `Không tìm thấy kết quả cho "${trimmed}". Bạn có thể thử từ khoá khác hoặc liên hệ trực tiếp qua trang Liên hệ.`,
+            links: [{ title: "Trang Liên hệ", section: "Contact", href: "/contact" }],
+          },
+        ]);
+      }
+    }, 500);
+  }
+
+  function handleLinkClick(href: string) {
+    setIsOpen(false);
+    router.push(href);
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -63,7 +125,7 @@ export function ChatButton() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ duration: 0.25 }}
-            className="mb-4 flex h-[420px] w-[340px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#1a1a2e] shadow-2xl"
+            className="fixed bottom-24 right-6 z-50 flex h-[420px] w-[340px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#1a1a2e] shadow-2xl"
           >
             {/* Header */}
             <div className="flex items-center justify-between bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-3">
@@ -115,13 +177,44 @@ export function ChatButton() {
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[75%] rounded-2xl px-3 py-2 text-sm ${
+                    className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm ${
                       msg.role === "user"
                         ? "bg-cyan-500 text-white"
                         : "bg-white/10 text-white/90"
                     }`}
                   >
                     {msg.text}
+                    {msg.links && msg.links.length > 0 && (
+                      <div className="mt-2 space-y-1.5">
+                        {msg.links.map((link, j) => (
+                          <button
+                            key={j}
+                            onClick={() => handleLinkClick(link.href)}
+                            className="flex w-full items-center gap-2 rounded-lg bg-white/10 px-3 py-2 text-left transition hover:bg-white/20"
+                          >
+                            <div className="flex-1 min-w-0">
+                              <span className="block text-[10px] font-semibold uppercase tracking-wider text-cyan-400">
+                                {link.section}
+                              </span>
+                              <span className="block truncate text-xs text-white mt-0.5">
+                                {link.title}
+                              </span>
+                            </div>
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              className="shrink-0 text-white/40"
+                            >
+                              <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -136,7 +229,7 @@ export function ChatButton() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                  placeholder="Nhập tin nhắn..."
+                  placeholder="Nhập từ khoá tìm kiếm..."
                   className="flex-1 rounded-full bg-white/10 px-4 py-2 text-sm text-white placeholder-white/40 outline-none transition focus:ring-2 focus:ring-cyan-500/50"
                 />
                 <button
@@ -158,12 +251,26 @@ export function ChatButton() {
         )}
       </AnimatePresence>
 
-      {/* Float Button — ẩn khi chatbox đang mở */}
-      {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30 transition hover:scale-110 active:scale-90"
-        >
+      {/* Float Button — chat icon / close icon */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30 transition hover:scale-110 active:scale-90"
+      >
+        {isOpen ? (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        ) : (
           <svg
             width="24"
             height="24"
@@ -176,8 +283,8 @@ export function ChatButton() {
           >
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
-        </button>
-      )}
-    </div>
+        )}
+      </button>
+    </>
   );
 }
