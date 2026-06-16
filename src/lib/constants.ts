@@ -1,38 +1,5 @@
-export const SITE_NAME = "DTG";
-export const SITE_URL = "https://dtgsoft.vn";
-
-export const LOCALES = ["vi", "en"] as const;
-export type Locale = (typeof LOCALES)[number];
-export const DEFAULT_LOCALE: Locale = "vi";
-
-export const NAV_ITEMS = [
-  { key: "home", href: "/" },
-  { key: "about", href: "/about" },
-  { key: "solutions", href: "/solutions" },
-  { key: "process", href: "/process" },
-  { key: "partners", href: "/partners" },
-  { key: "news", href: "/news" },
-  { key: "contact", href: "/contact" },
-] as const;
-
 export const HERO_VIDEO_URL =
   "https://homepage.dtgsoft.vn/api/v1/public/media/54cabb07-4d47-4c49-829f-1bd933ff5e29/file";
-
-export const METRICS = [
-  { value: 23, suffix: "+", label: "yearsExperience" },
-  { value: 1000, suffix: "+", label: "projectsDeployed" },
-  { value: 40, suffix: "+", label: "techPartners" },
-  { value: 500, suffix: "+", label: "enterpriseClients" },
-] as const;
-
-export const CORE_SERVICES = [
-  { key: "network", icon: "Network", slug: "network-telecom" },
-  { key: "server", icon: "Server", slug: "server-storage" },
-  { key: "security", icon: "Shield", slug: "cybersecurity" },
-  { key: "cloud", icon: "Cloud", slug: "cloud-virtualization" },
-  { key: "conference", icon: "Video", slug: "video-conference" },
-  { key: "ai", icon: "Brain", slug: "ai-solutions" },
-] as const;
 
 export const PROCESS_STEPS = [
   { step: 1, key: "survey" },
@@ -63,25 +30,6 @@ export const CLIENT_LOGOS = [
   { name: "Viettel", logo: "/assets/svtech/clients/Logo-Viettel-Vector-Moi-01-1-scaled.png" },
   { name: "Sun Group", logo: "/assets/svtech/clients/Sun-group-logo-1.png" },
   { name: "VNG", logo: "/assets/svtech/clients/VNG_Corp._logo.svg_-1.png" },
-] as const;
-
-export const CASE_STUDIES = [
-  {
-    key: "evn",
-    image: "/assets/svtech/services/service-1.jpg",
-  },
-  {
-    key: "bca",
-    image: "/assets/svtech/services/service-2.jpg",
-  },
-  {
-    key: "vinhomes",
-    image: "/assets/svtech/services/service-3.jpg",
-  },
-  {
-    key: "hospital",
-    image: "/assets/svtech/services/service-4.jpg",
-  },
 ] as const;
 
 export const NEWS_ITEMS = [

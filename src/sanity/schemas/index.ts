@@ -1,9 +1,3 @@
-import { news } from "./news";
-import { caseStudy } from "./caseStudy";
-import { service } from "./service";
-import { partner } from "./partner";
-import { translationGroup } from "./translationGroup";
-
 // Section schemas
 import { sectionNav, sectionSubNav } from "./sections/nav";
 import { sectionHero } from "./sections/hero";
@@ -31,15 +25,6 @@ import {
 } from "./sections/misc";
 
 export const schemaTypes = [
-  // Dynamic content
-  news,
-  caseStudy,
-  service,
-  partner,
-
-  // Legacy translations (key-value)
-  translationGroup,
-
   // Section schemas (structured)
   sectionNav,
   sectionSubNav,
