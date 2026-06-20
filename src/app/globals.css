@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "tailwindcss" source("../");
 
 @theme {
   --color-primary: #2563eb;
@@ -17,12 +17,14 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   font-family: var(--font-body);
   background-color: var(--color-primary-dark);
   color: #ffffff;
+  overflow-x: hidden;
 }
 
 .ai-world-bg {

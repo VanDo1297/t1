@@ -62,7 +62,14 @@ export interface PartnersPageData {
 }
 
 const HEADER_QUERY = `*[_type == "header" && language == $lang][0]{
-  navItems[]{ label, href, children[]{ label, href } },
+  navItems[]{
+    label, href,
+    children[]{ label, href, description },
+    megaMenu[]{
+      title, href, description,
+      children[]{ label, href, description }
+    }
+  },
   contactLabel
 }`;
 
@@ -84,34 +91,34 @@ const fallback: Record<string, HeaderData> = {
         href: "/giai-phap-dich-vu",
         megaMenu: [
           {
-            title: "Technology Solutions",
+            title: "Giải pháp Công nghệ",
             href: "/giai-phap-dich-vu/cong-nghe",
-            description: "Giải pháp Công nghệ",
+            description: "Technology Solutions",
             children: [
-              { label: "Cyber Security", href: "/giai-phap-dich-vu/cong-nghe/an-toan-thong-tin", description: "An toàn Thông tin" },
-              { label: "Data Center", href: "/giai-phap-dich-vu/cong-nghe/trung-tam-du-lieu", description: "Trung tâm Dữ liệu & Điện toán Đám mây" },
-              { label: "Network", href: "/giai-phap-dich-vu/cong-nghe/he-thong-mang", description: "Hệ thống Mạng & Kết nối" },
-              { label: "Data Protection", href: "/giai-phap-dich-vu/cong-nghe/bao-ve-du-lieu", description: "Bảo vệ Dữ liệu & Phục hồi" },
+              { label: "An toàn Thông tin", href: "/giai-phap-dich-vu/cong-nghe/an-toan-thong-tin", description: "Cyber Security" },
+              { label: "Trung tâm Dữ liệu", href: "/giai-phap-dich-vu/cong-nghe/trung-tam-du-lieu", description: "Data Center & Điện toán Đám mây" },
+              { label: "Hệ thống Mạng", href: "/giai-phap-dich-vu/cong-nghe/he-thong-mang", description: "Network & Kết nối" },
+              { label: "Bảo vệ Dữ liệu", href: "/giai-phap-dich-vu/cong-nghe/bao-ve-du-lieu", description: "Data Protection & Phục hồi" },
             ],
           },
           {
-            title: "Cyber Security Services",
+            title: "Dịch vụ An ninh mạng",
             href: "/giai-phap-dich-vu/an-ninh-mang",
-            description: "Dịch vụ An ninh mạng",
+            description: "Cyber Security Services",
             children: [
-              { label: "Penetration Testing", href: "/giai-phap-dich-vu/an-ninh-mang/kiem-thu-xam-nhap", description: "Kiểm thử xâm nhập" },
-              { label: "Security Assessment", href: "/giai-phap-dich-vu/an-ninh-mang/danh-gia-an-toan", description: "Đánh giá An toàn Thông tin" },
-              { label: "SOC Services", href: "/giai-phap-dich-vu/an-ninh-mang/soc", description: "Trung tâm Giám sát An ninh mạng" },
-              { label: "Vulnerability Assessment", href: "/giai-phap-dich-vu/an-ninh-mang/ra-soat-lo-hong", description: "Rà soát Lỗ hổng Bảo mật" },
-              { label: "Managed Security", href: "/giai-phap-dich-vu/an-ninh-mang/van-hanh", description: "Vận hành An toàn Thông tin" },
-              { label: "Red Team", href: "/giai-phap-dich-vu/an-ninh-mang/red-team", description: "Mô phỏng Tấn công & Đánh giá" },
-              { label: "Incident Response", href: "/giai-phap-dich-vu/an-ninh-mang/ung-cuu-su-co", description: "Ứng cứu Sự cố An ninh mạng" },
+              { label: "Kiểm thử xâm nhập", href: "/giai-phap-dich-vu/an-ninh-mang/kiem-thu-xam-nhap", description: "Penetration Testing" },
+              { label: "Đánh giá An toàn Thông tin", href: "/giai-phap-dich-vu/an-ninh-mang/danh-gia-an-toan", description: "Security Assessment" },
+              { label: "Giám sát An ninh mạng (SOC)", href: "/giai-phap-dich-vu/an-ninh-mang/soc", description: "SOC Services" },
+              { label: "Rà soát Lỗ hổng Bảo mật", href: "/giai-phap-dich-vu/an-ninh-mang/ra-soat-lo-hong", description: "Vulnerability Assessment" },
+              { label: "Vận hành An toàn Thông tin", href: "/giai-phap-dich-vu/an-ninh-mang/van-hanh", description: "Managed Security Services" },
+              { label: "Mô phỏng Tấn công (Red Team)", href: "/giai-phap-dich-vu/an-ninh-mang/red-team", description: "Red Team" },
+              { label: "Ứng cứu Sự cố", href: "/giai-phap-dich-vu/an-ninh-mang/ung-cuu-su-co", description: "Incident Response" },
             ],
           },
           {
-            title: "AI Solutions",
+            title: "Giải pháp AI",
             href: "/giai-phap-dich-vu/ai",
-            description: "Giải pháp AI",
+            description: "AI Solutions",
             children: [
               { label: "Dsoha AI", href: "/giai-phap-dich-vu/ai/dsoha", description: "Số hóa tài liệu & kho dữ liệu số" },
               { label: "AI Agent", href: "/giai-phap-dich-vu/ai/agent", description: "Trợ lý AI cho quy trình doanh nghiệp" },
@@ -193,12 +200,29 @@ const fallback: Record<string, HeaderData> = {
   },
 };
 
+// Hrefs that should use mega menu — used as fallback when Sanity data lacks megaMenu
+const MEGA_MENU_HREFS = ["/giai-phap-dich-vu", "/solutions"];
+
 export async function getHeaderData(lang: string): Promise<HeaderData> {
+  const fb = fallback[lang] || fallback.vi;
   try {
     const data = await client.fetch<HeaderData | null>(HEADER_QUERY, { lang });
-    if (data?.navItems?.length) return data;
+    if (data?.navItems?.length) {
+      // If Sanity nav item matches a mega menu href but has no megaMenu data,
+      // inject it from fallback
+      data.navItems = data.navItems.map((item) => {
+        if (MEGA_MENU_HREFS.includes(item.href) && !item.megaMenu?.length) {
+          const fbItem = fb.navItems.find((f) => f.href === item.href);
+          if (fbItem?.megaMenu) {
+            return { ...item, megaMenu: fbItem.megaMenu, children: undefined };
+          }
+        }
+        return item;
+      });
+      return data;
+    }
   } catch {}
-  return fallback[lang] || fallback.vi;
+  return fb;
 }
 
 /* ── Về DTG ── */
@@ -328,6 +352,150 @@ export async function getGioiThieuData(lang: string): Promise<GioiThieuData> {
     if (data?.title) return { ...gioiThieuFallback[lang], ...data };
   } catch {}
   return gioiThieuFallback[lang] || gioiThieuFallback.vi;
+}
+
+/* ── Giải pháp ── */
+
+export interface GiaiPhapStat {
+  value: string;
+  label: string;
+}
+
+export interface GiaiPhapAward {
+  source: string;
+  title: string;
+}
+
+export interface GiaiPhapTab {
+  label: string;
+  title: string;
+  description: string;
+  ctaLabel: string;
+  ctaHref: string;
+  stats: GiaiPhapStat[];
+  awards: GiaiPhapAward[];
+}
+
+export interface GiaiPhapData {
+  tabs: GiaiPhapTab[];
+  viewAllLabel: string;
+}
+
+const GIAI_PHAP_QUERY = `*[_type == "giaiPhap" && language == $lang][0]{
+  tabs[]{ label, title, description, ctaLabel, ctaHref, stats[]{ value, label }, awards[]{ source, title } },
+  viewAllLabel
+}`;
+
+const giaiPhapFallback: Record<string, GiaiPhapData> = {
+  vi: {
+    viewAllLabel: "Xem tất cả",
+    tabs: [
+      {
+        label: "Bảo mật mạng hỗ trợ bởi AI",
+        title: "Bảo mật mạng hỗ trợ bởi AI",
+        description: "Bảo vệ mọi người và mọi thứ khỏi các mối đe dọa mới nhất ở mọi địa điểm. Được xây dựng cho Zero Trust và hỗ trợ bởi AI, nền tảng giám sát, phân tích và ngăn chặn các mối đe dọa tinh vi trong thời gian thực.",
+        ctaLabel: "Khám phá Bảo mật mạng",
+        ctaHref: "/giai-phap-dich-vu/an-ninh-mang",
+        stats: [
+          { value: "95%", label: "TRONG FORTUNE 100" },
+          { value: "70 K", label: "KHÁCH HÀNG" },
+        ],
+        awards: [
+          { source: "Gartner", title: "2025 Gartner® Magic Quadrant™ for Hybrid Mesh Firewall" },
+          { source: "Gartner", title: "2025 Gartner® Magic Quadrant™ for SASE Platforms" },
+          { source: "Forrester", title: "The Forrester Wave™ Enterprise Firewall Solutions" },
+          { source: "Gartner", title: "Gartner® Magic Quadrant™ for Single-Vendor SASE" },
+          { source: "Gartner", title: "Gartner® Magic Quadrant™ for Network Firewalls" },
+          { source: "Gartner", title: "Gartner® Magic Quadrant™ for SD-WAN" },
+        ],
+      },
+      {
+        label: "Vận hành bảo mật hỗ trợ bởi AI",
+        title: "Vận hành bảo mật hỗ trợ bởi AI",
+        description: "Tăng tốc phát hiện và phản hồi mối đe dọa với nền tảng SOC hiện đại, được hỗ trợ bởi AI để bảo vệ toàn diện.",
+        ctaLabel: "Khám phá Vận hành bảo mật",
+        ctaHref: "/giai-phap-dich-vu/an-ninh-mang",
+        stats: [
+          { value: "8x", label: "PHÁT HIỆN NHANH HƠN" },
+          { value: "98%", label: "ĐỘ CHÍNH XÁC" },
+        ],
+        awards: [
+          { source: "Gartner", title: "Gartner® Magic Quadrant™ for SIEM" },
+          { source: "Forrester", title: "The Forrester Wave™ XDR Platforms" },
+        ],
+      },
+      {
+        label: "Bảo mật đám mây thời gian thực",
+        title: "Bảo mật đám mây thời gian thực",
+        description: "Bảo vệ ứng dụng đám mây và dữ liệu với khả năng giám sát liên tục và phản hồi tự động.",
+        ctaLabel: "Khám phá Bảo mật đám mây",
+        ctaHref: "/giai-phap-dich-vu/dam-may",
+        stats: [
+          { value: "100%", label: "KHẢ NĂNG HIỂN THỊ" },
+          { value: "3M+", label: "TÀI SẢN ĐƯỢC BẢO VỆ" },
+        ],
+        awards: [
+          { source: "Gartner", title: "Gartner® Magic Quadrant™ for CNAPP" },
+        ],
+      },
+    ],
+  },
+  en: {
+    viewAllLabel: "View all",
+    tabs: [
+      {
+        label: "AI-Powered Network Security",
+        title: "AI-Powered Network Security",
+        description: "Protect everyone and everything from the latest threats at every location. Built for Zero Trust and powered by AI.",
+        ctaLabel: "Explore Network Security",
+        ctaHref: "/solutions/cybersecurity",
+        stats: [
+          { value: "95%", label: "OF FORTUNE 100" },
+          { value: "70 K", label: "CUSTOMERS" },
+        ],
+        awards: [
+          { source: "Gartner", title: "2025 Gartner® Magic Quadrant™ for Hybrid Mesh Firewall" },
+          { source: "Gartner", title: "2025 Gartner® Magic Quadrant™ for SASE Platforms" },
+        ],
+      },
+      {
+        label: "AI-Powered Security Operations",
+        title: "AI-Powered Security Operations",
+        description: "Accelerate threat detection and response with a modern SOC platform powered by AI.",
+        ctaLabel: "Explore Security Operations",
+        ctaHref: "/solutions/cybersecurity",
+        stats: [
+          { value: "8x", label: "FASTER DETECTION" },
+          { value: "98%", label: "ACCURACY" },
+        ],
+        awards: [
+          { source: "Gartner", title: "Gartner® Magic Quadrant™ for SIEM" },
+        ],
+      },
+      {
+        label: "Real-Time Cloud Security",
+        title: "Real-Time Cloud Security",
+        description: "Protect cloud applications and data with continuous monitoring and automated response.",
+        ctaLabel: "Explore Cloud Security",
+        ctaHref: "/solutions/cloud",
+        stats: [
+          { value: "100%", label: "VISIBILITY" },
+          { value: "3M+", label: "ASSETS PROTECTED" },
+        ],
+        awards: [
+          { source: "Gartner", title: "Gartner® Magic Quadrant™ for CNAPP" },
+        ],
+      },
+    ],
+  },
+};
+
+export async function getGiaiPhapData(lang: string): Promise<GiaiPhapData> {
+  try {
+    const data = await client.fetch<GiaiPhapData | null>(GIAI_PHAP_QUERY, { lang });
+    if (data?.tabs?.length) return data;
+  } catch {}
+  return giaiPhapFallback[lang] || giaiPhapFallback.vi;
 }
 
 /* ── Hero Banner ── */

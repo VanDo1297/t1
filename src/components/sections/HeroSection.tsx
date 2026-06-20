@@ -23,7 +23,7 @@ export function HeroSection({ data, locale }: HeroSectionProps) {
   }, [data.keywords?.length]);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black text-white [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif]">
+    <section className="relative h-screen overflow-hidden bg-black text-white [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif]">
       {/* Video background */}
       <div className="absolute inset-0">
         <video
@@ -39,7 +39,7 @@ export function HeroSection({ data, locale }: HeroSectionProps) {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex min-h-screen w-full items-center px-5 sm:px-8">
+      <div className="relative z-10 mx-auto flex h-full w-full items-center px-5 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

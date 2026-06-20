@@ -79,10 +79,10 @@ function StatCard({ stat, index, delay }: { stat: VeDtgStat; index: number; dela
           </span>
         </div>
       </div>
-      <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/80 sm:text-[12px]">
+      <p className="text-[16px] font-semibold uppercase tracking-[0.15em] text-white/80 sm:text-[18px]">
         {stat.label}
       </p>
-      <p className="mt-1.5 max-w-[170px] text-[11px] leading-[1.45] text-white/50 sm:text-[12px]">
+      <p className="mt-2 max-w-[200px] text-[14px] leading-[1.5] text-white/50 sm:text-[16px]">
         {stat.desc}
       </p>
     </div>
@@ -101,8 +101,8 @@ function RecognitionBar({ recognition, index, delay }: { recognition: VeDtgRecog
   return (
     <div ref={ref} className="space-y-2">
       <div className="flex items-center gap-3">
-        <Icon className="h-4 w-4 shrink-0 text-[#2563eb] sm:h-5 sm:w-5" strokeWidth={1.5} />
-        <p className="text-[12px] font-semibold uppercase leading-[1.5] tracking-[0.04em] text-white/82 sm:text-[13px]">
+        <Icon className="h-5 w-5 shrink-0 text-[#2563eb] sm:h-6 sm:w-6" strokeWidth={1.5} />
+        <p className="text-[16px] font-semibold uppercase leading-[1.5] tracking-[0.04em] text-white/82 sm:text-[18px]">
           {recognition.label}
         </p>
       </div>
@@ -126,7 +126,7 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
   const recog = useScrollAnimation({ preset: "ttb", delay: 0.15 });
 
   return (
-    <section className="relative overflow-hidden bg-primary-dark text-white">
+    <section id="ve-dtg" className="relative overflow-hidden bg-primary-dark text-white pt-6">
       {/* Animated background */}
       <div className="pointer-events-none absolute inset-0 opacity-90">
         <div className="ai-world-bg absolute -inset-[12%]" />
@@ -142,10 +142,10 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
         <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-5 pt-10 pb-12 sm:px-8 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-24">
+      <div className="relative z-10 w-full px-5 pt-10 pb-12 sm:px-8 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-24">
         {/* TOP: Heading + Stats */}
-        <div className="mb-14 flex flex-col gap-10 lg:mb-20 lg:flex-row lg:items-start lg:gap-0">
-          <motion.div ref={header.ref} {...header.animationProps} className="lg:w-[34%] lg:shrink-0">
+        <div className="mb-14 flex flex-col gap-10 lg:mb-16 lg:flex-row lg:items-start lg:gap-10">
+          <motion.div ref={header.ref} {...header.animationProps} className="lg:w-[45%] lg:shrink-0">
             <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.15em] text-[#2563eb]">
               {data.kicker}
             </span>
@@ -157,7 +157,7 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
             </p>
           </motion.div>
 
-          <motion.div ref={stats.ref} {...stats.animationProps} className="grid grid-cols-2 gap-6 sm:gap-8 lg:flex-1 lg:grid-cols-4">
+          <motion.div ref={stats.ref} {...stats.animationProps} className="grid grid-cols-2 gap-6 sm:gap-8 lg:flex-1 lg:grid-cols-4 lg:pr-8">
             {data.stats.map((stat, i) => (
               <StatCard key={i} stat={stat} index={i} delay={i * 0.15} />
             ))}
@@ -189,11 +189,11 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
             </div>
           </motion.div>
 
-          <motion.div ref={recog.ref} {...recog.animationProps} className="lg:flex-1 lg:pl-10">
+          <motion.div ref={recog.ref} {...recog.animationProps} className="lg:flex-1 lg:pl-10 lg:pr-8">
             <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.15em] text-white/50">
               {data.recognitionKicker}
             </span>
-            <div className="mt-4 space-y-5">
+            <div className="mt-8 space-y-12">
               {data.recognitions.map((r, i) => (
                 <RecognitionBar key={i} recognition={r} index={i} delay={0.3 + i * 0.15} />
               ))}

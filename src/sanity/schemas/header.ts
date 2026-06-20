@@ -1,5 +1,25 @@
 import { defineField, defineType } from "sanity";
 
+const navChildFields = [
+  defineField({
+    name: "label",
+    title: "Label",
+    type: "string",
+    validation: (r) => r.required(),
+  }),
+  defineField({
+    name: "href",
+    title: "Link",
+    type: "string",
+    validation: (r) => r.required(),
+  }),
+  defineField({
+    name: "description",
+    title: "Description",
+    type: "string",
+  }),
+];
+
 export const header = defineType({
   name: "header",
   title: "Header",
@@ -39,27 +59,63 @@ export const header = defineType({
             }),
             defineField({
               name: "children",
-              title: "Sub Items",
+              title: "Sub Items (Dropdown)",
+              description: "Simple dropdown menu items",
+              type: "array",
+              of: [
+                {
+                  type: "object",
+                  fields: navChildFields,
+                  preview: {
+                    select: { title: "label", subtitle: "href" },
+                  },
+                },
+              ],
+            }),
+            defineField({
+              name: "megaMenu",
+              title: "Mega Menu Columns",
+              description:
+                "Full-width mega menu with columns. If set, this takes priority over Sub Items.",
               type: "array",
               of: [
                 {
                   type: "object",
                   fields: [
                     defineField({
-                      name: "label",
-                      title: "Label",
+                      name: "title",
+                      title: "Column Title",
                       type: "string",
                       validation: (r) => r.required(),
                     }),
                     defineField({
                       name: "href",
-                      title: "Link",
+                      title: "Column Link",
                       type: "string",
                       validation: (r) => r.required(),
                     }),
+                    defineField({
+                      name: "description",
+                      title: "Column Description",
+                      type: "string",
+                    }),
+                    defineField({
+                      name: "children",
+                      title: "Column Items",
+                      type: "array",
+                      of: [
+                        {
+                          type: "object",
+                          fields: navChildFields,
+                          preview: {
+                            select: { title: "label", subtitle: "href" },
+                          },
+                        },
+                      ],
+                    }),
                   ],
                   preview: {
-                    select: { title: "label", subtitle: "href" },
+                    select: { title: "title", subtitle: "description" },
                   },
                 },
               ],

@@ -22,50 +22,37 @@ function MegaMenu({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -8 }}
+      initial={{ opacity: 0, y: -4 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.2 }}
-      className="absolute left-0 right-0 top-full w-screen"
-      style={{ marginLeft: "calc(-50vw + 50%)", width: "100vw" }}
+      exit={{ opacity: 0, y: -4 }}
+      transition={{ duration: 0.18 }}
+      className="fixed left-0 right-0 top-[80px] z-50"
     >
-      <div className="border-t border-white/10 bg-primary-dark/98 backdrop-blur-2xl shadow-2xl">
-        <div className="mx-auto max-w-7xl px-6 py-8">
-          <div className="grid grid-cols-3 gap-8">
+      <div className="border-t border-gray-200 bg-white shadow-xl">
+        <div className="mx-auto max-w-7xl px-8 py-10">
+          <div className="grid grid-cols-3 gap-12">
             {columns.map((col) => (
-              <div key={col.href}>
+              <div key={col.href} className="border-l border-gray-100 pl-8 first:border-l-0 first:pl-0">
                 <Link
                   href={`/${locale}${col.href}`}
-                  className="group/col mb-5 block"
+                  className="group/col mb-6 inline-flex items-center gap-2"
                 >
-                  <h3 className="text-[15px] font-bold uppercase tracking-wider text-primary">
+                  <h3 className="text-[16px] font-bold text-[#1a1a1a] group-hover/col:text-primary transition-colors">
                     {col.title}
                   </h3>
-                  <p className="mt-1 text-[13px] text-white/40">
-                    ({col.description})
-                  </p>
+                  <ArrowRight
+                    size={16}
+                    className="text-gray-400 transition-all group-hover/col:text-primary group-hover/col:translate-x-0.5"
+                  />
                 </Link>
-                <div className="space-y-0.5">
+                <div className="space-y-1">
                   {col.children.map((child) => (
                     <Link
                       key={child.href}
                       href={`/${locale}${child.href}`}
-                      className="group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-white/5"
+                      className="block py-2 text-[14px] text-gray-600 transition-colors hover:text-[#1a1a1a]"
                     >
-                      <ArrowRight
-                        size={14}
-                        className="mt-1 shrink-0 text-primary/60 opacity-0 -translate-x-1 transition-all group-hover/item:opacity-100 group-hover/item:translate-x-0"
-                      />
-                      <div className="-ml-5 transition-all group-hover/item:ml-0">
-                        <span className="text-[14px] font-medium text-white/80 group-hover/item:text-white transition-colors">
-                          {child.label}
-                        </span>
-                        {child.description && (
-                          <p className="mt-0.5 text-[12px] text-white/35 group-hover/item:text-white/50 transition-colors">
-                            {child.description}
-                          </p>
-                        )}
-                      </div>
+                      {child.label}
                     </Link>
                   ))}
                 </div>

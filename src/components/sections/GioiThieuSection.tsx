@@ -18,8 +18,8 @@ export function GioiThieuSection({ data }: GioiThieuSectionProps) {
   const right = useScrollAnimation({ preset: "rtl", delay: 0.2 });
 
   return (
-    <section className="bg-white py-24 px-5 sm:px-8">
-      <div className="mx-auto grid max-w-[1400px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
+    <section id="gioi-thieu" className="bg-white py-24 px-5 sm:px-8">
+      <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         {/* Left - Text */}
         <div>
           <motion.p
