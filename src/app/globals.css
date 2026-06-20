@@ -180,6 +180,15 @@ body {
   100% { background-position: 96px 48px, 96px 48px; }
 }
 
+@keyframes arrow-pulse {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+.animate-arrow-pulse {
+  animation: arrow-pulse 1.5s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ai-world-bg,
   .ai-world-grid,

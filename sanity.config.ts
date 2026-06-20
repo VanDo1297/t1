@@ -9,6 +9,7 @@ export default defineConfig({
   projectId,
   dataset,
   plugins: [structureTool()],
+  basePath: "/studio",
   schema: {
     types: schemaTypes,
   },

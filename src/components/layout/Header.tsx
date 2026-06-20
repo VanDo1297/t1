@@ -1,65 +1,172 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
-import { useRouter } from "@/i18n/navigation";
-import { useLocale } from "next-intl";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { Menu, X, ChevronDown, Search } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { SearchDialog } from "@/components/ui/SearchDialog";
+import type { HeaderData, NavItem, MegaMenuColumn } from "@/sanity/queries";
 
-export function Header() {
-  const t = useTranslations("nav");
-  const locale = useLocale();
-  const pathname = usePathname();
-  const router = useRouter();
+interface HeaderProps {
+  data: HeaderData;
+  locale: string;
+}
+
+function MegaMenu({
+  columns,
+  locale,
+}: {
+  columns: MegaMenuColumn[];
+  locale: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.2 }}
+      className="absolute left-0 right-0 top-full w-screen"
+      style={{ marginLeft: "calc(-50vw + 50%)", width: "100vw" }}
+    >
+      <div className="border-t border-white/10 bg-primary-dark/98 backdrop-blur-2xl shadow-2xl">
+        <div className="mx-auto max-w-7xl px-6 py-8">
+          <div className="grid grid-cols-3 gap-8">
+            {columns.map((col) => (
+              <div key={col.href}>
+                <Link
+                  href={`/${locale}${col.href}`}
+                  className="group/col mb-5 block"
+                >
+                  <h3 className="text-[15px] font-bold uppercase tracking-wider text-primary">
+                    {col.title}
+                  </h3>
+                  <p className="mt-1 text-[13px] text-white/40">
+                    ({col.description})
+                  </p>
+                </Link>
+                <div className="space-y-0.5">
+                  {col.children.map((child) => (
+                    <Link
+                      key={child.href}
+                      href={`/${locale}${child.href}`}
+                      className="group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-white/5"
+                    >
+                      <ArrowRight
+                        size={14}
+                        className="mt-1 shrink-0 text-primary/60 opacity-0 -translate-x-1 transition-all group-hover/item:opacity-100 group-hover/item:translate-x-0"
+                      />
+                      <div className="-ml-5 transition-all group-hover/item:ml-0">
+                        <span className="text-[14px] font-medium text-white/80 group-hover/item:text-white transition-colors">
+                          {child.label}
+                        </span>
+                        {child.description && (
+                          <p className="mt-0.5 text-[12px] text-white/35 group-hover/item:text-white/50 transition-colors">
+                            {child.description}
+                          </p>
+                        )}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function NavItemWithDropdown({
+  item,
+  locale,
+  isOverHero,
+}: {
+  item: NavItem;
+  locale: string;
+  isOverHero: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const hasChildren = item.children && item.children.length > 0;
+  const hasMegaMenu = item.megaMenu && item.megaMenu.length > 0;
+  const hasDropdown = hasChildren || hasMegaMenu;
+
+  return (
+    <div
+      className={hasMegaMenu ? "static" : "relative"}
+      onMouseEnter={() => hasDropdown && setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <Link
+        href={`/${locale}${item.href}`}
+        className={`flex items-center gap-1 py-2 text-[18px] font-medium leading-[1.4] tracking-[0.01rem] transition-colors ${
+          isOverHero
+            ? "text-white/82 hover:text-white"
+            : "text-white/72 hover:text-[#2563eb]"
+        }`}
+      >
+        {item.label}
+        {hasDropdown && (
+          <ChevronDown
+            size={14}
+            className={`transition-transform ${open ? "rotate-180" : ""}`}
+          />
+        )}
+      </Link>
+
+      <AnimatePresence>
+        {open && hasMegaMenu && (
+          <MegaMenu columns={item.megaMenu!} locale={locale} />
+        )}
+        {open && hasChildren && !hasMegaMenu && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.15 }}
+            className="absolute left-0 top-full pt-2"
+          >
+            <div className="w-60 rounded-xl border border-white/10 bg-primary-dark/95 backdrop-blur-xl shadow-2xl overflow-hidden">
+              <div className="mx-4 mt-3 mb-1 h-[3px] w-8 rounded-full bg-primary" />
+              {item.children!.map((child) => (
+                <Link
+                  key={child.href}
+                  href={`/${locale}${child.href}`}
+                  className="group/item flex items-center justify-between px-4 py-3 text-[15px] text-white/70 transition-colors hover:bg-white/5 hover:text-white border-b border-white/5 last:border-b-0"
+                >
+                  {child.label}
+                  <ArrowRight
+                    size={14}
+                    className="opacity-0 -translate-x-2 transition-all group-hover/item:opacity-100 group-hover/item:translate-x-0"
+                  />
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export function Header({ data, locale }: HeaderProps) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [isLangOpen, setIsLangOpen] = useState(false);
   const [isOverHero, setIsOverHero] = useState(true);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const pathname = usePathname();
 
-  // Dynamic nav items from Sanity CMS
-  const navItems: { key: string; href: string }[] = (() => {
-    try {
-      const raw = t.raw("_items") as any[];
-      if (Array.isArray(raw)) return raw;
-    } catch {}
-    // Fallback
-    return [
-      { key: "home", href: "/" },
-      { key: "about", href: "/about" },
-      { key: "solutions", href: "/solutions" },
-      { key: "process", href: "/process" },
-      { key: "partners", href: "/partners" },
-      { key: "news", href: "/news" },
-      { key: "contact", href: "/contact" },
-    ];
-  })();
-
-  const switchLocale = (newLocale: string) => {
-    router.replace(pathname, { locale: newLocale as "vi" | "en" });
+  const handleLocaleChange = (newLocale: string) => {
     setIsLangOpen(false);
+    const pathWithoutLocale = pathname.replace(/^\/(vi|en)/, "");
+    window.location.href = `/${newLocale}${pathWithoutLocale || ""}`;
   };
-
-  // Cmd+K / Ctrl+K shortcut
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setIsSearchOpen((prev) => !prev);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   useEffect(() => {
     const updateHeaderTheme = () => {
       const hero = document.querySelector("section");
       const heroBottom = hero?.getBoundingClientRect().bottom ?? 0;
-      setIsOverHero(heroBottom > 120);
+      setIsOverHero(heroBottom > 80);
     };
 
     updateHeaderTheme();
@@ -73,86 +180,56 @@ export function Header() {
   }, []);
 
   return (
-    <header
-      className={`absolute left-0 right-0 top-0 z-50 border-b backdrop-blur transition-colors duration-300 [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif] ${
-        isOverHero
-          ? "border-white/20 bg-black/25"
-          : "border-white/12 bg-primary-dark/95"
-      }`}
-    >
-      <div className="mx-auto w-full max-w-[1720px] px-5 sm:px-8 lg:px-[10rem]">
-        <div className="flex h-[104px] items-center justify-between">
-          <div className="flex items-center gap-[3rem]">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <Image
-                src="/assets/svtech/dtg-logo-color.png"
-                alt="DTG"
-                width={120}
-                height={40}
-                className="transition-all group-hover:opacity-80"
+    <header className="absolute left-0 right-0 top-0 z-50 [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif]">
+      <div className="mx-auto w-full px-5 sm:px-8">
+        <div className="grid h-[80px] grid-cols-[auto_1fr_auto] items-center">
+          {/* Logo */}
+          <Link
+            href={`/${locale}`}
+            className="flex items-center gap-2 group"
+          >
+            <Image
+              src="/assets/dtg-logo.png"
+              alt="DTG"
+              width={120}
+              height={40}
+              className="transition-all group-hover:opacity-80"
+            />
+          </Link>
+
+          {/* Desktop Nav - center column */}
+          <nav className="hidden lg:flex items-center justify-center gap-7 xl:gap-9 static">
+            {data.navItems.map((item) => (
+              <NavItemWithDropdown
+                key={item.href}
+                item={item}
+                locale={locale}
+                isOverHero={isOverHero}
               />
-            </Link>
+            ))}
+          </nav>
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
-              {navItems.filter((item) => item.key !== "contact").map((item) => {
-                const isActive =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href);
-                return (
-                  <Link
-                    key={item.key}
-                    href={item.href}
-                    className={`py-2 text-[14.5px] font-semibold leading-[1.4] tracking-[0.01rem] transition-colors ${
-                      isOverHero
-                        ? isActive
-                          ? "text-white"
-                          : "text-white/82 hover:text-white"
-                        : isActive
-                          ? "text-white"
-                          : "text-white/72 hover:text-[#2563eb]"
-                    }`}
-                  >
-                    {t(item.key)}
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-
-          {/* Right side: Search + Contact + Language + Mobile toggle */}
-          <div className="flex items-center gap-3">
-            {/* Search button */}
-            <button
-              onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2 rounded-full px-3 py-2 text-[14px] font-semibold text-white/70 transition hover:bg-white/10 hover:text-white"
-              aria-label="Search"
-            >
-              <Search size={18} />
-              <kbd className="hidden rounded border border-white/20 px-1.5 py-0.5 text-[10px] text-white/40 sm:inline-block">
-                ⌘K
-              </kbd>
-            </button>
-
+          {/* Right side */}
+          <div className="flex items-center justify-end gap-5">
             <Link
-              href="/contact"
-              className="hidden sm:inline-flex min-w-[176px] justify-center rounded-full bg-[#2563eb] px-7 py-4 text-[14.5px] font-semibold leading-[1.4] tracking-[0.01rem] text-white transition hover:bg-[#2563eb]"
+              href={`/${locale}/lien-he`}
+              className="hidden sm:flex items-center gap-2 text-[18px] font-medium text-white/82 transition-colors hover:text-white"
             >
-              {t("contact")}
+              {data.contactLabel}
+              <ArrowRight size={18} className="animate-arrow-pulse" />
             </Link>
+
             {/* Language Switcher */}
             <div className="relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className={`flex items-center gap-1 rounded-full px-3 py-2 text-[14px] font-semibold leading-[1.4] tracking-[0.02rem] transition-colors ${
+                className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-[18px] font-medium leading-[1.4] tracking-[0.02rem] transition-colors ${
                   isOverHero
                     ? "text-white/88 hover:bg-white/10 hover:text-white"
                     : "text-white/72 hover:bg-white/10 hover:text-white"
                 }`}
               >
-                {locale === "vi" ? "🇻🇳 VI" : "🇺🇸 EN"}
+                {locale === "vi" ? "🇻🇳 Tiếng Việt" : "🇺🇸 English"}
                 <ChevronDown size={14} />
               </button>
               <AnimatePresence>
@@ -161,24 +238,24 @@ export function Header() {
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
-                    className="absolute right-0 top-full mt-2 w-36 rounded-2xl border border-[#141414]/10 bg-white shadow-2xl overflow-hidden"
+                    className="absolute right-0 top-full mt-2 w-44 rounded-xl border border-white/10 bg-primary-dark/95 backdrop-blur-xl shadow-2xl overflow-hidden"
                   >
                     <button
-                      onClick={() => switchLocale("vi")}
-                      className={`w-full px-4 py-2 text-left text-sm transition-colors ${
+                      onClick={() => handleLocaleChange("vi")}
+                      className={`w-full px-4 py-2.5 text-left text-[14px] transition-colors ${
                         locale === "vi"
-                          ? "text-primary bg-primary/10"
-                          : "text-[#141414] hover:bg-[#141414]/5"
+                          ? "text-primary bg-white/10 font-semibold"
+                          : "text-white/70 hover:bg-white/5 hover:text-white"
                       }`}
                     >
                       🇻🇳 Tiếng Việt
                     </button>
                     <button
-                      onClick={() => switchLocale("en")}
-                      className={`w-full px-4 py-2 text-left text-sm transition-colors ${
+                      onClick={() => handleLocaleChange("en")}
+                      className={`w-full px-4 py-2.5 text-left text-[14px] transition-colors ${
                         locale === "en"
-                          ? "text-primary bg-primary/10"
-                          : "text-[#141414] hover:bg-[#141414]/5"
+                          ? "text-primary bg-white/10 font-semibold"
+                          : "text-white/70 hover:bg-white/5 hover:text-white"
                       }`}
                     >
                       🇺🇸 English
@@ -191,11 +268,7 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className={`rounded-full p-2 transition-colors lg:hidden ${
-                isOverHero
-                  ? "text-white hover:bg-white/10"
-                  : "text-white hover:bg-white/10"
-              }`}
+              className="rounded-full p-2 text-white transition-colors hover:bg-white/10 lg:hidden"
             >
               {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -213,31 +286,49 @@ export function Header() {
             className="lg:hidden border-t border-white/12 bg-primary-dark/95 backdrop-blur-xl"
           >
             <nav className="px-4 py-4 space-y-1">
-              {navItems.map((item) => {
-                const isActive =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href);
-                return (
+              {data.navItems.map((item) => (
+                <div key={item.href}>
                   <Link
-                    key={item.key}
-                    href={item.href}
+                    href={`/${locale}${item.href}`}
                     onClick={() => setIsMobileOpen(false)}
-                    className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
-                      isActive
-                        ? "text-primary bg-primary/10"
-                        : "text-white hover:bg-white/10"
-                    }`}
+                    className="block px-4 py-3 rounded-xl text-sm font-semibold text-white transition-colors hover:bg-white/10"
                   >
-                    {t(item.key)}
+                    {item.label}
                   </Link>
-                );
-              })}
+                  {item.megaMenu?.map((col) => (
+                    <div key={col.href} className="mt-1 mb-2">
+                      <span className="block pl-6 pr-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary/70">
+                        {col.title}
+                      </span>
+                      {col.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={`/${locale}${child.href}`}
+                          onClick={() => setIsMobileOpen(false)}
+                          className="block pl-10 pr-4 py-2 rounded-xl text-sm text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                  {!item.megaMenu &&
+                    item.children?.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={`/${locale}${child.href}`}
+                        onClick={() => setIsMobileOpen(false)}
+                        className="block pl-8 pr-4 py-2.5 rounded-xl text-sm text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                </div>
+              ))}
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
-      <SearchDialog open={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   );
 }

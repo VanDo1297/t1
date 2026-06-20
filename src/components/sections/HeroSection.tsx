@@ -1,27 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { HERO_VIDEO_URL } from "@/lib/constants";
-import { Link } from "@/i18n/navigation";
+import type { HeroData } from "@/sanity/queries";
 
-export function HeroSection() {
-  const t = useTranslations("hero");
-  const keywords = t.raw("keywords") as string[];
+interface HeroSectionProps {
+  data: HeroData;
+  locale: string;
+}
+
+export function HeroSection({ data, locale }: HeroSectionProps) {
   const [currentKeyword, setCurrentKeyword] = useState(0);
 
   useEffect(() => {
+    if (!data.keywords?.length) return;
     const interval = setInterval(() => {
-      setCurrentKeyword((prev) => (prev + 1) % keywords.length);
+      setCurrentKeyword((prev) => (prev + 1) % data.keywords.length);
     }, 2500);
     return () => clearInterval(interval);
-  }, [keywords.length]);
+  }, [data.keywords?.length]);
 
   return (
-    <section className="relative min-h-svh overflow-hidden bg-black text-white [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif]">
+    <section className="relative min-h-screen overflow-hidden bg-black text-white [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif]">
+      {/* Video background */}
       <div className="absolute inset-0">
         <video
           autoPlay
@@ -30,15 +33,13 @@ export function HeroSection() {
           playsInline
           className="h-full w-full object-cover"
         >
-          <source src={HERO_VIDEO_URL} type="video/mp4" />
+          <source src={data.videoUrl} type="video/mp4" />
         </video>
-        <div className="absolute inset-y-0 left-0 w-[72%] bg-[linear-gradient(to_right,rgba(0,0,0,0.94)_0%,rgba(0,0,0,0.84)_34%,rgba(0,0,0,0.28)_70%,transparent_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.35),rgba(0,0,0,0.18)_45%,rgba(0,0,0,0.32))]" />
-        <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-black via-black/65 to-transparent" />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
-
-      <div className="relative z-10 mx-auto mt-auto flex min-h-svh w-full max-w-[1720px] items-end px-5 pb-28 sm:px-8 lg:px-[10rem]">
+      {/* Content */}
+      <div className="relative z-10 mx-auto flex min-h-screen w-full items-center px-5 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -46,56 +47,45 @@ export function HeroSection() {
           className="max-w-[960px]"
         >
           <h1 className="mb-6 text-[3rem] font-medium leading-[1.12] tracking-[-0.048em] sm:text-[3.45rem] lg:text-[3.85rem] xl:text-[4.15rem]">
-            <span className="block text-white">{t("title")}</span>
+            <span className="block text-white">{data.title}</span>
           </h1>
 
           <p className="mb-8 max-w-[780px] text-[1.18rem] font-semibold leading-[1.42] tracking-[0.01rem] text-white sm:text-[1.35rem]">
-            {t("subtitle")}
+            {data.subtitle}
           </p>
 
-          <div className="mb-10 flex h-7 items-center">
-            <motion.span
-              key={currentKeyword}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="text-[13px] font-semibold uppercase leading-[1.4] tracking-[0.22em] text-[#b9f3ff]"
-            >
-              {keywords[currentKeyword]}
-            </motion.span>
-          </div>
+          {data.keywords?.length > 0 && (
+            <div className="mb-10 flex h-7 items-center">
+              <motion.span
+                key={currentKeyword}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="text-[13px] font-semibold uppercase leading-[1.4] tracking-[0.22em] text-[#b9f3ff]"
+              >
+                {data.keywords[currentKeyword]}
+              </motion.span>
+            </div>
+          )}
 
-          <div className="flex flex-wrap items-center gap-9">
-            <Link href="/about">
-              <Button
-                variant="primary"
-                size="lg"
-                className="!h-[58px] !rounded-full !bg-[#2563eb] !px-9 !text-[0.925rem] !font-semibold !leading-[1.4] !tracking-[0.01rem] !text-white hover:!bg-[#2563eb]"
-              >
-                {t("ctaProfile")}
-                <ArrowRight size={22} className="ml-4" />
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button
-                variant="ghost"
-                size="lg"
-                className="!rounded-none !px-0 !text-[0.925rem] !font-semibold !leading-[1.4] !tracking-[0.01rem] !text-white underline decoration-white decoration-2 underline-offset-[10px] hover:!bg-transparent hover:!text-[#2563eb]"
-              >
-                {t("ctaContact")}
-              </Button>
-            </Link>
-          </div>
+          <Link
+            href={`/${locale}${data.ctaContactHref}`}
+            className="flex items-center gap-2 text-[1rem] font-semibold leading-[1.4] tracking-[0.01rem] text-white transition hover:text-[#2563eb]"
+          >
+            {data.ctaContactLabel}
+            <ArrowRight size={18} className="animate-arrow-pulse" />
+          </Link>
         </motion.div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
-          <div className="w-1 h-2 rounded-full bg-white" />
+        <div className="flex h-10 w-6 justify-center rounded-full border-2 border-white/30 pt-2">
+          <div className="h-2 w-1 rounded-full bg-white" />
         </div>
       </motion.div>
     </section>
