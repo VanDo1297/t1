@@ -126,7 +126,7 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
   const recog = useScrollAnimation({ preset: "ttb", delay: 0.15 });
 
   return (
-    <section id="ve-dtg" className="relative overflow-hidden bg-primary-dark text-white pt-6">
+    <section id="ve-dtg" className="relative overflow-hidden bg-primary-dark text-white pt-10">
       {/* Animated background */}
       <div className="pointer-events-none absolute inset-0 opacity-90">
         <div className="ai-world-bg absolute -inset-[12%]" />

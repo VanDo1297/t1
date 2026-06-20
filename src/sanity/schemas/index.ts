@@ -5,5 +5,6 @@ import { gioiThieu } from "./gioi-thieu";
 import { veDtg } from "./ve-dtg";
 import { giaiPhap } from "./giai-phap";
 import { partnersPage } from "./partners";
+import { tuyenDung } from "./tuyen-dung";
 
-export const schemaTypes: SchemaTypeDefinition[] = [header, hero, gioiThieu, veDtg, giaiPhap, partnersPage];
+export const schemaTypes: SchemaTypeDefinition[] = [header, hero, gioiThieu, veDtg, giaiPhap, partnersPage, tuyenDung];

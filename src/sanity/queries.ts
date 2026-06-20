@@ -498,6 +498,124 @@ export async function getGiaiPhapData(lang: string): Promise<GiaiPhapData> {
   return giaiPhapFallback[lang] || giaiPhapFallback.vi;
 }
 
+/* ── Tuyển dụng ── */
+
+export interface JobListing {
+  slug: string;
+  title: string;
+  department: string;
+  location: string;
+  type: string;
+  salary: string;
+  deadline: string;
+  quantity: number;
+  isNew: boolean;
+  description: string;
+  jobDescription: string;
+  requirements: string;
+  preferred: string;
+  benefits: string;
+  contactEmail: string;
+  contactPhone: string;
+}
+
+export interface TuyenDungData {
+  heroTitle: string;
+  searchPlaceholder: string;
+  industryLabel: string;
+  locationLabel: string;
+  searchButtonLabel: string;
+  industries: string[];
+  locations: string[];
+  quote: string;
+  contactPhone: string;
+  contactName: string;
+  contactEmail: string;
+  jobs: JobListing[];
+}
+
+const TUYEN_DUNG_QUERY = `*[_type == "tuyenDung" && language == $lang][0]{
+  heroTitle,
+  searchPlaceholder,
+  industryLabel,
+  locationLabel,
+  searchButtonLabel,
+  industries,
+  locations,
+  quote,
+  contactPhone,
+  contactName,
+  contactEmail,
+  jobs[]{ slug, title, department, location, type, salary, deadline, quantity, isNew, description, jobDescription, requirements, preferred, benefits, contactEmail, contactPhone }
+}`;
+
+const tuyenDungFallback: Record<string, TuyenDungData> = {
+  vi: {
+    heroTitle: "Tìm kiếm các vị trí tuyển dụng",
+    searchPlaceholder: "Nhập từ khoá tìm kiếm",
+    industryLabel: "Ngành nghề",
+    locationLabel: "Địa điểm",
+    searchButtonLabel: "Tìm kiếm",
+    industries: [
+      "Tất cả ngành nghề",
+      "Công nghệ thông tin",
+      "An ninh mạng",
+      "Trí tuệ nhân tạo",
+      "Kinh doanh",
+      "Marketing",
+      "Hành chính - Nhân sự",
+    ],
+    locations: [
+      "Tất cả địa điểm",
+      "Hà Nội",
+      "TP. Hồ Chí Minh",
+      "Đà Nẵng",
+    ],
+    quote:
+      "Chúng tôi luôn tìm kiếm những nhân viên xuất sắc với niềm đam mê nghề nghiệp. Đừng ngần ngại liên hệ với chúng tôi nếu bạn quan tâm một vị trí bất kỳ tương ứng với kinh nghiệm của bản thân, ngay cả khi vị trí đó chưa có thông báo tuyển dụng. Vì biết đâu, bạn có thể là một mảnh ghép tuyệt vời cho đội ngũ của chúng tôi!",
+    contactPhone: "093 463 8683",
+    contactName: "Ms.Thuỷ",
+    contactEmail: "thuynt@dts.com.vn",
+    jobs: [],
+  },
+  en: {
+    heroTitle: "Search for job openings",
+    searchPlaceholder: "Enter search keyword",
+    industryLabel: "Industry",
+    locationLabel: "Location",
+    searchButtonLabel: "Search",
+    industries: [
+      "All industries",
+      "Information Technology",
+      "Cybersecurity",
+      "Artificial Intelligence",
+      "Business",
+      "Marketing",
+      "HR & Administration",
+    ],
+    locations: [
+      "All locations",
+      "Hanoi",
+      "Ho Chi Minh City",
+      "Da Nang",
+    ],
+    quote:
+      "We are always looking for outstanding employees with a passion for their profession. Don't hesitate to contact us if you are interested in any position that matches your experience, even if there is no job posting. You might just be a perfect fit for our team!",
+    contactPhone: "093 463 8683",
+    contactName: "Ms.Thuy",
+    contactEmail: "thuynt@dts.com.vn",
+    jobs: [],
+  },
+};
+
+export async function getTuyenDungData(lang: string): Promise<TuyenDungData> {
+  try {
+    const data = await client.fetch<TuyenDungData | null>(TUYEN_DUNG_QUERY, { lang });
+    if (data?.heroTitle) return { ...tuyenDungFallback[lang], ...data };
+  } catch {}
+  return tuyenDungFallback[lang] || tuyenDungFallback.vi;
+}
+
 /* ── Hero Banner ── */
 
 export interface HeroData {
