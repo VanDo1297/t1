@@ -114,11 +114,15 @@ export default async function AboutPage({
           {data.leaders.length > 0 && (
             <div className="flex justify-center mb-8 md:mb-12">
               <div className="text-center max-w-[360px]">
-                <div className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-[#f3f4f6] rounded-xl mb-4 flex items-center justify-center overflow-hidden mx-auto">
-                  <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </svg>
+                <div className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-[#f3f4f6] rounded-xl mb-4 flex items-center justify-center overflow-hidden mx-auto relative">
+                  {data.leaders[0].photoUrl ? (
+                    <Image src={data.leaders[0].photoUrl} alt={data.leaders[0].name} fill className="object-cover" />
+                  ) : (
+                    <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  )}
                 </div>
                 <h3 className="text-[20px] md:text-[24px] font-bold text-[#0a192f] mb-1">{data.leaders[0].name}</h3>
                 <p className="text-[16px] md:text-[20px] text-[#666] m-0 leading-[1.5]">{data.leaders[0].role}</p>
@@ -137,11 +141,15 @@ export default async function AboutPage({
               <div className="grid grid-cols-1 min-[480px]:grid-cols-2 min-[760px]:grid-cols-3 min-[1024px]:grid-cols-4 gap-6 md:gap-8 w-full">
                 {data.leaders.slice(1).map((leader, i) => (
                   <div key={i} className="text-center">
-                    <div className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] bg-[#f3f4f6] rounded-xl mb-4 flex items-center justify-center overflow-hidden mx-auto">
-                      <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
+                    <div className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] bg-[#f3f4f6] rounded-xl mb-4 flex items-center justify-center overflow-hidden mx-auto relative">
+                      {leader.photoUrl ? (
+                        <Image src={leader.photoUrl} alt={leader.name} fill className="object-cover" />
+                      ) : (
+                        <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5">
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      )}
                     </div>
                     <h3 className="text-[18px] md:text-[24px] font-bold text-[#0a192f] mb-1">{leader.name}</h3>
                     <p className="text-[14px] md:text-[20px] text-[#666] m-0 leading-[1.5]">{leader.role}</p>

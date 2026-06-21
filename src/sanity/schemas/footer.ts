@@ -65,6 +65,14 @@ export const footer = defineType({
       ],
     }),
     defineField({
+      name: "companyProfile",
+      title: "Company Profile (PDF)",
+      type: "file",
+      options: {
+        accept: ".pdf",
+      },
+    }),
+    defineField({
       name: "offices",
       title: "Offices",
       type: "array",

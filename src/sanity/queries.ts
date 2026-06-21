@@ -1257,7 +1257,7 @@ export async function getTinTucDetail(
 
 export interface VisionCard { title: string; description: string; }
 export interface HistoryEvent { year: string; month: string; content: string; }
-export interface Leader { name: string; role: string; }
+export interface Leader { name: string; role: string; photoUrl?: string; }
 export interface Certificate { year: string; title: string; }
 
 export interface VeChungToiPageData {
@@ -1284,7 +1284,7 @@ const VE_CHUNG_TOI_PAGE_QUERY = `*[_type == "veChungToiPage" && language == $lan
   brandStoryTitle, brandStoryContent, slogan, learnMoreLabel, learnMoreHref,
   visionCards[]{ title, description },
   historyTitle, historyEvents[]{ year, month, content },
-  leadershipTitle, leaders[]{ name, role },
+  leadershipTitle, leaders[]{ name, role, "photoUrl": photo.asset->url },
   cultureTitle, coreValuesTitle, coreValues, companyCultureTitle, companyCultureItems,
   certificatesTitle, certificates[]{ year, title }
 }`;
@@ -1572,6 +1572,7 @@ export interface FooterData {
   email: string;
   socialLinks: SocialLink[];
   offices: Office[];
+  companyProfileUrl?: string;
 }
 
 const FOOTER_QUERY = `*[_type == "footer" && language == $lang][0]{
@@ -1580,7 +1581,8 @@ const FOOTER_QUERY = `*[_type == "footer" && language == $lang][0]{
   hotline,
   email,
   socialLinks[]{ platform, url },
-  offices[]{ name, address, phone, fax }
+  offices[]{ name, address, phone, fax },
+  "companyProfileUrl": companyProfile.asset->url
 }`;
 
 const footerFallback: Record<string, FooterData> = {

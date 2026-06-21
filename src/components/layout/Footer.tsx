@@ -39,7 +39,7 @@ export function Footer({ data, locale }: FooterProps) {
               alt="DTS"
               width={120}
               height={40}
-              className="mb-8 brightness-0 invert"
+              className="mb-8"
             />
             <p className="text-[15px] font-bold italic text-[#60a5fa]">
               {isVi ? "Trung tâm hỗ trợ dịch vụ" : "Service Support Center"}
@@ -55,6 +55,23 @@ export function Footer({ data, locale }: FooterProps) {
                 </a>
               </p>
             </div>
+            {data.companyProfileUrl && (
+              <a
+                href={data.companyProfileUrl}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-[13px] font-bold uppercase tracking-[0.1em] text-white/80 transition-all hover:bg-white/10 hover:text-white"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Company Profile
+              </a>
+            )}
+
             <div className="mt-5 flex items-center gap-3">
               {data.socialLinks.map((link) => (
                 <a
