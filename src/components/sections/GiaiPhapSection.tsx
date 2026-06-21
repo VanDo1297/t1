@@ -16,6 +16,8 @@ interface GiaiPhapSectionProps {
 export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const tabListRef = useRef<HTMLDivElement | null>(null);
+  const tabRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const isSnapping = useRef(false);
 
@@ -31,16 +33,6 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
         if (rect.top < window.innerHeight - threshold && rect.bottom > threshold) {
           setActiveIndex(i);
 
-          // Auto-snap: when 80% of section has been scrolled past, snap to next
-          const scrolledPast = -rect.top / rect.height;
-          if (scrolledPast > 0.8 && scrolledPast < 1 && i < data.tabs.length - 1) {
-            const next = sectionRefs.current[i + 1];
-            if (next) {
-              isSnapping.current = true;
-              next.scrollIntoView({ behavior: "smooth" });
-              setTimeout(() => { isSnapping.current = false; }, 800);
-            }
-          }
           break;
         }
       }
@@ -51,12 +43,48 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [data.tabs.length]);
 
+  useEffect(() => {
+    const tabList = tabListRef.current;
+    const activeTab = tabRefs.current[activeIndex];
+
+    if (
+      !tabList ||
+      !activeTab ||
+      window.matchMedia("(min-width: 640px)").matches
+    ) {
+      return;
+    }
+
+    const centeredScrollLeft =
+      activeTab.offsetLeft - (tabList.clientWidth - activeTab.offsetWidth) / 2;
+
+    tabList.scrollTo({
+      left: Math.max(0, centeredScrollLeft),
+      behavior: "smooth",
+    });
+  }, [activeIndex]);
+
   const { ref: titleRef, animationProps: titleAnim } = useScrollAnimation({
     preset: "ttb",
   });
 
   return (
-    <section id="giai-phap" className="bg-white text-[#1a1a1a]">
+    <section
+      id="giai-phap"
+      className="relative overflow-hidden overflow-x-clip! overflow-y-visible! text-[#1a1a1a]"
+      style={{
+        background: `
+          linear-gradient(to bottom, white 0%, transparent 15%),
+          linear-gradient(to right, rgb(128,220,255), white 45%, white 55%, rgb(128,220,255)),
+          radial-gradient(ellipse 40% 30% at 15% 25%, rgba(128,220,255,0.4) 0%, transparent 70%),
+          radial-gradient(ellipse 35% 25% at 85% 40%, rgba(128,220,255,0.35) 0%, transparent 70%),
+          radial-gradient(ellipse 30% 20% at 25% 60%, rgba(128,220,255,0.3) 0%, transparent 70%),
+          radial-gradient(ellipse 40% 25% at 70% 75%, rgba(128,220,255,0.4) 0%, transparent 70%),
+          radial-gradient(ellipse 25% 20% at 50% 15%, rgba(128,220,255,0.25) 0%, transparent 70%),
+          white
+        `,
+      }}
+    >
       {/* Section title */}
       <div className="px-5 pt-20 pb-10 sm:px-8">
         <motion.h2
@@ -72,33 +100,46 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
       </div>
 
       {/* Sticky tab nav */}
-      <div className="sticky top-[56px] z-30 backdrop-blur-md border-b border-gray-200 py-4 px-5 sm:px-8">
-        <div className="flex items-center gap-6 overflow-x-auto">
-          {data.tabs.map((tab, i) => {
-            const tabColor = tabColors[i % tabColors.length];
-            return (
-              <a
-                key={i}
-                href={`#giai-phap-${i}`}
-                style={{
-                  fontSize: "clamp(15px, 0.9vw, 18px)",
-                  borderColor: i === activeIndex ? tabColor : "transparent",
-                  color: i === activeIndex ? tabColor : undefined,
-                }}
-                className={`whitespace-nowrap border-b-2 pb-3 font-bold uppercase tracking-[0.1em] transition-colors ${
-                  i === activeIndex
-                    ? ""
-                    : "text-gray-400 hover:text-[#1a1a1a]"
-                }`}
-              >
-                {tab.label}
-              </a>
-            );
-          })}
-          <div className="ml-auto">
+      <div className="sticky top-[56px] z-30 bg-white/80 bg-transparent! backdrop-blur-md border-b border-gray-200 py-4 px-5 sm:px-8">
+        <div className="flex items-end overflow-hidden">
+          <div ref={tabListRef} className="flex min-w-0 flex-1 items-end gap-4 overflow-x-auto pr-4 sm:justify-between sm:gap-0 sm:pr-12">
+            {data.tabs.map((tab, i) => {
+              const tabColor = tabColors[i % tabColors.length];
+              return (
+                <a
+                  key={i}
+                  ref={(el) => {
+                    tabRefs.current[i] = el;
+                  }}
+                  href={`#giai-phap-${i}`}
+                  style={{
+                    fontSize: "clamp(12px, 1.2vw, 22px)",
+                    borderColor: i === activeIndex ? tabColor : "transparent",
+                    color: i === activeIndex ? tabColor : undefined,
+                  }}
+                  className={`whitespace-nowrap border-b-2 pb-3 font-bold uppercase tracking-[0.05em] transition-colors ${
+                    i === activeIndex
+                      ? ""
+                      : "text-[#1a1a1a] hover:opacity-70"
+                  }`}
+                >
+                  {tab.label}
+                </a>
+              );
+            })}
+          </div>
+          <Link
+            href={`/${locale}${data.tabs[activeIndex]?.ctaHref || "/"}`}
+            aria-label={data.viewAllLabel}
+            className="mb-1.5 flex shrink-0 items-center justify-center pb-3 text-[#1a1a1a] transition hover:opacity-70 sm:hidden"
+          >
+            <ArrowRight size={18} />
+          </Link>
+          <div className="hidden shrink-0 pb-3 sm:block sm:ml-8">
             <Link
               href={`/${locale}${data.tabs[activeIndex]?.ctaHref || "/"}`}
-              className="flex items-center gap-2 whitespace-nowrap text-[15px] font-medium text-gray-400 transition hover:text-[#1a1a1a]"
+              className="flex items-center mb-1.5 gap-2 whitespace-nowrap font-medium text-[#1a1a1a] transition hover:opacity-70"
+              style={{ fontSize: "clamp(15px, 0.9vw, 18px)" }}
             >
               {data.viewAllLabel}
               <ArrowRight size={16} />
@@ -126,6 +167,12 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
 }
 
 const tabColors = ["#2563eb", "#7c3aed", "#0891b2", "#059669"];
+const tabGradients = [
+  "linear-gradient(to right, #2563eb, #60a5fa)",
+  "linear-gradient(to right, #7c3aed, #a78bfa)",
+  "linear-gradient(to right, #0891b2, #22d3ee)",
+  "linear-gradient(to right, #059669, #34d399)",
+];
 
 const tabBgImages = [
   "/assets/giaiphap/giaipgapcongnghe.jpg",
@@ -159,28 +206,23 @@ function TabContent({
     delay: 0.2,
   });
 
-  const bgImage = tabBgImages[index % tabBgImages.length];
-  const isDark = index === 0 || index === 1;
+  const color = tabColors[index % tabColors.length];
+  const gradient = tabGradients[index % tabGradients.length];
 
   return (
     <div
       id={`giai-phap-${index}`}
       ref={setRef}
       className="relative overflow-hidden"
-      style={{ minHeight: "calc(100dvh - 56px - 56px)" }}
     >
-      {/* Background image */}
-      <div className={`absolute inset-0 ${index === 0 ? "bg-black" : index === 1 ? "bg-[rgb(36,38,55)]" : ""}`}>
-        <Image src={bgImage} alt="" fill className={index === 0 ? "object-contain object-center scale-75 ml-[10%]" : index === 1 ? "object-contain object-center scale-50" : "object-cover"} />
-      </div>
 
-      <div className="relative z-10 px-5 py-20 sm:px-8">
+      <div data-content className="relative z-10 px-5 py-20 sm:px-8">
         {/* Title large on top */}
         <motion.h2
           ref={titleRef}
           {...titleAnim}
           className="mb-12 font-bold uppercase tracking-[0.05em]"
-          style={{ fontSize: "clamp(32px, 3vw, 56px)", color: tabColors[index % tabColors.length] }}
+          style={{ fontSize: "clamp(32px, 3vw, 56px)", color }}
         >
           {tab.title}
         </motion.h2>
@@ -188,7 +230,7 @@ function TabContent({
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left - Description + Stats + CTA */}
           <motion.div ref={leftRef} {...leftAnim}>
-            <p className={`mb-10 leading-[1.7] ${isDark ? "text-white/70" : "text-gray-600"}`} style={{ fontSize: "clamp(16px, 1.1vw, 24px)" }}>
+            <p className="mb-10 leading-[1.7]" style={{ fontSize: "clamp(16px, 1.1vw, 24px)", color: "#374151" }}>
               {tab.description}
             </p>
 
@@ -196,10 +238,10 @@ function TabContent({
               <div className="mb-10 flex gap-12">
                 {tab.stats.map((stat, i) => (
                   <div key={i}>
-                    <span className={`font-bold leading-none ${isDark ? "text-white" : "text-[#1a1a1a]"}`} style={{ fontSize: "clamp(36px, 2.8vw, 52px)" }}>
+                    <span className="font-bold leading-none" style={{ fontSize: "clamp(36px, 2.8vw, 52px)", color }}>
                       {stat.value}
                     </span>
-                    <p className={`mt-2 font-bold uppercase tracking-[0.15em] ${isDark ? "text-white/50" : "text-gray-400"}`} style={{ fontSize: "clamp(12px, 0.7vw, 14px)" }}>
+                    <p className="mt-2 font-bold uppercase tracking-[0.15em] text-gray-400" style={{ fontSize: "clamp(12px, 0.7vw, 14px)" }}>
                       {stat.label}
                     </p>
                   </div>
@@ -209,8 +251,8 @@ function TabContent({
 
             <Link
               href={`/${locale}${tab.ctaHref}`}
-              className="btn-gradient inline-flex items-center gap-3 rounded-full px-8 py-4 font-semibold"
-              style={{ fontSize: "clamp(15px, 0.9vw, 18px)" }}
+              className="inline-flex items-center gap-3 rounded-full px-8 py-4 font-semibold text-white"
+              style={{ fontSize: "clamp(15px, 0.9vw, 18px)", background: gradient }}
             >
               {tab.ctaLabel}
               <ArrowRight size={18} />
@@ -222,25 +264,25 @@ function TabContent({
             <motion.div
               ref={rightRef}
               {...rightAnim}
-              className="grid grid-cols-2 gap-4 content-start"
+              className="grid grid-cols-2 grid-cols-1! gap-4 content-start sm:grid-cols-2!"
             >
               {tab.awards.map((award, i) => (
                 <div
                   key={i}
-                  className={`flex items-start gap-3 rounded-xl px-5 py-6 transition ${
-                    isDark
-                      ? `bg-gradient-to-r from-[#2563eb] to-[#60a5fa] hover:from-[#1d4ed8] hover:to-[#3b82f6]`
-                      : "border border-gray-200 bg-white/70 backdrop-blur-sm hover:bg-white"
-                  }`}
+                  className="flex items-start gap-3 rounded-xl px-5 py-6 transition"
+                  style={{ background: gradient }}
                 >
-                  <div className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${isDark ? "bg-white/20" : "bg-[#2563eb]/10"}`}>
-                    <ArrowRight size={14} className={isDark ? "text-white" : "text-[#2563eb]"} />
+                  <div
+                    className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
+                    style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
+                  >
+                    <ArrowRight size={14} className="text-white" />
                   </div>
                   <div>
-                    <p className={`font-bold ${isDark ? "text-white" : "text-[#1a1a1a]"}`} style={{ fontSize: "clamp(14px, 1.1vw, 22px)" }}>
+                    <p className="font-bold text-white" style={{ fontSize: "clamp(14px, 1.1vw, 22px)" }}>
                       {award.source}
                     </p>
-                    <p className={`mt-1 leading-[1.4] ${isDark ? "text-white/70" : "text-gray-500"}`} style={{ fontSize: "clamp(12px, 0.8vw, 16px)" }}>
+                    <p className="mt-1 leading-[1.4]" style={{ fontSize: "clamp(12px, 0.8vw, 16px)", color: "rgba(255,255,255,0.7)" }}>
                       {award.title}
                     </p>
                   </div>

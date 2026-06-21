@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -13,7 +13,9 @@ interface HeaderProps {
   locale: string;
 }
 
-function MegaMenu({
+/* ── Panel content renderers ── */
+
+function MegaMenuContent({
   columns,
   locale,
 }: {
@@ -21,117 +23,64 @@ function MegaMenu({
   locale: string;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -4 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -4 }}
-      transition={{ duration: 0.18 }}
-      className="fixed left-0 right-0 top-[80px] z-50"
-    >
-      <div className="border-t border-gray-200 bg-white shadow-xl">
-        <div className="mx-auto max-w-7xl px-8 py-10">
-          <div className="grid grid-cols-3 gap-12">
-            {columns.map((col) => (
-              <div key={col.href} className="border-l border-gray-100 pl-8 first:border-l-0 first:pl-0">
-                <Link
-                  href={`/${locale}${col.href}`}
-                  className="group/col mb-6 inline-flex items-center gap-2"
-                >
-                  <h3 className="text-[16px] font-bold text-[#1a1a1a] group-hover/col:text-primary transition-colors">
-                    {col.title}
-                  </h3>
-                  <ArrowRight
-                    size={16}
-                    className="text-gray-400 transition-all group-hover/col:text-primary group-hover/col:translate-x-0.5"
-                  />
-                </Link>
-                <div className="space-y-1">
-                  {col.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={`/${locale}${child.href}`}
-                      className="block py-2 text-[14px] text-gray-600 transition-colors hover:text-[#1a1a1a]"
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
+    <div className="grid grid-cols-3 gap-12">
+      {columns.map((col) => (
+        <div key={col.href} className="border-l border-gray-100 pl-8 first:border-l-0 first:pl-0">
+          <Link
+            href={`/${locale}${col.href}`}
+            className="group/col mb-5 inline-flex items-center gap-2"
+          >
+            <h3 className="text-[15px] font-bold text-[#1a1a1a] group-hover/col:text-[#2563eb] transition-colors">
+              {col.title}
+            </h3>
+            <ArrowRight
+              size={14}
+              className="text-gray-300 transition-all group-hover/col:text-[#2563eb] group-hover/col:translate-x-0.5"
+            />
+          </Link>
+          <div className="flex flex-col gap-0.5">
+            {col.children.map((child) => (
+              <Link
+                key={child.href}
+                href={`/${locale}${child.href}`}
+                className="group/item flex items-center gap-2 rounded-lg px-4 py-2.5 text-[14px] text-gray-600 transition-colors hover:bg-gray-50 hover:text-[#1a1a1a]"
+              >
+                <ArrowRight
+                  size={13}
+                  className="text-gray-300 transition-all group-hover/item:text-[#2563eb] group-hover/item:translate-x-0.5"
+                />
+                {child.label}
+              </Link>
             ))}
           </div>
         </div>
-      </div>
-    </motion.div>
+      ))}
+    </div>
   );
 }
 
-function NavItemWithDropdown({
-  item,
+function SimpleMenuContent({
+  children,
   locale,
-  isOverHero,
 }: {
-  item: NavItem;
+  children: { label: string; href: string }[];
   locale: string;
-  isOverHero: boolean;
 }) {
-  const [open, setOpen] = useState(false);
-  const hasChildren = item.children && item.children.length > 0;
-  const hasMegaMenu = item.megaMenu && item.megaMenu.length > 0;
-  const hasDropdown = hasChildren || hasMegaMenu;
-
   return (
-    <div
-      className={hasMegaMenu ? "static" : "relative"}
-      onMouseEnter={() => hasDropdown && setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <Link
-        href={`/${locale}${item.href}`}
-        className={`flex items-center gap-1 py-2 text-[18px] font-medium leading-[1.4] tracking-[0.01rem] transition-colors ${
-          isOverHero
-            ? "text-white/82 hover:text-white"
-            : "text-white/72 hover:text-[#2563eb]"
-        }`}
-      >
-        {item.label}
-        {hasDropdown && (
-          <ChevronDown
-            size={14}
-            className={`transition-transform ${open ? "rotate-180" : ""}`}
+    <div className="flex flex-col gap-0.5">
+      {children.map((child) => (
+        <Link
+          key={child.href}
+          href={`/${locale}${child.href}`}
+          className="group/item flex items-center gap-2 rounded-lg px-4 py-2.5 text-[14px] text-gray-600 transition-colors hover:bg-gray-50 hover:text-[#1a1a1a]"
+        >
+          <ArrowRight
+            size={13}
+            className="text-gray-300 transition-all group-hover/item:text-[#2563eb] group-hover/item:translate-x-0.5"
           />
-        )}
-      </Link>
-
-      <AnimatePresence>
-        {open && hasMegaMenu && (
-          <MegaMenu columns={item.megaMenu!} locale={locale} />
-        )}
-        {open && hasChildren && !hasMegaMenu && (
-          <motion.div
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.15 }}
-            className="absolute left-0 top-full pt-2"
-          >
-            <div className="w-60 rounded-xl border border-gray-200 bg-white shadow-xl overflow-hidden">
-              <div className="mx-4 mt-3 mb-1 h-[3px] w-8 rounded-full" style={{ backgroundColor: "#2563eb" }} />
-              {item.children!.map((child) => (
-                <Link
-                  key={child.href}
-                  href={`/${locale}${child.href}`}
-                  className="group/item flex items-center justify-between px-4 py-3 text-[15px] transition-colors border-b border-gray-100 last:border-b-0"
-                  style={{ color: "#555" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#1a1a1a", e.currentTarget.style.backgroundColor = "#f5f5f5")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#555", e.currentTarget.style.backgroundColor = "transparent")}
-                >
-                  {child.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          {child.label}
+        </Link>
+      ))}
     </div>
   );
 }
@@ -140,7 +89,33 @@ export function Header({ data, locale }: HeaderProps) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isOverHero, setIsOverHero] = useState(true);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [activeNavIndex, setActiveNavIndex] = useState<number | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
+
+  const activeItem = activeNavIndex !== null ? data.navItems[activeNavIndex] : null;
+  const hasPanel = activeItem && ((activeItem.children && activeItem.children.length > 0) || (activeItem.megaMenu && activeItem.megaMenu.length > 0));
+
+  const openNav = (index: number) => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setActiveNavIndex(index);
+  };
+
+  const scheduleClose = () => {
+    closeTimer.current = setTimeout(() => {
+      setActiveNavIndex(null);
+    }, 120);
+  };
+
+  const cancelClose = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
 
   const handleLocaleChange = (newLocale: string) => {
     setIsLangOpen(false);
@@ -183,16 +158,37 @@ export function Header({ data, locale }: HeaderProps) {
             />
           </Link>
 
-          {/* Desktop Nav - center column */}
-          <nav className="hidden lg:flex items-center justify-center gap-7 xl:gap-9 static">
-            {data.navItems.map((item) => (
-              <NavItemWithDropdown
-                key={item.href}
-                item={item}
-                locale={locale}
-                isOverHero={isOverHero}
-              />
-            ))}
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center justify-center gap-7 xl:gap-9">
+            {data.navItems.map((item, index) => {
+              const hasChildren = (item.children && item.children.length > 0) || (item.megaMenu && item.megaMenu.length > 0);
+              const isActive = activeNavIndex === index;
+
+              return (
+                <div
+                  key={item.href}
+                  onMouseEnter={() => hasChildren ? openNav(index) : setActiveNavIndex(null)}
+                  onMouseLeave={scheduleClose}
+                >
+                  <Link
+                    href={`/${locale}${item.href}`}
+                    className={`flex items-center gap-1 py-2 text-[18px] font-medium leading-[1.4] tracking-[0.01rem] transition-colors ${
+                      isOverHero
+                        ? "text-white/82 hover:text-white"
+                        : "text-white/72 hover:text-[#2563eb]"
+                    }`}
+                  >
+                    {item.label}
+                    {hasChildren && (
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform ${isActive ? "rotate-180" : ""}`}
+                      />
+                    )}
+                  </Link>
+                </div>
+              );
+            })}
           </nav>
 
           {/* Right side */}
@@ -262,14 +258,39 @@ export function Header({ data, locale }: HeaderProps) {
         </div>
       </div>
 
+      {/* Shared Full-width Panel */}
+      <AnimatePresence>
+        {hasPanel && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.18 }}
+            className="fixed left-0 right-0 top-[80px] z-50"
+            onMouseEnter={cancelClose}
+            onMouseLeave={scheduleClose}
+          >
+            <div className="border-t border-gray-200 bg-white shadow-xl">
+              <div className="mx-auto max-w-7xl px-8 py-10">
+                {activeItem!.megaMenu && activeItem!.megaMenu.length > 0 ? (
+                  <MegaMenuContent columns={activeItem!.megaMenu} locale={locale} />
+                ) : (
+                  <SimpleMenuContent children={activeItem!.children!} locale={locale} />
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Mobile Drawer */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: "calc(100vh - 80px)" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden border-t border-white/12 bg-primary-dark/95 backdrop-blur-xl"
+            className="lg:hidden border-t border-white/12 bg-primary-dark/95 backdrop-blur-xl overflow-y-auto"
           >
             <nav className="px-4 py-4 space-y-1">
               {data.navItems.map((item) => (

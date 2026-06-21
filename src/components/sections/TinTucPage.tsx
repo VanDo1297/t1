@@ -174,21 +174,35 @@ export function TinTucPage({
 
   return (
     <main className="pt-[80px] [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif]">
-      {/* Hero / breadcrumb */}
-      <section className="relative overflow-hidden bg-[#09162a] px-5 pb-12 pt-16 sm:px-8">
-        <div className="mx-auto max-w-7xl">
+      {/* Hero */}
+      <section className="relative flex items-end overflow-hidden" style={{ minHeight: 460 }}>
+        <div className="absolute inset-0">
+          <Image
+            src="/assets/bg/1.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        <div className="relative z-10 w-full px-5 pb-16 pt-24 sm:px-8">
           {/* Breadcrumb */}
-          <div className="mb-6 flex items-center gap-2 text-[12px] font-medium tracking-wider text-white/40">
-            <Link href={`/${locale}`} className="transition-colors hover:text-white/70">
+          <div className="mb-6 flex items-center gap-2 text-[13px] font-medium tracking-wider text-[#888]">
+            <Link href={`/${locale}`} className="transition-colors hover:text-[#1a1a1a]">
               {pageData.breadcrumbHome}
             </Link>
             <span>/</span>
-            <Link href={`/${locale}/tin-tuc`} className="transition-colors hover:text-white/70">
+            <Link href={`/${locale}/tin-tuc`} className="transition-colors hover:text-[#1a1a1a]">
               {pageData.breadcrumbNews}
             </Link>
             <span>/</span>
-            <span className="text-primary">{activeCategoryLabel.toUpperCase()}</span>
+            <span className="text-[#2563eb] font-semibold">{activeCategoryLabel.toUpperCase()}</span>
           </div>
+
+          <h1 className="font-bold" style={{ fontSize: 72, color: "#1a1a1a", margin: "0 0 24px" }}>
+            {pageData.breadcrumbNews}
+          </h1>
 
           {/* Category tabs */}
           <div className="flex flex-wrap gap-3">
@@ -198,8 +212,8 @@ export function TinTucPage({
                 onClick={() => setActiveCategory(cat.value)}
                 className={`rounded-full px-5 py-2 text-[14px] font-medium transition-all ${
                   activeCategory === cat.value
-                    ? "bg-primary text-white"
-                    : "bg-white/8 text-white/60 hover:bg-white/15 hover:text-white"
+                    ? "bg-[#2563eb] text-white"
+                    : "bg-[#1a1a1a]/8 text-[#555] hover:bg-[#1a1a1a]/15 hover:text-[#1a1a1a]"
                 }`}
               >
                 {cat.label}
@@ -212,7 +226,7 @@ export function TinTucPage({
       {/* Latest article */}
       {latestArticle && (
         <section className="bg-white px-5 py-16 sm:px-8">
-          <div className="mx-auto max-w-7xl">
+          <div className="w-full">
             <h2 className="mb-10 text-[15px] font-bold uppercase tracking-[0.15em] text-[#1a2b4a]">
               {pageData.latestLabel}
             </h2>
@@ -228,7 +242,7 @@ export function TinTucPage({
       {/* Older articles grid */}
       {olderArticles.length > 0 && (
         <section className="bg-[#f8f9fb] px-5 py-16 sm:px-8">
-          <div className="mx-auto max-w-7xl">
+          <div className="w-full">
             <h2 className="mb-10 text-[15px] font-bold uppercase tracking-[0.15em] text-[#1a2b4a]">
               {pageData.previousLabel}
             </h2>
@@ -249,7 +263,7 @@ export function TinTucPage({
       {/* Empty state */}
       {articles.length === 0 && (
         <section className="bg-white px-5 py-24 sm:px-8">
-          <div className="mx-auto max-w-7xl text-center">
+          <div className="w-full text-center">
             <p className="text-[16px] text-gray-400">
               {locale === "vi"
                 ? "Chưa có bài viết nào trong danh mục này."

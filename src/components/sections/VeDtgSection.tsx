@@ -61,7 +61,7 @@ function StatCard({ stat, index, delay }: { stat: VeDtgStat; index: number; dela
 
   return (
     <div ref={ref} className="group flex flex-col items-center text-center cursor-default">
-      <div className="relative mb-4" style={{ width: "clamp(144px, 10.5vw, 225px)", height: "clamp(144px, 10.5vw, 225px)" }}>
+      <div className="relative mb-4" style={{ width: "clamp(100px, 10.5vw, 225px)", height: "clamp(100px, 10.5vw, 225px)" }}>
         <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 130 130">
           <circle cx="65" cy="65" r={radius} fill="none" stroke="rgba(37,99,235,0.12)" strokeWidth={strokeW} className="transition-all duration-300 group-hover:[stroke:rgba(37,99,235,0.3)]" />
           <motion.circle
@@ -100,15 +100,15 @@ function RecognitionBar({ recognition, index, delay }: { recognition: VeDtgRecog
   const Icon = recognitionIcons[index % recognitionIcons.length];
 
   return (
-    <div ref={ref} className="space-y-2">
-      <div className="flex items-center gap-3">
-        <Icon className="shrink-0 text-[#2563eb]" style={{ width: "clamp(20px, 1.35vw, 27px)", height: "clamp(20px, 1.35vw, 27px)" }} strokeWidth={1.5} />
-        <p className="font-semibold uppercase leading-[1.5] tracking-[0.04em] text-gray-600" style={{ fontSize: "clamp(16px, 0.9vw, 21px)" }}>
+    <div ref={ref} className="space-y-1">
+      <div className="flex items-center gap-2">
+        <Icon className="shrink-0 text-[#2563eb]" style={{ width: 18, height: 18 }} strokeWidth={1.5} />
+        <p className="font-semibold uppercase leading-[1.4] tracking-[0.04em] text-gray-600" style={{ fontSize: 14 }}>
           {recognition.label}
         </p>
       </div>
       <motion.div
-        className="ml-7 h-[32px] rounded-r-full sm:ml-8 sm:h-[40px]"
+        className="ml-6 h-[20px] rounded-r-full sm:h-[24px]"
         style={{ background: "linear-gradient(90deg, rgba(37,99,235,0.15) 0%, #2563eb 100%)" }}
         initial={{ width: 0 }}
         animate={isInView ? { width: "90%" } : {}}
@@ -172,10 +172,10 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
           </motion.div>
 
           <motion.div ref={recog.ref} {...recog.animationProps} className="rounded-2xl bg-white/30 backdrop-blur-sm p-6 lg:flex-1 lg:ml-10">
-            <span className="mb-3 block font-bold uppercase tracking-[0.15em] text-gray-500" style={{ fontSize: "clamp(15px, 0.9vw, 18px)" }}>
+            <span className="mb-3 block font-bold uppercase tracking-[0.15em] text-gray-500" style={{ fontSize: 14 }}>
               {data.recognitionKicker}
             </span>
-            <div className="mt-8 space-y-12">
+            <div className="mt-4 space-y-5">
               {data.recognitions.map((r, i) => (
                 <RecognitionBar key={i} recognition={r} index={i} delay={0.3 + i * 0.15} />
               ))}

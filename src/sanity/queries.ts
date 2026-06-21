@@ -80,10 +80,10 @@ const fallback: Record<string, HeaderData> = {
         label: "Về chúng tôi",
         href: "/ve-chung-toi",
         children: [
-          { label: "Giới thiệu chung", href: "/ve-chung-toi" },
-          { label: "Lịch sử phát triển", href: "/ve-chung-toi/lich-su" },
-          { label: "Đội ngũ lãnh đạo", href: "/ve-chung-toi/lanh-dao" },
-          { label: "Nguồn nhân lực", href: "/ve-chung-toi/nhan-luc" },
+          { label: "Giới thiệu chung", href: "/ve-chung-toi#gioi-thieu" },
+          { label: "Lịch sử phát triển", href: "/ve-chung-toi#lich-su" },
+          { label: "Đội ngũ lãnh đạo", href: "/ve-chung-toi#lanh-dao" },
+          { label: "Nguồn nhân lực", href: "/ve-chung-toi#nhan-luc" },
         ],
       },
       {
@@ -130,7 +130,7 @@ const fallback: Record<string, HeaderData> = {
           },
         ],
       },
-      { label: "Đối tác", href: "/doi-tac" },
+      { label: "Đối tác & Khách hàng", href: "/doi-tac" },
       {
         label: "Tin tức",
         href: "/tin-tuc",
@@ -148,76 +148,76 @@ const fallback: Record<string, HeaderData> = {
     navItems: [
       {
         label: "About Us",
-        href: "/about",
+        href: "/ve-chung-toi",
         children: [
-          { label: "Overview", href: "/about" },
-          { label: "History", href: "/about/history" },
-          { label: "Leadership", href: "/about/leadership" },
-          { label: "Human Resources", href: "/about/people" },
+          { label: "Overview", href: "/ve-chung-toi#gioi-thieu" },
+          { label: "History", href: "/ve-chung-toi#lich-su" },
+          { label: "Leadership", href: "/ve-chung-toi#lanh-dao" },
+          { label: "Human Resources", href: "/ve-chung-toi#nhan-luc" },
         ],
       },
       {
         label: "Solutions & Services",
-        href: "/solutions",
+        href: "/giai-phap-dich-vu",
         megaMenu: [
           {
             title: "Technology Solutions",
-            href: "/solutions/technology",
+            href: "/giai-phap-dich-vu/cong-nghe",
             description: "Technology Solutions",
             children: [
-              { label: "Cyber Security", href: "/solutions/technology/cybersecurity", description: "Information Security" },
-              { label: "Data Center", href: "/solutions/technology/data-center", description: "Data Center & Cloud Computing" },
-              { label: "Network", href: "/solutions/technology/network", description: "Network & Connectivity" },
-              { label: "Data Protection", href: "/solutions/technology/data-protection", description: "Data Protection & Recovery" },
+              { label: "Cyber Security", href: "/giai-phap-dich-vu/cong-nghe/an-toan-thong-tin", description: "Information Security" },
+              { label: "Data Center", href: "/giai-phap-dich-vu/cong-nghe/trung-tam-du-lieu", description: "Data Center & Cloud Computing" },
+              { label: "Network", href: "/giai-phap-dich-vu/cong-nghe/he-thong-mang", description: "Network & Connectivity" },
+              { label: "Data Protection", href: "/giai-phap-dich-vu/cong-nghe/bao-ve-du-lieu", description: "Data Protection & Recovery" },
             ],
           },
           {
             title: "Cyber Security Services",
-            href: "/solutions/cybersecurity",
+            href: "/giai-phap-dich-vu/an-ninh-mang",
             description: "Cyber Security Services",
             children: [
-              { label: "Penetration Testing", href: "/solutions/cybersecurity/pentest", description: "Penetration Testing Services" },
-              { label: "Security Assessment", href: "/solutions/cybersecurity/assessment", description: "Security Assessment" },
-              { label: "SOC Services", href: "/solutions/cybersecurity/soc", description: "Security Operations Center" },
-              { label: "Vulnerability Assessment", href: "/solutions/cybersecurity/vulnerability", description: "Vulnerability Assessment" },
-              { label: "Managed Security", href: "/solutions/cybersecurity/managed", description: "Managed Security Services" },
-              { label: "Red Team", href: "/solutions/cybersecurity/red-team", description: "Red Team Simulation" },
-              { label: "Incident Response", href: "/solutions/cybersecurity/incident-response", description: "Incident Response Services" },
+              { label: "Penetration Testing", href: "/giai-phap-dich-vu/an-ninh-mang/kiem-thu-xam-nhap", description: "Penetration Testing Services" },
+              { label: "Security Assessment", href: "/giai-phap-dich-vu/an-ninh-mang/danh-gia-an-toan", description: "Security Assessment" },
+              { label: "SOC Services", href: "/giai-phap-dich-vu/an-ninh-mang/soc", description: "Security Operations Center" },
+              { label: "Vulnerability Assessment", href: "/giai-phap-dich-vu/an-ninh-mang/ra-soat-lo-hong", description: "Vulnerability Assessment" },
+              { label: "Managed Security", href: "/giai-phap-dich-vu/an-ninh-mang/van-hanh", description: "Managed Security Services" },
+              { label: "Red Team", href: "/giai-phap-dich-vu/an-ninh-mang/red-team", description: "Red Team Simulation" },
+              { label: "Incident Response", href: "/giai-phap-dich-vu/an-ninh-mang/ung-cuu-su-co", description: "Incident Response Services" },
             ],
           },
           {
             title: "AI Solutions",
-            href: "/solutions/ai",
+            href: "/giai-phap-dich-vu/ai",
             description: "AI Solutions",
             children: [
-              { label: "Dsoha AI", href: "/solutions/ai/dsoha", description: "Document digitization & data warehouse" },
-              { label: "AI Agent", href: "/solutions/ai/agent", description: "AI assistant for business processes" },
-              { label: "AI Kiosk", href: "/solutions/ai/kiosk", description: "Smart service kiosk" },
-              { label: "Alogolf AI", href: "/solutions/ai/alogolf", description: "AI golf course management platform" },
-              { label: "AI OCR", href: "/solutions/ai/ocr", description: "Image recognition & data extraction" },
-              { label: "AI Smart Assistant", href: "/solutions/ai/smart-assistant", description: "Digital environment assistant" },
+              { label: "Dsoha AI", href: "/giai-phap-dich-vu/ai/dsoha", description: "Document digitization & data warehouse" },
+              { label: "AI Agent", href: "/giai-phap-dich-vu/ai/agent", description: "AI assistant for business processes" },
+              { label: "AI Kiosk", href: "/giai-phap-dich-vu/ai/kiosk", description: "Smart service kiosk" },
+              { label: "Alogolf AI", href: "/giai-phap-dich-vu/ai/alogolf", description: "AI golf course management platform" },
+              { label: "AI OCR", href: "/giai-phap-dich-vu/ai/ocr", description: "Image recognition & data extraction" },
+              { label: "AI Smart Assistant", href: "/giai-phap-dich-vu/ai/smart-assistant", description: "Digital environment assistant" },
             ],
           },
         ],
       },
-      { label: "Partners", href: "/partners" },
+      { label: "Partners & Clients", href: "/doi-tac" },
       {
         label: "News",
-        href: "/news",
+        href: "/tin-tuc",
         children: [
           { label: "Project News", href: "/tin-tuc?danh-muc=tin-du-an" },
           { label: "Internal News", href: "/tin-tuc?danh-muc=tin-noi-bo" },
           { label: "Tech News", href: "/tin-tuc?danh-muc=tin-cong-nghe" },
         ],
       },
-      { label: "Careers", href: "/careers" },
+      { label: "Careers", href: "/tuyen-dung" },
     ],
     contactLabel: "Contact",
   },
 };
 
 // Hrefs that should use mega menu — used as fallback when Sanity data lacks megaMenu
-const MEGA_MENU_HREFS = ["/giai-phap-dich-vu", "/solutions"];
+const MEGA_MENU_HREFS = ["/giai-phap-dich-vu"];
 
 export async function getHeaderData(lang: string): Promise<HeaderData> {
   const fb = fallback[lang] || fallback.vi;
@@ -418,7 +418,6 @@ const giaiPhapFallback: Record<string, GiaiPhapData> = {
           { source: "Data Center", title: "Cung cấp hạ tầng ảo hóa, máy chủ, lưu trữ doanh nghiệp và các nền tảng Hybrid Cloud hiện đại." },
           { source: "Network", title: "Giải pháp mạng doanh nghiệp toàn diện bao gồm Switching, Wireless, SD-WAN và các hệ thống hội họp trực tuyến." },
           { source: "Data Protection", title: "Đảm bảo tính liên tục của kinh doanh thông qua Backup, Disaster Recovery (DR) và phòng chống Ransomware." },
-          { source: "Advanced Technology", title: "AI, IoT, Big Data, Blockchain, AR/VR. Ứng dụng công nghệ tiên tiến." },
         ],
       },
       {
@@ -486,7 +485,6 @@ const giaiPhapFallback: Record<string, GiaiPhapData> = {
           { source: "Data Center", title: "Virtualization infrastructure, enterprise servers, storage and modern Hybrid Cloud platforms." },
           { source: "Network", title: "Comprehensive enterprise networking including Switching, Wireless, SD-WAN and video conferencing." },
           { source: "Data Protection", title: "Business continuity through Backup, Disaster Recovery (DR) and Ransomware protection." },
-          { source: "Advanced Technology", title: "AI, IoT, Big Data, Blockchain, AR/VR. Cutting-edge technology applications." },
         ],
       },
       {
@@ -542,7 +540,10 @@ const giaiPhapFallback: Record<string, GiaiPhapData> = {
 };
 
 export async function getGiaiPhapData(lang: string): Promise<GiaiPhapData> {
-  // TODO: re-enable Sanity fetch after CMS data is updated to match new 4-tab structure
+  try {
+    const data = await client.fetch<GiaiPhapData | null>(GIAI_PHAP_QUERY, { lang });
+    if (data?.tabs?.length) return data;
+  } catch {}
   return giaiPhapFallback[lang] || giaiPhapFallback.vi;
 }
 

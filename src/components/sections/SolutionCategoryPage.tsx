@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -22,6 +22,8 @@ import {
   TreePalm,
   ScanText,
   Headphones,
+  ChevronLeft,
+  ChevronRight,
   type LucideIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -94,24 +96,16 @@ export function SolutionCategoryPage({
         </div>
       </section>
 
-      {/* Solutions Grid */}
+      {/* Solutions */}
       <section className="bg-white px-5 py-20 sm:px-8">
         <div>
           <SectionTitle locale={locale} />
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {category.children.map((item, i) => (
-              <SolutionCard
-                key={item.href}
-                iconName={item.icon}
-                title={item.title[locale as "vi" | "en"]}
-                description={item.description[locale as "vi" | "en"]}
-                href={`${basePath}/${item.href}`}
-                index={i}
-                isActive={activeSlug === item.href}
-                slug={item.href}
-              />
-            ))}
-          </div>
+          <SolutionsCarousel
+            category={category}
+            locale={locale}
+            basePath={basePath}
+            activeSlug={activeSlug}
+          />
         </div>
       </section>
 
@@ -289,6 +283,83 @@ function LoTrinhStepCard({
         {step.desc[locale]}
       </p>
     </motion.div>
+  );
+}
+
+function SolutionsCarousel({
+  category,
+  locale,
+  basePath,
+  activeSlug,
+}: {
+  category: SolutionCategory;
+  locale: string;
+  basePath: string;
+  activeSlug?: string;
+}) {
+  const items = category.children;
+  const perPage = 4;
+  const needsCarousel = items.length > perPage;
+  const [offset, setOffset] = useState(0);
+  const maxOffset = items.length - perPage;
+
+  if (!needsCarousel) {
+    return (
+      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {items.map((item, i) => (
+          <SolutionCard
+            key={item.href}
+            iconName={item.icon}
+            title={item.title[locale as "vi" | "en"]}
+            description={item.description[locale as "vi" | "en"]}
+            href={`${basePath}/${item.href}`}
+            index={i}
+            isActive={activeSlug === item.href}
+            slug={item.href}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  const visibleItems = items.slice(offset, offset + perPage);
+
+  return (
+    <div className="mt-12 flex items-center gap-4">
+      {/* Prev */}
+      <button
+        onClick={() => setOffset((o) => Math.max(0, o - 1))}
+        disabled={offset === 0}
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gray-300 text-[#1a1a1a] transition-all hover:bg-gray-100 disabled:opacity-20 disabled:cursor-not-allowed"
+      >
+        <ChevronLeft size={24} />
+      </button>
+
+      {/* Cards */}
+      <div className="flex-1 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {visibleItems.map((item, i) => (
+          <SolutionCard
+            key={item.href}
+            iconName={item.icon}
+            title={item.title[locale as "vi" | "en"]}
+            description={item.description[locale as "vi" | "en"]}
+            href={`${basePath}/${item.href}`}
+            index={i}
+            isActive={activeSlug === item.href}
+            slug={item.href}
+          />
+        ))}
+      </div>
+
+      {/* Next */}
+      <button
+        onClick={() => setOffset((o) => Math.min(maxOffset, o + 1))}
+        disabled={offset >= maxOffset}
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gray-300 text-[#1a1a1a] transition-all hover:bg-gray-100 disabled:opacity-20 disabled:cursor-not-allowed"
+      >
+        <ChevronRight size={24} />
+      </button>
+    </div>
   );
 }
 

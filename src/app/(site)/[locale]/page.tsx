@@ -1,4 +1,4 @@
-import { getHeroData, getGioiThieuData, getVeDtgData, getGiaiPhapData, getPartnersPageData, urlFor } from "@/sanity/queries";
+import { getHeroData, getGioiThieuData, getVeDtgData, getGiaiPhapData, getPartnersPageData, getTinTucList, urlFor } from "@/sanity/queries";
 import type { PartnerItem, ClientItem } from "@/sanity/queries";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { SubNav } from "@/components/layout/SubNav";
@@ -6,6 +6,7 @@ import { GioiThieuSection } from "@/components/sections/GioiThieuSection";
 import { VeDtgSection } from "@/components/sections/VeDtgSection";
 import { GiaiPhapSection } from "@/components/sections/GiaiPhapSection";
 import { DoiTacSection, type CarouselItem } from "@/components/sections/DoiTacSection";
+import { TinTucHomeSection } from "@/components/sections/TinTucHomeSection";
 
 const subNavItems = {
   vi: [
@@ -28,12 +29,13 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const [heroData, gioiThieuData, veDtgData, giaiPhapData, partnersData] = await Promise.all([
+  const [heroData, gioiThieuData, veDtgData, giaiPhapData, partnersData, latestArticles] = await Promise.all([
     getHeroData(locale),
     getGioiThieuData(locale),
     getVeDtgData(locale),
     getGiaiPhapData(locale),
     getPartnersPageData(locale),
+    getTinTucList(locale),
   ]);
 
   const items = subNavItems[locale as keyof typeof subNavItems] || subNavItems.vi;
@@ -66,6 +68,7 @@ export default async function HomePage({
         clientsTitle={locale === "vi" ? "Khách hàng của chúng tôi" : "Our Clients"}
         clients={toCarousel(partnersData.clients)}
       />
+      <TinTucHomeSection locale={locale} articles={latestArticles.slice(0, 6)} />
     </main>
   );
 }

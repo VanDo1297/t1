@@ -17,44 +17,44 @@ export default async function AboutPage({
   return (
     <main style={{ paddingTop: 80 }}>
       {/* Hero */}
-      <section style={{ position: "relative", display: "flex", alignItems: "flex-end", minHeight: 460, overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0 }}>
-          <Image src="/assets/bg/1.jpg" alt="" fill style={{ objectFit: "cover" }} priority />
+      <section className="relative flex items-end min-h-[300px] md:min-h-[460px] overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="/assets/bg/1.jpg" alt="" fill className="object-cover" priority />
         </div>
-        <div style={{ position: "relative", zIndex: 10, width: "100%", padding: "80px 20px 60px" }}>
-          <nav style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#888", marginBottom: 20 }}>
-            <Link href={`/${locale}`} style={{ color: "#888", textDecoration: "none" }}>
+        <div className="relative z-10 w-full px-5 pt-16 pb-10 md:pt-20 md:pb-[60px]">
+          <nav className="flex items-center gap-2 text-[13px] text-[#888] mb-5">
+            <Link href={`/${locale}`} className="text-[#888] no-underline">
               {isVi ? "TRANG CHỦ" : "HOME"}
             </Link>
-            <span style={{ color: "#bbb" }}>&rarr;</span>
-            <span style={{ color: "#1a1a1a", fontWeight: 600 }}>{isVi ? "GIỚI THIỆU CHUNG" : "ABOUT US"}</span>
+            <span className="text-[#bbb]">&rarr;</span>
+            <span className="text-[#1a1a1a] font-semibold">{isVi ? "GIỚI THIỆU CHUNG" : "ABOUT US"}</span>
           </nav>
-          <h1 style={{ fontSize: 72, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>
+          <h1 className="text-[36px] md:text-[72px] font-bold text-[#1a1a1a] m-0">
             {isVi ? "Về chúng tôi" : "About Us"}
           </h1>
         </div>
       </section>
 
       {/* Brand Story */}
-      <section style={{ backgroundColor: "#fff", padding: "80px 20px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
+      <section id="gioi-thieu" className="bg-white px-5 py-12 md:py-20">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-[60px] items-start">
           <div>
-            <h2 style={{ fontSize: 42, fontWeight: 700, color: "#0a192f", textTransform: "uppercase", margin: "0 0 24px", letterSpacing: 1 }}>
+            <h2 className="text-[28px] md:text-[42px] font-bold text-[#0a192f] uppercase tracking-wider mb-6">
               {data.brandStoryTitle}
             </h2>
-            <div style={{ width: 60, height: 3, backgroundColor: "#dc2626", marginBottom: 28 }} />
+            <div className="w-[60px] h-[3px] bg-[#dc2626] mb-7" />
             {paragraphs.map((p, i) => (
-              <p key={i} style={{ fontSize: 22, lineHeight: 1.8, color: "#374151", margin: "0 0 16px" }}>{p}</p>
+              <p key={i} className="text-[16px] md:text-[22px] leading-[1.8] text-[#374151] mb-4">{p}</p>
             ))}
-            <Link href={data.learnMoreHref} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 22, fontWeight: 600, color: "#2563eb", textDecoration: "none", marginTop: 12 }}>
+            <Link href={data.learnMoreHref} className="inline-flex items-center gap-1.5 text-[16px] md:text-[22px] font-semibold text-[#2563eb] no-underline mt-3">
               {data.learnMoreLabel} &rarr;
             </Link>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "40px 20px" }}>
-            <div style={{ position: "relative", width: 280, height: 280 }}>
-              <Image src="/assets/dtg-logo.png" alt="DTG" fill style={{ objectFit: "contain" }} />
+          <div className="flex flex-col items-center justify-center p-5 md:p-10">
+            <div className="relative w-[200px] h-[200px] md:w-[280px] md:h-[280px]">
+              <Image src="/assets/dtg-logo.png" alt="DTG" fill className="object-contain" />
             </div>
-            <p style={{ fontSize: 33, fontWeight: 700, color: "#dc2626", textTransform: "uppercase", letterSpacing: 2, marginTop: 24, textAlign: "center" }}>
+            <p className="text-[22px] md:text-[33px] font-bold text-[#dc2626] uppercase tracking-widest mt-6 text-center">
               {data.slogan}
             </p>
           </div>
@@ -62,21 +62,21 @@ export default async function AboutPage({
       </section>
 
       {/* Vision / Mission / Motto */}
-      <section style={{ backgroundColor: "#f9fafb", padding: "80px 20px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32 }}>
+      <section className="bg-[#f9fafb] px-5 py-12 md:py-20">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
           {data.visionCards.map((card, i) => (
-            <div key={i} style={{ backgroundColor: "#fff", borderRadius: 16, overflow: "hidden", border: "1px solid #eee", transition: "transform 0.3s, box-shadow 0.3s" }}>
-              <div style={{ height: 200, position: "relative", overflow: "hidden" }}>
-                <Image src={`/assets/bg/${(i % 5) + 1}.jpg`} alt="" fill style={{ objectFit: "cover" }} />
+            <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#eee] transition-all duration-300">
+              <div className="h-[160px] md:h-[200px] relative overflow-hidden">
+                <Image src={`/assets/bg/${(i % 5) + 1}.jpg`} alt="" fill className="object-cover" />
               </div>
-              <div style={{ padding: 28, textAlign: "center" }}>
-                <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", backgroundColor: "#2563eb", color: "#fff", fontSize: 27, fontWeight: 700, marginTop: -48, position: "relative", zIndex: 2 }}>
+              <div className="p-5 md:p-7 text-center">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#2563eb] text-white text-[18px] md:text-[27px] font-bold -mt-12 relative z-[2]">
                   {i + 1}
                 </div>
-                <h3 style={{ fontSize: 27, fontWeight: 700, color: "#0a192f", textTransform: "uppercase", margin: "16px 0 12px" }}>
+                <h3 className="text-[20px] md:text-[27px] font-bold text-[#0a192f] uppercase my-3 md:mt-4 md:mb-3">
                   {card.title}
                 </h3>
-                <p style={{ fontSize: 21, lineHeight: 1.7, color: "#555", margin: 0 }}>
+                <p className="text-[16px] md:text-[21px] leading-[1.7] text-[#555] m-0">
                   {card.description}
                 </p>
               </div>
@@ -86,9 +86,9 @@ export default async function AboutPage({
       </section>
 
       {/* History Timeline */}
-      <section style={{ backgroundColor: "#fff", padding: "80px 20px" }}>
+      <section id="lich-su" className="bg-white px-5 py-12 md:py-20">
         <div>
-          <h2 style={{ fontSize: 36, fontWeight: 700, color: "#0a192f", textTransform: "uppercase", letterSpacing: 1, marginBottom: 40 }}>
+          <h2 className="text-[24px] md:text-[36px] font-bold text-[#0a192f] uppercase tracking-wider mb-8 md:mb-10">
             {data.historyTitle}
           </h2>
           <AboutClientSections
@@ -101,47 +101,47 @@ export default async function AboutPage({
       </section>
 
       {/* Leadership */}
-      <section style={{ backgroundColor: "#fff", padding: "80px 20px" }}>
+      <section id="lanh-dao" className="bg-white px-5 py-12 md:py-20">
         <div>
-          <h2 style={{ fontSize: 36, fontWeight: 700, color: "#0a192f", textTransform: "uppercase", letterSpacing: 1, marginBottom: 40 }}>
+          <h2 className="text-[24px] md:text-[36px] font-bold text-[#0a192f] uppercase tracking-wider mb-8 md:mb-10">
             {data.leadershipTitle}
           </h2>
 
           {/* Tầng 1: Tổng giám đốc */}
           {data.leaders.length > 0 && (
-            <div style={{ display: "flex", justifyContent: "center", marginBottom: 48 }}>
-              <div style={{ textAlign: "center", maxWidth: 360 }}>
-                <div style={{ width: 300, height: 300, backgroundColor: "#f3f4f6", borderRadius: 12, marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", margin: "0 auto 16px" }}>
+            <div className="flex justify-center mb-8 md:mb-12">
+              <div className="text-center max-w-[360px]">
+                <div className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-[#f3f4f6] rounded-xl mb-4 flex items-center justify-center overflow-hidden mx-auto">
                   <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
-                <h3 style={{ fontSize: 24, fontWeight: 700, color: "#0a192f", margin: "0 0 4px" }}>{data.leaders[0].name}</h3>
-                <p style={{ fontSize: 20, color: "#666", margin: 0, lineHeight: 1.5 }}>{data.leaders[0].role}</p>
+                <h3 className="text-[20px] md:text-[24px] font-bold text-[#0a192f] mb-1">{data.leaders[0].name}</h3>
+                <p className="text-[16px] md:text-[20px] text-[#666] m-0 leading-[1.5]">{data.leaders[0].role}</p>
               </div>
             </div>
           )}
 
           {/* Đường nối sơ đồ */}
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: 48 }}>
-            <div style={{ width: 2, height: 40, backgroundColor: "#d1d5db" }} />
+          <div className="flex justify-center mb-8 md:mb-12">
+            <div className="w-[2px] h-10 bg-[#d1d5db]" />
           </div>
 
           {/* Tầng 2: Còn lại */}
           {data.leaders.length > 1 && (
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <div className="grid grid-cols-1 min-[480px]:grid-cols-2 min-[760px]:grid-cols-3 min-[1024px]:grid-cols-4" style={{ gap: 32, width: "100%" }}>
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 min-[480px]:grid-cols-2 min-[760px]:grid-cols-3 min-[1024px]:grid-cols-4 gap-6 md:gap-8 w-full">
                 {data.leaders.slice(1).map((leader, i) => (
-                  <div key={i} style={{ textAlign: "center" }}>
-                    <div style={{ width: 200, height: 200, backgroundColor: "#f3f4f6", borderRadius: 12, marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", margin: "0 auto 16px" }}>
+                  <div key={i} className="text-center">
+                    <div className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] bg-[#f3f4f6] rounded-xl mb-4 flex items-center justify-center overflow-hidden mx-auto">
                       <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                         <circle cx="12" cy="7" r="4" />
                       </svg>
                     </div>
-                    <h3 style={{ fontSize: 24, fontWeight: 700, color: "#0a192f", margin: "0 0 4px" }}>{leader.name}</h3>
-                    <p style={{ fontSize: 20, color: "#666", margin: 0, lineHeight: 1.5 }}>{leader.role}</p>
+                    <h3 className="text-[18px] md:text-[24px] font-bold text-[#0a192f] mb-1">{leader.name}</h3>
+                    <p className="text-[14px] md:text-[20px] text-[#666] m-0 leading-[1.5]">{leader.role}</p>
                   </div>
                 ))}
               </div>
@@ -151,48 +151,48 @@ export default async function AboutPage({
       </section>
 
       {/* Culture */}
-      <section style={{ backgroundColor: "rgb(215, 240, 253)", padding: "80px 20px" }}>
+      <section id="nhan-luc" className="bg-[rgb(215,240,253)] px-5 py-12 md:py-20">
         <div>
-          <h2 style={{ fontSize: 36, fontWeight: 700, color: "#0a192f", textTransform: "uppercase", letterSpacing: 1, marginBottom: 48 }}>
+          <h2 className="text-[24px] md:text-[36px] font-bold text-[#0a192f] uppercase tracking-wider mb-8 md:mb-12">
             {data.cultureTitle}
           </h2>
 
           {/* Row 1: Image left (50%) | Core Values right (50%) */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", marginBottom: 60 }}>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <div style={{ width: 280, height: 280, borderRadius: "50%", overflow: "hidden", position: "relative", border: "3px solid #e5e7eb" }}>
-                <Image src="/assets/bg/2.jpg" alt="" fill style={{ objectFit: "cover" }} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-10 md:mb-[60px]">
+            <div className="flex justify-center items-center">
+              <div className="w-[200px] h-[200px] md:w-[280px] md:h-[280px] rounded-full overflow-hidden relative border-[3px] border-[#e5e7eb]">
+                <Image src="/assets/bg/2.jpg" alt="" fill className="object-cover" />
               </div>
             </div>
             <div>
-              <h3 style={{ fontSize: 27, fontWeight: 600, color: "#2563eb", marginBottom: 20 }}>
+              <h3 className="text-[20px] md:text-[27px] font-semibold text-[#2563eb] mb-5">
                 {data.coreValuesTitle}
               </h3>
               {data.coreValues.map((v, i) => (
-                <div key={i} style={{ display: "flex", gap: 12, marginBottom: 14 }}>
-                  <span style={{ color: "#2563eb", fontSize: 21, marginTop: 2, flexShrink: 0 }}>●</span>
-                  <p style={{ fontSize: 21, lineHeight: 1.7, color: "#374151", margin: 0 }}>{v}</p>
+                <div key={i} className="flex gap-3 mb-3.5">
+                  <span className="text-[#2563eb] text-[16px] md:text-[21px] mt-0.5 shrink-0">●</span>
+                  <p className="text-[16px] md:text-[21px] leading-[1.7] text-[#374151] m-0">{v}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Row 2: Company Culture left (50%) | Image right (50%) */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
-            <div>
-              <h3 style={{ fontSize: 27, fontWeight: 600, color: "#2563eb", marginBottom: 20 }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="order-2 md:order-1">
+              <h3 className="text-[20px] md:text-[27px] font-semibold text-[#2563eb] mb-5">
                 {data.companyCultureTitle}
               </h3>
               {data.companyCultureItems.map((item, i) => (
-                <div key={i} style={{ display: "flex", gap: 12, marginBottom: 14 }}>
-                  <span style={{ color: "#2563eb", fontSize: 21, marginTop: 2, flexShrink: 0 }}>●</span>
-                  <p style={{ fontSize: 21, lineHeight: 1.7, color: "#374151", margin: 0 }}>{item}</p>
+                <div key={i} className="flex gap-3 mb-3.5">
+                  <span className="text-[#2563eb] text-[16px] md:text-[21px] mt-0.5 shrink-0">●</span>
+                  <p className="text-[16px] md:text-[21px] leading-[1.7] text-[#374151] m-0">{item}</p>
                 </div>
               ))}
             </div>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <div style={{ width: 280, height: 280, borderRadius: "50%", overflow: "hidden", position: "relative", border: "3px solid #e5e7eb" }}>
-                <Image src="/assets/bg/3.jpg" alt="" fill style={{ objectFit: "cover" }} />
+            <div className="flex justify-center items-center order-1 md:order-2">
+              <div className="w-[200px] h-[200px] md:w-[280px] md:h-[280px] rounded-full overflow-hidden relative border-[3px] border-[#e5e7eb]">
+                <Image src="/assets/bg/3.jpg" alt="" fill className="object-cover" />
               </div>
             </div>
           </div>

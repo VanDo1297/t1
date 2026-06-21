@@ -40,7 +40,7 @@ export const solutionCategories: SolutionCategory[] = [
     children: [
       {
         icon: "Shield",
-        title: { vi: "Cyber Security", en: "Cyber Security" },
+        title: { vi: "An toàn Thông tin", en: "Cyber Security" },
         description: {
           vi: "Tập trung vào bảo mật doanh nghiệp với các giải pháp như NGFW, WAF, Zero Trust, và quản lý định danh (IAM/PAM).",
           en: "Enterprise security with NGFW, WAF, Zero Trust, and identity management (IAM/PAM).",
@@ -49,7 +49,7 @@ export const solutionCategories: SolutionCategory[] = [
       },
       {
         icon: "Server",
-        title: { vi: "Data Center", en: "Data Center" },
+        title: { vi: "Trung tâm Dữ liệu", en: "Data Center" },
         description: {
           vi: "Cung cấp hạ tầng ảo hóa, máy chủ, lưu trữ doanh nghiệp và các nền tảng Hybrid Cloud hiện đại.",
           en: "Virtualization infrastructure, enterprise servers, storage and modern Hybrid Cloud platforms.",
@@ -58,7 +58,7 @@ export const solutionCategories: SolutionCategory[] = [
       },
       {
         icon: "Wifi",
-        title: { vi: "Network", en: "Network" },
+        title: { vi: "Hệ thống Mạng & Kết nối", en: "Network" },
         description: {
           vi: "Giải pháp mạng doanh nghiệp toàn diện bao gồm Switching, Wireless, SB-WAN và các hệ thống hội họp trực tuyến.",
           en: "Comprehensive enterprise networking including Switching, Wireless, SD-WAN and video conferencing systems.",
@@ -67,7 +67,7 @@ export const solutionCategories: SolutionCategory[] = [
       },
       {
         icon: "Database",
-        title: { vi: "Data Protection", en: "Data Protection" },
+        title: { vi: "Bảo vệ Dữ liệu & Phục hồi", en: "Data Protection" },
         description: {
           vi: "Bảm bảo tính liên tục của kinh doanh thông qua Backup, Disaster Recovery (DR) và phòng chống Ransomware.",
           en: "Business continuity through Backup, Disaster Recovery (DR) and Ransomware protection.",
@@ -140,7 +140,7 @@ export const solutionCategories: SolutionCategory[] = [
     children: [
       {
         icon: "Search",
-        title: { vi: "Penetration Testing", en: "Penetration Testing" },
+        title: { vi: "Kiểm thử xâm nhập", en: "Penetration Testing" },
         description: {
           vi: "Đánh giá thực tế khả năng chống chịu của hệ thống trước các kịch bản tấn công giả lập.",
           en: "Real-world assessment of system resilience against simulated attack scenarios.",
@@ -149,7 +149,7 @@ export const solutionCategories: SolutionCategory[] = [
       },
       {
         icon: "ShieldCheck",
-        title: { vi: "Security Assessment", en: "Security Assessment" },
+        title: { vi: "Đánh giá An toàn Thông tin", en: "Security Assessment" },
         description: {
           vi: "Rà soát và đánh giá tổng thể hiện trạng bảo mật của tổ chức.",
           en: "Comprehensive review and assessment of the organization's security posture.",
@@ -158,7 +158,7 @@ export const solutionCategories: SolutionCategory[] = [
       },
       {
         icon: "Eye",
-        title: { vi: "SOC Services", en: "SOC Services" },
+        title: { vi: "Giám sát An ninh mạng (SOC)", en: "SOC Services" },
         description: {
           vi: "Giám sát liên tục 24/7 để phát hiện và ngăn chặn các mối đe dọa kịp thời.",
           en: "24/7 continuous monitoring to detect and prevent threats in real-time.",
@@ -167,7 +167,7 @@ export const solutionCategories: SolutionCategory[] = [
       },
       {
         icon: "Bug",
-        title: { vi: "Vulnerability Assessment", en: "Vulnerability Assessment" },
+        title: { vi: "Rà soát Lỗ hổng Bảo mật", en: "Vulnerability Assessment" },
         description: {
           vi: "Xác định các điểm yếu kỹ thuật trên hệ thống trước khi chúng bị khai thác.",
           en: "Identify technical weaknesses in systems before they are exploited.",
@@ -176,7 +176,7 @@ export const solutionCategories: SolutionCategory[] = [
       },
       {
         icon: "Settings",
-        title: { vi: "Managed Security", en: "Managed Security" },
+        title: { vi: "Vận hành An toàn Thông tin", en: "Managed Security" },
         description: {
           vi: "Quản lý và vận hành chuyên nghiệp các hệ thống bảo mật cho doanh nghiệp.",
           en: "Professional management and operation of enterprise security systems.",
@@ -185,7 +185,7 @@ export const solutionCategories: SolutionCategory[] = [
       },
       {
         icon: "Swords",
-        title: { vi: "Red Team", en: "Red Team" },
+        title: { vi: "Mô phỏng Tấn công (Red Team)", en: "Red Team" },
         description: {
           vi: "Diễn tập thực chiến để nâng cao khả năng phản ứng của đội ngũ bảo vệ.",
           en: "Real-world exercises to enhance the defensive team's response capabilities.",
@@ -194,7 +194,7 @@ export const solutionCategories: SolutionCategory[] = [
       },
       {
         icon: "AlertTriangle",
-        title: { vi: "Incident Response", en: "Incident Response" },
+        title: { vi: "Ứng cứu Sự cố", en: "Incident Response" },
         description: {
           vi: "Hỗ trợ xử lý nhanh chóng và triệt để khi có sự cố tấn công mạng xảy ra.",
           en: "Rapid and thorough response support when cyber attacks occur.",

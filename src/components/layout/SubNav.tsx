@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface SubNavItem {
   label: string;
@@ -17,6 +17,21 @@ interface SubNavProps {
 export function SubNav({ items, ctaLabel, ctaHref, locale }: SubNavProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const tabRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
+
+  // Auto-scroll active tab into view on mobile
+  useEffect(() => {
+    if (!activeId || !navRef.current) return;
+    const activeTab = tabRefs.current.get(activeId);
+    if (activeTab) {
+      activeTab.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [activeId]);
 
   useEffect(() => {
     const sectionIds = items.map((item) => item.href.replace("#", ""));
@@ -54,8 +69,12 @@ export function SubNav({ items, ctaLabel, ctaHref, locale }: SubNavProps) {
     >
       <div className="mx-auto w-full px-5 sm:px-8">
         <div className="flex h-[56px] items-center justify-center gap-8">
-          {/* Nav items centered */}
-          <nav className="hidden items-center gap-10 sm:flex">
+          {/* Nav items - horizontally scrollable on mobile */}
+          <nav
+            ref={navRef}
+            className="flex w-full items-center gap-6 overflow-x-auto sm:justify-center sm:gap-10 scrollbar-none"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             {items.map((item) => {
               const id = item.href.replace("#", "");
               const isActive = activeId === id;
@@ -63,7 +82,10 @@ export function SubNav({ items, ctaLabel, ctaHref, locale }: SubNavProps) {
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`whitespace-nowrap border-b-2 py-[16px] text-[15px] font-medium tracking-[0.15em] transition-colors hover:text-[#1a1a1a] ${
+                  ref={(el) => {
+                    if (el) tabRefs.current.set(id, el);
+                  }}
+                  className={`whitespace-nowrap border-b-2 py-[16px] text-[13px] font-medium tracking-[0.15em] transition-colors hover:text-[#1a1a1a] sm:text-[15px] ${
                     isActive
                       ? "border-[#2563eb] text-[#1a1a1a]"
                       : "border-transparent text-gray-400"

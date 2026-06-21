@@ -101,8 +101,8 @@ export function DoiTacSection({
   });
 
   return (
-    <section id="hop-tac" className="relative px-5 py-20 sm:px-8" style={{ backgroundColor: "rgb(215, 240, 253)" }}>
-      <div className="mx-auto max-w-7xl">
+    <section id="hop-tac" className="relative overflow-hidden bg-white px-5 py-20 sm:px-8">
+      <div className="mx-auto">
         {/* Section title */}
         <motion.h2
           ref={titleRef}
