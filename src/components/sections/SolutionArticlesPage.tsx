@@ -46,19 +46,6 @@ export function SolutionArticlesPage({
           <Image src="/assets/bg/1.jpg" alt="" fill className="object-cover" priority />
         </div>
         <div className="site-hero-content">
-          {/* Breadcrumb */}
-          <div className="site-breadcrumb">
-            <Link href={`/${locale}`}>
-              {locale === "vi" ? "TRANG CHỦ" : "HOME"}
-            </Link>
-            <span>&rarr;</span>
-            <Link href={categoryPath}>
-              {locale === "vi" ? "GIẢI PHÁP CÔNG NGHỆ" : "TECHNOLOGY SOLUTIONS"}
-            </Link>
-            <span>&rarr;</span>
-            <span>{solutionTitle.toUpperCase()}</span>
-          </div>
-
           <h1 className="site-hero-title">
             {solutionTitle}
           </h1>

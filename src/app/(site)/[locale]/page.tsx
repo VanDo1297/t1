@@ -1,4 +1,4 @@
-import { getHeroData, getGioiThieuData, getVeDtgData, getGiaiPhapData, getPartnersPageData, getTinTucList, urlFor } from "@/sanity/queries";
+import { getHeroData, getGioiThieuData, getVeDtgData, getGiaiPhapData, getPartnersPageData, getTinTucList, getTinTucPageData, urlFor } from "@/sanity/queries";
 import type { PartnerItem, ClientItem } from "@/sanity/queries";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { SubNav } from "@/components/layout/SubNav";
@@ -12,14 +12,16 @@ const subNavItems = {
   vi: [
     { label: "Vì sao chọn DTG ?", href: "#ve-dtg" },
     { label: "Giải pháp", href: "#giai-phap" },
-    { label: "Thành tựu", href: "#thanh-tuu" },
-    { label: "Hợp tác", href: "#hop-tac" },
+    { label: "Đối tác", href: "#doi-tac" },
+    { label: "Khách hàng", href: "#khach-hang" },
+    { label: "Tin tức", href: "#tin-tuc" },
   ],
   en: [
     { label: "Why DTG ?", href: "#ve-dtg" },
     { label: "Solutions", href: "#giai-phap" },
-    { label: "Proven Success", href: "#thanh-tuu" },
-    { label: "Engage with Us", href: "#hop-tac" },
+    { label: "Partners", href: "#doi-tac" },
+    { label: "Clients", href: "#khach-hang" },
+    { label: "News", href: "#tin-tuc" },
   ],
 };
 
@@ -29,13 +31,14 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const [heroData, gioiThieuData, veDtgData, giaiPhapData, partnersData, latestArticles] = await Promise.all([
+  const [heroData, gioiThieuData, veDtgData, giaiPhapData, partnersData, latestArticles, tinTucPageData] = await Promise.all([
     getHeroData(locale),
     getGioiThieuData(locale),
     getVeDtgData(locale),
     getGiaiPhapData(locale),
     getPartnersPageData(locale),
     getTinTucList(locale),
+    getTinTucPageData(locale),
   ]);
 
   const items = subNavItems[locale as keyof typeof subNavItems] || subNavItems.vi;
@@ -60,15 +63,20 @@ export default async function HomePage({
       <VeDtgSection data={veDtgData} />
       <GiaiPhapSection data={giaiPhapData} locale={locale} />
       <DoiTacSection
-        sectionTitle={locale === "vi" ? "Đối tác đồng hành cùng chúng tôi" : "Our Partners"}
+        sectionTitle={partnersData.sectionTitle}
         strategicTitle={partnersData.strategicPartnersTitle}
         strategicPartners={toCarousel(partnersData.strategicPartners)}
         networkTitle={partnersData.networkPartnersTitle}
         networkPartners={toCarousel(partnersData.networkPartners)}
-        clientsTitle={locale === "vi" ? "Khách hàng của chúng tôi" : "Our Clients"}
+        clientsTitle={partnersData.clientsTitle}
         clients={toCarousel(partnersData.clients)}
       />
-      <TinTucHomeSection locale={locale} articles={latestArticles.slice(0, 6)} />
+      <TinTucHomeSection
+        locale={locale}
+        articles={latestArticles.slice(0, 6)}
+        title={tinTucPageData.homeSectionTitle}
+        subtitle={tinTucPageData.homeSectionSubtitle}
+      />
     </main>
   );
 }

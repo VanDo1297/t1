@@ -28,13 +28,6 @@ export default async function CareersPage({
         </div>
 
         <div className="site-hero-content">
-          <nav className="site-breadcrumb">
-            <Link href={`/${locale}`}>
-              {locale === "vi" ? "TRANG CHỦ" : "HOME"}
-            </Link>
-            <span>&rarr;</span>
-            <span>{locale === "vi" ? "TUYỂN DỤNG" : "CAREERS"}</span>
-          </nav>
           <h1 className="site-hero-title">
             {data.heroTitle}
           </h1>
@@ -152,18 +145,24 @@ export default async function CareersPage({
       {/* Privacy consent */}
       <section className="bg-[#f5f7fa] px-5 pb-16 sm:px-8">
         <div className="mx-auto flex max-w-3xl flex-col items-center justify-center gap-4 sm:flex-row">
-          <button className="flex items-center gap-3 rounded-lg bg-[#4db6ac] px-8 py-4 text-[14px] font-semibold text-white transition-colors hover:bg-[#3da396]">
+          <Link
+            href={`/${locale}/thong-bao-su-dung-du-lieu`}
+            className="flex items-center gap-3 rounded-lg bg-[#4db6ac] px-8 py-4 text-[14px] font-semibold text-white transition-colors hover:bg-[#3da396]"
+          >
             <CheckCircle size={20} />
             {locale === "vi"
               ? "Đồng ý về Xử lý dữ liệu cá nhân"
               : "Agree to Personal Data Processing"}
-          </button>
-          <button className="flex items-center gap-3 rounded-lg border border-gray-300 bg-white px-8 py-4 text-[14px] font-semibold text-gray-600 transition-colors hover:border-gray-400">
+          </Link>
+          <Link
+            href={`/${locale}/yeu-cau-thay-doi-du-lieu`}
+            className="flex items-center gap-3 rounded-lg border border-gray-300 bg-white px-8 py-4 text-[14px] font-semibold text-gray-600 transition-colors hover:border-gray-400"
+          >
             <XCircle size={20} />
             {locale === "vi"
               ? "Yêu cầu thay đổi sự đồng ý xử lý dữ liệu cá nhân"
               : "Request to change data processing consent"}
-          </button>
+          </Link>
         </div>
       </section>
     </main>

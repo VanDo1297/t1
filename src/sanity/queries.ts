@@ -47,6 +47,7 @@ export interface ClientItem {
 }
 
 export interface PartnersPageData {
+  sectionTitle: string;
   heroTitle: string;
   heroDescription: string;
   heroBackgroundImage: SanityImageSource | null;
@@ -128,9 +129,27 @@ const fallback: Record<string, HeaderData> = {
               { label: "AI Smart Assistant", href: "/giai-phap-dich-vu/ai/smart-assistant", description: "Hỗ trợ người dùng trong môi trường số" },
             ],
           },
+          {
+            title: "Dịch vụ khác",
+            href: "/giai-phap-dich-vu#dich-vu-khac",
+            description: "Other Services",
+            children: [
+              { label: "Tư vấn và triển khai giải pháp", href: "/giai-phap-dich-vu#dich-vu-khac" },
+              { label: "Bảo hành bảo trì", href: "/giai-phap-dich-vu#dich-vu-khac" },
+              { label: "Ứng cứu sự cố", href: "/giai-phap-dich-vu#dich-vu-khac" },
+              { label: "Cho thuê thiết bị", href: "/giai-phap-dich-vu#dich-vu-khac" },
+            ],
+          },
         ],
       },
-      { label: "Đối tác & Khách hàng", href: "/doi-tac" },
+      {
+        label: "Đối tác & Khách hàng",
+        href: "/doi-tac",
+        children: [
+          { label: "Đối tác", href: "/doi-tac#doi-tac" },
+          { label: "Khách hàng", href: "/doi-tac#khach-hang" },
+        ],
+      },
       {
         label: "Tin tức",
         href: "/tin-tuc",
@@ -198,9 +217,27 @@ const fallback: Record<string, HeaderData> = {
               { label: "AI Smart Assistant", href: "/giai-phap-dich-vu/ai/smart-assistant", description: "Digital environment assistant" },
             ],
           },
+          {
+            title: "Other Services",
+            href: "/giai-phap-dich-vu#dich-vu-khac",
+            description: "Dịch vụ khác",
+            children: [
+              { label: "Consulting & Deployment", href: "/giai-phap-dich-vu#dich-vu-khac" },
+              { label: "Warranty & Maintenance", href: "/giai-phap-dich-vu#dich-vu-khac" },
+              { label: "Incident Response", href: "/giai-phap-dich-vu#dich-vu-khac" },
+              { label: "Equipment Leasing", href: "/giai-phap-dich-vu#dich-vu-khac" },
+            ],
+          },
         ],
       },
-      { label: "Partners & Clients", href: "/doi-tac" },
+      {
+        label: "Partners & Clients",
+        href: "/doi-tac",
+        children: [
+          { label: "Partners", href: "/doi-tac#doi-tac" },
+          { label: "Clients", href: "/doi-tac#khach-hang" },
+        ],
+      },
       {
         label: "News",
         href: "/tin-tuc",
@@ -336,13 +373,17 @@ export interface GioiThieuData {
   title: string;
   description: string;
   imageUrl: string | null;
+  ctaLabel?: string;
+  ctaHref?: string;
 }
 
 const GIOI_THIEU_QUERY = `*[_type == "gioiThieu" && language == $lang][0]{
   label,
   title,
   description,
-  "imageUrl": image.asset->url
+  "imageUrl": image.asset->url,
+  ctaLabel,
+  ctaHref
 }`;
 
 const gioiThieuFallback: Record<string, GioiThieuData> = {
@@ -352,6 +393,8 @@ const gioiThieuFallback: Record<string, GioiThieuData> = {
     description:
       "DTS tự hào là một thương hiệu uy tín cung cấp các giải pháp tổng thể bao gồm: Tư vấn giải pháp, kiến trúc hệ thống và cung cấp thiết bị, triển khai, vận hành, đào tạo. Từ khi thành lập đến nay, với chiến lược kinh doanh, doanh số, thị phần và uy tín của DTS không ngừng tăng trưởng và trở thành nhà tích hợp hệ thống hàng đầu tại Việt Nam.",
     imageUrl: null,
+    ctaLabel: "Tìm hiểu thêm",
+    ctaHref: "/ve-chung-toi",
   },
   en: {
     label: "About Us",
@@ -359,6 +402,8 @@ const gioiThieuFallback: Record<string, GioiThieuData> = {
     description:
       "DTS is proud to be a reputable brand providing comprehensive solutions including: Solution consulting, system architecture, equipment supply, deployment, operation, and training. Since its establishment, DTS has continuously grown in business strategy, revenue, market share and reputation to become a leading system integrator in Vietnam.",
     imageUrl: null,
+    ctaLabel: "Learn more",
+    ctaHref: "/ve-chung-toi",
   },
 };
 
@@ -380,6 +425,7 @@ export interface GiaiPhapStat {
 export interface GiaiPhapAward {
   source: string;
   title: string;
+  imageUrl?: string;
 }
 
 export interface GiaiPhapTab {
@@ -393,17 +439,20 @@ export interface GiaiPhapTab {
 }
 
 export interface GiaiPhapData {
+  sectionHeading: string;
   tabs: GiaiPhapTab[];
   viewAllLabel: string;
 }
 
 const GIAI_PHAP_QUERY = `*[_type == "giaiPhap" && language == $lang][0]{
-  tabs[]{ label, title, description, ctaLabel, ctaHref, stats[]{ value, label }, awards[]{ source, title } },
+  sectionHeading,
+  tabs[]{ label, title, description, ctaLabel, ctaHref, stats[]{ value, label }, awards[]{ source, title, "imageUrl": image.asset->url } },
   viewAllLabel
 }`;
 
 const giaiPhapFallback: Record<string, GiaiPhapData> = {
   vi: {
+    sectionHeading: "Giới thiệu các Nền tảng,\nđược hỗ trợ bởi Precision AI",
     viewAllLabel: "Xem tất cả",
     tabs: [
       {
@@ -471,6 +520,7 @@ const giaiPhapFallback: Record<string, GiaiPhapData> = {
     ],
   },
   en: {
+    sectionHeading: "Introducing the Platforms,\npowered by Precision AI",
     viewAllLabel: "View all",
     tabs: [
       {
@@ -755,6 +805,7 @@ const PARTNERS_PAGE_QUERY = `*[_type == "trangDoiTac" && ngonNgu == $lang][0]{
 
 const partnersFallback: Record<string, PartnersPageData> = {
   vi: {
+    sectionTitle: "Đối tác đồng hành cùng chúng tôi",
     heroTitle: "Khách hàng – Đối tác",
     heroDescription:
       "DTS phát huy sức mạnh từ vị thế là một trong những nhà tích hợp hệ thống hàng đầu tại Việt Nam qua các chiến lược hợp tác kinh doanh với những đối tác công nghệ hàng đầu trong và ngoài nước. Chúng tôi mang đến cho khách hàng nhiều sự lựa chọn về sản phẩm – công nghệ tối ưu, tiên tiến và phù hợp với thực trạng ngành Công nghệ thông tin tại Việt Nam. Sự hài lòng của khách hàng là ưu tiên hàng đầu với chúng tôi.",
@@ -770,6 +821,7 @@ const partnersFallback: Record<string, PartnersPageData> = {
     clients: [],
   },
   en: {
+    sectionTitle: "Our Partners",
     heroTitle: "Clients & Partners",
     heroDescription:
       "DTS leverages its position as one of the leading system integrators in Vietnam through strategic business partnerships with top technology partners domestically and internationally. We provide customers with a wide range of optimal, advanced products and technologies suited to the IT landscape in Vietnam. Customer satisfaction is our top priority.",
@@ -961,6 +1013,8 @@ export interface TinTucPageData {
   previousLabel: string;
   detailLabel: string;
   allLabel: string;
+  homeSectionTitle: string;
+  homeSectionSubtitle: string;
 }
 
 const TIN_TUC_LIST_QUERY = `*[_type == "tinTuc" && language == $lang && category == $category] | order(publishedAt desc) {
@@ -1004,6 +1058,8 @@ const tinTucPageFallback: Record<string, TinTucPageData> = {
     previousLabel: "BÀI VIẾT TRƯỚC ĐÓ",
     detailLabel: "Chi tiết",
     allLabel: "Tất cả",
+    homeSectionTitle: "TIN TỨC MỚI NHẤT",
+    homeSectionSubtitle: "Cập nhật các hoạt động mới nhất của chúng tôi",
   },
   en: {
     categories: [
@@ -1017,6 +1073,8 @@ const tinTucPageFallback: Record<string, TinTucPageData> = {
     previousLabel: "PREVIOUS ARTICLES",
     detailLabel: "Details",
     allLabel: "All",
+    homeSectionTitle: "LATEST NEWS",
+    homeSectionSubtitle: "Stay updated with our latest activities",
   },
 };
 
@@ -1278,6 +1336,8 @@ export interface VeChungToiPageData {
   companyCultureItems: string[];
   certificatesTitle: string;
   certificates: Certificate[];
+  galleryImages?: string[];
+  coreValueIcons?: { icon: string; title: string; desc: string }[];
 }
 
 const VE_CHUNG_TOI_PAGE_QUERY = `*[_type == "veChungToiPage" && language == $lang][0]{
@@ -1286,7 +1346,7 @@ const VE_CHUNG_TOI_PAGE_QUERY = `*[_type == "veChungToiPage" && language == $lan
   historyTitle, historyEvents[]{ year, month, content },
   leadershipTitle, leaders[]{ name, role, "photoUrl": photo.asset->url },
   cultureTitle, coreValuesTitle, coreValues, companyCultureTitle, companyCultureItems,
-  certificatesTitle, certificates[]{ year, title }
+  "galleryImages": galleryImages[].asset->url
 }`;
 
 const veChungToiFallback: Record<string, VeChungToiPageData> = {
@@ -1341,21 +1401,6 @@ const veChungToiFallback: Record<string, VeChungToiPageData> = {
       { year: "2021", title: "Chứng nhận Đối tác Silver của Aruba 2021" },
       { year: "2021", title: "Chứng nhận Đối tác Gold của Dell Technologies 2021-2022" },
       { year: "2021", title: "Chứng nhận Đối tác Silver của HPE 2021" },
-      { year: "2021", title: "Chứng nhận Đối tác Chính thức của Cisco 2021" },
-      { year: "2021", title: "Chứng nhận Bronze của Trend Micro" },
-      { year: "2021", title: "Chứng nhận Đối tác Silver IBM 2021" },
-      { year: "2020", title: "Chứng nhận Đối tác Gold của Dell Technologies 2020" },
-      { year: "2020", title: "Chứng nhận Đối tác Silver của HPE 2020" },
-      { year: "2020", title: "Chứng nhận Đối tác Cisco Select 2020" },
-      { year: "2019", title: "Chứng nhận Đối tác Silver của Dell EMC 2019" },
-      { year: "2019", title: "Chứng nhận Đối tác của Aruba 2019" },
-      { year: "2019", title: "Chứng nhận Đối tác HPE 2019" },
-      { year: "2016", title: "Chứng nhận Đối tác Dell 2016" },
-      { year: "2016", title: "Chứng nhận Đối tác HP 2016" },
-      { year: "2015", title: "Chứng nhận Đối tác Dell 2015" },
-      { year: "2015", title: "Chứng nhận Đối tác HP Silver 2015" },
-      { year: "2013", title: "Chứng nhận Đối tác Dell 2013" },
-      { year: "2013", title: "Chứng nhận Đối tác HP Preferred 2013" },
     ],
   },
   en: {
@@ -1405,21 +1450,6 @@ const veChungToiFallback: Record<string, VeChungToiPageData> = {
       { year: "2021", title: "Aruba Silver Partner 2021" },
       { year: "2021", title: "Dell Technologies Gold Partner 2021-2022" },
       { year: "2021", title: "HPE Silver Partner 2021" },
-      { year: "2021", title: "Cisco Official Partner 2021" },
-      { year: "2021", title: "Trend Micro Bronze Partner" },
-      { year: "2021", title: "IBM Silver Partner 2021" },
-      { year: "2020", title: "Dell Technologies Gold Partner 2020" },
-      { year: "2020", title: "HPE Silver Partner 2020" },
-      { year: "2020", title: "Cisco Select Partner 2020" },
-      { year: "2019", title: "Dell EMC Silver Partner 2019" },
-      { year: "2019", title: "Aruba Partner 2019" },
-      { year: "2019", title: "HPE Partner 2019" },
-      { year: "2016", title: "Dell Partner 2016" },
-      { year: "2016", title: "HP Partner 2016" },
-      { year: "2015", title: "Dell Partner 2015" },
-      { year: "2015", title: "HP Silver Partner 2015" },
-      { year: "2013", title: "Dell Partner 2013" },
-      { year: "2013", title: "HP Preferred Partner 2013" },
     ],
   },
 };
@@ -1442,11 +1472,47 @@ export async function getVeChungToiPageData(
         leaders: data.leaders ?? fb.leaders,
         coreValues: data.coreValues ?? fb.coreValues,
         companyCultureItems: data.companyCultureItems ?? fb.companyCultureItems,
-        certificates: data.certificates ?? fb.certificates,
       };
     }
   } catch {}
   return fb;
+}
+
+/* ── Solution Category Page (card bg + goals) ── */
+
+export interface SolutionCategoryPageGoal {
+  title: string;
+  description: string;
+  imageUrl: string | null;
+}
+
+export interface SolutionCategoryPageData {
+  cardBgImageUrl: string | null;
+  goals: SolutionCategoryPageGoal[];
+}
+
+const SOLUTION_CATEGORY_PAGE_QUERY = `*[_type == "solutionCategoryPage" && language == $lang && categorySlug == $slug][0]{
+  "cardBgImageUrl": cardBgImage.asset->url,
+  goals[]{ title, description, "imageUrl": image.asset->url }
+}`;
+
+export async function getSolutionCategoryPageData(
+  lang: string,
+  slug: string
+): Promise<SolutionCategoryPageData> {
+  try {
+    const data = await client.fetch<SolutionCategoryPageData | null>(
+      SOLUTION_CATEGORY_PAGE_QUERY,
+      { lang, slug }
+    );
+    if (data) {
+      return {
+        cardBgImageUrl: data.cardBgImageUrl || null,
+        goals: data.goals || [],
+      };
+    }
+  } catch {}
+  return { cardBgImageUrl: null, goals: [] };
 }
 
 /* ── Bài viết Giải pháp ── */
@@ -1658,6 +1724,90 @@ export async function getFooterData(lang: string): Promise<FooterData> {
         ...data,
         socialLinks: data.socialLinks ?? fb.socialLinks,
         offices: data.offices ?? fb.offices,
+      };
+    }
+  } catch {}
+  return fb;
+}
+
+/* ── Thông báo sử dụng dữ liệu ── */
+
+export interface ThongBaoDuLieuData {
+  heroTitle: string;
+  formSectionTitle: string;
+  nameLabel: string;
+  phoneLabel: string;
+  emailLabel: string;
+  positionLabel: string;
+  positions: string[];
+  contentTitle: string;
+  body: unknown[];
+  fallbackBody?: string[];
+  consentLabel: string;
+  submitLabel: string;
+}
+
+const THONG_BAO_DU_LIEU_QUERY = `*[_type == "thongBaoDuLieu" && language == $lang][0]{
+  heroTitle, formSectionTitle, nameLabel, phoneLabel, emailLabel, positionLabel, positions,
+  contentTitle, body, consentLabel, submitLabel
+}`;
+
+const thongBaoDuLieuFallback: Record<string, ThongBaoDuLieuData> = {
+  vi: {
+    heroTitle: "Thông báo và đồng ý về\nviệc xử lý dữ liệu cá nhân",
+    formSectionTitle: "THÔNG TIN CÁ NHÂN",
+    nameLabel: "HỌ VÀ TÊN",
+    phoneLabel: "SỐ ĐIỆN THOẠI",
+    emailLabel: "EMAIL",
+    positionLabel: "VỊ TRÍ ỨNG TUYỂN",
+    positions: ["Chọn vị trí", "Nhân viên kinh doanh", "Kỹ sư hệ thống", "Chuyên viên bảo mật", "Nhân viên kế toán", "Khác"],
+    contentTitle: "NỘI DUNG",
+    body: [],
+    fallbackBody: [
+      'Bằng việc tích vào ô "Đồng ý", Tôi xác nhận đã đọc, hiểu và đồng ý với những điều kiện và điều khoản về hoạt động xử lý Dữ liệu cá nhân của Công ty Cổ phần Công nghệ Truyền thông DTS và Công ty TNHH MetaServ (METASERV) là công ty thành viên do DTS sở hữu 100% vốn) - sau đây gọi chung là "Công ty" - cụ thể như sau.',
+      '1. Định nghĩa:\n1.1. Dữ liệu cá nhân là dữ liệu số hoặc thông tin dưới dạng khác xác định hoặc giúp xác định một con người cụ thể, bao gồm: dữ liệu cá nhân cơ bản và dữ liệu cá nhân nhạy cảm. Dữ liệu cá nhân sau khi khử nhận dạng không còn là dữ liệu cá nhân.\n1.2. Mối quan hệ của Tôi và Công ty trong quá trình xử lý Dữ liệu cá nhân của Tôi như sau:\n- Tôi là Chủ thể dữ liệu\n- Công ty là Bên kiểm soát dữ liệu hoặc Bên kiểm soát và xử lý dữ liệu cá nhân của Tôi\n- Bên được Công ty ủy quyền tiến hành xử lý những dữ liệu cá nhân do Tôi cung cấp sẽ là Bên xử lý dữ liệu\n1.3. Xử lý Dữ liệu cá nhân là hoạt động tác động đến Dữ liệu cá nhân, bao gồm một hoặc nhiều hoạt động như sau: thu thập, phân tích, tổng hợp, mã hóa, giải mã, chỉnh sửa, xóa, hủy, khử nhận dạng, cung cấp, công khai, chuyển giao Dữ liệu cá nhân và hoạt động khác tác động đến Dữ liệu cá nhân.\n1.4. Quan hệ tuyển dụng: là quan hệ phát sinh giữa Công ty và cá nhân ứng tuyển trong quá trình Công ty tiếp nhận, xem xét, đánh giá hồ sơ, phỏng vấn, kiểm tra, xác minh thông tin, thương lượng điều kiện làm việc và quyết định tuyển dụng hoặc không tuyển dụng, bao gồm cả các hoạt động chuẩn bị cho việc giao kết hợp đồng lao động.',
+      '2. Phạm vi Dữ liệu cá nhân được xử lý:\nTrong quá trình thực hiện quy trình tuyển dụng, Công ty có thể thu thập, lưu trữ, sử dụng và xử lý Dữ liệu cá nhân của Tôi theo quy định pháp luật, theo đó:\n2.1. Dữ liệu cá nhân cơ bản bao gồm: Họ, chữ đệm và tên khai sinh, tên gọi khác (nếu có); Ngày, tháng, năm sinh; Giới tính; Nơi sinh, nơi đăng ký khai sinh, nơi đăng ký thường trú, nơi ở hiện tại, quê quán, địa chỉ liên hệ; Quốc tịch; Hình ảnh của cá nhân; Số điện thoại, số định danh cá nhân, số hộ chiếu, số giấy phép lái xe; Tình trạng hôn nhân; Thông tin về mối quan hệ gia đình; Thông tin về tài khoản số của cá nhân.\n2.2. Dữ liệu cá nhân nhạy cảm bao gồm: Dữ liệu tiết lộ nguồn gốc chủng tộc, nguồn gốc dân tộc; Quan điểm về chính trị, tôn giáo, tín ngưỡng; Tình trạng sức khỏe; Dữ liệu sinh trắc học, đặc điểm di truyền; Dữ liệu về tội phạm, vi phạm pháp luật; Hình ảnh thẻ căn cước, chứng minh nhân dân.',
+      '3. Mục đích xử lý Dữ liệu cá nhân:\nCông ty sẽ tự mình hoặc thông qua Bên xử lý dữ liệu để xử lý dữ liệu cá nhân của Tôi nhằm các mục đích:\n● (Bắt buộc) Tuyển dụng: Xác nhận, xác thực thông tin và đánh giá năng lực của Tôi trong suốt quy trình tuyển dụng tại Công ty;\n● (Bắt buộc) Quản trị nội bộ: Thực hiện các hoạt động quản lý lao động, hành chính, kế toán, tài chính, an ninh - an toàn hệ thống;\n● (Bắt buộc) Thiết lập hồ sơ nhân sự: Sử dụng làm thông tin đầu vào để soạn thảo các văn bản và hồ sơ liên quan khi Tôi được tuyển dụng;\n● (Tùy chọn) Lưu trữ thông tin để xem xét và liên hệ cho các vị trí công việc phù hợp trong tương lai.',
+      '4. Cách thức xử lý Dữ liệu cá nhân:\nCông ty thực hiện việc xử lý Dữ liệu cá nhân thông qua một hoặc nhiều hoạt động: thu thập, phân tích, tổng hợp, mã hóa, giải mã, chỉnh sửa, xóa, hủy, khử nhận dạng, cung cấp, công khai, và hoạt động khác. Đối với Dữ liệu cá nhân nhạy cảm, Công ty áp dụng các biện pháp bảo vệ bao gồm: chỉ nhân sự có thẩm quyền mới được tiếp cận; áp dụng các biện pháp lưu trữ riêng biệt; thực hiện theo quy trình bảo mật nội bộ.',
+      '5. Chuyển giao Dữ liệu cá nhân:\nCông ty có thể chuyển giao Dữ liệu cá nhân của Tôi với các bên thứ ba trong phạm vi cần thiết, bao gồm: các công ty thành viên, công ty mẹ, công ty liên kết, các cá nhân/tổ chức đóng vai trò tư vấn quá trình tuyển dụng; Bên xử lý dữ liệu được Công ty ủy quyền.',
+      '6. Quyền và nghĩa vụ của Chủ thể dữ liệu:\n6.1. Quyền: Xem hoặc yêu cầu chỉnh sửa Dữ liệu cá nhân; Đồng ý hoặc không đồng ý, yêu cầu rút lại sự đồng ý; Yêu cầu cung cấp, xóa, hạn chế xử lý Dữ liệu cá nhân.\n6.2. Nghĩa vụ: Tự bảo vệ dữ liệu cá nhân của mình; Tôn trọng, bảo vệ dữ liệu cá nhân của người khác; Cung cấp đầy đủ, chính xác dữ liệu cá nhân; Chấp hành pháp luật về bảo vệ dữ liệu cá nhân.',
+      '7. Lưu trữ Dữ liệu cá nhân:\nDữ liệu cá nhân của Tôi sẽ được lưu trữ kể từ thời điểm Tôi đồng ý cho đến khi hết 05 năm hoặc khi tôi yêu cầu xóa. Trường hợp Tôi trúng tuyển và trở thành người lao động, dữ liệu này sẽ được chuyển giao và lưu trữ theo chế độ của quan hệ lao động.',
+      '8. Kiểm tra tham chiếu:\nCông ty có thể tự mình tiến hành kiểm tra lý lịch hoặc thông qua bên thứ ba. Việc kiểm tra tham chiếu sẽ chỉ liên quan đến thông tin về quá trình làm việc trước đó hoặc phạm vi khác được pháp luật cho phép.',
+      '9. Rút lại sự đồng ý:\nTôi có quyền rút lại việc đồng ý bằng cách gửi yêu cầu bằng văn bản trực tiếp hoặc thư điện tử đến:\n- Bộ phận Bảo vệ dữ liệu cá nhân - Công ty Cổ phần Công nghệ Truyền thông DTS\n- Địa chỉ: Số 287B Điện Biên Phủ, Phường Xuân Hòa, TP. Hồ Chí Minh, Việt Nam\n- Email: bvdlcn@dts.com.vn\nCông ty sẽ xử lý yêu cầu trong vòng 02 ngày làm việc.',
+      '10. Các rủi ro và biện pháp an toàn:\nTôi hiểu rằng trong trường hợp xảy ra sự cố an ninh thông tin hoặc các sự kiện bất khả kháng, dữ liệu cá nhân có thể bị truy cập trái phép. Công ty đã và đang áp dụng các biện pháp kỹ thuật, quản lý và tổ chức phù hợp để bảo vệ dữ liệu.',
+      '11. Xác nhận đồng ý:\nBằng việc tích chọn vào ô "Đồng ý", Tôi xác nhận rằng: (i) Tôi đã đọc, hiểu rõ toàn bộ nội dung; (ii) Tôi đồng ý cho phép Công ty xử lý dữ liệu cá nhân theo đúng phạm vi, mục đích, thời hạn đã quy định; (iii) Nội dung có hiệu lực ngay tại thời điểm Tôi xác nhận đồng ý.',
+    ],
+    consentLabel: "Tôi đã đọc, hiểu và đồng ý với các nội dung tại Thông báo và đồng ý xử lý dữ liệu cá nhân của Công ty. Tôi hiểu rằng việc đồng ý này là điều kiện cần thiết để thực hiện quy trình tuyển dụng.",
+    submitLabel: "XÁC NHẬN",
+  },
+  en: {
+    heroTitle: "Notice and consent on\npersonal data processing",
+    formSectionTitle: "PERSONAL INFORMATION",
+    nameLabel: "FULL NAME",
+    phoneLabel: "PHONE NUMBER",
+    emailLabel: "EMAIL",
+    positionLabel: "POSITION",
+    positions: ["Select position", "Sales Executive", "System Engineer", "Security Specialist", "Accountant", "Other"],
+    contentTitle: "CONTENT",
+    body: [],
+    fallbackBody: [
+      'By checking the "Agree" box, I confirm that I have read, understood and agreed to the terms and conditions regarding the personal data processing activities of DTS Communications Technology Joint Stock Company and MetaServ Co., Ltd (METASERV), a subsidiary wholly owned by DTS – hereinafter collectively referred to as "the Company" – specifically as follows.',
+    ],
+    consentLabel: "I have read, understood and agreed to the terms of personal data processing stated above.",
+    submitLabel: "Confirm & Agree",
+  },
+};
+
+export async function getThongBaoDuLieuData(lang: string): Promise<ThongBaoDuLieuData> {
+  const fb = thongBaoDuLieuFallback[lang] || thongBaoDuLieuFallback.vi;
+  try {
+    const data = await client.fetch<ThongBaoDuLieuData | null>(THONG_BAO_DU_LIEU_QUERY, { lang });
+    if (data?.heroTitle) {
+      return {
+        ...fb,
+        ...data,
+        positions: data.positions ?? fb.positions,
+        fallbackBody: data.body?.length ? [] : fb.fallbackBody,
       };
     }
   } catch {}

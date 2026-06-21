@@ -55,22 +55,19 @@ export function Footer({ data, locale }: FooterProps) {
                 </a>
               </p>
             </div>
-            {data.companyProfileUrl && (
-              <a
-                href={data.companyProfileUrl}
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-[13px] font-bold uppercase tracking-[0.1em] text-white/80 transition-all hover:bg-white/10 hover:text-white"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Company Profile
-              </a>
-            )}
+            <a
+              href={data.companyProfileUrl || "/assets/company-profile.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-[13px] font-bold uppercase tracking-[0.1em] text-white/80 transition-all hover:bg-white/10 hover:text-white"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Company Profile
+            </a>
 
             <div className="mt-5 flex items-center gap-3">
               {data.socialLinks.map((link) => (
@@ -90,11 +87,8 @@ export function Footer({ data, locale }: FooterProps) {
             </div>
           </div>
 
-          {/* Right: Addresses */}
+          {/* Right: Offices */}
           <div>
-            <p className="mb-6 text-[15px] font-bold italic text-[#60a5fa]">
-              {isVi ? "Địa chỉ" : "Addresses"}
-            </p>
             <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
               {data.offices.map((office) => (
                 <OfficeBlock key={office.name} office={office} isVi={isVi} />
@@ -122,16 +116,16 @@ function OfficeBlock({
   isVi: boolean;
 }) {
   return (
-    <div className="text-[13px] leading-relaxed text-white/60">
+    <div className="text-[15px] leading-[1.8] text-white/60">
       <p className="font-bold text-white/90">{office.name}:</p>
-      <p className="mt-1">{office.address}</p>
+      <p className="mt-2">{office.address}</p>
       {office.phone && (
-        <p className="mt-1">
+        <p className="mt-2">
           {isVi ? "Điện thoại" : "Tel"}: {office.phone}
         </p>
       )}
       {office.fax && (
-        <p>Fax: {office.fax}</p>
+        <p className="mt-2">Fax: {office.fax}</p>
       )}
     </div>
   );

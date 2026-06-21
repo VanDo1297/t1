@@ -23,7 +23,7 @@ function MegaMenuContent({
   locale: string;
 }) {
   return (
-    <div className="grid grid-cols-3 gap-12">
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 40 }}>
       {columns.map((col) => (
         <div key={col.href} className="border-l border-gray-100 pl-8 first:border-l-0 first:pl-0">
           <Link
@@ -90,7 +90,9 @@ export function Header({ data, locale }: HeaderProps) {
   const [isOverHero, setIsOverHero] = useState(true);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [activeNavIndex, setActiveNavIndex] = useState<number | null>(null);
+  const [panelLeft, setPanelLeft] = useState(0);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const navItemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const pathname = usePathname();
 
   const activeItem = activeNavIndex !== null ? data.navItems[activeNavIndex] : null;
@@ -100,6 +102,10 @@ export function Header({ data, locale }: HeaderProps) {
     if (closeTimer.current) {
       clearTimeout(closeTimer.current);
       closeTimer.current = null;
+    }
+    const el = navItemRefs.current[index];
+    if (el) {
+      setPanelLeft(el.getBoundingClientRect().left);
     }
     setActiveNavIndex(index);
   };
@@ -167,11 +173,13 @@ export function Header({ data, locale }: HeaderProps) {
               return (
                 <div
                   key={item.href}
+                  ref={(el) => { navItemRefs.current[index] = el; }}
                   onMouseEnter={() => hasChildren ? openNav(index) : setActiveNavIndex(null)}
                   onMouseLeave={scheduleClose}
                 >
                   <Link
-                    href={`/${locale}${item.href}`}
+                    href={hasChildren ? "#" : `/${locale}${item.href}`}
+                    onClick={hasChildren ? (e: React.MouseEvent) => e.preventDefault() : undefined}
                     className={`flex items-center gap-1 py-2 text-[18px] font-medium leading-[1.4] tracking-[0.01rem] transition-colors ${
                       isOverHero
                         ? "text-white/82 hover:text-white"
@@ -271,13 +279,15 @@ export function Header({ data, locale }: HeaderProps) {
             onMouseLeave={scheduleClose}
           >
             <div className="border-t border-gray-200 bg-white shadow-xl">
-              <div className="mx-auto max-w-7xl px-8 py-10">
-                {activeItem!.megaMenu && activeItem!.megaMenu.length > 0 ? (
+              {activeItem!.megaMenu && activeItem!.megaMenu.length > 0 ? (
+                <div style={{ paddingLeft: 48, paddingRight: 48, paddingTop: 24, paddingBottom: 24 }}>
                   <MegaMenuContent columns={activeItem!.megaMenu} locale={locale} />
-                ) : (
+                </div>
+              ) : (
+                <div style={{ paddingLeft: panelLeft, paddingRight: 32, paddingTop: 24, paddingBottom: 24 }}>
                   <SimpleMenuContent children={activeItem!.children!} locale={locale} />
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </motion.div>
         )}

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getVeChungToiPageData } from "@/sanity/queries";
+import { getVeChungToiPageData, getGioiThieuData } from "@/sanity/queries";
+import { GioiThieuSection } from "@/components/sections/GioiThieuSection";
 import { AboutClientSections } from "@/components/sections/AboutClientSections";
 
 export default async function AboutPage({
@@ -9,7 +10,10 @@ export default async function AboutPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const data = await getVeChungToiPageData(locale);
+  const [data, gioiThieuData] = await Promise.all([
+    getVeChungToiPageData(locale),
+    getGioiThieuData(locale),
+  ]);
 
   const isVi = locale === "vi";
   const paragraphs = data.brandStoryContent.split("\n\n").filter((p) => p.trim());
@@ -22,13 +26,6 @@ export default async function AboutPage({
           <Image src="/assets/bg/1.jpg" alt="" fill className="object-cover" priority />
         </div>
         <div className="site-hero-content">
-          <nav className="site-breadcrumb">
-            <Link href={`/${locale}`}>
-              {isVi ? "TRANG CHỦ" : "HOME"}
-            </Link>
-            <span>&rarr;</span>
-            <span>{isVi ? "GIỚI THIỆU CHUNG" : "ABOUT US"}</span>
-          </nav>
           <h1 className="site-hero-title">
             {isVi ? "Về chúng tôi" : "About Us"}
           </h1>
@@ -38,28 +35,33 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Brand Story */}
-      <section id="gioi-thieu" className="bg-white px-5 py-12 md:py-20">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-[60px] items-start">
-          <div>
-            <h2 className="text-[28px] md:text-[42px] font-bold text-[#0a192f] uppercase tracking-wider mb-6">
-              {data.brandStoryTitle}
-            </h2>
-            <div className="w-[60px] h-[3px] bg-[#dc2626] mb-7" />
-            {paragraphs.map((p, i) => (
-              <p key={i} className="text-[16px] md:text-[22px] leading-[1.8] text-[#374151] mb-4">{p}</p>
-            ))}
-            <Link href={data.learnMoreHref} className="inline-flex items-center gap-1.5 text-[16px] md:text-[22px] font-semibold text-[#2563eb] no-underline mt-3">
-              {data.learnMoreLabel} &rarr;
-            </Link>
-          </div>
-          <div className="flex flex-col items-center justify-center p-5 md:p-10">
-            <div className="relative w-[200px] h-[200px] md:w-[280px] md:h-[280px]">
-              <Image src="/assets/dtg-logo.png" alt="DTG" fill className="object-contain" />
+      {/* Giới thiệu - same as home */}
+      <GioiThieuSection data={gioiThieuData} />
+
+      {/* Photo Gallery Grid — 4 images: left top 1+2, left bottom 3, right full 4 */}
+      <section className="bg-white px-5 py-20 sm:px-8">
+        <div className="mx-auto">
+          <div className="grid grid-cols-2 gap-4" style={{ height: "clamp(280px, 35vw, 560px)" }}>
+            {/* Left: 2 rows */}
+            <div className="grid grid-rows-2 gap-4">
+              {/* Top left: 2 small side by side */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative overflow-hidden rounded-2xl">
+                  <Image src={data.galleryImages?.[0] || "/assets/bg/1.jpg"} alt="Gallery 1" fill className="object-cover" />
+                </div>
+                <div className="relative overflow-hidden rounded-2xl">
+                  <Image src={data.galleryImages?.[1] || "/assets/bg/2.jpg"} alt="Gallery 2" fill className="object-cover" />
+                </div>
+              </div>
+              {/* Bottom left: 1 large */}
+              <div className="relative overflow-hidden rounded-2xl">
+                <Image src={data.galleryImages?.[2] || "/assets/bg/3.jpg"} alt="Gallery 3" fill className="object-cover" />
+              </div>
             </div>
-            <p className="text-[22px] md:text-[33px] font-bold text-[#dc2626] uppercase tracking-widest mt-6 text-center">
-              {data.slogan}
-            </p>
+            {/* Right: 1 full height */}
+            <div className="relative overflow-hidden rounded-2xl">
+              <Image src={data.galleryImages?.[3] || "/assets/bg/4.jpg"} alt="Gallery 4" fill className="object-cover" />
+            </div>
           </div>
         </div>
       </section>
@@ -85,6 +87,42 @@ export default async function AboutPage({
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Core Values Icons */}
+      <section className="bg-white px-5 py-20 sm:px-8">
+        <div className="mx-auto">
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5">
+            {(data.coreValueIcons || [
+              { icon: "diamond", title: isVi ? "Bền vững" : "Sustainable", desc: isVi ? "Vì lợi ích lâu dài" : "For long-term benefits" },
+              { icon: "award", title: isVi ? "Uy tín" : "Credibility", desc: isVi ? "Giữ gìn chữ tín" : "Maintaining trust" },
+              { icon: "star", title: isVi ? "Chuẩn mực" : "Standards", desc: isVi ? "Tôn trọng các nguyên tắc và ứng xử chuẩn mực" : "Respecting principles and standards" },
+              { icon: "users", title: isVi ? "Gắn kết" : "Unity", desc: isVi ? "Gần gũi, chia sẻ" : "Close and sharing" },
+              { icon: "lightbulb", title: isVi ? "Đổi mới" : "Innovation", desc: isVi ? "Luôn hướng đến cái mới để hoàn thiện mọi mặt" : "Always innovating to improve" },
+            ]).map((item: { icon: string; title: string; desc: string }, i: number) => (
+              <div key={i} className="flex flex-col items-center text-center">
+                <div
+                  className="mb-4 flex items-center justify-center rounded-full"
+                  style={{ width: "clamp(64px, 5vw, 96px)", height: "clamp(64px, 5vw, 96px)", backgroundColor: "rgba(37,99,235,0.08)" }}
+                >
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    {item.icon === "diamond" && <><path d="M6 3h12l4 6-10 13L2 9z" /><path d="M2 9h20" /><path d="M12 22L6 9" /><path d="M12 22l6-13" /></>}
+                    {item.icon === "award" && <><circle cx="12" cy="8" r="6" /><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" /></>}
+                    {item.icon === "star" && <><path d="M12 2l2.09 6.26L21 9.27l-5 4.87L17.18 21 12 17.27 6.82 21 8 14.14l-5-4.87 6.91-1.01z" /></>}
+                    {item.icon === "users" && <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></>}
+                    {item.icon === "lightbulb" && <><path d="M9 18h6" /><path d="M10 22h4" /><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z" /></>}
+                  </svg>
+                </div>
+                <h3 className="font-bold text-[#2563eb]" style={{ fontSize: "clamp(16px, 1.1vw, 22px)" }}>
+                  {item.title}
+                </h3>
+                <p className="mt-1 text-gray-500" style={{ fontSize: "clamp(13px, 0.8vw, 16px)" }}>
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -210,7 +248,79 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Certificates — rendered by client component with year filter */}
+      {/* Nguồn nhân lực */}
+      <section id="nhan-luc" className="px-5 py-20 sm:px-8" style={{ backgroundColor: "#f5f9f9" }}>
+        <div>
+          <h2 className="text-center font-bold text-[#1a1a1a] mb-4" style={{ fontSize: "clamp(36px, 3vw, 60px)" }}>
+            {isVi ? "Nguồn nhân lực" : "Human Resources"}
+          </h2>
+          <p className="text-center text-[#666] mx-auto mb-12" style={{ fontSize: "clamp(16px, 1.1vw, 20px)", maxWidth: 900, lineHeight: 1.7 }}>
+            {isVi
+              ? "Con người là một trong những tài sản lớn nhất được chú trọng đầu tư và phát triển tại DTS. Đội ngũ nhân lực ưu tú là nền tảng vững chắc giúp DTS không ngừng tạo nên những giá trị to lớn cho khách hàng."
+              : "People are one of the greatest assets that DTS invests in and develops. Our talented workforce is the solid foundation helping DTS continuously create great value for customers."}
+          </p>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {/* Left: Stats */}
+            <div className="rounded-2xl bg-white p-8 shadow-sm">
+              {/* Nhân sự */}
+              <div className="flex gap-5 mb-10">
+                <span className="text-[48px] md:text-[56px] font-bold text-[#2563eb] leading-none shrink-0">200+</span>
+                <div>
+                  <h3 className="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] mb-2">
+                    {isVi ? "Nhân sự" : "Staff"}
+                  </h3>
+                  <p className="text-[13px] md:text-[14px] text-[#666] leading-[1.7] m-0">
+                    {isVi
+                      ? "Với trình độ chuyên môn cao và giàu kinh nghiệm, nguồn DTG khẳng định năng lực trong qua việc triển khai hoạt động dự án trong và ngoài nước, nhân được sự tin tưởng từ khách hàng và đối tác."
+                      : "With high expertise and rich experience, DTG's team demonstrates capability through domestic and international project deployments, earning trust from clients and partners."}
+                  </p>
+                </div>
+              </div>
+              {/* Kỹ sư */}
+              <div className="flex gap-5">
+                <span className="text-[48px] md:text-[56px] font-bold text-[#2563eb] leading-none shrink-0">60+</span>
+                <div>
+                  <h3 className="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] mb-2">
+                    {isVi ? "Kỹ sư" : "Engineers"}
+                  </h3>
+                  <p className="text-[13px] md:text-[14px] text-[#666] leading-[1.7] m-0">
+                    {isVi
+                      ? "Đội ngũ kỹ sư tại DTS được tuyển chọn từ các trường Đại học danh tiếng tại Việt Nam và nước ngoài. Các kỹ sư được đào tạo chuyên môn, tự nghiên cứu và qua các khoá đào tạo quốc tế uy tín."
+                      : "DTS engineers are selected from prestigious universities in Vietnam and abroad. Engineers are professionally trained through self-study and internationally accredited courses."}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Certifications */}
+            <div className="rounded-2xl bg-white p-8 shadow-sm">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full" style={{ backgroundColor: "rgba(37,99,235,0.08)" }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><circle cx="12" cy="8" r="6" /><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" /></svg>
+                </div>
+                <h3 className="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] m-0">
+                  {isVi ? "Chứng chỉ quốc tế" : "International Certifications"}
+                </h3>
+              </div>
+
+              <div className="flex flex-col gap-6">
+                {[
+                  { brand: "Cisco", desc: "CCIE, CCNP, CCNA, Chứng chỉ chuyên môn (Specialist cert) Data Center, Security, Collaboration, Service Provider, Enterprise Network." },
+                  { brand: "Microsoft", desc: "MCSE, MCSA..." },
+                  { brand: "Oracle", desc: "OCP 11g, OCA 11g..." },
+                  { brand: "VMWare", desc: "VCP: chứng chỉ chuyên môn (Specialist) Data Center, Vpshere, Network..." },
+                ].map((cert, i) => (
+                  <div key={i}>
+                    <p className="text-[16px] md:text-[18px] font-bold text-[#2563eb] mb-1">{cert.brand}</p>
+                    <p className="text-[12px] md:text-[13px] text-[#666] leading-[1.6] m-0">{cert.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

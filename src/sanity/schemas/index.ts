@@ -11,5 +11,7 @@ import { lienHe } from "./lien-he";
 import { tinTuc } from "./tin-tuc";
 import { baiVietGiaiPhap } from "./bai-viet-giai-phap";
 import { veChungToiPage } from "./ve-chung-toi-page";
+import { solutionCategoryPage } from "./solution-category-page";
+import { thongBaoDuLieu } from "./thong-bao-du-lieu";
 
-export const schemaTypes: SchemaTypeDefinition[] = [header, hero, gioiThieu, veDtg, giaiPhap, partnersPage, tuyenDung, footer, lienHe, tinTuc, baiVietGiaiPhap, veChungToiPage];
+export const schemaTypes: SchemaTypeDefinition[] = [header, hero, gioiThieu, veDtg, giaiPhap, partnersPage, tuyenDung, footer, lienHe, tinTuc, baiVietGiaiPhap, veChungToiPage, solutionCategoryPage, thongBaoDuLieu];

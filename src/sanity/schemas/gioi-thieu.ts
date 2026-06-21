@@ -40,6 +40,16 @@ export const gioiThieu = defineType({
       type: "image",
       options: { hotspot: true },
     }),
+    defineField({
+      name: "ctaLabel",
+      title: "CTA Button Label",
+      type: "string",
+    }),
+    defineField({
+      name: "ctaHref",
+      title: "CTA Button Link",
+      type: "string",
+    }),
   ],
   preview: {
     select: { lang: "language", title: "title" },

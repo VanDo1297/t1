@@ -32,17 +32,6 @@ export default async function JobDetailPage({
         </div>
 
         <div className="site-hero-content">
-          <nav className="site-breadcrumb">
-            <Link href={`/${locale}`}>
-              {isVi ? "TRANG CHỦ" : "HOME"}
-            </Link>
-            <span>&rarr;</span>
-            <Link href={`/${locale}/tuyen-dung`}>
-              {isVi ? "TUYỂN DỤNG" : "CAREERS"}
-            </Link>
-            <span>&rarr;</span>
-            <span>{job.title.toUpperCase()}</span>
-          </nav>
           <h1 className="site-hero-title">
             {job.title}
           </h1>

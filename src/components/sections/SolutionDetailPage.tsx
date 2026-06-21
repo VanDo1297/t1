@@ -64,22 +64,6 @@ export function SolutionDetailPage({
           <Image src="/assets/bg/1.jpg" alt="" fill className="object-cover" priority />
         </div>
         <div className="site-hero-content">
-          {/* Breadcrumb */}
-          <div className="site-breadcrumb">
-            {breadcrumbs.map((crumb, i) => (
-              <span key={i} className="flex items-center gap-2">
-                {i > 0 && <span>&rarr;</span>}
-                {crumb.href ? (
-                  <Link href={crumb.href}>
-                    {crumb.label}
-                  </Link>
-                ) : (
-                  <span>{crumb.label}</span>
-                )}
-              </span>
-            ))}
-          </div>
-
           <h1 className="site-hero-title">
             {title}
           </h1>

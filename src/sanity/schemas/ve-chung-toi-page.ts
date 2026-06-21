@@ -90,21 +90,13 @@ export const veChungToiPage = defineType({
       of: [{ type: "string" }],
     }),
 
-    // Certificates
-    defineField({ name: "certificatesTitle", title: "Certificates Title", type: "string" }),
+    // Gallery Images (positions 1-4: left→right, top→bottom)
     defineField({
-      name: "certificates",
-      title: "Certificates",
+      name: "galleryImages",
+      title: "Gallery Images (1-4: trái→phải, trên→dưới)",
       type: "array",
-      of: [{
-        type: "object",
-        fields: [
-          defineField({ name: "year", title: "Year", type: "string" }),
-          defineField({ name: "title", title: "Title", type: "string" }),
-          defineField({ name: "image", title: "Image", type: "image" }),
-        ],
-        preview: { select: { title: "title", subtitle: "year" } },
-      }],
+      of: [{ type: "image", options: { hotspot: true } }],
+      validation: (r) => r.max(4),
     }),
   ],
   preview: {

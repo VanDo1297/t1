@@ -18,6 +18,11 @@ export const giaiPhap = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
+      name: "sectionHeading",
+      title: "Section Heading (trên tab nav)",
+      type: "string",
+    }),
+    defineField({
       name: "tabs",
       title: "Tabs",
       type: "array",
@@ -51,7 +56,9 @@ export const giaiPhap = defineType({
                 fields: [
                   defineField({ name: "source", title: "Source", type: "string" }),
                   defineField({ name: "title", title: "Title", type: "string" }),
+                  defineField({ name: "image", title: "Image", type: "image", options: { hotspot: true } }),
                 ],
+                preview: { select: { title: "source", subtitle: "title" } },
               }],
             }),
           ],

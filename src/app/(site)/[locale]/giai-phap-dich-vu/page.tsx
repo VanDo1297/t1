@@ -50,15 +50,6 @@ export default async function SolutionsPage({
         </div>
 
         <div className="site-hero-content">
-          <nav className="site-breadcrumb">
-            <Link href={`/${locale}`}>
-              {lang === "vi" ? "TRANG CHỦ" : "HOME"}
-            </Link>
-            <span>&rarr;</span>
-            <span>
-              {lang === "vi" ? "GIẢI PHÁP & DỊCH VỤ" : "SOLUTIONS & SERVICES"}
-            </span>
-          </nav>
           <h1 className="site-hero-title">
             {lang === "vi" ? "Giải pháp & Dịch vụ" : "Solutions & Services"}
           </h1>
@@ -127,7 +118,7 @@ export default async function SolutionsPage({
           })}
 
           {/* 4th column: Dịch vụ khác */}
-          <div style={{ backgroundColor: "#fff", borderRadius: 16, padding: 32, border: "1px solid #eee" }}>
+          <div id="dich-vu-khac" style={{ backgroundColor: "#fff", borderRadius: 16, padding: 32, border: "1px solid #eee" }}>
             <h2 className="font-bold uppercase" style={{ fontSize: 20, color: "#1a2d3d", letterSpacing: 1 }}>
               {other.title}
             </h2>

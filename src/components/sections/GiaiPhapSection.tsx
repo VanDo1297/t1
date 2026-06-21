@@ -93,9 +93,7 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
           className="whitespace-pre-line font-medium leading-[1.2] text-[#1a1a1a]"
           style={{ fontSize: "clamp(36px, 3vw, 60px)" }}
         >
-          {locale === "vi"
-            ? "Giới thiệu các Nền tảng,\nđược hỗ trợ bởi Precision AI"
-            : "Introducing the Platforms,\npowered by Precision AI"}
+          {data.sectionHeading}
         </motion.h2>
       </div>
 

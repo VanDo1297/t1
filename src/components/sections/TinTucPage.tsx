@@ -187,19 +187,6 @@ export function TinTucPage({
         </div>
 
         <div className="site-hero-content">
-          {/* Breadcrumb */}
-          <div className="site-breadcrumb">
-            <Link href={`/${locale}`}>
-              {pageData.breadcrumbHome}
-            </Link>
-            <span>&rarr;</span>
-            <Link href={`/${locale}/tin-tuc`}>
-              {pageData.breadcrumbNews}
-            </Link>
-            <span>&rarr;</span>
-            <span>{activeCategoryLabel.toUpperCase()}</span>
-          </div>
-
           <h1 className="site-hero-title">
             {pageData.breadcrumbNews}
           </h1>

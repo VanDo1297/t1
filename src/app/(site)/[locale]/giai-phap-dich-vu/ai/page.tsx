@@ -1,4 +1,5 @@
 import { solutionCategories } from "@/data/solutions";
+import { getSolutionCategoryPageData, getGiaiPhapData } from "@/sanity/queries";
 import { SolutionCategoryPage } from "@/components/sections/SolutionCategoryPage";
 
 export default async function AISolutionsPage({
@@ -8,6 +9,13 @@ export default async function AISolutionsPage({
 }) {
   const { locale } = await params;
   const category = solutionCategories.find((c) => c.slug === "ai")!;
+  const [cmsData, giaiPhapData] = await Promise.all([
+    getSolutionCategoryPageData(locale, "ai"),
+    getGiaiPhapData(locale),
+  ]);
 
-  return <SolutionCategoryPage category={category} locale={locale} />;
+  const tab = giaiPhapData.tabs[2];
+  const cardImages = tab?.awards?.map((a) => a.imageUrl || null) || [];
+
+  return <SolutionCategoryPage category={category} locale={locale} cmsData={{ ...cmsData, cardImages }} />;
 }

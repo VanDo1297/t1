@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import type { GioiThieuData } from "@/sanity/queries";
@@ -46,6 +48,18 @@ export function GioiThieuSection({ data }: GioiThieuSectionProps) {
           >
             {data.description}
           </motion.p>
+          {data.ctaLabel && data.ctaHref && (
+            <motion.div ref={left.ref} {...left.animationProps}>
+              <Link
+                href={data.ctaHref}
+                className="mt-8 inline-flex items-center gap-3 rounded-full px-8 py-4 font-semibold text-white transition-opacity hover:opacity-90"
+                style={{ background: "linear-gradient(to right, #2563eb, #7c3aed)", fontSize: 18 }}
+              >
+                {data.ctaLabel}
+                <ArrowRight size={18} />
+              </Link>
+            </motion.div>
+          )}
         </div>
 
         {/* Right - Image */}

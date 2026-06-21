@@ -58,24 +58,6 @@ export default async function NewsDetailPage({
       {/* Hero */}
       <section className="site-hero">
         <div className="site-hero-content">
-          <div className="site-breadcrumb">
-            <Link
-              href={`/${locale}`}
-            >
-              {pageData.breadcrumbHome}
-            </Link>
-            <span>&rarr;</span>
-            <Link
-              href={`/${locale}/tin-tuc?danh-muc=${article.category}`}
-            >
-              {pageData.breadcrumbNews}
-            </Link>
-            <span>&rarr;</span>
-            <span>
-              {categoryLabel.toUpperCase()}
-            </span>
-          </div>
-
           <h1 className="site-hero-title">
             {article.title}
           </h1>

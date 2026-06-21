@@ -20,13 +20,6 @@ export default async function ContactPage({
           <Image src="/assets/bg/2.jpg" alt="" fill className="object-cover" priority />
         </div>
         <div className="site-hero-content">
-          <nav className="site-breadcrumb ">
-            <Link href={`/${locale}`}>
-              {locale === "vi" ? "TRANG CHỦ" : "HOME"}
-            </Link>
-            <span>&rarr;</span>
-            <span>{data.title.toUpperCase()}</span>
-          </nav>
           <h1 className="site-hero-title">{data.title}</h1>
           <p className="site-hero-description">
             {locale === "vi"

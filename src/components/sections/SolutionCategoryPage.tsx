@@ -50,14 +50,22 @@ const iconMap: Record<string, LucideIcon> = {
   Headphones,
 };
 
+interface CmsData {
+  cardBgImageUrl: string | null;
+  goals: { title: string; description: string; imageUrl: string | null }[];
+  cardImages?: (string | null)[];
+}
+
 export function SolutionCategoryPage({
   category,
   locale,
   activeSlug,
+  cmsData,
 }: {
   category: SolutionCategory;
   locale: string;
   activeSlug?: string;
+  cmsData?: CmsData;
 }) {
   const basePath =
     locale === "vi"
@@ -79,17 +87,6 @@ export function SolutionCategoryPage({
         </div>
 
         <div className="site-hero-content">
-          <nav className="site-breadcrumb">
-            <Link href={`/${locale}`}>
-              {locale === "vi" ? "TRANG CHỦ" : "HOME"}
-            </Link>
-            <span>&rarr;</span>
-            <Link href={locale === "vi" ? `/${locale}/giai-phap-dich-vu` : `/${locale}/solutions`}>
-              {locale === "vi" ? "GIẢI PHÁP & DỊCH VỤ" : "SOLUTIONS & SERVICES"}
-            </Link>
-            <span>&rarr;</span>
-            <span>{category.title[locale as "vi" | "en"].toUpperCase()}</span>
-          </nav>
           <h1 className="site-hero-title">
             {category.title[locale as "vi" | "en"]}
           </h1>
@@ -107,7 +104,7 @@ export function SolutionCategoryPage({
       </section>
 
       {/* Solutions */}
-      <section className="bg-white px-5 py-20 sm:px-8">
+      <section className="px-5 py-20 sm:px-8" style={{ backgroundColor: "#fff" }}>
         <div>
           <SectionTitle locale={locale} />
           <SolutionsCarousel
@@ -115,13 +112,15 @@ export function SolutionCategoryPage({
             locale={locale}
             basePath={basePath}
             activeSlug={activeSlug}
+            cardBgImage={cmsData?.cardBgImageUrl || "/assets/bg/5.jpg"}
+            cardImages={cmsData?.cardImages}
           />
         </div>
       </section>
 
       {/* Goals + Lộ trình */}
       {category.goals.length > 0 && (
-        <GoalsSection goals={category.goals} locale={locale as "vi" | "en"} />
+        <GoalsSection goals={category.goals} locale={locale as "vi" | "en"} cmsGoals={cmsData?.goals} />
       )}
 
       <LoTrinhSection locale={locale as "vi" | "en"} />
@@ -132,9 +131,11 @@ export function SolutionCategoryPage({
 function GoalsSection({
   goals,
   locale,
+  cmsGoals,
 }: {
   goals: SolutionGoal[];
   locale: "vi" | "en";
+  cmsGoals?: { title: string; description: string; imageUrl: string | null }[];
 }) {
   const { ref: titleRef, animationProps: titleAnim } = useScrollAnimation({
     preset: "fadeUp",
@@ -163,9 +164,12 @@ function GoalsSection({
         </motion.h2>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {goals.map((goal, i) => (
-            <GoalCard key={i} goal={goal} locale={locale} index={i} />
-          ))}
+          {goals.map((goal, i) => {
+            const cmsImage = cmsGoals?.[i]?.imageUrl;
+            return (
+              <GoalCard key={i} goal={goal} locale={locale} index={i} imageOverride={cmsImage || undefined} />
+            );
+          })}
         </div>
       </div>
     </section>
@@ -176,10 +180,12 @@ function GoalCard({
   goal,
   locale,
   index,
+  imageOverride,
 }: {
   goal: SolutionGoal;
   locale: "vi" | "en";
   index: number;
+  imageOverride?: string;
 }) {
   const { ref, animationProps } = useScrollAnimation({
     preset: "fadeUp",
@@ -191,7 +197,7 @@ function GoalCard({
       <div className="group h-full overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-2">
         <div className="relative h-48 overflow-hidden">
           <Image
-            src={goal.image}
+            src={imageOverride || goal.image}
             alt=""
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -250,10 +256,7 @@ function LoTrinhSection({ locale }: { locale: "vi" | "en" }) {
           {locale === "vi" ? "Lộ trình triển khai 5 giai đoạn" : "5-Phase Deployment Roadmap"}
         </motion.h2>
 
-        <div className="relative grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5 lg:gap-0">
-          {/* Connecting line */}
-          <div className="absolute left-[calc(10%)] top-[28px] hidden h-[2px] w-[calc(80%)] bg-[#d1d5db] lg:block" />
-
+        <div className="relative grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5 lg:gap-6">
           {loTrinhSteps.map((step, i) => (
             <LoTrinhStepCard key={i} step={step} index={i} locale={locale} />
           ))}
@@ -281,17 +284,21 @@ function LoTrinhStepCard({
     <motion.div
       ref={ref}
       {...animationProps}
-      className="relative flex flex-1 flex-col items-center text-center"
+      className="relative flex flex-1 flex-col items-center text-center pt-[32px] transition-transform duration-300 hover:-translate-y-2"
     >
-      <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-xl border-[2.5px] border-[#0f1d3a] bg-white font-bold text-[#0f1d3a]" style={{ fontSize: 24 }}>
+      {/* Number badge - centered on top border of card */}
+      <div className="absolute top-0 z-10 flex h-16 w-16 items-center justify-center rounded-xl border-[2.5px] border-[#0f1d3a] bg-white font-bold text-[#0f1d3a]" style={{ fontSize: 24 }}>
         {String(index + 1).padStart(2, "0")}
       </div>
-      <h3 className="mt-5 font-bold uppercase tracking-[0.05em] text-[#0f1d3a]" style={{ fontSize: 18 }}>
-        {step.title[locale]}
-      </h3>
-      <p className="mt-2 max-w-[240px] leading-[1.6]" style={{ fontSize: 16, color: "#555" }}>
-        {step.desc[locale]}
-      </p>
+      {/* Card with border */}
+      <div className="flex w-full flex-col items-center rounded-2xl border-[2px] border-[#0f1d3a] px-4 pb-16 pt-18">
+        <h3 className="font-bold uppercase tracking-[0.05em] text-[#0f1d3a]" style={{ fontSize: 18 }}>
+          {step.title[locale]}
+        </h3>
+        <p className="mt-2 max-w-[240px] leading-[1.6]" style={{ fontSize: 16, color: "#555" }}>
+          {step.desc[locale]}
+        </p>
+      </div>
     </motion.div>
   );
 }
@@ -301,11 +308,15 @@ function SolutionsCarousel({
   locale,
   basePath,
   activeSlug,
+  cardBgImage,
+  cardImages,
 }: {
   category: SolutionCategory;
   locale: string;
   basePath: string;
   activeSlug?: string;
+  cardBgImage: string;
+  cardImages?: (string | null)[];
 }) {
   const items = category.children;
   const perPage = 4;
@@ -326,6 +337,7 @@ function SolutionsCarousel({
             index={i}
             isActive={activeSlug === item.href}
             slug={item.href}
+            cardBgImage={cardImages?.[i] || cardBgImage}
           />
         ))}
       </div>
@@ -347,18 +359,22 @@ function SolutionsCarousel({
 
       {/* Cards */}
       <div className="flex-1 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {visibleItems.map((item, i) => (
-          <SolutionCard
-            key={item.href}
-            iconName={item.icon}
-            title={item.title[locale as "vi" | "en"]}
-            description={item.description[locale as "vi" | "en"]}
-            href={`${basePath}/${item.href}`}
-            index={i}
-            isActive={activeSlug === item.href}
-            slug={item.href}
-          />
-        ))}
+        {visibleItems.map((item, i) => {
+          const globalIndex = offset + i;
+          return (
+            <SolutionCard
+              key={item.href}
+              iconName={item.icon}
+              title={item.title[locale as "vi" | "en"]}
+              description={item.description[locale as "vi" | "en"]}
+              href={`${basePath}/${item.href}`}
+              index={i}
+              isActive={activeSlug === item.href}
+              slug={item.href}
+              cardBgImage={cardImages?.[globalIndex] || cardBgImage}
+            />
+          );
+        })}
       </div>
 
       {/* Next */}
@@ -396,6 +412,7 @@ function SolutionCard({
   index,
   isActive,
   slug,
+  cardBgImage,
 }: {
   iconName: string;
   title: string;
@@ -404,6 +421,7 @@ function SolutionCard({
   index: number;
   isActive?: boolean;
   slug: string;
+  cardBgImage: string;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const { ref, animationProps } = useScrollAnimation({
@@ -430,14 +448,17 @@ function SolutionCard({
       <Link href={href} className="block h-full">
         <div
           ref={cardRef}
-          className={`group flex h-full flex-col rounded-2xl border p-8 shadow-sm transition-all duration-300 ${
+          className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border p-8 shadow-sm transition-all duration-300 ${
             isActive
-              ? "border-primary/40 bg-primary/4 shadow-lg ring-2 ring-primary/20"
-              : "border-gray-100 bg-white hover:border-primary/20 hover:shadow-lg hover:-translate-y-2"
+              ? "border-primary/40 shadow-lg ring-2 ring-primary/20"
+              : "border-gray-100 hover:border-primary/20 hover:shadow-lg hover:-translate-y-2"
           }`}
         >
+          <div className="absolute inset-0">
+            <Image src={cardBgImage} alt="" fill className="object-cover" />
+          </div>
           <div
-            className={`mb-5 flex h-14 w-14 items-center justify-center rounded-xl transition-colors ${
+            className={`relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-xl transition-colors ${
               isActive
                 ? "bg-primary text-white"
                 : "bg-primary/8 text-primary group-hover:bg-primary group-hover:text-white"
@@ -446,14 +467,14 @@ function SolutionCard({
             <Icon size={28} />
           </div>
           <h3
-            className={`font-bold transition-colors ${
+            className={`relative z-10 font-bold transition-colors ${
               isActive ? "text-primary" : "text-[#1a1a1a] group-hover:text-primary"
             }`}
             style={{ fontSize: 22 }}
           >
             {title}
           </h3>
-          <p className="mt-3 flex-1 leading-relaxed" style={{ fontSize: 16, color: "#555" }}>
+          <p className="relative z-10 mt-3 flex-1 leading-relaxed" style={{ fontSize: 16, color: "#555" }}>
             {description}
           </p>
         </div>

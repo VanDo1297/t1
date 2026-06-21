@@ -66,24 +66,6 @@ export default async function SolutionArticleDetailPage({
     <main className="article-detail-mobile pt-[80px]">
       <section className="site-hero">
         <div className="site-hero-content">
-          <div className="site-breadcrumb">
-            <Link href={`/${locale}`}>
-              {locale === "vi" ? "TRANG CHỦ" : "HOME"}
-            </Link>
-            <span>&rarr;</span>
-            <Link href={categoryPath}>
-              {locale === "vi" ? "GIẢI PHÁP CÔNG NGHỆ" : "TECHNOLOGY SOLUTIONS"}
-            </Link>
-            <span>&rarr;</span>
-            <Link href={solutionPath}>
-              {solutionTitle.toUpperCase()}
-            </Link>
-            <span>&rarr;</span>
-            <span>
-              {locale === "vi" ? "CHI TIẾT" : "DETAIL"}
-            </span>
-          </div>
-
           <h1 className="site-hero-title">
             {article.title}
           </h1>

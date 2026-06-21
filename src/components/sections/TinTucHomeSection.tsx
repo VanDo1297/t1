@@ -11,9 +11,11 @@ import type { TinTucItem } from "@/sanity/queries";
 interface TinTucHomeSectionProps {
   locale: string;
   articles: TinTucItem[];
+  title: string;
+  subtitle: string;
 }
 
-export function TinTucHomeSection({ locale, articles }: TinTucHomeSectionProps) {
+export function TinTucHomeSection({ locale, articles, title, subtitle }: TinTucHomeSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { ref: titleRef, animationProps: titleAnim } = useScrollAnimation({ preset: "ttb" });
 
@@ -60,7 +62,7 @@ export function TinTucHomeSection({ locale, articles }: TinTucHomeSectionProps) 
   const visible = getVisibleArticles();
 
   return (
-    <section className="overflow-hidden bg-white px-5 py-20 sm:px-8">
+    <section id="tin-tuc" className="overflow-hidden bg-white px-5 py-20 sm:px-8">
       <div className="mx-auto">
         {/* Header */}
         <div className="mb-10 flex items-end justify-between">
@@ -69,15 +71,13 @@ export function TinTucHomeSection({ locale, articles }: TinTucHomeSectionProps) 
               className="font-bold uppercase tracking-wider text-[#1a1a1a]"
               style={{ fontSize: "clamp(24px, 2vw, 42px)" }}
             >
-              {locale === "vi" ? "TIN TỨC MỚI NHẤT" : "LATEST NEWS"}
+              {title}
             </h2>
             <p
               className="mt-2 text-gray-500"
               style={{ fontSize: "clamp(14px, 0.9vw, 18px)" }}
             >
-              {locale === "vi"
-                ? "Cập nhật các hoạt động mới nhất của chúng tôi"
-                : "Stay updated with our latest activities"}
+              {subtitle}
             </p>
           </motion.div>
         </div>
