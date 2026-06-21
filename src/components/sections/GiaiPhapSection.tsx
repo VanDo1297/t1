@@ -40,13 +40,13 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
   });
 
   return (
-    <section id="giai-phap" className="bg-primary-dark text-white">
+    <section id="giai-phap" className="bg-white text-[#1a1a1a]">
       {/* Section title */}
       <div className="px-5 pt-20 pb-10 sm:px-8">
         <motion.h2
           ref={titleRef}
           {...titleAnim}
-          className="whitespace-pre-line text-[36px] font-medium leading-[1.2] text-white sm:text-[44px]"
+          className="whitespace-pre-line text-[36px] font-medium leading-[1.2] text-[#1a1a1a] sm:text-[44px]"
         >
           {locale === "vi"
             ? "Giới thiệu các Nền tảng,\nđược hỗ trợ bởi Precision AI"
@@ -55,7 +55,7 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
       </div>
 
       {/* Sticky tab nav */}
-      <div className="sticky top-[56px] z-30 bg-primary-dark/95 backdrop-blur-xl border-b border-white/10 py-4 px-5 sm:px-8">
+      <div className="sticky top-[56px] z-30 backdrop-blur-md border-b border-gray-200 py-4 px-5 sm:px-8">
         <div className="flex items-center gap-6 overflow-x-auto">
           {data.tabs.map((tab, i) => (
             <a
@@ -63,8 +63,8 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
               href={`#giai-phap-${i}`}
               className={`whitespace-nowrap border-b-2 pb-3 text-[15px] font-bold uppercase tracking-[0.1em] transition-colors ${
                 i === activeIndex
-                  ? "border-[#2563eb] text-white"
-                  : "border-transparent text-white/50 hover:text-white/80"
+                  ? "border-[#2563eb] text-[#1a1a1a]"
+                  : "border-transparent text-gray-400 hover:text-[#1a1a1a]"
               }`}
             >
               {tab.label}
@@ -73,7 +73,7 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
           <div className="ml-auto">
             <Link
               href={`/${locale}${data.tabs[activeIndex]?.ctaHref || "/"}`}
-              className="flex items-center gap-2 whitespace-nowrap text-[15px] font-medium text-white/60 transition hover:text-white"
+              className="flex items-center gap-2 whitespace-nowrap text-[15px] font-medium text-gray-400 transition hover:text-[#1a1a1a]"
             >
               {data.viewAllLabel}
               <ArrowRight size={16} />
@@ -126,7 +126,7 @@ function TabContent({
     <div
       id={`giai-phap-${index}`}
       ref={setRef}
-      className={`min-h-[70vh] py-20 ${index > 0 ? "border-t border-white/10" : ""}`}
+      className={`min-h-[70vh] py-20 ${index > 0 ? "border-t border-gray-200" : ""}`}
     >
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         {/* Left - Text */}
@@ -137,10 +137,10 @@ function TabContent({
           <p className="mb-4 text-[15px] font-bold uppercase tracking-[0.15em] text-[#2563eb]">
             {tab.label}
           </p>
-          <h2 className="mb-6 text-[40px] font-medium leading-[1.15] text-white">
+          <h2 className="mb-6 text-[40px] font-medium leading-[1.15] text-[#1a1a1a]">
             {tab.title}
           </h2>
-          <p className="mb-10 text-[18px] leading-[1.7] text-white/55">
+          <p className="mb-10 text-[18px] leading-[1.7] text-gray-500">
             {tab.description}
           </p>
 
@@ -148,10 +148,10 @@ function TabContent({
             <div className="mb-10 flex gap-12">
               {tab.stats.map((stat, i) => (
                 <div key={i}>
-                  <span className="text-[40px] font-medium leading-none text-white">
+                  <span className="text-[40px] font-medium leading-none text-[#1a1a1a]">
                     {stat.value}
                   </span>
-                  <p className="mt-2 text-[13px] font-bold uppercase tracking-[0.15em] text-white/50">
+                  <p className="mt-2 text-[13px] font-bold uppercase tracking-[0.15em] text-gray-400">
                     {stat.label}
                   </p>
                 </div>
@@ -161,7 +161,7 @@ function TabContent({
 
           <Link
             href={`/${locale}${tab.ctaHref}`}
-            className="inline-flex items-center gap-3 rounded-full border border-white/20 px-8 py-4 text-[15px] font-semibold text-white transition hover:bg-white/5"
+            className="btn-gradient inline-flex items-center gap-3 rounded-full px-8 py-4 text-[15px] font-semibold"
           >
             {tab.ctaLabel}
             <ArrowRight size={18} />
@@ -173,8 +173,10 @@ function TabContent({
           <motion.div
             ref={rightRef}
             {...rightAnim}
-            className="grid grid-cols-2 gap-4 content-start"
+            className="relative rounded-2xl p-6 grid grid-cols-2 gap-4 content-start"
           >
+            {/* Glow shadow behind awards */}
+            <div className="pointer-events-none absolute -inset-4 bg-[#64dcdc] opacity-[0.35] blur-[50px]" style={{ borderRadius: "40% 60% 55% 45% / 55% 40% 60% 45%" }} />
             {tab.awards.map((award, i) => (
               <div
                 key={i}

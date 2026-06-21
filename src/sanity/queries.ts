@@ -757,3 +757,232 @@ export async function getPartnersPageData(
   } catch {}
   return partnersFallback[lang] || partnersFallback.vi;
 }
+
+/* ── Liên hệ ── */
+
+export interface LienHePhone {
+  label: string;
+  number: string;
+}
+
+export interface LienHeSolution {
+  key: string;
+  label: string;
+}
+
+export interface LienHeData {
+  title: string;
+  infoTitle: string;
+  address: string;
+  phones: LienHePhone[];
+  email: string;
+  fax: string;
+  mapEmbedUrl: string;
+  formTitle: string;
+  formNameLabel: string;
+  formCompanyLabel: string;
+  formPhoneEmailLabel: string;
+  formSolutionLabel: string;
+  formMessageLabel: string;
+  formSubmitLabel: string;
+  formSuccessMessage: string;
+  solutions: LienHeSolution[];
+}
+
+const LIEN_HE_QUERY = `*[_type == "lienHe" && language == $lang][0]{
+  title, infoTitle, address,
+  phones[]{ label, number },
+  email, fax, mapEmbedUrl,
+  formTitle, formNameLabel, formCompanyLabel,
+  formPhoneEmailLabel, formSolutionLabel,
+  formMessageLabel, formSubmitLabel, formSuccessMessage,
+  solutions[]{ key, label }
+}`;
+
+const lienHeFallback: Record<string, LienHeData> = {
+  vi: {
+    title: "Liên hệ",
+    infoTitle: "Thông tin liên hệ",
+    address: "Tòa nhà DTS, 287B Điện Biên Phủ, P. Xuân Hòa, TP. Hồ Chí Minh",
+    phones: [
+      { label: "DTS HCM", number: "+(84) 28 3933 6666" },
+      { label: "DTS Hà Nội", number: "+(84) 24 3942 6568" },
+      { label: "DTS Đà Nẵng", number: "+(84) 236 381 2936" },
+    ],
+    email: "support@dts.com.vn",
+    fax: "+(84) 28 3932 2369",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1267!2d106.6944!3d10.8006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ4JzAyLjIiTiAxMDbCsDQxJzM5LjgiRQ!5e0!3m2!1svi!2svn!4v1700000000000",
+    formTitle: "Gửi yêu cầu tư vấn",
+    formNameLabel: "Họ và tên",
+    formCompanyLabel: "Tên công ty",
+    formPhoneEmailLabel: "SĐT / Email",
+    formSolutionLabel: "Mảng giải pháp",
+    formMessageLabel: "Nội dung yêu cầu",
+    formSubmitLabel: "Gửi yêu cầu",
+    formSuccessMessage: "Cảm ơn bạn! Yêu cầu đã được gửi thành công. Chúng tôi sẽ liên hệ lại sớm nhất.",
+    solutions: [
+      { key: "cyber-security", label: "An ninh mạng" },
+      { key: "it-infrastructure", label: "Hạ tầng CNTT" },
+      { key: "ai-solutions", label: "Giải pháp AI" },
+      { key: "soc-services", label: "Dịch vụ SOC" },
+      { key: "other", label: "Khác" },
+    ],
+  },
+  en: {
+    title: "Contact",
+    infoTitle: "Contact Information",
+    address: "DTS Building, 287B Dien Bien Phu, Xuan Hoa Ward, Ho Chi Minh City",
+    phones: [
+      { label: "DTS HCM", number: "+(84) 28 3933 6666" },
+      { label: "DTS Hanoi", number: "+(84) 24 3942 6568" },
+      { label: "DTS Da Nang", number: "+(84) 236 381 2936" },
+    ],
+    email: "support@dts.com.vn",
+    fax: "+(84) 28 3932 2369",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1267!2d106.6944!3d10.8006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ4JzAyLjIiTiAxMDbCsDQxJzM5LjgiRQ!5e0!3m2!1sen!2svn!4v1700000000000",
+    formTitle: "Send a consultation request",
+    formNameLabel: "Full name",
+    formCompanyLabel: "Company name",
+    formPhoneEmailLabel: "Phone / Email",
+    formSolutionLabel: "Solution area",
+    formMessageLabel: "Message",
+    formSubmitLabel: "Send request",
+    formSuccessMessage: "Thank you! Your request has been sent successfully. We will get back to you shortly.",
+    solutions: [
+      { key: "cyber-security", label: "Cyber Security" },
+      { key: "it-infrastructure", label: "IT Infrastructure" },
+      { key: "ai-solutions", label: "AI Solutions" },
+      { key: "soc-services", label: "SOC Services" },
+      { key: "other", label: "Other" },
+    ],
+  },
+};
+
+export async function getLienHeData(lang: string): Promise<LienHeData> {
+  const fb = lienHeFallback[lang] || lienHeFallback.vi;
+  try {
+    const data = await client.fetch<LienHeData | null>(LIEN_HE_QUERY, { lang });
+    if (data?.title) {
+      return {
+        ...fb,
+        ...data,
+        phones: data.phones ?? fb.phones,
+        solutions: data.solutions ?? fb.solutions,
+      };
+    }
+  } catch {}
+  return fb;
+}
+
+/* ── Footer ── */
+
+export interface SocialLink {
+  platform: string;
+  url: string;
+}
+
+export interface Office {
+  name: string;
+  address: string;
+  phone: string;
+  fax?: string;
+}
+
+export interface FooterData {
+  ctaTitle: string;
+  ctaButtonLabel: string;
+  hotline: string;
+  email: string;
+  socialLinks: SocialLink[];
+  offices: Office[];
+}
+
+const FOOTER_QUERY = `*[_type == "footer" && language == $lang][0]{
+  ctaTitle,
+  ctaButtonLabel,
+  hotline,
+  email,
+  socialLinks[]{ platform, url },
+  offices[]{ name, address, phone, fax }
+}`;
+
+const footerFallback: Record<string, FooterData> = {
+  vi: {
+    ctaTitle: "Bắt đầu câu chuyện nâng cấp hạ tầng ngay hôm nay",
+    ctaButtonLabel: "Tư vấn ngay",
+    hotline: "1800 1537",
+    email: "support@dts.com.vn",
+    socialLinks: [
+      { platform: "facebook", url: "#" },
+      { platform: "linkedin", url: "#" },
+      { platform: "youtube", url: "#" },
+    ],
+    offices: [
+      {
+        name: "Trụ sở chính",
+        address: "Tòa nhà DTS, 287B Điện Biên Phủ, P. Xuân Hòa, TP. Hồ Chí Minh, Việt Nam",
+        phone: "+(84) 28 3933 6666",
+        fax: "+(84) 28 3932 2369",
+      },
+      {
+        name: "Văn phòng Hà Nội",
+        address: "Tòa nhà Sao Bắc, 04 Dã Tượng, P. Cửa Nam, TP. Hà Nội, Việt Nam",
+        phone: "+(84) 24 3942 6568",
+        fax: "+(84) 24 3942 6566",
+      },
+      {
+        name: "Văn phòng Đà Nẵng",
+        address: "Tòa nhà Danabook, Phòng 6.4.5 tầng 6, Tòa nhà 76 Bạch Đằng, P. Hải Châu, TP. Đà Nẵng, Việt Nam",
+        phone: "+(84) 236 381 2936",
+      },
+    ],
+  },
+  en: {
+    ctaTitle: "Start your infrastructure upgrade journey today",
+    ctaButtonLabel: "Get in touch",
+    hotline: "1800 1537",
+    email: "support@dts.com.vn",
+    socialLinks: [
+      { platform: "facebook", url: "#" },
+      { platform: "linkedin", url: "#" },
+      { platform: "youtube", url: "#" },
+    ],
+    offices: [
+      {
+        name: "Headquarters",
+        address: "DTS Building, 287B Dien Bien Phu, Xuan Hoa Ward, Ho Chi Minh City, Vietnam",
+        phone: "+(84) 28 3933 6666",
+        fax: "+(84) 28 3932 2369",
+      },
+      {
+        name: "Hanoi Office",
+        address: "Sao Bac Building, 04 Da Tuong, Cua Nam Ward, Hanoi, Vietnam",
+        phone: "+(84) 24 3942 6568",
+        fax: "+(84) 24 3942 6566",
+      },
+      {
+        name: "Da Nang Office",
+        address: "Danabook Building, Room 6.4.5, 6th Floor, 76 Bach Dang, Hai Chau Ward, Da Nang, Vietnam",
+        phone: "+(84) 236 381 2936",
+      },
+    ],
+  },
+};
+
+export async function getFooterData(lang: string): Promise<FooterData> {
+  const fb = footerFallback[lang] || footerFallback.vi;
+  try {
+    const data = await client.fetch<FooterData | null>(FOOTER_QUERY, { lang });
+    if (data?.hotline) {
+      return {
+        ...fb,
+        ...data,
+        socialLinks: data.socialLinks ?? fb.socialLinks,
+        offices: data.offices ?? fb.offices,
+      };
+    }
+  } catch {}
+  return fb;
+}

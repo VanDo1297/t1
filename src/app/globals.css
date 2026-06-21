@@ -241,3 +241,292 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #2563eb;
 }
+
+/* ═══════════════════════════════════════════════════════
+   WAVE BACKGROUNDS — animated ripple/wave section bgs
+   ═══════════════════════════════════════════════════════ */
+
+/* Ensure content sits above wave pseudo-elements */
+.wave-bg-1 > *,
+.wave-bg-2 > *,
+.wave-bg-3 > *,
+.wave-bg-4 > *,
+.wave-bg-5 > *,
+.wave-bg-6 > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Wave Style 1: Morphing blob */
+.wave-bg-1 {
+  position: relative;
+  overflow: hidden;
+}
+.wave-bg-1::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: #64dcdc;
+  opacity: 0.15;
+  border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+  animation: blob-morph-1 12s ease-in-out infinite;
+  pointer-events: none;
+}
+.wave-bg-1::after {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: #64dcdc;
+  opacity: 0.1;
+  border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+  animation: blob-morph-1 15s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+@keyframes blob-morph-1 {
+  0% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; transform: translate(0, 0) rotate(0deg); }
+  33% { border-radius: 60% 40% 30% 70% / 40% 60% 40% 60%; transform: translate(30px, -30px) rotate(60deg); }
+  66% { border-radius: 30% 70% 70% 30% / 50% 40% 60% 50%; transform: translate(-20px, 20px) rotate(120deg); }
+  100% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Wave Style 2: Double wave bands */
+.wave-bg-2 {
+  position: relative;
+  overflow: hidden;
+}
+.wave-bg-2::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: 200px;
+  background: #64dcdc;
+  opacity: 0.08;
+  border-radius: 100% 100% 0 0;
+  animation: wave-slide-2a 8s ease-in-out infinite;
+  pointer-events: none;
+}
+.wave-bg-2::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: -15%;
+  width: 130%;
+  height: 180px;
+  background: #64dcdc;
+  opacity: 0.12;
+  border-radius: 100% 100% 0 0;
+  animation: wave-slide-2b 10s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes wave-slide-2a {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(40px) scaleY(1.3); }
+}
+@keyframes wave-slide-2b {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(-50px) scaleY(0.8); }
+}
+
+/* Wave Style 3: Pulsing rings */
+.wave-bg-3 {
+  position: relative;
+  overflow: hidden;
+}
+.wave-bg-3::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  margin: -150px 0 0 -150px;
+  border: 3px solid #64dcdc;
+  border-radius: 50%;
+  opacity: 0;
+  animation: ring-pulse-3 4s ease-out infinite;
+  pointer-events: none;
+}
+.wave-bg-3::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  margin: -150px 0 0 -150px;
+  border: 3px solid #64dcdc;
+  border-radius: 50%;
+  opacity: 0;
+  animation: ring-pulse-3 4s ease-out 2s infinite;
+  pointer-events: none;
+}
+@keyframes ring-pulse-3 {
+  0% { transform: scale(0.3); opacity: 0.4; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* Wave Style 4: Floating circles */
+.wave-bg-4 {
+  position: relative;
+  overflow: hidden;
+}
+.wave-bg-4::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 200px;
+  height: 200px;
+  background: #64dcdc;
+  opacity: 0.12;
+  border-radius: 50%;
+  animation: float-circle-4a 10s ease-in-out infinite;
+  pointer-events: none;
+}
+.wave-bg-4::after {
+  content: "";
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: #64dcdc;
+  opacity: 0.1;
+  border-radius: 50%;
+  animation: float-circle-4b 14s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes float-circle-4a {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(100px, 50px); }
+  50% { transform: translate(200px, -30px); }
+  75% { transform: translate(80px, -60px); }
+}
+@keyframes float-circle-4b {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-80px, -40px); }
+  50% { transform: translate(-150px, 30px); }
+  75% { transform: translate(-50px, 60px); }
+}
+
+/* Wave Style 5: Gradient sweep */
+.wave-bg-5 {
+  position: relative;
+  overflow: hidden;
+}
+.wave-bg-5::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, #64dcdc 60deg, transparent 120deg, transparent 360deg);
+  opacity: 0.08;
+  animation: sweep-rotate-5 20s linear infinite;
+  pointer-events: none;
+}
+.wave-bg-5::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 180deg at 50% 50%, transparent 0deg, #64dcdc 40deg, transparent 80deg, transparent 360deg);
+  opacity: 0.06;
+  animation: sweep-rotate-5 28s linear infinite reverse;
+  pointer-events: none;
+}
+@keyframes sweep-rotate-5 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Wave Style 6: Moving mesh dots */
+.wave-bg-6 {
+  position: relative;
+  overflow: hidden;
+}
+.wave-bg-6::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background-image: radial-gradient(circle, #64dcdc 1.5px, transparent 1.5px);
+  background-size: 40px 40px;
+  opacity: 0.15;
+  animation: mesh-drift-6 12s linear infinite;
+  pointer-events: none;
+}
+@keyframes mesh-drift-6 {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   CARD CONTAINER BACKGROUNDS — highlight card groups
+   ═══════════════════════════════════════════════════════ */
+
+/* Card Container 1: Soft blue gradient with glass feel */
+.card-container-bg-1 {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(96, 165, 250, 0.1) 50%, rgba(37, 99, 235, 0.06) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 1.5rem;
+  padding: 2rem;
+}
+
+/* Card Container 2: Gradient border glow */
+.card-container-bg-2 {
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.06);
+}
+
+/* Card Container 3: Blue-to-purple subtle gradient */
+.card-container-bg-3 {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(139, 92, 246, 0.07) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 1.5rem;
+  padding: 2rem;
+}
+
+/* Card Container 4: Frosted glass on light bg */
+.card-container-bg-4 {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 99, 235, 0.06);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 2px 16px rgba(37, 99, 235, 0.04);
+}
+
+/* Card Container 5: Light surface with top accent line */
+.card-container-bg-5 {
+  background: linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%);
+  border: 1px solid rgba(37, 99, 235, 0.06);
+  border-top: 3px solid #2563eb;
+  border-radius: 1.5rem;
+  padding: 2rem;
+}
+
+/* Button gradient: primary blue → purple */
+.btn-gradient {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  color: #ffffff;
+  border: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.btn-gradient:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}

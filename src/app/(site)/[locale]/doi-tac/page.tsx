@@ -44,12 +44,13 @@ export default async function PartnersPage({
           <h1 className="font-heading text-3xl font-bold text-white sm:text-4xl md:text-5xl">
             {data.heroTitle}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
             {data.heroDescription}
           </p>
           <Link
             href={data.ctaButtonHref}
-            className="mt-8 inline-block rounded-full bg-[#4db6ac] px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#3da396]"
+            className="mt-8 inline-block rounded-xl px-10 py-4 text-base font-semibold text-white transition-opacity hover:opacity-90"
+            style={{ background: "linear-gradient(to right, #2563eb, #7c3aed)" }}
           >
             {data.ctaButtonLabel}
           </Link>
@@ -78,14 +79,14 @@ export default async function PartnersPage({
               return (
                 <div
                   key={partner.name}
-                  className="flex items-center justify-center rounded-lg border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+                  className="group flex items-center justify-center rounded-lg border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
                 >
                   <Image
                     src={logoUrl}
                     alt={partner.name}
                     width={160}
                     height={80}
-                    className="h-16 w-auto object-contain"
+                    className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
               );
@@ -116,14 +117,14 @@ export default async function PartnersPage({
               return (
                 <div
                   key={partner.name}
-                  className="flex items-center justify-center rounded-lg p-6 transition-shadow hover:shadow-md"
+                  className="group flex items-center justify-center rounded-lg p-6 transition-shadow hover:shadow-md"
                 >
                   <Image
                     src={logoUrl}
                     alt={partner.name}
                     width={160}
                     height={80}
-                    className="h-14 w-auto object-contain"
+                    className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
               );

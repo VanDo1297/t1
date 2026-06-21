@@ -18,7 +18,7 @@ export function GioiThieuSection({ data }: GioiThieuSectionProps) {
   const right = useScrollAnimation({ preset: "rtl", delay: 0.2 });
 
   return (
-    <section id="gioi-thieu" className="bg-white py-24 px-5 sm:px-8">
+    <section id="gioi-thieu" className="relative bg-white py-24 px-5 sm:px-8">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         {/* Left - Text */}
         <div>
@@ -39,7 +39,7 @@ export function GioiThieuSection({ data }: GioiThieuSectionProps) {
           <motion.p
             ref={left.ref}
             {...left.animationProps}
-            className="text-[18px] leading-[1.8] text-dark/60"
+            className="text-[18px] leading-[1.8] text-gray-500"
           >
             {data.description}
           </motion.p>
@@ -49,14 +49,18 @@ export function GioiThieuSection({ data }: GioiThieuSectionProps) {
         <motion.div
           ref={right.ref}
           {...right.animationProps}
-          className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl"
+          className="relative aspect-[4/3] w-full"
         >
+          {/* Glow behind image */}ßßß
+          <div className="pointer-events-none absolute -inset-50 rounded-full bg-[#64dcdc] opacity-[0.3] blur-[200px]" />
+          <div className="relative h-full w-full overflow-hidden rounded-2xl">
           <Image
             src={imageSrc}
             alt={data.title}
             fill
             className="object-cover"
           />
+          </div>
         </motion.div>
       </div>
     </section>

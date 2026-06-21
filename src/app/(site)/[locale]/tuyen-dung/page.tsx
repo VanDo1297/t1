@@ -28,7 +28,7 @@ export default async function CareersPage({
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-5xl px-5 pb-10 pt-24 text-center sm:px-8 md:pt-32">
-          <h1 className="text-3xl font-bold italic text-white sm:text-4xl md:text-5xl">
+          <h1 className="text-3xl font-bold italic text-[#1a1a1a] sm:text-4xl md:text-5xl">
             {data.heroTitle}
           </h1>
         </div>

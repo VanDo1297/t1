@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import {
   Award,
@@ -74,15 +75,15 @@ function StatCard({ stat, index, delay }: { stat: VeDtgStat; index: number; dela
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 transition-transform duration-300 group-hover:scale-125">
           <Icon className="h-5 w-5 text-[#2563eb] sm:h-6 sm:w-6" strokeWidth={1.5} />
-          <span className="text-[32px] font-semibold leading-none text-white sm:text-[40px] lg:text-[48px]">
+          <span className="text-[32px] font-semibold leading-none text-[#1a1a1a] sm:text-[40px] lg:text-[48px]">
             {isSpecial ? stat.specialValue : `${count}${stat.suffix}`}
           </span>
         </div>
       </div>
-      <p className="text-[16px] font-semibold uppercase tracking-[0.15em] text-white/80 sm:text-[18px]">
+      <p className="text-[16px] font-semibold uppercase tracking-[0.15em] text-gray-700 sm:text-[18px]">
         {stat.label}
       </p>
-      <p className="mt-2 max-w-[200px] text-[14px] leading-[1.5] text-white/50 sm:text-[16px]">
+      <p className="mt-2 max-w-[200px] text-[14px] leading-[1.5] text-gray-500 sm:text-[16px]">
         {stat.desc}
       </p>
     </div>
@@ -102,7 +103,7 @@ function RecognitionBar({ recognition, index, delay }: { recognition: VeDtgRecog
     <div ref={ref} className="space-y-2">
       <div className="flex items-center gap-3">
         <Icon className="h-5 w-5 shrink-0 text-[#2563eb] sm:h-6 sm:w-6" strokeWidth={1.5} />
-        <p className="text-[16px] font-semibold uppercase leading-[1.5] tracking-[0.04em] text-white/82 sm:text-[18px]">
+        <p className="text-[16px] font-semibold uppercase leading-[1.5] tracking-[0.04em] text-gray-600 sm:text-[18px]">
           {recognition.label}
         </p>
       </div>
@@ -110,7 +111,7 @@ function RecognitionBar({ recognition, index, delay }: { recognition: VeDtgRecog
         className="ml-7 h-[8px] rounded-r-full sm:ml-8 sm:h-[10px]"
         style={{ background: "linear-gradient(90deg, rgba(37,99,235,0.15) 0%, #2563eb 100%)" }}
         initial={{ width: 0 }}
-        animate={isInView ? { width: "100%" } : {}}
+        animate={isInView ? { width: "90%" } : {}}
         transition={{ duration: 0.75, delay, ease: "easeOut" }}
       />
     </div>
@@ -126,22 +127,14 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
   const recog = useScrollAnimation({ preset: "ttb", delay: 0.15 });
 
   return (
-    <section id="ve-dtg" className="relative overflow-hidden bg-primary-dark text-white pt-10">
-      {/* Animated background */}
-      <div className="pointer-events-none absolute inset-0 opacity-90">
-        <div className="ai-world-bg absolute -inset-[12%]" />
-        <div className="ai-world-grid absolute inset-0 opacity-80" />
-        <div className="ai-world-scan absolute left-0 top-[8%] h-[84%] w-[58%] blur-[1px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_44%_46%,transparent_0%,rgba(9,22,42,0.2)_42%,rgba(9,22,42,0.88)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-primary-dark via-primary-dark/82 to-transparent" />
-      </div>
-      {/* Diagonal stripes */}
-      <div className="absolute top-0 right-0 h-[52%] w-[45%] overflow-hidden opacity-[0.16]">
-        <div className="absolute inset-0" style={{ backgroundImage: "repeating-linear-gradient(-45deg, #2563eb 0px, #2563eb 1px, transparent 1px, transparent 9px)" }} />
-        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-primary-dark" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-transparent" />
-      </div>
-
+    <section id="ve-dtg" className="relative overflow-hidden bg-white text-[#1a1a1a] pt-10">
+      {/* Background image */}
+      <Image
+        src="/assets/bg/3.jpg"
+        alt=""
+        fill
+        className="object-cover opacity-50"
+      />
       <div className="relative z-10 w-full px-5 pt-10 pb-12 sm:px-8 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-24">
         {/* TOP: Heading + Stats */}
         <div className="mb-14 flex flex-col gap-10 lg:mb-16 lg:flex-row lg:items-start lg:gap-10">
@@ -149,15 +142,15 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
             <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.15em] text-[#2563eb]">
               {data.kicker}
             </span>
-            <h2 className="text-[40px] font-medium leading-[1.15] text-white">
+            <h2 className="text-[40px] font-medium leading-[1.15] text-[#1a1a1a]">
               {data.heading}
             </h2>
-            <p className="mt-3 max-w-[380px] text-[18px] leading-[1.6] text-white/55">
+            <p className="mt-3 max-w-[380px] text-[18px] leading-[1.6] text-gray-500">
               {data.subtitle}
             </p>
           </motion.div>
 
-          <motion.div ref={stats.ref} {...stats.animationProps} className="grid grid-cols-2 gap-6 sm:gap-8 lg:flex-1 lg:grid-cols-4 lg:pr-8">
+          <motion.div ref={stats.ref} {...stats.animationProps} className="rounded-2xl bg-white/30 backdrop-blur-sm p-6 grid grid-cols-2 gap-6 sm:gap-8 lg:flex-1 lg:grid-cols-4">
             {data.stats.map((stat, i) => (
               <StatCard key={i} stat={stat} index={i} delay={i * 0.15} />
             ))}
@@ -167,15 +160,15 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
         {/* BOTTOM: Commitment + Recognition */}
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-0">
           <motion.div ref={commit.ref} {...commit.animationProps} className="lg:w-[50%] lg:shrink-0">
-            <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.15em] text-white/50">
+            <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.15em] text-gray-500">
               {data.commitmentKicker}
             </span>
             <div className="flex items-start gap-6">
               <div className="flex-1">
-                <h3 className="text-[40px] font-medium leading-[1.25] text-white">
+                <h3 className="text-[40px] font-medium leading-[1.25] text-[#1a1a1a]">
                   {data.commitmentHeading}
                 </h3>
-                <p className="mt-3 max-w-[380px] text-[18px] leading-[1.6] text-white/50">
+                <p className="mt-3 max-w-[380px] text-[18px] leading-[1.6] text-gray-500">
                   {data.commitmentDesc}
                 </p>
               </div>
@@ -189,8 +182,8 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
             </div>
           </motion.div>
 
-          <motion.div ref={recog.ref} {...recog.animationProps} className="lg:flex-1 lg:pl-10 lg:pr-8">
-            <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.15em] text-white/50">
+          <motion.div ref={recog.ref} {...recog.animationProps} className="rounded-2xl bg-white/30 backdrop-blur-sm p-6 lg:flex-1 lg:ml-10">
+            <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.15em] text-gray-500">
               {data.recognitionKicker}
             </span>
             <div className="mt-8 space-y-12">

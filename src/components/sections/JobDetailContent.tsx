@@ -57,7 +57,7 @@ export function JobDetailContent({
 
       {/* Content */}
       <div className="bg-white p-5">
-        <div className="grid gap-10 lg:grid-cols-[1fr_280px]">
+        <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
           {/* Left */}
           <div className="space-y-10">
             {job.jobDescription && (
@@ -106,14 +106,14 @@ export function JobDetailContent({
             )}
 
             <div className="rounded-xl border border-gray-100 bg-[#f9fafb] p-6">
-              <h3 className="mb-4 text-[17px] font-semibold uppercase tracking-wider text-gray-400">
+              <h3 className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-gray-400">
                 {isVi ? "Liên hệ" : "Contact"}
               </h3>
               <div className="space-y-3">
                 {email && (
                   <a
                     href={`mailto:${email}`}
-                    className="flex items-center gap-2 text-[17px] text-primary hover:underline"
+                    className="flex items-center gap-2 text-[13px] text-primary hover:underline"
                   >
                     <Mail size={14} />
                     {email}
@@ -122,7 +122,7 @@ export function JobDetailContent({
                 {phone && (
                   <a
                     href={`tel:${phone.replace(/[^\d+]/g, "")}`}
-                    className="flex items-center gap-2 text-[17px] text-primary hover:underline"
+                    className="flex items-center gap-2 text-[13px] text-primary hover:underline"
                   >
                     <Phone size={14} />
                     {phone}
@@ -140,10 +140,10 @@ export function JobDetailContent({
 function SidebarCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-gray-100 bg-[#f9fafb] p-6">
-      <h3 className="mb-3 text-[17px] font-semibold uppercase tracking-wider text-gray-400">
+      <h3 className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-gray-400">
         {label}
       </h3>
-      <p className="text-[19px] font-semibold text-[#1a1a1a]">{value}</p>
+      <p className="text-[15px] font-semibold text-[#1a1a1a]">{value}</p>
     </div>
   );
 }

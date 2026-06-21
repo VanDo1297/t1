@@ -182,7 +182,7 @@ function GoalCard({
 
   return (
     <motion.div ref={ref} {...animationProps}>
-      <div className="group h-full overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-lg">
+      <div className="group h-full overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-2">
         <div className="relative h-48 overflow-hidden">
           <Image
             src={goal.image}
@@ -261,10 +261,10 @@ function SolutionCard({
       id={`solution-${slug}`}
     >
       <div
-        className={`group flex h-full flex-col rounded-2xl border p-6 shadow-sm transition-all ${
+        className={`group flex h-full flex-col rounded-2xl border p-6 shadow-sm transition-all duration-300 ${
           isActive
             ? "border-primary/40 bg-primary/4 shadow-lg ring-2 ring-primary/20"
-            : "border-gray-100 bg-white hover:border-primary/20 hover:shadow-lg"
+            : "border-gray-100 bg-white hover:border-primary/20 hover:shadow-lg hover:-translate-y-2"
         }`}
       >
         <div

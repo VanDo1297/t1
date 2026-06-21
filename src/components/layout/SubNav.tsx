@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 
 interface SubNavItem {
   label: string;
@@ -49,7 +48,7 @@ export function SubNav({ items, ctaLabel, ctaHref, locale }: SubNavProps) {
     <div
       className={`fixed left-0 right-0 top-0 z-40 backdrop-blur-xl transition-all duration-300 [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif] ${
         visible
-          ? "translate-y-0 opacity-100 bg-primary-dark/95"
+          ? "translate-y-0 opacity-100 bg-white/95 shadow-sm"
           : "-translate-y-full opacity-0 pointer-events-none"
       }`}
     >
@@ -64,10 +63,10 @@ export function SubNav({ items, ctaLabel, ctaHref, locale }: SubNavProps) {
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`whitespace-nowrap border-b-2 py-[16px] text-[15px] font-medium tracking-[0.15em] transition-colors hover:text-white ${
+                  className={`whitespace-nowrap border-b-2 py-[16px] text-[15px] font-medium tracking-[0.15em] transition-colors hover:text-[#1a1a1a] ${
                     isActive
-                      ? "border-[#2563eb] text-white"
-                      : "border-transparent text-white/55"
+                      ? "border-[#2563eb] text-[#1a1a1a]"
+                      : "border-transparent text-gray-400"
                   }`}
                 >
                   {item.label}
@@ -76,13 +75,6 @@ export function SubNav({ items, ctaLabel, ctaHref, locale }: SubNavProps) {
             })}
           </nav>
 
-          {/* CTA button */}
-          <Link
-            href={`/${locale}${ctaHref}`}
-            className="rounded-full bg-[#2563eb] px-7 py-2.5 text-[15px] font-semibold text-white transition hover:bg-[#1d4ed8]"
-          >
-            {ctaLabel}
-          </Link>
         </div>
       </div>
     </div>
