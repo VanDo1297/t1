@@ -11,11 +11,6 @@ export interface SolutionGoal {
   description: { vi: string; en: string };
 }
 
-export interface LoTrinhStep {
-  title: { vi: string; en: string };
-  description: { vi: string; en: string };
-}
-
 export interface SolutionCategory {
   slug: string;
   title: { vi: string; en: string };
@@ -24,10 +19,6 @@ export interface SolutionCategory {
   heroImage: string;
   children: SubSolution[];
   goals: SolutionGoal[];
-  loTrinh?: {
-    title: { vi: string; en: string };
-    steps: LoTrinhStep[];
-  };
 }
 
 export const solutionCategories: SolutionCategory[] = [
@@ -84,49 +75,6 @@ export const solutionCategories: SolutionCategory[] = [
         href: "bao-ve-du-lieu",
       },
     ],
-    loTrinh: {
-      title: {
-        vi: "Lộ trình triển khai 5 giai đoạn",
-        en: "5-Phase Deployment Roadmap",
-      },
-      steps: [
-        {
-          title: { vi: "KHẢO SÁT HIỆN TRẠNG", en: "SITE SURVEY" },
-          description: {
-            vi: "Đo không gian, ánh sáng, hạ tầng mạng & điện.",
-            en: "Measure space, lighting, network & electrical infrastructure.",
-          },
-        },
-        {
-          title: { vi: "THIẾT KẾ & MÔ PHỎNG", en: "DESIGN & SIMULATION" },
-          description: {
-            vi: "Bố cục pixel, tính toán khoảng nhìn và vật tư.",
-            en: "Pixel layout, viewing distance and material calculation.",
-          },
-        },
-        {
-          title: { vi: "CUNG CẤP & LẮP ĐẶT", en: "SUPPLY & INSTALLATION" },
-          description: {
-            vi: "Thi công chuẩn hàng, hiệu chỉnh màu và góc nhìn.",
-            en: "Precision mounting, color and viewing angle calibration.",
-          },
-        },
-        {
-          title: { vi: "TÍCH HỢP PHẦN MỀM", en: "SOFTWARE INTEGRATION" },
-          description: {
-            vi: "Kết nối CMS, KVM, SCADA theo yêu cầu.",
-            en: "Connect CMS, KVM, SCADA as required.",
-          },
-        },
-        {
-          title: { vi: "BÀN GIAO & VẬN HÀNH", en: "HANDOVER & OPERATION" },
-          description: {
-            vi: "Đào tạo, tài liệu và hỗ trợ bảo hành.",
-            en: "Training, documentation and warranty support.",
-          },
-        },
-      ],
-    },
     goals: [
       {
         image: "/assets/bg/1.jpg",

@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import type { SolutionCategory, SolutionGoal, LoTrinhStep } from "@/data/solutions";
+import type { SolutionCategory, SolutionGoal } from "@/data/solutions";
 
 const iconMap: Record<string, LucideIcon> = {
   Shield,
@@ -65,7 +65,7 @@ export function SolutionCategoryPage({
   return (
     <main className="pt-[80px]">
       {/* Hero */}
-      <section className="relative flex min-h-[520px] items-end overflow-hidden">
+      <section className="relative flex items-end overflow-hidden" style={{ minHeight: 460 }}>
         <div className="absolute inset-0">
           <Image
             src={category.heroImage}
@@ -74,30 +74,29 @@ export function SolutionCategoryPage({
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628]/90 via-[#0a1628]/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/60 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 pt-24 sm:px-8">
-          <h1 className="max-w-xl text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+        <div className="relative z-10 w-full px-5 pb-16 pt-24 sm:px-8">
+          <h1 className="font-bold" style={{ fontSize: 72, color: "#1a1a1a", margin: 0 }}>
             {category.title[locale as "vi" | "en"]}
           </h1>
-          <p className="mt-4 max-w-xl text-base text-white/70 sm:text-lg">
+          <p className="mt-4" style={{ fontSize: 22, color: "#555", maxWidth: 700 }}>
             {category.heroDescription[locale as "vi" | "en"]}
           </p>
           <Link
             href={`/${locale}/lien-he`}
-            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#4db6ac] px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#3da396]"
+            className="mt-8 inline-flex items-center gap-3 rounded-full px-8 py-4 font-semibold text-white transition-opacity hover:opacity-90"
+            style={{ background: "linear-gradient(to right, #2563eb, #7c3aed)", fontSize: 18 }}
           >
             {locale === "vi" ? "Tư vấn ngay" : "Get in touch"}
-            <ArrowRight size={16} />
+            <ArrowRight size={18} />
           </Link>
         </div>
       </section>
 
       {/* Solutions Grid */}
       <section className="bg-white px-5 py-20 sm:px-8">
-        <div className="mx-auto max-w-7xl">
+        <div>
           <SectionTitle locale={locale} />
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {category.children.map((item, i) => (
@@ -116,19 +115,12 @@ export function SolutionCategoryPage({
         </div>
       </section>
 
-      {/* Goals */}
+      {/* Goals + Lộ trình */}
       {category.goals.length > 0 && (
         <GoalsSection goals={category.goals} locale={locale as "vi" | "en"} />
       )}
 
-      {/* Lộ trình triển khai */}
-      {category.loTrinh && (
-        <LoTrinhSection
-          title={category.loTrinh.title[locale as "vi" | "en"]}
-          steps={category.loTrinh.steps}
-          locale={locale as "vi" | "en"}
-        />
-      )}
+      <LoTrinhSection locale={locale as "vi" | "en"} />
     </main>
   );
 }
@@ -156,11 +148,12 @@ function GoalsSection({
         <div className="absolute inset-0 bg-gradient-to-b from-[#e8f0f2] via-[#e8f0f2]/95 to-[#e8f0f2]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10">
         <motion.h2
           ref={titleRef}
           {...titleAnim}
-          className="text-center text-2xl font-bold uppercase tracking-wider text-[#1a1a1a] sm:text-3xl"
+          className="text-center font-bold uppercase tracking-wider"
+          style={{ fontSize: 42, color: "#1a1a1a" }}
         >
           {locale === "vi" ? "Mục tiêu giải pháp" : "Solution Goals"}
         </motion.h2>
@@ -200,11 +193,11 @@ function GoalCard({
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
-        <div className="p-5">
-          <h3 className="text-[15px] font-bold text-[#1a1a1a]">
+        <div className="p-6">
+          <h3 className="font-bold" style={{ fontSize: 20, color: "#1a1a1a" }}>
             {goal.title[locale]}
           </h3>
-          <p className="mt-2 text-[13px] leading-relaxed text-gray-500">
+          <p className="mt-2 leading-relaxed" style={{ fontSize: 16, color: "#555" }}>
             {goal.description[locale]}
           </p>
         </div>
@@ -213,51 +206,89 @@ function GoalCard({
   );
 }
 
-function LoTrinhSection({
-  title,
-  steps,
-  locale,
-}: {
-  title: string;
-  steps: LoTrinhStep[];
-  locale: "vi" | "en";
-}) {
-  const { ref: sectionRef, animationProps: sectionAnim } = useScrollAnimation({
-    preset: "btt",
+const loTrinhSteps = [
+  {
+    title: { vi: "KHẢO SÁT HIỆN TRẠNG", en: "SITE SURVEY" },
+    desc: { vi: "Đo không gian, ánh sáng, hạ tầng mạng & điện.", en: "Measure space, lighting, network & electrical infrastructure." },
+  },
+  {
+    title: { vi: "THIẾT KẾ & MÔ PHỎNG", en: "DESIGN & SIMULATION" },
+    desc: { vi: "Bố cục pixel, tính toán khoảng nhìn và vật tư.", en: "Pixel layout, viewing distance and material calculation." },
+  },
+  {
+    title: { vi: "CUNG CẤP & LẮP ĐẶT", en: "SUPPLY & INSTALLATION" },
+    desc: { vi: "Thi công chuẩn hàng, hiệu chỉnh màu và góc nhìn.", en: "Precision mounting, color and viewing angle calibration." },
+  },
+  {
+    title: { vi: "TÍCH HỢP PHẦN MỀM", en: "SOFTWARE INTEGRATION" },
+    desc: { vi: "Kết nối CMS, KVM, SCADA theo yêu cầu.", en: "Connect CMS, KVM, SCADA as required." },
+  },
+  {
+    title: { vi: "BÀN GIAO & VẬN HÀNH", en: "HANDOVER & OPERATION" },
+    desc: { vi: "Đào tạo, tài liệu và hỗ trợ bảo hành.", en: "Training, documentation and warranty support." },
+  },
+];
+
+function LoTrinhSection({ locale }: { locale: "vi" | "en" }) {
+  const { ref: titleRef, animationProps: titleAnim } = useScrollAnimation({
+    preset: "ttb",
   });
 
   return (
-    <section className="bg-[#f5f7fa] px-5 py-20 sm:px-8">
-      <div className="mx-auto max-w-7xl">
-        <motion.div ref={sectionRef} {...sectionAnim}>
-          <h2 className="mb-16 text-center text-[36px] font-bold italic leading-[1.2] text-[#0f1d3a] sm:text-[44px]">
-            {title}
-          </h2>
+    <section className="bg-white px-5 py-20 sm:px-8">
+      <div>
+        <motion.h2
+          ref={titleRef}
+          {...titleAnim}
+          className="mb-16 text-center font-medium leading-[1.2]"
+          style={{ fontSize: 42, color: "#1a1a1a" }}
+        >
+          {locale === "vi" ? "Lộ trình triển khai 5 giai đoạn" : "5-Phase Deployment Roadmap"}
+        </motion.h2>
 
-          <div className="relative flex flex-col items-stretch gap-10 md:flex-row md:gap-0">
-            {/* Connecting line */}
-            <div className="absolute left-[28px] top-[28px] hidden h-[2px] w-[calc(100%-56px)] bg-[#d1d5db] md:block" />
+        <div className="relative grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5 lg:gap-0">
+          {/* Connecting line */}
+          <div className="absolute left-[calc(10%)] top-[28px] hidden h-[2px] w-[calc(80%)] bg-[#d1d5db] lg:block" />
 
-            {steps.map((step, i) => (
-              <div
-                key={i}
-                className="relative flex flex-1 flex-col items-center text-center"
-              >
-                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-xl border-[2.5px] border-[#0f1d3a] bg-white text-[20px] font-bold text-[#0f1d3a]">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <h3 className="mt-5 text-[14px] font-bold tracking-[0.05em] text-[#0f1d3a]">
-                  {step.title[locale]}
-                </h3>
-                <p className="mt-2 max-w-[200px] text-[13px] leading-[1.6] text-gray-500">
-                  {step.description[locale]}
-                </p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+          {loTrinhSteps.map((step, i) => (
+            <LoTrinhStepCard key={i} step={step} index={i} locale={locale} />
+          ))}
+        </div>
       </div>
     </section>
+  );
+}
+
+function LoTrinhStepCard({
+  step,
+  index,
+  locale,
+}: {
+  step: (typeof loTrinhSteps)[number];
+  index: number;
+  locale: "vi" | "en";
+}) {
+  const { ref, animationProps } = useScrollAnimation({
+    preset: "btt",
+    delay: index * 0.15,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      {...animationProps}
+      className="relative flex flex-1 flex-col items-center text-center"
+    >
+      <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-xl border-[2.5px] border-[#0f1d3a] bg-white font-bold text-[#0f1d3a]" style={{ fontSize: 24 }}>
+        {String(index + 1).padStart(2, "0")}
+      </div>
+      <h3 className="mt-5 font-bold uppercase tracking-[0.05em] text-[#0f1d3a]" style={{ fontSize: 18 }}>
+        {step.title[locale]}
+      </h3>
+      <p className="mt-2 max-w-[240px] leading-[1.6]" style={{ fontSize: 16, color: "#555" }}>
+        {step.desc[locale]}
+      </p>
+    </motion.div>
   );
 }
 
@@ -268,7 +299,8 @@ function SectionTitle({ locale }: { locale: string }) {
     <motion.h2
       ref={ref}
       {...animationProps}
-      className="text-center text-2xl font-bold text-primary sm:text-3xl"
+      className="text-center font-bold"
+      style={{ fontSize: 42, color: "#2563eb" }}
     >
       {locale === "vi" ? "Giải pháp" : "Solutions"}
     </motion.h2>
@@ -317,33 +349,36 @@ function SolutionCard({
       {...animationProps}
       id={`solution-${slug}`}
     >
-      <div
-        className={`group flex h-full flex-col rounded-2xl border p-6 shadow-sm transition-all duration-300 ${
-          isActive
-            ? "border-primary/40 bg-primary/4 shadow-lg ring-2 ring-primary/20"
-            : "border-gray-100 bg-white hover:border-primary/20 hover:shadow-lg hover:-translate-y-2"
-        }`}
-      >
+      <Link href={href} className="block h-full">
         <div
-          className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl transition-colors ${
+          className={`group flex h-full flex-col rounded-2xl border p-8 shadow-sm transition-all duration-300 ${
             isActive
-              ? "bg-primary text-white"
-              : "bg-primary/8 text-primary group-hover:bg-primary group-hover:text-white"
+              ? "border-primary/40 bg-primary/4 shadow-lg ring-2 ring-primary/20"
+              : "border-gray-100 bg-white hover:border-primary/20 hover:shadow-lg hover:-translate-y-2"
           }`}
         >
-          <Icon size={24} />
+          <div
+            className={`mb-5 flex h-14 w-14 items-center justify-center rounded-xl transition-colors ${
+              isActive
+                ? "bg-primary text-white"
+                : "bg-primary/8 text-primary group-hover:bg-primary group-hover:text-white"
+            }`}
+          >
+            <Icon size={28} />
+          </div>
+          <h3
+            className={`font-bold transition-colors ${
+              isActive ? "text-primary" : "text-[#1a1a1a] group-hover:text-primary"
+            }`}
+            style={{ fontSize: 22 }}
+          >
+            {title}
+          </h3>
+          <p className="mt-3 flex-1 leading-relaxed" style={{ fontSize: 16, color: "#555" }}>
+            {description}
+          </p>
         </div>
-        <h3
-          className={`text-[16px] font-semibold transition-colors ${
-            isActive ? "text-primary" : "text-[#1a1a1a] group-hover:text-primary"
-          }`}
-        >
-          {title}
-        </h3>
-        <p className="mt-2 flex-1 text-[13px] leading-relaxed text-gray-500">
-          {description}
-        </p>
-      </div>
+      </Link>
     </motion.div>
   );
 }

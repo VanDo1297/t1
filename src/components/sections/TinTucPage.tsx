@@ -15,13 +15,15 @@ interface TinTucPageProps {
   initialCategory: string;
 }
 
+const MONTHS_VI = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+const MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 function formatDate(dateStr: string, locale: string) {
   const d = new Date(dateStr);
-  return d.toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
+  const day = d.getUTCDate().toString().padStart(2, "0");
+  const month = locale === "vi" ? MONTHS_VI[d.getUTCMonth()] : MONTHS_EN[d.getUTCMonth()];
+  const year = d.getUTCFullYear();
+  return locale === "vi" ? `${day}/${month}/${year}` : `${month} ${day}, ${year}`;
 }
 
 function LatestArticle({

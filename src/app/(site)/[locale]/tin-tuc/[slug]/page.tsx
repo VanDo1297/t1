@@ -43,17 +43,20 @@ export default async function NewsDetailPage({
   const categoryLabel =
     pageData.categories.find((c) => c.value === article.category)?.label || "";
 
-  const publishedDate = new Date(article.publishedAt).toLocaleDateString(
-    locale === "vi" ? "vi-VN" : "en-US",
-    { day: "2-digit", month: "long", year: "numeric" },
-  );
+  const d = new Date(article.publishedAt);
+  const day = d.getUTCDate().toString().padStart(2, "0");
+  const monthsVi = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+  const monthsEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const publishedDate = locale === "vi"
+    ? `${day}/${monthsVi[d.getUTCMonth()]}/${d.getUTCFullYear()}`
+    : `${monthsEn[d.getUTCMonth()]} ${day}, ${d.getUTCFullYear()}`;
 
   const hasBody = article.body && article.body.length > 0;
 
   return (
     <main className="pt-[80px] [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif]">
       {/* Article content */}
-      <section className="bg-white px-5 pb-16 pt-10 sm:px-8">
+      <section className="bg-white px-5 pb-16 pt-10 text-[#1a1a1a] sm:px-8">
         <article className="mx-auto max-w-4xl">
           {/* Breadcrumb */}
           <div className="mb-8 flex items-center gap-2 text-[12px] font-medium tracking-wider text-gray-400">
@@ -77,7 +80,7 @@ export default async function NewsDetailPage({
           </div>
 
           {/* Title */}
-          <h1 className="mb-4 text-[26px] font-bold leading-[1.3] text-[#1a2b4a] sm:text-[32px] lg:text-[36px]">
+          <h1 className="mb-4 text-[26px] font-bold leading-[1.3] text-[#1a1a1a] sm:text-[32px] lg:text-[36px]">
             {article.title}
           </h1>
 
@@ -86,7 +89,7 @@ export default async function NewsDetailPage({
 
           {/* Body from CMS */}
           {hasBody ? (
-            <div className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-[#1a2b4a] prose-p:text-[15px] prose-p:leading-relaxed prose-p:text-gray-600 prose-a:text-primary prose-img:rounded-xl">
+            <div className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-[#1a1a1a] prose-p:text-[15px] prose-p:leading-relaxed prose-p:text-gray-600 prose-a:text-primary prose-img:rounded-xl">
               <PortableText
                 value={article.body as never}
                 components={portableTextComponents}
@@ -137,7 +140,7 @@ export default async function NewsDetailPage({
 
           {/* Contact section */}
           <div className="mt-12 border-t border-gray-100 pt-8">
-            <p className="mb-4 text-[15px] font-bold text-[#1a2b4a]">
+            <p className="mb-4 text-[15px] font-bold text-[#1a1a1a]">
               {locale === "vi"
                 ? "Thông tin liên hệ: DTG CORP"
                 : "Contact: DTG CORP"}

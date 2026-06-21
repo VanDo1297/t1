@@ -56,14 +56,14 @@ function StatCard({ stat, index, delay }: { stat: VeDtgStat; index: number; dela
   const count = useCountUp(stat.number, isInView, 1.5, delay);
 
   const radius = 58;
-  const strokeW = 2.5;
+  const strokeW = 5;
   const circumference = 2 * Math.PI * radius;
 
   return (
     <div ref={ref} className="group flex flex-col items-center text-center cursor-default">
-      <div className="relative mb-4 h-32 w-32 sm:h-40 sm:w-40 lg:h-44 lg:w-44">
+      <div className="relative mb-4" style={{ width: "clamp(144px, 10.5vw, 225px)", height: "clamp(144px, 10.5vw, 225px)" }}>
         <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 130 130">
-          <circle cx="65" cy="65" r={radius} fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth={strokeW} className="transition-all duration-300 group-hover:[stroke:rgba(37,99,235,0.3)]" />
+          <circle cx="65" cy="65" r={radius} fill="none" stroke="rgba(37,99,235,0.12)" strokeWidth={strokeW} className="transition-all duration-300 group-hover:[stroke:rgba(37,99,235,0.3)]" />
           <motion.circle
             cx="65" cy="65" r={radius} fill="none" stroke="#2563eb" strokeWidth={strokeW} strokeLinecap="round"
             strokeDasharray={circumference}
@@ -74,16 +74,16 @@ function StatCard({ stat, index, delay }: { stat: VeDtgStat; index: number; dela
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 transition-transform duration-300 group-hover:scale-125">
-          <Icon className="h-5 w-5 text-[#2563eb] sm:h-6 sm:w-6" strokeWidth={1.5} />
-          <span className="text-[32px] font-semibold leading-none text-[#1a1a1a] sm:text-[40px] lg:text-[48px]">
+          <Icon className="text-[#2563eb]" style={{ width: "clamp(20px, 1.35vw, 27px)", height: "clamp(20px, 1.35vw, 27px)" }} strokeWidth={1.5} />
+          <span className="font-semibold leading-none text-[#1a1a1a]" style={{ fontSize: "clamp(32px, 2.6vw, 48px)" }}>
             {isSpecial ? stat.specialValue : `${count}${stat.suffix}`}
           </span>
         </div>
       </div>
-      <p className="text-[16px] font-semibold uppercase tracking-[0.15em] text-gray-700 sm:text-[18px]">
+      <p className="font-semibold uppercase tracking-[0.15em] text-gray-700" style={{ fontSize: "clamp(16px, 0.9vw, 21px)" }}>
         {stat.label}
       </p>
-      <p className="mt-2 max-w-[200px] text-[14px] leading-[1.5] text-gray-500 sm:text-[16px]">
+      <p className="mt-2 leading-[1.5] text-gray-500" style={{ fontSize: "clamp(14px, 0.75vw, 18px)", maxWidth: "clamp(200px, 11vw, 260px)" }}>
         {stat.desc}
       </p>
     </div>
@@ -102,13 +102,13 @@ function RecognitionBar({ recognition, index, delay }: { recognition: VeDtgRecog
   return (
     <div ref={ref} className="space-y-2">
       <div className="flex items-center gap-3">
-        <Icon className="h-5 w-5 shrink-0 text-[#2563eb] sm:h-6 sm:w-6" strokeWidth={1.5} />
-        <p className="text-[16px] font-semibold uppercase leading-[1.5] tracking-[0.04em] text-gray-600 sm:text-[18px]">
+        <Icon className="shrink-0 text-[#2563eb]" style={{ width: "clamp(20px, 1.35vw, 27px)", height: "clamp(20px, 1.35vw, 27px)" }} strokeWidth={1.5} />
+        <p className="font-semibold uppercase leading-[1.5] tracking-[0.04em] text-gray-600" style={{ fontSize: "clamp(16px, 0.9vw, 21px)" }}>
           {recognition.label}
         </p>
       </div>
       <motion.div
-        className="ml-7 h-[8px] rounded-r-full sm:ml-8 sm:h-[10px]"
+        className="ml-7 h-[32px] rounded-r-full sm:ml-8 sm:h-[40px]"
         style={{ background: "linear-gradient(90deg, rgba(37,99,235,0.15) 0%, #2563eb 100%)" }}
         initial={{ width: 0 }}
         animate={isInView ? { width: "90%" } : {}}
@@ -138,19 +138,19 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
       <div className="relative z-10 w-full px-5 pt-10 pb-12 sm:px-8 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-24">
         {/* TOP: Heading + Stats */}
         <div className="mb-14 flex flex-col gap-10 lg:mb-16 lg:flex-row lg:items-start lg:gap-10">
-          <motion.div ref={header.ref} {...header.animationProps} className="lg:w-[45%] lg:shrink-0">
-            <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.15em] text-[#2563eb]">
+          <motion.div ref={header.ref} {...header.animationProps} className="lg:w-[35%] lg:shrink-0">
+            <span className="mb-3 block font-bold uppercase tracking-[0.15em] text-[#2563eb]" style={{ fontSize: "clamp(15px, 0.9vw, 18px)" }}>
               {data.kicker}
             </span>
-            <h2 className="text-[40px] font-medium leading-[1.15] text-[#1a1a1a]">
+            <h2 className="font-medium leading-[1.15] text-[#1a1a1a]" style={{ fontSize: "clamp(40px, 3vw, 60px)" }}>
               {data.heading}
             </h2>
-            <p className="mt-3 max-w-[380px] text-[18px] leading-[1.6] text-gray-500">
+            <p className="mt-3 leading-[1.6] text-gray-500" style={{ fontSize: "clamp(18px, 1.1vw, 27px)", maxWidth: "clamp(380px, 22vw, 525px)" }}>
               {data.subtitle}
             </p>
           </motion.div>
 
-          <motion.div ref={stats.ref} {...stats.animationProps} className="rounded-2xl bg-white/30 backdrop-blur-sm p-6 grid grid-cols-2 gap-6 sm:gap-8 lg:flex-1 lg:grid-cols-4">
+          <motion.div ref={stats.ref} {...stats.animationProps} className="rounded-2xl bg-white/30 backdrop-blur-sm p-6 grid grid-cols-2 gap-4 sm:gap-6 lg:flex-1 lg:grid-cols-4">
             {data.stats.map((stat, i) => (
               <StatCard key={i} stat={stat} index={i} delay={i * 0.15} />
             ))}
@@ -160,30 +160,19 @@ export function VeDtgSection({ data }: { data: VeDtgData }) {
         {/* BOTTOM: Commitment + Recognition */}
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-0">
           <motion.div ref={commit.ref} {...commit.animationProps} className="lg:w-[50%] lg:shrink-0">
-            <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.15em] text-gray-500">
+            <span className="mb-3 block font-bold uppercase tracking-[0.15em] text-gray-500" style={{ fontSize: "clamp(15px, 0.9vw, 18px)" }}>
               {data.commitmentKicker}
             </span>
-            <div className="flex items-start gap-6">
-              <div className="flex-1">
-                <h3 className="text-[40px] font-medium leading-[1.25] text-[#1a1a1a]">
-                  {data.commitmentHeading}
-                </h3>
-                <p className="mt-3 max-w-[380px] text-[18px] leading-[1.6] text-gray-500">
-                  {data.commitmentDesc}
-                </p>
-              </div>
-              <div className="hidden shrink-0 sm:block">
-                <div className="relative flex h-32 w-32 items-center justify-center lg:h-36 lg:w-36">
-                  <div className="absolute inset-0 rounded-xl bg-[#2563eb]/5" />
-                  <div className="absolute inset-2 rounded-xl border border-[#2563eb]/15" />
-                  <ShieldCheck className="h-12 w-12 text-[#2563eb]/60 lg:h-14 lg:w-14" strokeWidth={1} />
-                </div>
-              </div>
-            </div>
+            <h3 className="font-medium leading-[1.25] text-[#1a1a1a]" style={{ fontSize: "clamp(40px, 3vw, 60px)" }}>
+              {data.commitmentHeading}
+            </h3>
+            <p className="mt-3 leading-[1.6] text-gray-500" style={{ fontSize: "clamp(18px, 1.1vw, 27px)", maxWidth: "clamp(380px, 22vw, 525px)" }}>
+              {data.commitmentDesc}
+            </p>
           </motion.div>
 
           <motion.div ref={recog.ref} {...recog.animationProps} className="rounded-2xl bg-white/30 backdrop-blur-sm p-6 lg:flex-1 lg:ml-10">
-            <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.15em] text-gray-500">
+            <span className="mb-3 block font-bold uppercase tracking-[0.15em] text-gray-500" style={{ fontSize: "clamp(15px, 0.9vw, 18px)" }}>
               {data.recognitionKicker}
             </span>
             <div className="mt-8 space-y-12">

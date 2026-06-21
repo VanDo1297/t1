@@ -407,51 +407,66 @@ const giaiPhapFallback: Record<string, GiaiPhapData> = {
     viewAllLabel: "Xem tất cả",
     tabs: [
       {
-        label: "Bảo mật mạng hỗ trợ bởi AI",
-        title: "Bảo mật mạng hỗ trợ bởi AI",
-        description: "Bảo vệ mọi người và mọi thứ khỏi các mối đe dọa mới nhất ở mọi địa điểm. Được xây dựng cho Zero Trust và hỗ trợ bởi AI, nền tảng giám sát, phân tích và ngăn chặn các mối đe dọa tinh vi trong thời gian thực.",
-        ctaLabel: "Khám phá Bảo mật mạng",
-        ctaHref: "/giai-phap-dich-vu/an-ninh-mang",
-        stats: [
-          { value: "95%", label: "TRONG FORTUNE 100" },
-          { value: "70 K", label: "KHÁCH HÀNG" },
-        ],
+        label: "Giải pháp Công nghệ",
+        title: "Technology Solutions",
+        description: "Cung cấp hạ tầng và giải pháp công nghệ hiện đại, đáp ứng nhu cầu vận hành và phát triển của doanh nghiệp.",
+        ctaLabel: "Khám phá Giải pháp Công nghệ",
+        ctaHref: "/giai-phap-dich-vu/cong-nghe",
+        stats: [],
         awards: [
-          { source: "Gartner", title: "2025 Gartner® Magic Quadrant™ for Hybrid Mesh Firewall" },
-          { source: "Gartner", title: "2025 Gartner® Magic Quadrant™ for SASE Platforms" },
-          { source: "Forrester", title: "The Forrester Wave™ Enterprise Firewall Solutions" },
-          { source: "Gartner", title: "Gartner® Magic Quadrant™ for Single-Vendor SASE" },
-          { source: "Gartner", title: "Gartner® Magic Quadrant™ for Network Firewalls" },
-          { source: "Gartner", title: "Gartner® Magic Quadrant™ for SD-WAN" },
+          { source: "Cyber Security", title: "Tập trung vào bảo mật doanh nghiệp với các giải pháp như NGFW, WAF, Zero Trust, và quản lý danh tính." },
+          { source: "Data Center", title: "Cung cấp hạ tầng ảo hóa, máy chủ, lưu trữ doanh nghiệp và các nền tảng Hybrid Cloud hiện đại." },
+          { source: "Network", title: "Giải pháp mạng doanh nghiệp toàn diện bao gồm Switching, Wireless, SD-WAN và các hệ thống hội họp trực tuyến." },
+          { source: "Data Protection", title: "Đảm bảo tính liên tục của kinh doanh thông qua Backup, Disaster Recovery (DR) và phòng chống Ransomware." },
+          { source: "Advanced Technology", title: "AI, IoT, Big Data, Blockchain, AR/VR. Ứng dụng công nghệ tiên tiến." },
         ],
       },
       {
-        label: "Vận hành bảo mật hỗ trợ bởi AI",
-        title: "Vận hành bảo mật hỗ trợ bởi AI",
-        description: "Tăng tốc phát hiện và phản hồi mối đe dọa với nền tảng SOC hiện đại, được hỗ trợ bởi AI để bảo vệ toàn diện.",
-        ctaLabel: "Khám phá Vận hành bảo mật",
+        label: "Dịch vụ An ninh mạng",
+        title: "Cyber Security Services",
+        description: "Bảo vệ toàn diện hệ thống và dữ liệu trước mọi mối đe dọa an ninh mạng.",
+        ctaLabel: "Khám phá Dịch vụ An ninh mạng",
         ctaHref: "/giai-phap-dich-vu/an-ninh-mang",
-        stats: [
-          { value: "8x", label: "PHÁT HIỆN NHANH HƠN" },
-          { value: "98%", label: "ĐỘ CHÍNH XÁC" },
-        ],
+        stats: [],
         awards: [
-          { source: "Gartner", title: "Gartner® Magic Quadrant™ for SIEM" },
-          { source: "Forrester", title: "The Forrester Wave™ XDR Platforms" },
+          { source: "Penetration Testing", title: "Đánh giá thực tế khả năng chống chịu của hệ thống." },
+          { source: "Security Assessment", title: "Rà soát và đánh giá thể trạng bảo mật." },
+          { source: "SOC Services", title: "Giám sát liên tục 24/7 để phát hiện và ngăn chặn các mối đe dọa sớm." },
+          { source: "Vulnerability Assessment", title: "Xác định các điểm yếu kỹ thuật trên hệ thống trước khi chúng bị khai thác." },
+          { source: "Managed Security", title: "Quản lý và vận hành chuyên nghiệp hệ thống bảo mật cho doanh nghiệp." },
+          { source: "Tư vấn & Xây dựng cấp độ", title: "Tư vấn chuẩn hóa và xây dựng hệ thống bảo mật theo cấp độ." },
+          { source: "Red Team", title: "Diễn tập thực chiến để đánh giá khả năng ứng phó của tổ chức." },
+          { source: "Incident Response", title: "Hỗ trợ xử lý nhanh sự cố nhằm giảm thiểu thiệt hại an ninh mạng." },
         ],
       },
       {
-        label: "Bảo mật đám mây thời gian thực",
-        title: "Bảo mật đám mây thời gian thực",
-        description: "Bảo vệ ứng dụng đám mây và dữ liệu với khả năng giám sát liên tục và phản hồi tự động.",
-        ctaLabel: "Khám phá Bảo mật đám mây",
-        ctaHref: "/giai-phap-dich-vu/dam-may",
-        stats: [
-          { value: "100%", label: "KHẢ NĂNG HIỂN THỊ" },
-          { value: "3M+", label: "TÀI SẢN ĐƯỢC BẢO VỆ" },
-        ],
+        label: "Giải pháp AI",
+        title: "AI Solutions",
+        description: "Ứng dụng AI để tối ưu quy trình, nâng cao hiệu quả và mở ra giá trị mới cho doanh nghiệp.",
+        ctaLabel: "Khám phá Giải pháp AI",
+        ctaHref: "/giai-phap-dich-vu/ai",
+        stats: [],
         awards: [
-          { source: "Gartner", title: "Gartner® Magic Quadrant™ for CNAPP" },
+          { source: "Dsoha AI", title: "Giải pháp số hóa tài liệu và xây dựng kho dữ liệu số thông minh." },
+          { source: "AI Agent", title: "Trợ lý AI cá nhân hóa, tự động hóa tác vụ và hỗ trợ ra quyết định." },
+          { source: "AI Kiosk", title: "Trạm dịch vụ thông minh, hỗ trợ khách hàng tự động và nhanh chóng." },
+          { source: "Alogolf AI Platform", title: "Nền tảng AI mở, linh hoạt và dễ dàng tích hợp." },
+          { source: "AI OCR", title: "Nhận dạng và trích xuất thông tin từ tài liệu, hình ảnh thông minh." },
+          { source: "AI Smart Assistant", title: "Giải pháp trợ lý AI thông minh, hỗ trợ người dùng trong mọi tác vụ." },
+        ],
+      },
+      {
+        label: "Dịch vụ khác",
+        title: "Dịch vụ khác",
+        description: "Các dịch vụ hỗ trợ toàn diện, đồng hành cùng doanh nghiệp trong suốt quá trình vận hành.",
+        ctaLabel: "Liên hệ tư vấn",
+        ctaHref: "/lien-he",
+        stats: [],
+        awards: [
+          { source: "Tư vấn & triển khai giải pháp", title: "Tư vấn chiến lược, thiết kế và triển khai các giải pháp công nghệ phù hợp với nhu cầu và mục tiêu của doanh nghiệp." },
+          { source: "Bảo hành bảo trì", title: "Đảm bảo hệ thống vận hành ổn định, với đội ngũ kỹ thuật chuyên nghiệp." },
+          { source: "Ứng cứu sự cố", title: "Hỗ trợ khẩn cấp khi xảy ra sự cố IT, giảm thiểu gián đoạn và rủi ro cho doanh nghiệp." },
+          { source: "Cho thuê thiết bị", title: "Cung cấp thiết bị công nghệ chính hãng với chi phí tối ưu và linh hoạt theo nhu cầu." },
         ],
       },
     ],
@@ -460,46 +475,66 @@ const giaiPhapFallback: Record<string, GiaiPhapData> = {
     viewAllLabel: "View all",
     tabs: [
       {
-        label: "AI-Powered Network Security",
-        title: "AI-Powered Network Security",
-        description: "Protect everyone and everything from the latest threats at every location. Built for Zero Trust and powered by AI.",
-        ctaLabel: "Explore Network Security",
-        ctaHref: "/solutions/cybersecurity",
-        stats: [
-          { value: "95%", label: "OF FORTUNE 100" },
-          { value: "70 K", label: "CUSTOMERS" },
-        ],
+        label: "Technology Solutions",
+        title: "Technology Solutions",
+        description: "Providing modern infrastructure and technology solutions to meet enterprise operational and growth needs.",
+        ctaLabel: "Explore Technology Solutions",
+        ctaHref: "/solutions/technology",
+        stats: [],
         awards: [
-          { source: "Gartner", title: "2025 Gartner® Magic Quadrant™ for Hybrid Mesh Firewall" },
-          { source: "Gartner", title: "2025 Gartner® Magic Quadrant™ for SASE Platforms" },
+          { source: "Cyber Security", title: "Enterprise security with NGFW, WAF, Zero Trust, and identity management." },
+          { source: "Data Center", title: "Virtualization infrastructure, enterprise servers, storage and modern Hybrid Cloud platforms." },
+          { source: "Network", title: "Comprehensive enterprise networking including Switching, Wireless, SD-WAN and video conferencing." },
+          { source: "Data Protection", title: "Business continuity through Backup, Disaster Recovery (DR) and Ransomware protection." },
+          { source: "Advanced Technology", title: "AI, IoT, Big Data, Blockchain, AR/VR. Cutting-edge technology applications." },
         ],
       },
       {
-        label: "AI-Powered Security Operations",
-        title: "AI-Powered Security Operations",
-        description: "Accelerate threat detection and response with a modern SOC platform powered by AI.",
-        ctaLabel: "Explore Security Operations",
+        label: "Cyber Security Services",
+        title: "Cyber Security Services",
+        description: "Comprehensive protection for systems and data against all cybersecurity threats.",
+        ctaLabel: "Explore Security Services",
         ctaHref: "/solutions/cybersecurity",
-        stats: [
-          { value: "8x", label: "FASTER DETECTION" },
-          { value: "98%", label: "ACCURACY" },
-        ],
+        stats: [],
         awards: [
-          { source: "Gartner", title: "Gartner® Magic Quadrant™ for SIEM" },
+          { source: "Penetration Testing", title: "Real-world assessment of system resilience against attacks." },
+          { source: "Security Assessment", title: "Review and assess overall security posture." },
+          { source: "SOC Services", title: "24/7 continuous monitoring to detect and prevent threats early." },
+          { source: "Vulnerability Assessment", title: "Identify technical weaknesses before they are exploited." },
+          { source: "Managed Security", title: "Professional management and operation of enterprise security systems." },
+          { source: "Consulting & Compliance", title: "Standardize and build security systems by compliance levels." },
+          { source: "Red Team", title: "Real-world exercises to assess organizational response capabilities." },
+          { source: "Incident Response", title: "Rapid incident handling to minimize cybersecurity damage." },
         ],
       },
       {
-        label: "Real-Time Cloud Security",
-        title: "Real-Time Cloud Security",
-        description: "Protect cloud applications and data with continuous monitoring and automated response.",
-        ctaLabel: "Explore Cloud Security",
-        ctaHref: "/solutions/cloud",
-        stats: [
-          { value: "100%", label: "VISIBILITY" },
-          { value: "3M+", label: "ASSETS PROTECTED" },
-        ],
+        label: "AI Solutions",
+        title: "AI Solutions",
+        description: "Applying AI to optimize processes, enhance efficiency and unlock new value for enterprises.",
+        ctaLabel: "Explore AI Solutions",
+        ctaHref: "/solutions/ai",
+        stats: [],
         awards: [
-          { source: "Gartner", title: "Gartner® Magic Quadrant™ for CNAPP" },
+          { source: "Dsoha AI", title: "Document digitization and smart digital data warehouse solution." },
+          { source: "AI Agent", title: "Personalized AI assistant, automating tasks and supporting decision-making." },
+          { source: "AI Kiosk", title: "Smart service kiosk, automated and fast customer support." },
+          { source: "Alogolf AI Platform", title: "Open, flexible and easily integrated AI platform." },
+          { source: "AI OCR", title: "Smart recognition and extraction of information from documents and images." },
+          { source: "AI Smart Assistant", title: "Smart AI assistant solution supporting users in all tasks." },
+        ],
+      },
+      {
+        label: "Other Services",
+        title: "Other Services",
+        description: "Comprehensive support services, accompanying enterprises throughout their operations.",
+        ctaLabel: "Contact Us",
+        ctaHref: "/contact",
+        stats: [],
+        awards: [
+          { source: "Consulting & Deployment", title: "Strategic consulting, design and deployment of technology solutions tailored to enterprise needs." },
+          { source: "Warranty & Maintenance", title: "Ensuring stable system operations with a professional technical team." },
+          { source: "Incident Response", title: "Emergency support for IT incidents, minimizing disruption and risk." },
+          { source: "Equipment Leasing", title: "Genuine technology equipment with optimal costs and flexible terms." },
         ],
       },
     ],
@@ -507,10 +542,7 @@ const giaiPhapFallback: Record<string, GiaiPhapData> = {
 };
 
 export async function getGiaiPhapData(lang: string): Promise<GiaiPhapData> {
-  try {
-    const data = await client.fetch<GiaiPhapData | null>(GIAI_PHAP_QUERY, { lang });
-    if (data?.tabs?.length) return data;
-  } catch {}
+  // TODO: re-enable Sanity fetch after CMS data is updated to match new 4-tab structure
   return giaiPhapFallback[lang] || giaiPhapFallback.vi;
 }
 
@@ -903,8 +935,16 @@ export interface TinTucItem {
   thumbnailUrl: string | null;
 }
 
+export interface FallbackImage {
+  src: string;
+  alt?: string;
+  caption?: string;
+}
+
 export interface TinTucDetail extends TinTucItem {
   body: unknown[];
+  fallbackBody?: string[];
+  fallbackImages?: FallbackImage[];
 }
 
 export interface TinTucCategory {
@@ -1068,6 +1108,86 @@ const tinTucFallbackArticles: Record<string, TinTucItem[]> = {
   ],
 };
 
+const tinTucFallbackDetails: Record<string, { fallbackBody: string[]; fallbackImages: FallbackImage[] }> = {
+  "dtg-dong-hanh-cp-viet-nam": {
+    fallbackBody: [
+      "Trong bối cảnh chuyển đổi số đang trở thành ưu tiên hàng đầu, các doanh nghiệp không ngừng nâng cấp hệ thống nhằm nâng cao chất lượng quản lý và tối ưu hóa quy trình vận hành. Việc chuẩn bị cho bất kỳ sự thay đổi hạ tầng CNTT nào đều cần thiết hơn bao giờ hết. Thay vì đầu tư vào cơ sở hạ tầng và tự tổ chức hoạt động khôi phục sau thảm họa, lựa chọn dịch vụ và giải pháp hỗ trợ từ các chuyên gia là phương án tối ưu và được nhiều doanh nghiệp tin tưởng.",
+      "Trong bối cảnh chuyển đổi số đang trở thành ưu tiên hàng đầu, các doanh nghiệp không ngừng nâng cấp hệ thống nhằm nâng cao chất lượng quản lý và tối ưu hóa quy trình vận hành. Việc chuẩn bị cho bất kỳ thảm họa dữ liệu nào trở thành vấn đề cần thiết hơn bao giờ hết. Thay vì đầu tư vào cơ sở hạ tầng và tự tổ chức hoạt động khôi phục sau thảm họa, lựa chọn dịch vụ và giải pháp hỗ trợ từ các chuyên gia là phương án tối ưu và được nhiều doanh nghiệp tin tưởng.",
+      "Công Ty Cổ Phần Công Nghệ DTG (DTG Corp) tự hào đồng hành cùng Công Ty CP Chăn Nuôi C.P. Việt Nam (C.P. Việt Nam) - Một trong những công ty dẫn đầu trong lĩnh vực chăn nuôi với hơn 20 năm hoạt động. DTG Corp đã hỗ trợ nâng cấp phần mềm máy chủ Veeam Backup & HPE Zerto và hệ thống máy chủ cho Data Center & DR Site. Song song đó cũng thuê phần mềm giám sát phát hiện xâm nhập. Những lợi ích cụ thể của việc nâng cấp này bao gồm phục hồi dữ liệu và duy trì hoạt động của hệ thống sau thảm họa trong thời gian ngắn nhất, sao chép toàn bộ hệ thống dữ liệu từ các phần mềm đã cài đặt lên ra nơi lưu trữ các trung tâm dữ liệu doanh nghiệp và bảo vệ hệ thống.",
+      "Như những lợi ích vượt trội này, C.P. Việt Nam đã tăng cường hiệu quả quản lý và bảo vệ dữ liệu, đảm bảo hoạt động kinh doanh không bị gián đoạn trước mọi thách thức. Sự hợp tác đầu tư vào công nghệ và giải pháp chuyên nghiệp này cũng đã góp phần nâng cao vị thế của cả hai trong thị trường Việt Nam.",
+    ],
+    fallbackImages: [],
+  },
+  "dtg-hanh-trinh-ket-noi-tri-tue": {
+    fallbackBody: [
+      "Hội thảo \"AI THỰC TIỄN PHÒNG, THỰC SỰ\" đã diễn ra thành công tốt đẹp với sự tham gia của hàng trăm chuyên gia và doanh nghiệp hàng đầu. Sự kiện là cơ hội để DTG Corp chia sẻ tầm nhìn về ứng dụng AI trong thực tiễn doanh nghiệp.",
+      "DTG Corp tổ chức sự kiện với mục tiêu kết nối tri thức, cảm xúc và công nghệ, tạo ra một không gian chia sẻ và học hỏi lẫn nhau. Đây không chỉ là một sự kiện công nghệ mà còn là hành trình kết nối con người.",
+    ],
+    fallbackImages: [],
+  },
+  "dich-vu-tu-van-lap-ho-so-attt": {
+    fallbackBody: [
+      "Trong bối cảnh các quy định về an toàn và bảo mật thông tin (ATTT) ngày càng chặt chẽ, việc lập Hồ sơ đề xuất cấp độ An toàn Thông tin (HSĐXCĐ) trở thành yêu cầu bắt buộc đối với các hệ thống thông tin của tổ chức, doanh nghiệp.",
+      "Cấp độ An toàn Thông tin (theo NĐ85/2016) là nghĩa vụ pháp lý bắt buộc đối với các hệ thống thông tin công nghệ thông tin. DTG cung cấp dịch vụ tư vấn lập hồ sơ đề xuất cấp độ ATTT chuyên nghiệp, đảm bảo tuân thủ đầy đủ các quy định pháp luật hiện hành.",
+      "Dịch vụ bao gồm: Khảo sát và đánh giá hiện trạng hệ thống, Xác định cấp độ an toàn phù hợp, Lập hồ sơ đề xuất theo mẫu quy định, Hỗ trợ trình cơ quan có thẩm quyền phê duyệt.",
+    ],
+    fallbackImages: [],
+  },
+  "dich-vu-cyber-security-assessment": {
+    fallbackBody: [
+      "Dịch vụ Đánh giá An toàn Thông tin (Cyber Security Assessment) của DTG là giải pháp đánh giá toàn diện mức độ an toàn của hệ thống CNTT, bao gồm hạ tầng, ứng dụng, kiến trúc thông tin, đào tạo.",
+      "DTG sử dụng phương pháp đánh giá theo chuẩn quốc tế NIST, ISO 27001, và các tiêu chuẩn bảo mật hàng đầu để đưa ra báo cáo chi tiết về hiện trạng bảo mật và đề xuất giải pháp khắc phục.",
+      "Quy trình đánh giá bao gồm: Thu thập thông tin và khảo sát, Kiểm tra lỗ hổng bảo mật, Đánh giá chính sách và quy trình, Phân tích rủi ro, Báo cáo và khuyến nghị.",
+    ],
+    fallbackImages: [],
+  },
+  "dich-vu-van-hanh-bao-mat": {
+    fallbackBody: [
+      "Giải pháp vận hành bảo mật toàn diện giúp doanh nghiệp bảo vệ hệ thống 24/7 với đội ngũ chuyên gia hàng đầu. DTG cung cấp dịch vụ vận hành bảo mật (Managed Security Services) cho các doanh nghiệp không có đội ngũ chuyên trách về an ninh mạng.",
+      "Dịch vụ bao gồm: Giám sát an ninh mạng liên tục 24/7, Quản lý thiết bị bảo mật (Firewall, IDS/IPS, WAF), Phân tích và phản hồi sự cố, Báo cáo định kỳ về tình trạng bảo mật.",
+    ],
+    fallbackImages: [],
+  },
+  "dich-vu-ung-cuu-su-co-attt": {
+    fallbackBody: [
+      "Ứng cứu sự cố an toàn thông tin nhanh chóng, chuyên nghiệp, giảm thiểu thiệt hại cho doanh nghiệp. DTG cung cấp dịch vụ ứng cứu sự cố (Incident Response) với đội ngũ chuyên gia giàu kinh nghiệm.",
+      "Khi xảy ra sự cố bảo mật, thời gian phản hồi là yếu tố quyết định. DTG cam kết thời gian phản hồi trong vòng 2 giờ và có mặt tại hiện trường trong vòng 24 giờ trên toàn quốc.",
+      "Quy trình ứng cứu: Tiếp nhận và đánh giá sự cố, Ngăn chặn và cô lập, Khắc phục và phục hồi, Phân tích nguyên nhân gốc rễ, Báo cáo và khuyến nghị phòng ngừa.",
+    ],
+    fallbackImages: [],
+  },
+  "dtg-ky-niem-25-nam": {
+    fallbackBody: [
+      "Nhân dịp kỷ niệm 25 năm thành lập, DTG nhìn lại chặng đường phát triển đáng tự hào và hướng tới tương lai với nhiều kế hoạch mới. Từ một công ty nhỏ thành lập năm 2000, DTG đã trở thành một trong những nhà tích hợp hệ thống hàng đầu tại Việt Nam.",
+      "Qua 25 năm, DTG đã phục vụ hơn 500 khách hàng doanh nghiệp, hợp tác với hơn 30 đối tác công nghệ quốc tế và xây dựng đội ngũ hơn 200 chuyên gia công nghệ. Chúng tôi cam kết tiếp tục đồng hành cùng doanh nghiệp Việt Nam trên hành trình chuyển đổi số.",
+    ],
+    fallbackImages: [],
+  },
+  "dtg-team-building-2026": {
+    fallbackBody: [
+      "Hoạt động team building thường niên giúp gắn kết đội ngũ và tạo động lực làm việc hiệu quả hơn. Năm 2026, DTG tổ chức chương trình team building với chủ đề \"Kết nối để vươn xa\" tại Đà Lạt.",
+      "Chương trình bao gồm các hoạt động ngoài trời, workshop chia sẻ kinh nghiệm giữa các phòng ban và buổi tiệc gala vinh danh những cá nhân và đội nhóm xuất sắc trong năm qua.",
+    ],
+    fallbackImages: [],
+  },
+  "xu-huong-ai-2026": {
+    fallbackBody: [
+      "Trí tuệ nhân tạo tiếp tục là xu hướng công nghệ hàng đầu trong năm 2026, mở ra nhiều cơ hội cho doanh nghiệp chuyển đổi số. Từ AI Agent đến Generative AI, các ứng dụng thực tiễn ngày càng phong phú và dễ tiếp cận hơn.",
+      "Một số xu hướng AI nổi bật trong năm 2026: AI Agent tự động hóa quy trình kinh doanh, AI tích hợp vào bảo mật (AI-Powered Security), Edge AI cho các ứng dụng thời gian thực, AI Governance và đạo đức AI.",
+      "DTG đang tích cực phát triển và triển khai các giải pháp AI cho doanh nghiệp Việt Nam, bao gồm Dsoha AI, AI Agent, AI Kiosk và nhiều sản phẩm khác.",
+    ],
+    fallbackImages: [],
+  },
+  "zero-trust-bao-mat-hien-dai": {
+    fallbackBody: [
+      "Mô hình Zero Trust đang trở thành tiêu chuẩn mới trong bảo mật doanh nghiệp, thay thế các phương pháp truyền thống dựa trên \"tin tưởng nhưng xác minh\" bằng nguyên tắc \"không bao giờ tin tưởng, luôn xác minh\".",
+      "Zero Trust không chỉ là một sản phẩm mà là một chiến lược bảo mật toàn diện, bao gồm: Xác thực đa yếu tố (MFA) cho mọi truy cập, Phân đoạn mạng (Micro-segmentation), Giám sát liên tục và phân tích hành vi, Nguyên tắc quyền truy cập tối thiểu (Least Privilege).",
+      "DTG cung cấp dịch vụ tư vấn và triển khai mô hình Zero Trust cho doanh nghiệp, giúp nâng cao khả năng phòng thủ trước các mối đe dọa ngày càng tinh vi.",
+    ],
+    fallbackImages: [],
+  },
+};
+
 export function getTinTucPageData(lang: string): TinTucPageData {
   return tinTucPageFallback[lang] || tinTucPageFallback.vi;
 }
@@ -1107,15 +1227,326 @@ export async function getTinTucDetail(
       lang,
       slug,
     });
-    if (data?.title) return data;
+    if (data?.title) {
+      const detail = tinTucFallbackDetails[data.slug];
+      return {
+        ...data,
+        fallbackBody: data.body?.length ? [] : (detail?.fallbackBody || []),
+        fallbackImages: data.body?.length ? [] : (detail?.fallbackImages || []),
+      };
+    }
   } catch {}
 
   // Fallback
   const all = Object.values(tinTucFallbackArticles).flat();
   const found = all.find((a) => a.slug === slug);
   if (found) {
-    return { ...found, body: [] };
+    const detail = tinTucFallbackDetails[slug];
+    return {
+      ...found,
+      body: [],
+      fallbackBody: detail?.fallbackBody || [],
+      fallbackImages: detail?.fallbackImages || [],
+    };
   }
+  return null;
+}
+
+/* ── Về chúng tôi (Trang) ── */
+
+export interface VisionCard { title: string; description: string; }
+export interface HistoryEvent { year: string; month: string; content: string; }
+export interface Leader { name: string; role: string; }
+export interface Certificate { year: string; title: string; }
+
+export interface VeChungToiPageData {
+  brandStoryTitle: string;
+  brandStoryContent: string;
+  slogan: string;
+  learnMoreLabel: string;
+  learnMoreHref: string;
+  visionCards: VisionCard[];
+  historyTitle: string;
+  historyEvents: HistoryEvent[];
+  leadershipTitle: string;
+  leaders: Leader[];
+  cultureTitle: string;
+  coreValuesTitle: string;
+  coreValues: string[];
+  companyCultureTitle: string;
+  companyCultureItems: string[];
+  certificatesTitle: string;
+  certificates: Certificate[];
+}
+
+const VE_CHUNG_TOI_PAGE_QUERY = `*[_type == "veChungToiPage" && language == $lang][0]{
+  brandStoryTitle, brandStoryContent, slogan, learnMoreLabel, learnMoreHref,
+  visionCards[]{ title, description },
+  historyTitle, historyEvents[]{ year, month, content },
+  leadershipTitle, leaders[]{ name, role },
+  cultureTitle, coreValuesTitle, coreValues, companyCultureTitle, companyCultureItems,
+  certificatesTitle, certificates[]{ year, title }
+}`;
+
+const veChungToiFallback: Record<string, VeChungToiPageData> = {
+  vi: {
+    brandStoryTitle: "CÂU CHUYỆN THƯƠNG HIỆU",
+    brandStoryContent: "Tại DTG CORP, chúng tôi không chỉ nhìn nhận công nghệ như một công cụ, mà là nền tảng cốt yếu để doanh nghiệp bứt phá. Giữa làn sóng chuyển đổi số mạnh mẽ, DTG Tiền thân của Công Ty Cổ Phần Công Nghệ DTG (DTG CORP) là của hàng kinh doanh sản phẩm Công Nghệ Thông Tin (CNTT) Tracinet Computer do Ông Trần Quốc Hoàn - Chủ Tịch Hội Đồng Quản Trị kiêm Tổng Giám Đốc sáng lập năm 2000. Năm 2007, đổi tên thành Công Ty Thương Mại Đại Trần Gia. Năm 2007, và sự phát triển vượt bậc công ty đã chính thức đổi tên thành Công ty CP Công nghệ DTG (DTG).\n\nChúng tôi tin rằng công nghệ phải phục vụ con người và mang lại hiệu quả thực tế, minh bạch, an toàn và bền vững. Đó là kim chỉ nam cho mọi sản phẩm và dịch vụ mang thương hiệu DTG.",
+    slogan: "VỮNG MÃI MỘT NIỀM TIN",
+    learnMoreLabel: "Tìm hiểu thêm",
+    learnMoreHref: "/ve-chung-toi",
+    visionCards: [
+      { title: "TẦM NHÌN", description: "Trở thành Tập đoàn kinh doanh với 4 trụ cột chiến lược là Công Nghệ Thông Tin, Thiết bị điện, Thiết bị Led cao cấp, Nhà hàng và giải trí." },
+      { title: "SỨ MỆNH", description: "Cung cấp mọi yêu cầu của Khách Hàng, nhằm đem lại lợi ích tốt nhất cho sự phồn vinh của Khách Hàng, của Cổ Đông, của Nhân Viên và của Cộng Đồng." },
+      { title: "PHƯƠNG CHÂM", description: "Luôn tiến về phía trước, dựa trên nền tảng CNTT không ngừng đổi mới." },
+    ],
+    historyTitle: "LỊCH SỬ HÌNH THÀNH VÀ PHÁT TRIỂN",
+    historyEvents: [
+      { year: "2021", month: "Tháng 07/2021", content: "DTG tổ chức hội thảo trực tuyến: \"Chuyển Đổi Số cùng DTG Corp với các giải pháp công nghệ từ Dell Technologies\"." },
+      { year: "2021", month: "Tháng 04/2021", content: "Chính thức đổi tên từ Công Ty Cổ Phần Công Nghệ Đại Trần Gia sang \"Công Ty Cổ Phần Công Nghệ DTG\"." },
+      { year: "2021", month: "Tháng 03/2021", content: "DTG tổ chức cuộc thi \"AI thông minh hơn phụ nữ DTG Corp\"." },
+      { year: "2021", month: "Tháng 01/2021", content: "DTG tổ chức hội thảo: \"Định hướng CBS và an toàn thông tin trong tổ chức CBS\"." },
+      { year: "2020", month: "Tháng 06/2020", content: "DTG mở rộng văn phòng tại Đà Nẵng." },
+      { year: "2019", month: "Tháng 03/2019", content: "DTG đạt chứng nhận đối tác Gold của Dell Technologies." },
+      { year: "2010", month: "Năm 2010", content: "Mở rộng sang lĩnh vực giải pháp hạ tầng CNTT cho doanh nghiệp." },
+      { year: "2007", month: "Năm 2007", content: "Đổi tên thành Công Ty Thương Mại Đại Trần Gia." },
+      { year: "2000", month: "Năm 2000", content: "Thành lập Tracinet Computer — tiền thân của DTG Corp." },
+    ],
+    leadershipTitle: "BAN LÃNH ĐẠO",
+    leaders: [
+      { name: "Trần Quốc Hoàn", role: "Chủ tịch Hội đồng Quản trị — Tổng Giám đốc" },
+      { name: "Trần Lê Khải", role: "Thành viên HĐQT — Phó Tổng Giám đốc Quản lý nội bộ" },
+      { name: "Trần Thị Hoài Hương", role: "Phó Tổng Giám đốc Tài chính — Văn phòng" },
+      { name: "Huỳnh Đình Tú", role: "Thành viên HĐQT — Phó Tổng Giám đốc Thị trường" },
+      { name: "Nguyễn Thị Liên", role: "Thành viên HĐQT — Phó Tổng Giám đốc Kinh doanh" },
+    ],
+    cultureTitle: "VĂN HÓA DTG",
+    coreValuesTitle: "GIÁ TRỊ CỐT LÕI",
+    coreValues: [
+      "DTG là một gia đình lớn, và hồ thu nhỏ của những con người trẻ tuổi, nhiệt huyết, năng động, giàu ý thức, đoàn kết, sáng tạo, cùng chung một mục tiêu và vì phần đâu không ngừng nghỉ cho sự phát triển thịnh vượng, bền vững của Công Ty DTG.",
+      "Đối với DTG, mỗi cá nhân là một bộ phận không thể tách rời ra khỏi tất cả con người, cùng nỗ lực không ngừng tạo lên sự phát triển bền vững cho Công Ty.",
+      "DTG được đáp ứng đầy đủ các chính sách phúc lợi theo luật pháp, đào tạo lâu dài, và sự minh bạch rõ ràng.",
+      "Chúng tôi là một tập thể giàu truyền thống văn hóa, tinh thần doanh nghiệp mạnh mẽ, cùng nhau gắn kết, gìn giữ và phát triển các giá trị truyền thống tươi sáng mãi với thời gian.",
+    ],
+    companyCultureTitle: "VĂN HÓA CÔNG TY",
+    companyCultureItems: [
+      "Ngày Hội Kỷ Niệm Ngày Thành Lập Công Ty 12 tháng 5",
+      "13 cuộc Sinh Nhật Tập Thể theo công Quý",
+      "Tham gia các đội bóng Nội bộ",
+      "DTG bình chọn Cá Nhân xuất sắc",
+    ],
+    certificatesTitle: "CHỨNG NHẬN NỔI BẬT",
+    certificates: [
+      { year: "2021", title: "Chứng nhận Đối tác Silver của Aruba 2021" },
+      { year: "2021", title: "Chứng nhận Đối tác Gold của Dell Technologies 2021-2022" },
+      { year: "2021", title: "Chứng nhận Đối tác Silver của HPE 2021" },
+      { year: "2021", title: "Chứng nhận Đối tác Chính thức của Cisco 2021" },
+      { year: "2021", title: "Chứng nhận Bronze của Trend Micro" },
+      { year: "2021", title: "Chứng nhận Đối tác Silver IBM 2021" },
+      { year: "2020", title: "Chứng nhận Đối tác Gold của Dell Technologies 2020" },
+      { year: "2020", title: "Chứng nhận Đối tác Silver của HPE 2020" },
+      { year: "2020", title: "Chứng nhận Đối tác Cisco Select 2020" },
+      { year: "2019", title: "Chứng nhận Đối tác Silver của Dell EMC 2019" },
+      { year: "2019", title: "Chứng nhận Đối tác của Aruba 2019" },
+      { year: "2019", title: "Chứng nhận Đối tác HPE 2019" },
+      { year: "2016", title: "Chứng nhận Đối tác Dell 2016" },
+      { year: "2016", title: "Chứng nhận Đối tác HP 2016" },
+      { year: "2015", title: "Chứng nhận Đối tác Dell 2015" },
+      { year: "2015", title: "Chứng nhận Đối tác HP Silver 2015" },
+      { year: "2013", title: "Chứng nhận Đối tác Dell 2013" },
+      { year: "2013", title: "Chứng nhận Đối tác HP Preferred 2013" },
+    ],
+  },
+  en: {
+    brandStoryTitle: "BRAND STORY",
+    brandStoryContent: "At DTG CORP, we do not merely see technology as a tool, but as a vital foundation for business breakthroughs.\n\nWe believe technology must serve people and deliver practical, transparent, safe, and sustainable results.",
+    slogan: "STEADFAST IN TRUST",
+    learnMoreLabel: "Learn more",
+    learnMoreHref: "/about",
+    visionCards: [
+      { title: "VISION", description: "To become a conglomerate with 4 strategic pillars: IT, Electrical equipment, Premium LED, Restaurant & Entertainment." },
+      { title: "MISSION", description: "To fulfill every customer need, bringing the best benefits for the prosperity of Customers, Shareholders, Employees, and the Community." },
+      { title: "MOTTO", description: "Always moving forward, built on a constantly innovative IT foundation." },
+    ],
+    historyTitle: "HISTORY & DEVELOPMENT",
+    historyEvents: [
+      { year: "2021", month: "Jul 2021", content: "DTG held online seminar on Digital Transformation with Dell Technologies." },
+      { year: "2021", month: "Apr 2021", content: "Officially renamed to DTG Technology Joint Stock Company." },
+      { year: "2021", month: "Jan 2021", content: "DTG held seminar on CBS orientation and information security." },
+      { year: "2007", month: "2007", content: "Renamed to Dai Tran Gia Trading Company." },
+      { year: "2000", month: "2000", content: "Founded Tracinet Computer — predecessor of DTG Corp." },
+    ],
+    leadershipTitle: "LEADERSHIP",
+    leaders: [
+      { name: "Tran Quoc Hoan", role: "Chairman & CEO" },
+      { name: "Tran Le Khai", role: "Board Member — Deputy CEO, Internal Management" },
+      { name: "Tran Thi Hoai Huong", role: "Deputy CEO, Finance & Administration" },
+      { name: "Huynh Dinh Tu", role: "Board Member — Deputy CEO, Market Development" },
+      { name: "Nguyen Thi Lien", role: "Board Member — Deputy CEO, Business" },
+    ],
+    cultureTitle: "DTG CULTURE",
+    coreValuesTitle: "CORE VALUES",
+    coreValues: [
+      "DTG is a big family of young, enthusiastic, dynamic people united by a shared goal.",
+      "Each individual is an inseparable part of the whole, working together for sustainable growth.",
+      "DTG provides comprehensive welfare policies, long-term training, and transparency.",
+      "We are a collective rich in cultural tradition and strong entrepreneurial spirit.",
+    ],
+    companyCultureTitle: "COMPANY CULTURE",
+    companyCultureItems: [
+      "Annual Founding Anniversary — May 12th",
+      "13 quarterly group birthday celebrations",
+      "Internal sports teams",
+      "DTG Outstanding Individual Awards",
+    ],
+    certificatesTitle: "NOTABLE CERTIFICATIONS",
+    certificates: [
+      { year: "2021", title: "Aruba Silver Partner 2021" },
+      { year: "2021", title: "Dell Technologies Gold Partner 2021-2022" },
+      { year: "2021", title: "HPE Silver Partner 2021" },
+      { year: "2021", title: "Cisco Official Partner 2021" },
+      { year: "2021", title: "Trend Micro Bronze Partner" },
+      { year: "2021", title: "IBM Silver Partner 2021" },
+      { year: "2020", title: "Dell Technologies Gold Partner 2020" },
+      { year: "2020", title: "HPE Silver Partner 2020" },
+      { year: "2020", title: "Cisco Select Partner 2020" },
+      { year: "2019", title: "Dell EMC Silver Partner 2019" },
+      { year: "2019", title: "Aruba Partner 2019" },
+      { year: "2019", title: "HPE Partner 2019" },
+      { year: "2016", title: "Dell Partner 2016" },
+      { year: "2016", title: "HP Partner 2016" },
+      { year: "2015", title: "Dell Partner 2015" },
+      { year: "2015", title: "HP Silver Partner 2015" },
+      { year: "2013", title: "Dell Partner 2013" },
+      { year: "2013", title: "HP Preferred Partner 2013" },
+    ],
+  },
+};
+
+export async function getVeChungToiPageData(
+  lang: string
+): Promise<VeChungToiPageData> {
+  const fb = veChungToiFallback[lang] || veChungToiFallback.vi;
+  try {
+    const data = await client.fetch<VeChungToiPageData | null>(
+      VE_CHUNG_TOI_PAGE_QUERY,
+      { lang }
+    );
+    if (data?.brandStoryTitle) {
+      return {
+        ...fb,
+        ...data,
+        visionCards: data.visionCards ?? fb.visionCards,
+        historyEvents: data.historyEvents ?? fb.historyEvents,
+        leaders: data.leaders ?? fb.leaders,
+        coreValues: data.coreValues ?? fb.coreValues,
+        companyCultureItems: data.companyCultureItems ?? fb.companyCultureItems,
+        certificates: data.certificates ?? fb.certificates,
+      };
+    }
+  } catch {}
+  return fb;
+}
+
+/* ── Bài viết Giải pháp ── */
+
+export interface SolutionArticleItem {
+  slug: string;
+  title: string;
+  excerpt: string;
+  solutionCategory: string;
+  publishedAt: string;
+  thumbnailUrl: string | null;
+}
+
+export interface SolutionArticleDetail extends SolutionArticleItem {
+  body: unknown[];
+  fallbackBody?: string[];
+}
+
+const SOLUTION_ARTICLES_QUERY = `*[_type == "baiVietGiaiPhap" && language == $lang && solutionCategory == $solutionCategory] | order(publishedAt desc) {
+  "slug": slug.current,
+  title,
+  excerpt,
+  solutionCategory,
+  publishedAt,
+  "thumbnailUrl": thumbnail.asset->url
+}`;
+
+const SOLUTION_ARTICLE_DETAIL_QUERY = `*[_type == "baiVietGiaiPhap" && language == $lang && slug.current == $slug][0]{
+  "slug": slug.current,
+  title,
+  excerpt,
+  solutionCategory,
+  publishedAt,
+  "thumbnailUrl": thumbnail.asset->url,
+  body
+}`;
+
+export async function getSolutionArticles(
+  lang: string,
+  solutionCategory: string
+): Promise<SolutionArticleItem[]> {
+  try {
+    const data = await client.fetch<SolutionArticleItem[]>(SOLUTION_ARTICLES_QUERY, {
+      lang,
+      solutionCategory,
+    });
+    if (data?.length) return data;
+  } catch {}
+
+  // Fallback
+  const { solutionArticlesFallback } = await import("@/data/solution-articles");
+  return solutionArticlesFallback[solutionCategory] || [];
+}
+
+export async function getSolutionArticleDetail(
+  lang: string,
+  slug: string
+): Promise<SolutionArticleDetail | null> {
+  try {
+    const data = await client.fetch<SolutionArticleDetail | null>(
+      SOLUTION_ARTICLE_DETAIL_QUERY,
+      { lang, slug }
+    );
+    if (data?.title) {
+      const { solutionArticleDetailsFallback } = await import("@/data/solution-articles");
+      const detail = solutionArticleDetailsFallback[data.slug];
+      return {
+        ...data,
+        fallbackBody: data.body?.length ? [] : (detail?.fallbackBody || []),
+      };
+    }
+  } catch {}
+
+  // Fallback
+  const { solutionArticlesFallback, solutionArticleDetailsFallback } = await import("@/data/solution-articles");
+  const all = Object.values(solutionArticlesFallback).flat();
+  const found = all.find((a) => a.slug === slug);
+  if (found) {
+    const detail = solutionArticleDetailsFallback[slug];
+    return {
+      ...found,
+      body: [],
+      fallbackBody: detail?.fallbackBody || [],
+    };
+  }
+
+  // Also check an-ninh-mang / ai slugs (direct detail)
+  const detail = solutionArticleDetailsFallback[slug];
+  if (detail) {
+    return {
+      slug,
+      title: "",
+      excerpt: "",
+      solutionCategory: slug,
+      publishedAt: new Date().toISOString(),
+      thumbnailUrl: null,
+      body: [],
+      fallbackBody: detail.fallbackBody,
+    };
+  }
+
   return null;
 }
 

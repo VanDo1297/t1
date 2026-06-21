@@ -25,21 +25,24 @@ export function GioiThieuSection({ data }: GioiThieuSectionProps) {
           <motion.p
             ref={label.ref}
             {...label.animationProps}
-            className="mb-4 text-[15px] font-bold uppercase tracking-[0.15em] text-primary"
+            className="mb-4 font-bold uppercase tracking-[0.15em] text-primary"
+            style={{ fontSize: "clamp(15px, 0.9vw, 18px)" }}
           >
             {data.label}
           </motion.p>
           <motion.h2
             ref={left.ref}
             {...left.animationProps}
-            className="mb-8 text-[40px] font-medium leading-[1.15] tracking-[-0.02em] text-dark whitespace-pre-line"
+            className="mb-8 font-medium leading-[1.15] tracking-[-0.02em] text-dark whitespace-pre-line"
+            style={{ fontSize: "clamp(40px, 3vw, 60px)" }}
           >
             {data.title}
           </motion.h2>
           <motion.p
             ref={left.ref}
             {...left.animationProps}
-            className="text-[18px] leading-[1.8] text-gray-500"
+            className="leading-[1.8] text-gray-500"
+            style={{ fontSize: "clamp(18px, 1.1vw, 27px)" }}
           >
             {data.description}
           </motion.p>

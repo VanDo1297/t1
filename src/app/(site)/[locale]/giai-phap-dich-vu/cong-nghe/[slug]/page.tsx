@@ -1,19 +1,40 @@
+import { notFound } from "next/navigation";
 import { solutionCategories } from "@/data/solutions";
-import { SolutionCategoryPage } from "@/components/sections/SolutionCategoryPage";
+import { getSolutionArticles } from "@/sanity/queries";
+import { SolutionArticlesPage } from "@/components/sections/SolutionArticlesPage";
 
-export default async function TechSubSolutionPage({
+export default async function TechSolutionArticlesPage({
   params,
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
   const category = solutionCategories.find((c) => c.slug === "cong-nghe")!;
+  const solution = category.children.find((c) => c.href === slug);
+
+  if (!solution) return notFound();
+
+  const lang = locale as "vi" | "en";
+  const articles = await getSolutionArticles(locale, slug);
+
+  const basePath =
+    locale === "vi"
+      ? `/${locale}/giai-phap-dich-vu/cong-nghe/${slug}`
+      : `/${locale}/solutions/cong-nghe/${slug}`;
+
+  const categoryPath =
+    locale === "vi"
+      ? `/${locale}/giai-phap-dich-vu/cong-nghe`
+      : `/${locale}/solutions/cong-nghe`;
 
   return (
-    <SolutionCategoryPage
-      category={category}
+    <SolutionArticlesPage
       locale={locale}
-      activeSlug={slug}
+      solutionTitle={solution.title[lang]}
+      solutionDescription={solution.description[lang]}
+      articles={articles}
+      basePath={basePath}
+      categoryPath={categoryPath}
     />
   );
 }
