@@ -1,22 +1,37 @@
+import { getTinTucPageData, getTinTucList } from "@/sanity/queries";
+import { TinTucPage } from "@/components/sections/TinTucPage";
+
 export default async function NewsPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ "danh-muc"?: string }>;
 }) {
   const { locale } = await params;
+  const sp = await searchParams;
+  const categoryParam = sp["danh-muc"] || "tin-du-an";
+
+  const pageData = getTinTucPageData(locale);
+
+  const [tinDuAn, tinNoiBo, tinCongNghe] = await Promise.all([
+    getTinTucList(locale, "tin-du-an"),
+    getTinTucList(locale, "tin-noi-bo"),
+    getTinTucList(locale, "tin-cong-nghe"),
+  ]);
+
+  const articlesByCategory: Record<string, typeof tinDuAn> = {
+    "tin-du-an": tinDuAn,
+    "tin-noi-bo": tinNoiBo,
+    "tin-cong-nghe": tinCongNghe,
+  };
 
   return (
-    <main className="pt-[80px]">
-      <section className="min-h-screen bg-primary-dark px-5 py-20 sm:px-8">
-        <h1 className="text-4xl font-bold text-white">
-          {locale === "vi" ? "Tin tức" : "News"}
-        </h1>
-        <p className="mt-4 text-lg text-white/60">
-          {locale === "vi"
-            ? "Tin tức mới nhất từ DTG."
-            : "Latest news from DTG."}
-        </p>
-      </section>
-    </main>
+    <TinTucPage
+      locale={locale}
+      pageData={pageData}
+      articlesByCategory={articlesByCategory}
+      initialCategory={categoryParam}
+    />
   );
 }

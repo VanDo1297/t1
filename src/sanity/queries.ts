@@ -131,7 +131,15 @@ const fallback: Record<string, HeaderData> = {
         ],
       },
       { label: "Đối tác", href: "/doi-tac" },
-      { label: "Tin tức", href: "/tin-tuc" },
+      {
+        label: "Tin tức",
+        href: "/tin-tuc",
+        children: [
+          { label: "Tin dự án", href: "/tin-tuc?danh-muc=tin-du-an" },
+          { label: "Tin nội bộ", href: "/tin-tuc?danh-muc=tin-noi-bo" },
+          { label: "Tin công nghệ", href: "/tin-tuc?danh-muc=tin-cong-nghe" },
+        ],
+      },
       { label: "Tuyển dụng", href: "/tuyen-dung" },
     ],
     contactLabel: "Liên hệ",
@@ -193,7 +201,15 @@ const fallback: Record<string, HeaderData> = {
         ],
       },
       { label: "Partners", href: "/partners" },
-      { label: "News", href: "/news" },
+      {
+        label: "News",
+        href: "/news",
+        children: [
+          { label: "Project News", href: "/tin-tuc?danh-muc=tin-du-an" },
+          { label: "Internal News", href: "/tin-tuc?danh-muc=tin-noi-bo" },
+          { label: "Tech News", href: "/tin-tuc?danh-muc=tin-cong-nghe" },
+        ],
+      },
       { label: "Careers", href: "/careers" },
     ],
     contactLabel: "Contact",
@@ -874,6 +890,233 @@ export async function getLienHeData(lang: string): Promise<LienHeData> {
     }
   } catch {}
   return fb;
+}
+
+/* ── Tin tức ── */
+
+export interface TinTucItem {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  publishedAt: string;
+  thumbnailUrl: string | null;
+}
+
+export interface TinTucDetail extends TinTucItem {
+  body: unknown[];
+}
+
+export interface TinTucCategory {
+  value: string;
+  label: string;
+}
+
+export interface TinTucPageData {
+  categories: TinTucCategory[];
+  breadcrumbHome: string;
+  breadcrumbNews: string;
+  latestLabel: string;
+  previousLabel: string;
+  detailLabel: string;
+  allLabel: string;
+}
+
+const TIN_TUC_LIST_QUERY = `*[_type == "tinTuc" && language == $lang && category == $category] | order(publishedAt desc) {
+  "slug": slug.current,
+  title,
+  excerpt,
+  category,
+  publishedAt,
+  "thumbnailUrl": thumbnail.asset->url
+}`;
+
+const TIN_TUC_ALL_QUERY = `*[_type == "tinTuc" && language == $lang] | order(publishedAt desc) {
+  "slug": slug.current,
+  title,
+  excerpt,
+  category,
+  publishedAt,
+  "thumbnailUrl": thumbnail.asset->url
+}`;
+
+const TIN_TUC_DETAIL_QUERY = `*[_type == "tinTuc" && language == $lang && slug.current == $slug][0]{
+  "slug": slug.current,
+  title,
+  excerpt,
+  category,
+  publishedAt,
+  "thumbnailUrl": thumbnail.asset->url,
+  body
+}`;
+
+const tinTucPageFallback: Record<string, TinTucPageData> = {
+  vi: {
+    categories: [
+      { value: "tin-du-an", label: "Tin dự án" },
+      { value: "tin-noi-bo", label: "Tin nội bộ" },
+      { value: "tin-cong-nghe", label: "Tin công nghệ" },
+    ],
+    breadcrumbHome: "TRANG CHỦ",
+    breadcrumbNews: "TIN TỨC",
+    latestLabel: "TIN MỚI NHẤT",
+    previousLabel: "BÀI VIẾT TRƯỚC ĐÓ",
+    detailLabel: "Chi tiết",
+    allLabel: "Tất cả",
+  },
+  en: {
+    categories: [
+      { value: "tin-du-an", label: "Project News" },
+      { value: "tin-noi-bo", label: "Internal News" },
+      { value: "tin-cong-nghe", label: "Tech News" },
+    ],
+    breadcrumbHome: "HOME",
+    breadcrumbNews: "NEWS",
+    latestLabel: "LATEST NEWS",
+    previousLabel: "PREVIOUS ARTICLES",
+    detailLabel: "Details",
+    allLabel: "All",
+  },
+};
+
+const tinTucFallbackArticles: Record<string, TinTucItem[]> = {
+  "tin-du-an": [
+    {
+      slug: "dtg-dong-hanh-cp-viet-nam",
+      title: "CÔNG TY CỔ PHẦN CÔNG NGHỆ DTG ĐỒNG HÀNH CÙNG CÔNG TY CP CHĂN NUÔI C.P. VIỆT NAM NÂNG TẦM HỆ THỐNG PHẦN MỀM MÁY CHỦ",
+      excerpt: "Trong bối cảnh chuyển đổi số đang trở thành ưu tiên hàng đầu, các doanh nghiệp không ngừng nâng cấp hệ thống nhằm nâng cao chất lượng quản lý và tối ưu hóa quy trình vận hành. Việc chuẩn bị cho bất kỳ sự thay đổi hạ tầng CNTT nào đều cần có sự tham vấn từ các chuyên gia uy tín.",
+      category: "tin-du-an",
+      publishedAt: "2026-05-14T00:00:00Z",
+      thumbnailUrl: null,
+    },
+    {
+      slug: "dtg-hanh-trinh-ket-noi-tri-tue",
+      title: "DTG CORP – HÀNH TRÌNH KẾT NỐI TRI TUỆ, CẢM XÚC & CÔNG NGHỆ",
+      excerpt: "Hội thảo AI THỰC TIỄN PHÒNG, THỰC SỰ đã diễn ra thành công với sự tham gia của hàng trăm chuyên gia và doanh nghiệp hàng đầu.",
+      category: "tin-du-an",
+      publishedAt: "2025-11-24T00:00:00Z",
+      thumbnailUrl: null,
+    },
+    {
+      slug: "dich-vu-tu-van-lap-ho-so-attt",
+      title: "DỊCH VỤ TƯ VẤN LẬP HỒ SƠ ĐỀ XUẤT CẤP ĐỘ AN TOÀN THÔNG TIN (HSĐXCĐ) THEO NĐ 85/2016 & TT 12/2022",
+      excerpt: "Trong bối cảnh các quy định về an toàn và bảo mật thông tin (ATTT) ngày càng chặt chẽ, việc lập Hồ sơ đề xuất cấp độ An toàn Thông tin trở thành yêu cầu bắt buộc.",
+      category: "tin-du-an",
+      publishedAt: "2025-07-01T00:00:00Z",
+      thumbnailUrl: null,
+    },
+    {
+      slug: "dich-vu-cyber-security-assessment",
+      title: "DỊCH VỤ CYBER SECURITY ASSESSMENT | ĐÁNH GIÁ ATTT TOÀN DIỆN",
+      excerpt: "Dịch vụ Đánh giá An toàn Thông tin (Cyber Security Assessment) của DTG là giải pháp đánh giá toàn diện mức độ an toàn của hệ thống CNTT.",
+      category: "tin-du-an",
+      publishedAt: "2025-06-15T00:00:00Z",
+      thumbnailUrl: null,
+    },
+    {
+      slug: "dich-vu-van-hanh-bao-mat",
+      title: "DỊCH VỤ VẬN HÀNH BẢO MẬT",
+      excerpt: "Giải pháp vận hành bảo mật toàn diện giúp doanh nghiệp bảo vệ hệ thống 24/7 với đội ngũ chuyên gia hàng đầu.",
+      category: "tin-du-an",
+      publishedAt: "2025-05-20T00:00:00Z",
+      thumbnailUrl: null,
+    },
+    {
+      slug: "dich-vu-ung-cuu-su-co-attt",
+      title: "DỊCH VỤ ỨNG CỨU SỰ CỐ AN TOÀN THÔNG TIN",
+      excerpt: "Ứng cứu sự cố an toàn thông tin nhanh chóng, chuyên nghiệp, giảm thiểu thiệt hại cho doanh nghiệp.",
+      category: "tin-du-an",
+      publishedAt: "2025-04-10T00:00:00Z",
+      thumbnailUrl: null,
+    },
+  ],
+  "tin-noi-bo": [
+    {
+      slug: "dtg-ky-niem-25-nam",
+      title: "DTG KỶ NIỆM 25 NĂM THÀNH LẬP – HÀNH TRÌNH ĐỔI MỚI VÀ PHÁT TRIỂN",
+      excerpt: "Nhân dịp kỷ niệm 25 năm thành lập, DTG nhìn lại chặng đường phát triển đáng tự hào và hướng tới tương lai với nhiều kế hoạch mới.",
+      category: "tin-noi-bo",
+      publishedAt: "2026-03-01T00:00:00Z",
+      thumbnailUrl: null,
+    },
+    {
+      slug: "dtg-team-building-2026",
+      title: "DTG TEAM BUILDING 2026 – KẾT NỐI ĐỂ VƯƠN XA",
+      excerpt: "Hoạt động team building thường niên giúp gắn kết đội ngũ và tạo động lực làm việc hiệu quả hơn.",
+      category: "tin-noi-bo",
+      publishedAt: "2026-02-15T00:00:00Z",
+      thumbnailUrl: null,
+    },
+  ],
+  "tin-cong-nghe": [
+    {
+      slug: "xu-huong-ai-2026",
+      title: "XU HƯỚNG AI NĂM 2026 – NHỮNG ĐIỀU DOANH NGHIỆP CẦN BIẾT",
+      excerpt: "Trí tuệ nhân tạo tiếp tục là xu hướng công nghệ hàng đầu trong năm 2026, mở ra nhiều cơ hội cho doanh nghiệp chuyển đổi số.",
+      category: "tin-cong-nghe",
+      publishedAt: "2026-04-20T00:00:00Z",
+      thumbnailUrl: null,
+    },
+    {
+      slug: "zero-trust-bao-mat-hien-dai",
+      title: "ZERO TRUST – MÔ HÌNH BẢO MẬT HIỆN ĐẠI CHO DOANH NGHIỆP",
+      excerpt: "Mô hình Zero Trust đang trở thành tiêu chuẩn mới trong bảo mật doanh nghiệp, thay thế các phương pháp truyền thống.",
+      category: "tin-cong-nghe",
+      publishedAt: "2026-03-15T00:00:00Z",
+      thumbnailUrl: null,
+    },
+  ],
+};
+
+export function getTinTucPageData(lang: string): TinTucPageData {
+  return tinTucPageFallback[lang] || tinTucPageFallback.vi;
+}
+
+export async function getTinTucList(
+  lang: string,
+  category?: string
+): Promise<TinTucItem[]> {
+  try {
+    let data: TinTucItem[] | null;
+    if (category) {
+      data = await client.fetch<TinTucItem[]>(TIN_TUC_LIST_QUERY, {
+        lang,
+        category,
+      });
+    } else {
+      data = await client.fetch<TinTucItem[]>(TIN_TUC_ALL_QUERY, { lang });
+    }
+    if (data?.length) return data;
+  } catch {}
+
+  // Fallback
+  if (category) {
+    return tinTucFallbackArticles[category] || [];
+  }
+  return Object.values(tinTucFallbackArticles).flat().sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
+}
+
+export async function getTinTucDetail(
+  lang: string,
+  slug: string
+): Promise<TinTucDetail | null> {
+  try {
+    const data = await client.fetch<TinTucDetail | null>(TIN_TUC_DETAIL_QUERY, {
+      lang,
+      slug,
+    });
+    if (data?.title) return data;
+  } catch {}
+
+  // Fallback
+  const all = Object.values(tinTucFallbackArticles).flat();
+  const found = all.find((a) => a.slug === slug);
+  if (found) {
+    return { ...found, body: [] };
+  }
+  return null;
 }
 
 /* ── Footer ── */

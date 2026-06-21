@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import type { SolutionCategory, SolutionGoal } from "@/data/solutions";
+import type { SolutionCategory, SolutionGoal, LoTrinhStep } from "@/data/solutions";
 
 const iconMap: Record<string, LucideIcon> = {
   Shield,
@@ -120,6 +120,15 @@ export function SolutionCategoryPage({
       {category.goals.length > 0 && (
         <GoalsSection goals={category.goals} locale={locale as "vi" | "en"} />
       )}
+
+      {/* Lộ trình triển khai */}
+      {category.loTrinh && (
+        <LoTrinhSection
+          title={category.loTrinh.title[locale as "vi" | "en"]}
+          steps={category.loTrinh.steps}
+          locale={locale as "vi" | "en"}
+        />
+      )}
     </main>
   );
 }
@@ -201,6 +210,54 @@ function GoalCard({
         </div>
       </div>
     </motion.div>
+  );
+}
+
+function LoTrinhSection({
+  title,
+  steps,
+  locale,
+}: {
+  title: string;
+  steps: LoTrinhStep[];
+  locale: "vi" | "en";
+}) {
+  const { ref: sectionRef, animationProps: sectionAnim } = useScrollAnimation({
+    preset: "btt",
+  });
+
+  return (
+    <section className="bg-[#f5f7fa] px-5 py-20 sm:px-8">
+      <div className="mx-auto max-w-7xl">
+        <motion.div ref={sectionRef} {...sectionAnim}>
+          <h2 className="mb-16 text-center text-[36px] font-bold italic leading-[1.2] text-[#0f1d3a] sm:text-[44px]">
+            {title}
+          </h2>
+
+          <div className="relative flex flex-col items-stretch gap-10 md:flex-row md:gap-0">
+            {/* Connecting line */}
+            <div className="absolute left-[28px] top-[28px] hidden h-[2px] w-[calc(100%-56px)] bg-[#d1d5db] md:block" />
+
+            {steps.map((step, i) => (
+              <div
+                key={i}
+                className="relative flex flex-1 flex-col items-center text-center"
+              >
+                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-xl border-[2.5px] border-[#0f1d3a] bg-white text-[20px] font-bold text-[#0f1d3a]">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="mt-5 text-[14px] font-bold tracking-[0.05em] text-[#0f1d3a]">
+                  {step.title[locale]}
+                </h3>
+                <p className="mt-2 max-w-[200px] text-[13px] leading-[1.6] text-gray-500">
+                  {step.description[locale]}
+                </p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
   );
 }
 

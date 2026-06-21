@@ -8,5 +8,6 @@ import { partnersPage } from "./partners";
 import { tuyenDung } from "./tuyen-dung";
 import { footer } from "./footer";
 import { lienHe } from "./lien-he";
+import { tinTuc } from "./tin-tuc";
 
-export const schemaTypes: SchemaTypeDefinition[] = [header, hero, gioiThieu, veDtg, giaiPhap, partnersPage, tuyenDung, footer, lienHe];
+export const schemaTypes: SchemaTypeDefinition[] = [header, hero, gioiThieu, veDtg, giaiPhap, partnersPage, tuyenDung, footer, lienHe, tinTuc];

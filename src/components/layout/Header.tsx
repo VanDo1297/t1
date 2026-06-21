@@ -114,19 +114,18 @@ function NavItemWithDropdown({
             transition={{ duration: 0.15 }}
             className="absolute left-0 top-full pt-2"
           >
-            <div className="w-60 rounded-xl border border-white/10 bg-primary-dark/95 backdrop-blur-xl shadow-2xl overflow-hidden">
-              <div className="mx-4 mt-3 mb-1 h-[3px] w-8 rounded-full bg-primary" />
+            <div className="w-60 rounded-xl border border-gray-200 bg-white shadow-xl overflow-hidden">
+              <div className="mx-4 mt-3 mb-1 h-[3px] w-8 rounded-full" style={{ backgroundColor: "#2563eb" }} />
               {item.children!.map((child) => (
                 <Link
                   key={child.href}
                   href={`/${locale}${child.href}`}
-                  className="group/item flex items-center justify-between px-4 py-3 text-[15px] text-white/70 transition-colors hover:bg-white/5 hover:text-white border-b border-white/5 last:border-b-0"
+                  className="group/item flex items-center justify-between px-4 py-3 text-[15px] transition-colors border-b border-gray-100 last:border-b-0"
+                  style={{ color: "#555" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#1a1a1a", e.currentTarget.style.backgroundColor = "#f5f5f5")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#555", e.currentTarget.style.backgroundColor = "transparent")}
                 >
                   {child.label}
-                  <ArrowRight
-                    size={14}
-                    className="opacity-0 -translate-x-2 transition-all group-hover/item:opacity-100 group-hover/item:translate-x-0"
-                  />
                 </Link>
               ))}
             </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { getLienHeData } from "@/sanity/queries";
 import { ContactForm } from "@/components/sections/ContactForm";
@@ -13,23 +14,14 @@ export default async function ContactPage({
   return (
     <main className="pt-[80px]">
       {/* Hero */}
-      <section
-        className="relative flex items-center justify-center px-5 py-24 sm:px-8"
-        style={{
-          minHeight: "320px",
-          background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)",
-        }}
-      >
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 50%, rgba(59,130,246,0.3), transparent 50%), radial-gradient(circle at 80% 50%, rgba(139,92,246,0.3), transparent 50%)",
-          }}
-        />
+      <section className="relative flex min-h-[320px] items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="/assets/bg/2.jpg" alt="" fill className="object-cover" priority />
+          <div className="absolute inset-0" style={{ backgroundColor: "rgba(26,45,61,0.75)" }} />
+        </div>
         <div className="relative z-10 text-center">
           <h1 className="text-4xl font-bold text-white sm:text-5xl">{data.title}</h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-white/60">
+          <p className="mx-auto mt-4 max-w-xl text-lg" style={{ color: "rgba(255,255,255,0.7)" }}>
             {locale === "vi"
               ? "Liên hệ với chúng tôi để được tư vấn giải pháp phù hợp nhất."
               : "Get in touch with us for the most suitable solution."}
@@ -38,74 +30,61 @@ export default async function ContactPage({
       </section>
 
       {/* Content */}
-      <section style={{ backgroundColor: "#0b0f1a" }} className="px-5 py-16 sm:px-8">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
-          {/* Left Column — Contact Info */}
+      <section className="px-5 py-16 sm:px-8" style={{ backgroundColor: "#fff" }}>
+        <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-2">
+          {/* Left — Contact Info */}
           <div>
-            <h2 className="mb-8 text-2xl font-bold text-white">{data.infoTitle}</h2>
+            <h2 className="mb-8 text-2xl font-bold" style={{ color: "#1a1a1a" }}>{data.infoTitle}</h2>
 
-            {/* Address */}
             <div className="mb-6 flex gap-4">
-              <div
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
-                style={{ backgroundColor: "rgba(59,130,246,0.15)" }}
-              >
-                <MapPin size={20} style={{ color: "#3b82f6" }} />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: "rgba(37,99,235,0.1)" }}>
+                <MapPin size={20} style={{ color: "#2563eb" }} />
               </div>
               <div>
-                <p className="text-sm font-medium text-white/50">
+                <p className="text-sm font-medium" style={{ color: "#888" }}>
                   {locale === "vi" ? "Địa chỉ" : "Address"}
                 </p>
-                <p className="mt-1 text-white/80">{data.address}</p>
+                <p className="mt-1 text-[15px]" style={{ color: "#333" }}>{data.address}</p>
               </div>
             </div>
 
-            {/* Phones */}
             <div className="mb-6 flex gap-4">
-              <div
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
-                style={{ backgroundColor: "rgba(59,130,246,0.15)" }}
-              >
-                <Phone size={20} style={{ color: "#3b82f6" }} />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: "rgba(37,99,235,0.1)" }}>
+                <Phone size={20} style={{ color: "#2563eb" }} />
               </div>
               <div>
-                <p className="text-sm font-medium text-white/50">
+                <p className="text-sm font-medium" style={{ color: "#888" }}>
                   {locale === "vi" ? "Điện thoại" : "Phone"}
                 </p>
                 <div className="mt-1 space-y-1">
                   {data.phones.map((p) => (
-                    <p key={p.label} className="text-white/80">
-                      <span className="font-medium text-white/60">{p.label}:</span>{" "}
-                      <a href={`tel:${p.number.replace(/[^+\d]/g, "")}`} className="hover:text-white">
+                    <p key={p.label} className="text-[15px]" style={{ color: "#333" }}>
+                      <span style={{ color: "#666" }}>{p.label}:</span>{" "}
+                      <a href={`tel:${p.number.replace(/[^+\d]/g, "")}`} className="hover:underline">
                         {p.number}
                       </a>
                     </p>
                   ))}
-                  <p className="text-white/80">
-                    <span className="font-medium text-white/60">Fax:</span> {data.fax}
+                  <p className="text-[15px]" style={{ color: "#333" }}>
+                    <span style={{ color: "#666" }}>Fax:</span> {data.fax}
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Email */}
             <div className="mb-10 flex gap-4">
-              <div
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
-                style={{ backgroundColor: "rgba(59,130,246,0.15)" }}
-              >
-                <Mail size={20} style={{ color: "#3b82f6" }} />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: "rgba(37,99,235,0.1)" }}>
+                <Mail size={20} style={{ color: "#2563eb" }} />
               </div>
               <div>
-                <p className="text-sm font-medium text-white/50">Email</p>
-                <a href={`mailto:${data.email}`} className="mt-1 block text-white/80 hover:text-white">
+                <p className="text-sm font-medium" style={{ color: "#888" }}>Email</p>
+                <a href={`mailto:${data.email}`} className="mt-1 block text-[15px] hover:underline" style={{ color: "#2563eb" }}>
                   {data.email}
                 </a>
               </div>
             </div>
 
-            {/* Map */}
-            <div className="overflow-hidden rounded-xl">
+            <div className="overflow-hidden rounded-xl border" style={{ borderColor: "#eee" }}>
               <iframe
                 src={data.mapEmbedUrl}
                 width="100%"
@@ -119,11 +98,8 @@ export default async function ContactPage({
             </div>
           </div>
 
-          {/* Right Column — Contact Form */}
-          <div
-            className="rounded-2xl p-6 sm:p-8"
-            style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
-          >
+          {/* Right — Form */}
+          <div className="rounded-2xl p-6 sm:p-8" style={{ backgroundColor: "#f9fafb", border: "1px solid #eee" }}>
             <ContactForm
               formTitle={data.formTitle}
               formNameLabel={data.formNameLabel}
