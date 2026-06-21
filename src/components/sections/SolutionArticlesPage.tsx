@@ -39,30 +39,30 @@ export function SolutionArticlesPage({
   const olderArticles = articles.slice(1);
 
   return (
-    <main className="pt-[80px]">
+    <main className="solution-articles-mobile pt-[80px]">
       {/* Hero */}
-      <section className="relative flex items-end overflow-hidden px-5 pb-16 pt-24 sm:px-8" style={{ minHeight: 460 }}>
+      <section className="site-hero">
         <div className="absolute inset-0">
           <Image src="/assets/bg/1.jpg" alt="" fill className="object-cover" priority />
         </div>
-        <div className="relative z-10 w-full">
+        <div className="site-hero-content">
           {/* Breadcrumb */}
-          <div className="mb-6 flex items-center gap-2 font-medium tracking-wider" style={{ fontSize: 14, color: "#888" }}>
-            <Link href={`/${locale}`} className="transition-colors" style={{ color: "#888" }}>
+          <div className="site-breadcrumb">
+            <Link href={`/${locale}`}>
               {locale === "vi" ? "TRANG CHỦ" : "HOME"}
             </Link>
-            <span>/</span>
-            <Link href={categoryPath} className="transition-colors" style={{ color: "#888" }}>
+            <span>&rarr;</span>
+            <Link href={categoryPath}>
               {locale === "vi" ? "GIẢI PHÁP CÔNG NGHỆ" : "TECHNOLOGY SOLUTIONS"}
             </Link>
-            <span>/</span>
-            <span style={{ color: "#1a1a1a", fontWeight: 600 }}>{solutionTitle.toUpperCase()}</span>
+            <span>&rarr;</span>
+            <span>{solutionTitle.toUpperCase()}</span>
           </div>
 
-          <h1 className="font-bold" style={{ fontSize: 72, color: "#1a1a1a", margin: 0 }}>
+          <h1 className="site-hero-title">
             {solutionTitle}
           </h1>
-          <p className="mt-4 leading-relaxed" style={{ fontSize: 22, color: "#555", maxWidth: 700 }}>
+          <p className="site-hero-description">
             {solutionDescription}
           </p>
         </div>

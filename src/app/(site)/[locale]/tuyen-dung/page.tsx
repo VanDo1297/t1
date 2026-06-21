@@ -13,9 +13,9 @@ export default async function CareersPage({
   const data = await getTuyenDungData(locale);
 
   return (
-    <main className="pt-[80px]">
+    <main className="careers-page-mobile pt-[80px]">
       {/* Hero + Search */}
-      <section className="relative min-h-[480px] overflow-hidden">
+      <section className="site-hero">
         <div className="absolute inset-0">
           <Image
             src="/assets/bg/2.jpg"
@@ -27,13 +27,27 @@ export default async function CareersPage({
           <div className="absolute inset-0 " />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-5 pb-10 pt-24 text-center sm:px-8 md:pt-32">
-          <h1 className="text-3xl font-bold italic text-[#1a1a1a] sm:text-4xl md:text-5xl">
+        <div className="site-hero-content">
+          <nav className="site-breadcrumb">
+            <Link href={`/${locale}`}>
+              {locale === "vi" ? "TRANG CHỦ" : "HOME"}
+            </Link>
+            <span>&rarr;</span>
+            <span>{locale === "vi" ? "TUYỂN DỤNG" : "CAREERS"}</span>
+          </nav>
+          <h1 className="site-hero-title">
             {data.heroTitle}
           </h1>
+          <p className="site-hero-description">
+            {locale === "vi"
+              ? "Khám phá cơ hội nghề nghiệp và đồng hành cùng DTG trong hành trình phát triển công nghệ."
+              : "Explore career opportunities and grow with DTG on our technology journey."}
+          </p>
         </div>
+      </section>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-5 pb-16 sm:px-8">
+      <section className="bg-white px-5 py-6 sm:px-8">
+        <div className="w-full">
           <CareersSearch
             searchPlaceholder={data.searchPlaceholder}
             industryLabel={data.industryLabel}

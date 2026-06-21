@@ -15,23 +15,26 @@ export default async function AboutPage({
   const paragraphs = data.brandStoryContent.split("\n\n").filter((p) => p.trim());
 
   return (
-    <main style={{ paddingTop: 80 }}>
+    <main className="about-page-mobile" style={{ paddingTop: 80 }}>
       {/* Hero */}
-      <section className="relative flex items-end min-h-[300px] md:min-h-[460px] overflow-hidden">
+      <section className="site-hero">
         <div className="absolute inset-0">
           <Image src="/assets/bg/1.jpg" alt="" fill className="object-cover" priority />
         </div>
-        <div className="relative z-10 w-full px-5 pt-16 pb-10 md:pt-20 md:pb-[60px]">
-          <nav className="flex items-center gap-2 text-[13px] text-[#888] mb-5">
-            <Link href={`/${locale}`} className="text-[#888] no-underline">
+        <div className="site-hero-content">
+          <nav className="site-breadcrumb">
+            <Link href={`/${locale}`}>
               {isVi ? "TRANG CHỦ" : "HOME"}
             </Link>
-            <span className="text-[#bbb]">&rarr;</span>
-            <span className="text-[#1a1a1a] font-semibold">{isVi ? "GIỚI THIỆU CHUNG" : "ABOUT US"}</span>
+            <span>&rarr;</span>
+            <span>{isVi ? "GIỚI THIỆU CHUNG" : "ABOUT US"}</span>
           </nav>
-          <h1 className="text-[36px] md:text-[72px] font-bold text-[#1a1a1a] m-0">
+          <h1 className="site-hero-title">
             {isVi ? "Về chúng tôi" : "About Us"}
           </h1>
+          <p className="site-hero-description">
+            {data.brandStoryTitle}
+          </p>
         </div>
       </section>
 

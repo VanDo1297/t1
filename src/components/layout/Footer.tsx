@@ -29,7 +29,7 @@ export function Footer({ data, locale }: FooterProps) {
   const copyrightYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-gray-200 bg-white">
+    <footer className="bg-[#0a192f]">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_2fr]">
           {/* Left: Logo + Support */}
@@ -39,18 +39,18 @@ export function Footer({ data, locale }: FooterProps) {
               alt="DTS"
               width={120}
               height={40}
-              className="mb-8"
+              className="mb-8 brightness-0 invert"
             />
-            <p className="text-[15px] font-bold italic text-[#2a4a5e]">
+            <p className="text-[15px] font-bold italic text-[#60a5fa]">
               {isVi ? "Trung tâm hỗ trợ dịch vụ" : "Service Support Center"}
             </p>
-            <div className="mt-4 space-y-1 text-[14px] text-[#444]">
+            <div className="mt-4 space-y-1 text-[14px] text-white/70">
               <p>
                 <span className="font-semibold italic">Hotline:</span> {data.hotline}
               </p>
               <p>
                 <span className="font-semibold italic">Email:</span>{" "}
-                <a href={`mailto:${data.email}`} className="hover:text-primary">
+                <a href={`mailto:${data.email}`} className="hover:text-white transition-colors">
                   {data.email}
                 </a>
               </p>
@@ -62,7 +62,7 @@ export function Footer({ data, locale }: FooterProps) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#2a4a5e] transition-colors hover:text-primary"
+                  className="text-white/60 transition-colors hover:text-white"
                   aria-label={link.platform}
                 >
                   {socialIcons[link.platform] ?? (
@@ -75,28 +75,21 @@ export function Footer({ data, locale }: FooterProps) {
 
           {/* Right: Addresses */}
           <div>
-            <p className="mb-6 text-[15px] font-bold italic text-[#2a4a5e]">
+            <p className="mb-6 text-[15px] font-bold italic text-[#60a5fa]">
               {isVi ? "Địa chỉ" : "Addresses"}
             </p>
-            <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2">
-              {/* Left sub-col: first office */}
-              <div>
-                <OfficeBlock office={data.offices[0]} isVi={isVi} />
-              </div>
-              {/* Right sub-col: remaining offices */}
-              <div className="space-y-8">
-                {data.offices.slice(1).map((office) => (
-                  <OfficeBlock key={office.name} office={office} isVi={isVi} />
-                ))}
-              </div>
+            <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+              {data.offices.map((office) => (
+                <OfficeBlock key={office.name} office={office} isVi={isVi} />
+              ))}
             </div>
           </div>
         </div>
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-gray-200">
-        <p className="py-4 text-center text-[12px] text-gray-400">
+      <div className="border-t border-white/10">
+        <p className="py-4 text-center text-[12px] text-white/40">
           &copy; {copyrightYear} DTS. All rights reserved.
         </p>
       </div>
@@ -112,8 +105,8 @@ function OfficeBlock({
   isVi: boolean;
 }) {
   return (
-    <div className="text-[13px] leading-relaxed text-[#444]">
-      <p className="font-bold text-[#2a4a5e]">{office.name}:</p>
+    <div className="text-[13px] leading-relaxed text-white/60">
+      <p className="font-bold text-white/90">{office.name}:</p>
       <p className="mt-1">{office.address}</p>
       {office.phone && (
         <p className="mt-1">

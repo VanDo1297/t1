@@ -36,9 +36,9 @@ export default async function SolutionsPage({
   const other = otherServices[lang];
 
   return (
-    <main className="pt-[80px]">
+    <main className="solutions-overview-mobile pt-[80px]">
       {/* Hero */}
-      <section className="relative flex items-end overflow-hidden" style={{ minHeight: 460 }}>
+      <section className="site-hero">
         <div className="absolute inset-0">
           <Image
             src="/assets/bg/1.jpg"
@@ -49,28 +49,27 @@ export default async function SolutionsPage({
           />
         </div>
 
-        <div className="relative z-10 w-full px-5 pb-16 pt-24 sm:px-8">
-          <nav className="mb-6 flex items-center gap-2 font-medium tracking-wider" style={{ fontSize: 14, color: "#888" }}>
-            <Link href={`/${locale}`} style={{ color: "#888", textDecoration: "none" }}>
+        <div className="site-hero-content">
+          <nav className="site-breadcrumb">
+            <Link href={`/${locale}`}>
               {lang === "vi" ? "TRANG CHỦ" : "HOME"}
             </Link>
-            <span style={{ color: "#bbb" }}>&rarr;</span>
-            <span style={{ color: "#1a1a1a", fontWeight: 600 }}>
+            <span>&rarr;</span>
+            <span>
               {lang === "vi" ? "GIẢI PHÁP & DỊCH VỤ" : "SOLUTIONS & SERVICES"}
             </span>
           </nav>
-          <h1 className="font-bold" style={{ fontSize: 72, color: "#1a1a1a", margin: 0 }}>
+          <h1 className="site-hero-title">
             {lang === "vi" ? "Giải pháp & Dịch vụ" : "Solutions & Services"}
           </h1>
-          <p className="mt-4" style={{ fontSize: 22, color: "#555", maxWidth: 700 }}>
+          <p className="site-hero-description">
             {lang === "vi"
               ? "Đồng hành cùng doanh nghiệp trên hành trình chuyển đổi số an toàn và bền vững"
               : "Accompanying enterprises on a safe and sustainable digital transformation journey"}
           </p>
           <Link
             href={`/${locale}/lien-he`}
-            className="mt-8 inline-flex items-center gap-3 rounded-full px-8 py-4 font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ background: "linear-gradient(to right, #2563eb, #7c3aed)", fontSize: 18 }}
+            className="site-hero-cta"
           >
             {lang === "vi" ? "Tư vấn ngay" : "Get in touch"}
             <ArrowRight size={18} />

@@ -65,9 +65,9 @@ export function SolutionCategoryPage({
       : `/${locale}/solutions/${category.slug}`;
 
   return (
-    <main className="pt-[80px]">
+    <main className="solution-category-mobile pt-[80px]">
       {/* Hero */}
-      <section className="relative flex items-end overflow-hidden" style={{ minHeight: 460 }}>
+      <section className="site-hero">
         <div className="absolute inset-0">
           <Image
             src={category.heroImage}
@@ -78,17 +78,27 @@ export function SolutionCategoryPage({
           />
         </div>
 
-        <div className="relative z-10 w-full px-5 pb-16 pt-24 sm:px-8">
-          <h1 className="font-bold" style={{ fontSize: 72, color: "#1a1a1a", margin: 0 }}>
+        <div className="site-hero-content">
+          <nav className="site-breadcrumb">
+            <Link href={`/${locale}`}>
+              {locale === "vi" ? "TRANG CHỦ" : "HOME"}
+            </Link>
+            <span>&rarr;</span>
+            <Link href={locale === "vi" ? `/${locale}/giai-phap-dich-vu` : `/${locale}/solutions`}>
+              {locale === "vi" ? "GIẢI PHÁP & DỊCH VỤ" : "SOLUTIONS & SERVICES"}
+            </Link>
+            <span>&rarr;</span>
+            <span>{category.title[locale as "vi" | "en"].toUpperCase()}</span>
+          </nav>
+          <h1 className="site-hero-title">
             {category.title[locale as "vi" | "en"]}
           </h1>
-          <p className="mt-4" style={{ fontSize: 22, color: "#555", maxWidth: 700 }}>
+          <p className="site-hero-description">
             {category.heroDescription[locale as "vi" | "en"]}
           </p>
           <Link
             href={`/${locale}/lien-he`}
-            className="mt-8 inline-flex items-center gap-3 rounded-full px-8 py-4 font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ background: "linear-gradient(to right, #2563eb, #7c3aed)", fontSize: 18 }}
+            className="site-hero-cta"
           >
             {locale === "vi" ? "Tư vấn ngay" : "Get in touch"}
             <ArrowRight size={18} />
@@ -146,7 +156,7 @@ function GoalsSection({
         <motion.h2
           ref={titleRef}
           {...titleAnim}
-          className="text-center font-bold uppercase tracking-wider"
+          className="solution-section-heading text-center font-bold uppercase tracking-wider"
           style={{ fontSize: 42, color: "#1a1a1a" }}
         >
           {locale === "vi" ? "Mục tiêu giải pháp" : "Solution Goals"}
@@ -234,7 +244,7 @@ function LoTrinhSection({ locale }: { locale: "vi" | "en" }) {
         <motion.h2
           ref={titleRef}
           {...titleAnim}
-          className="mb-16 text-center font-medium leading-[1.2]"
+          className="solution-section-heading mb-16 text-center font-medium leading-[1.2]"
           style={{ fontSize: 42, color: "#1a1a1a" }}
         >
           {locale === "vi" ? "Lộ trình triển khai 5 giai đoạn" : "5-Phase Deployment Roadmap"}
@@ -370,7 +380,7 @@ function SectionTitle({ locale }: { locale: string }) {
     <motion.h2
       ref={ref}
       {...animationProps}
-      className="text-center font-bold"
+      className="solution-section-heading text-center font-bold"
       style={{ fontSize: 42, color: "#2563eb" }}
     >
       {locale === "vi" ? "Giải pháp" : "Solutions"}
@@ -413,15 +423,13 @@ function SolutionCard({
 
   return (
     <motion.div
-      ref={(el) => {
-        (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
-        (cardRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
-      }}
+      ref={ref}
       {...animationProps}
       id={`solution-${slug}`}
     >
       <Link href={href} className="block h-full">
         <div
+          ref={cardRef}
           className={`group flex h-full flex-col rounded-2xl border p-8 shadow-sm transition-all duration-300 ${
             isActive
               ? "border-primary/40 bg-primary/4 shadow-lg ring-2 ring-primary/20"

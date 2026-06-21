@@ -17,9 +17,9 @@ export default async function JobDetailPage({
   if (!job) notFound();
 
   return (
-    <main className="pt-[80px]">
+    <main className="job-detail-mobile pt-[80px]">
       {/* Hero */}
-      <section className="relative h-[50vh] min-h-[300px] overflow-hidden">
+      <section className="site-hero site-hero--dark">
         <div className="absolute inset-0">
           <Image
             src="/assets/bg/2.jpg"
@@ -31,16 +31,24 @@ export default async function JobDetailPage({
           <div className="absolute inset-0 bg-[#1a2d3d]/75" />
         </div>
 
-        <div className="relative z-10 flex h-full flex-col justify-end pb-16 pl-8">
-          <Link
-            href={`/${locale}/tuyen-dung`}
-            className="mb-6 inline-flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-white"
-          >
-            ← {isVi ? "Tuyển dụng" : "Careers"}
-          </Link>
-          <h1 className="text-3xl font-bold italic text-white sm:text-4xl md:text-5xl">
-            {isVi ? "Vị trí tuyển dụng" : "Job Opening"}
+        <div className="site-hero-content">
+          <nav className="site-breadcrumb">
+            <Link href={`/${locale}`}>
+              {isVi ? "TRANG CHỦ" : "HOME"}
+            </Link>
+            <span>&rarr;</span>
+            <Link href={`/${locale}/tuyen-dung`}>
+              {isVi ? "TUYỂN DỤNG" : "CAREERS"}
+            </Link>
+            <span>&rarr;</span>
+            <span>{job.title.toUpperCase()}</span>
+          </nav>
+          <h1 className="site-hero-title">
+            {job.title}
           </h1>
+          <p className="site-hero-description">
+            {job.location} · {isVi ? "Ngày hết hạn" : "Deadline"}: {job.deadline}
+          </p>
         </div>
       </section>
 

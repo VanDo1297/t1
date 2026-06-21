@@ -63,36 +63,39 @@ export default async function SolutionArticleDetailPage({
   const solutionPath = `${categoryPath}/${slug}`;
 
   return (
-    <main className="pt-[80px]">
-      <section className="bg-white px-5 pb-16 pt-10 text-[#1a1a1a] sm:px-8">
-        <article className="mx-auto max-w-4xl">
-          {/* Breadcrumb */}
-          <div className="mb-8 flex items-center gap-2 text-[12px] font-medium tracking-wider text-gray-400">
-            <Link href={`/${locale}`} className="transition-colors hover:text-gray-600">
+    <main className="article-detail-mobile pt-[80px]">
+      <section className="site-hero">
+        <div className="site-hero-content">
+          <div className="site-breadcrumb">
+            <Link href={`/${locale}`}>
               {locale === "vi" ? "TRANG CHỦ" : "HOME"}
             </Link>
-            <span className="text-gray-300">&gt;</span>
-            <Link href={categoryPath} className="transition-colors hover:text-gray-600">
+            <span>&rarr;</span>
+            <Link href={categoryPath}>
               {locale === "vi" ? "GIẢI PHÁP CÔNG NGHỆ" : "TECHNOLOGY SOLUTIONS"}
             </Link>
-            <span className="text-gray-300">&gt;</span>
-            <Link href={solutionPath} className="transition-colors hover:text-gray-600">
+            <span>&rarr;</span>
+            <Link href={solutionPath}>
               {solutionTitle.toUpperCase()}
             </Link>
-            <span className="text-gray-300">&gt;</span>
-            <span className="font-semibold text-primary">
+            <span>&rarr;</span>
+            <span>
               {locale === "vi" ? "CHI TIẾT" : "DETAIL"}
             </span>
           </div>
 
-          <h1 className="mb-4 text-[26px] font-bold leading-[1.3] text-[#1a1a1a] sm:text-[32px] lg:text-[36px]">
+          <h1 className="site-hero-title">
             {article.title}
           </h1>
 
-          <p className="mb-8 text-[14px] text-gray-400">{publishedDate}</p>
+          <p className="site-hero-description">{publishedDate}</p>
+        </div>
+      </section>
 
+      <section className="bg-white px-5 pb-16 pt-10 text-[#1a1a1a] sm:px-8">
+        <article className="w-full">
           {hasBody ? (
-            <div className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-[#1a1a1a] prose-p:text-[15px] prose-p:leading-relaxed prose-p:text-gray-600 prose-a:text-primary prose-img:rounded-xl">
+            <div className="article-rich-content">
               <PortableText
                 value={article.body as never}
                 components={portableTextComponents}

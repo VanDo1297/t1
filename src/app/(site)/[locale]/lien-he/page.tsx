@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { getLienHeData } from "@/sanity/queries";
 import { ContactForm } from "@/components/sections/ContactForm";
@@ -12,16 +13,22 @@ export default async function ContactPage({
   const data = await getLienHeData(locale);
 
   return (
-    <main className="pt-[80px]">
+    <main className="contact-page-mobile pt-[80px]">
       {/* Hero */}
-      <section className="relative flex min-h-[320px] items-center justify-center overflow-hidden">
+      <section className="site-hero site-hero--dark">
         <div className="absolute inset-0">
           <Image src="/assets/bg/2.jpg" alt="" fill className="object-cover" priority />
-          <div className="absolute inset-0" style={{ backgroundColor: "rgba(26,45,61,0.75)" }} />
         </div>
-        <div className="relative z-10 text-center">
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">{data.title}</h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg" style={{ color: "rgba(255,255,255,0.7)" }}>
+        <div className="site-hero-content">
+          <nav className="site-breadcrumb ">
+            <Link href={`/${locale}`}>
+              {locale === "vi" ? "TRANG CHỦ" : "HOME"}
+            </Link>
+            <span>&rarr;</span>
+            <span>{data.title.toUpperCase()}</span>
+          </nav>
+          <h1 className="site-hero-title">{data.title}</h1>
+          <p className="site-hero-description">
             {locale === "vi"
               ? "Liên hệ với chúng tôi để được tư vấn giải pháp phù hợp nhất."
               : "Get in touch with us for the most suitable solution."}

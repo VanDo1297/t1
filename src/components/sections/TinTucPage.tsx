@@ -173,9 +173,9 @@ export function TinTucPage({
       : pageData.categories.find((c) => c.value === activeCategory)?.label || "";
 
   return (
-    <main className="pt-[80px] [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif]">
+    <main className="news-list-mobile pt-[80px] [font-family:'TT_Hoves',Arial,'Helvetica_Neue',Helvetica,sans-serif]">
       {/* Hero */}
-      <section className="relative flex items-end overflow-hidden" style={{ minHeight: 460 }}>
+      <section className="site-hero">
         <div className="absolute inset-0">
           <Image
             src="/assets/bg/1.jpg"
@@ -186,26 +186,34 @@ export function TinTucPage({
           />
         </div>
 
-        <div className="relative z-10 w-full px-5 pb-16 pt-24 sm:px-8">
+        <div className="site-hero-content">
           {/* Breadcrumb */}
-          <div className="mb-6 flex items-center gap-2 text-[13px] font-medium tracking-wider text-[#888]">
-            <Link href={`/${locale}`} className="transition-colors hover:text-[#1a1a1a]">
+          <div className="site-breadcrumb">
+            <Link href={`/${locale}`}>
               {pageData.breadcrumbHome}
             </Link>
-            <span>/</span>
-            <Link href={`/${locale}/tin-tuc`} className="transition-colors hover:text-[#1a1a1a]">
+            <span>&rarr;</span>
+            <Link href={`/${locale}/tin-tuc`}>
               {pageData.breadcrumbNews}
             </Link>
-            <span>/</span>
-            <span className="text-[#2563eb] font-semibold">{activeCategoryLabel.toUpperCase()}</span>
+            <span>&rarr;</span>
+            <span>{activeCategoryLabel.toUpperCase()}</span>
           </div>
 
-          <h1 className="font-bold" style={{ fontSize: 72, color: "#1a1a1a", margin: "0 0 24px" }}>
+          <h1 className="site-hero-title">
             {pageData.breadcrumbNews}
           </h1>
+          <p className="site-hero-description">
+            {locale === "vi"
+              ? "Cập nhật tin tức, góc nhìn công nghệ và hoạt động mới nhất từ DTG."
+              : "Latest news, technology insights and updates from DTG."}
+          </p>
 
-          {/* Category tabs */}
-          <div className="flex flex-wrap gap-3">
+        </div>
+      </section>
+
+      <section className="bg-white px-5 py-6 sm:px-8">
+        <div className="flex flex-wrap gap-3">
             {pageData.categories.map((cat) => (
               <button
                 key={cat.value}
@@ -219,7 +227,6 @@ export function TinTucPage({
                 {cat.label}
               </button>
             ))}
-          </div>
         </div>
       </section>
 
