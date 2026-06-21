@@ -48,7 +48,7 @@ export default async function HomePage({
     }));
 
   return (
-    <main style={{ overflowX: "hidden" }}>
+    <main style={{ overflowX: "clip" }}>
       <HeroSection data={heroData} locale={locale} />
       <SubNav
         items={items}

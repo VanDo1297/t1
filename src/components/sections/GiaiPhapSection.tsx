@@ -71,7 +71,7 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
   return (
     <section
       id="giai-phap"
-      className="relative overflow-hidden overflow-x-clip! overflow-y-visible! text-[#1a1a1a]"
+      className="relative overflow-x-clip overflow-y-visible text-[#1a1a1a]"
       style={{
         background: `
           linear-gradient(to bottom, white 0%, transparent 15%),
