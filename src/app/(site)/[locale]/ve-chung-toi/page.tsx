@@ -36,7 +36,7 @@ export default async function AboutPage({
       </section>
 
       {/* Giới thiệu - same as home */}
-      <GioiThieuSection data={gioiThieuData} />
+      <GioiThieuSection data={gioiThieuData} locale={locale} />
 
       {/* Photo Gallery Grid — 4 images: left top 1+2, left bottom 3, right full 4 */}
       <section className="bg-white px-5 py-20 sm:px-8">
