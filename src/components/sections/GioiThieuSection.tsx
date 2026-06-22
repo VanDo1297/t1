@@ -68,7 +68,7 @@ export function GioiThieuSection({ data }: GioiThieuSectionProps) {
           {...right.animationProps}
           className="relative aspect-[4/3] w-full"
         >
-          {/* Glow behind image */}ßßß
+          {/* Glow behind image */}
           <div className="pointer-events-none absolute -inset-50 rounded-full bg-[#64dcdc] opacity-[0.3] blur-[200px]" />
           <div className="relative h-full w-full overflow-hidden rounded-2xl">
           <Image

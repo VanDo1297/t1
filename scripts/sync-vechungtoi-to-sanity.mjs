@@ -61,7 +61,7 @@ const enData = {
   brandStoryContent: "At DTG CORP, we do not merely see technology as a tool, but as a vital foundation for business breakthroughs.\n\nWe believe technology must serve people and deliver practical, transparent, safe, and sustainable results.",
   slogan: "STEADFAST IN TRUST",
   learnMoreLabel: "Learn more",
-  learnMoreHref: "/about",
+  learnMoreHref: "/ve-chung-toi",
   visionCards: [
     { _type: "object", _key: "v0", title: "VISION", description: "To become a conglomerate with 4 strategic pillars: IT, Electrical equipment, Premium LED, Restaurant & Entertainment." },
     { _type: "object", _key: "v1", title: "MISSION", description: "To fulfill every customer need, bringing the best benefits for the prosperity of Customers, Shareholders, Employees, and the Community." },
