@@ -29,14 +29,15 @@ function StaticRow({ items }: { items: CarouselItem[] }) {
       {visible.map((item) => (
         <div
           key={item.name}
-          className="group relative rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+          className="group relative overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md"
           style={{ height: 140 }}
         >
           <Image
             src={item.logoUrl}
             alt={item.name}
             fill
-            className="object-contain p-5 transition-transform duration-300 group-hover:scale-125"
+            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
+            className="object-contain p-6 transition-transform duration-300 group-hover:scale-110"
           />
         </div>
       ))}
@@ -66,14 +67,15 @@ function SliderRow({ items }: { items: CarouselItem[] }) {
         {visible.map((item) => (
           <div
             key={item.name}
-            className="group relative rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+            className="group relative overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md"
             style={{ height: 140 }}
           >
             <Image
               src={item.logoUrl}
               alt={item.name}
               fill
-              className="object-contain p-5 transition-transform duration-300 group-hover:scale-125"
+              sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
+              className="object-contain p-6 transition-transform duration-300 group-hover:scale-110"
             />
           </div>
         ))}
@@ -127,13 +129,14 @@ function CarouselRow({ items, direction = "left", speed = 30 }: {
           <div
             key={`${item.name}-${i}`}
             style={{ minWidth: 280, width: 280, height: 140 }}
-            className="group relative flex-shrink-0 rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+            className="group relative flex-shrink-0 overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md"
           >
             <Image
               src={item.logoUrl}
               alt={item.name}
               fill
-              className="object-contain p-5 transition-transform duration-300 group-hover:scale-125"
+              sizes="280px"
+              className="object-contain p-6 transition-transform duration-300 group-hover:scale-110"
             />
           </div>
         ))}
