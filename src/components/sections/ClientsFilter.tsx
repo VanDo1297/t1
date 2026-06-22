@@ -65,7 +65,7 @@ export function ClientsFilter({ categories, clients, allLabel }: ClientsFilterPr
                   alt={client.name}
                   width={140}
                   height={70}
-                  className="h-16 w-auto object-contain"
+                  className="h-16 w-auto object-cover"
                 />
               </div>
               <span className="text-center text-sm font-medium leading-tight text-[#1a6b5a]">

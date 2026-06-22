@@ -85,7 +85,7 @@ export default async function PartnersPage({
                     alt={partner.name}
                     width={160}
                     height={80}
-                    className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+                    className="h-16 w-auto object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
               );
@@ -123,7 +123,7 @@ export default async function PartnersPage({
                     alt={partner.name}
                     width={160}
                     height={80}
-                    className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+                    className="h-14 w-auto object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
               );
