@@ -6,6 +6,4 @@ export const client = createClient({
   dataset,
   apiVersion,
   useCdn: false,
-  fetch: (url, options) =>
-    fetch(url, { ...options, next: { tags: ["sanity"] } }),
 });
