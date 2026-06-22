@@ -59,7 +59,7 @@ export default async function HomePage({
         ctaHref="/lien-he"
         locale={locale}
       />
-      <GioiThieuSection data={gioiThieuData} />
+      <GioiThieuSection data={gioiThieuData} locale={locale} />
       <VeDtgSection data={veDtgData} />
       <GiaiPhapSection data={giaiPhapData} locale={locale} />
       <DoiTacSection

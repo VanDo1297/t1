@@ -9,9 +9,10 @@ import type { GioiThieuData } from "@/sanity/queries";
 
 interface GioiThieuSectionProps {
   data: GioiThieuData;
+  locale: string;
 }
 
-export function GioiThieuSection({ data }: GioiThieuSectionProps) {
+export function GioiThieuSection({ data, locale }: GioiThieuSectionProps) {
   const fallbackImage = "/assets/dtg-tower.jpg";
   const imageSrc = data.imageUrl || fallbackImage;
 
@@ -51,7 +52,7 @@ export function GioiThieuSection({ data }: GioiThieuSectionProps) {
           {data.ctaLabel && data.ctaHref && (
             <motion.div ref={left.ref} {...left.animationProps}>
               <Link
-                href={data.ctaHref}
+                href={`/${locale}${data.ctaHref}`}
                 className="mt-8 inline-flex items-center gap-3 rounded-full px-8 py-4 font-semibold text-white transition-opacity hover:opacity-90"
                 style={{ background: "linear-gradient(to right, #2563eb, #7c3aed)", fontSize: 18 }}
               >
