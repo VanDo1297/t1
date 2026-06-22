@@ -827,7 +827,7 @@ const partnersFallback: Record<string, PartnersPageData> = {
       "DTS leverages its position as one of the leading system integrators in Vietnam through strategic business partnerships with top technology partners domestically and internationally. We provide customers with a wide range of optimal, advanced products and technologies suited to the IT landscape in Vietnam. Customer satisfaction is our top priority.",
     heroBackgroundImage: null,
     ctaButtonLabel: "Consult",
-    ctaButtonHref: "/contact",
+    ctaButtonHref: "/lien-he",
     strategicPartnersTitle: "STRATEGIC PARTNERS",
     strategicPartners: [],
     networkPartnersTitle: "TECHNOLOGY PARTNER NETWORK",
@@ -1408,7 +1408,7 @@ const veChungToiFallback: Record<string, VeChungToiPageData> = {
     brandStoryContent: "At DTG CORP, we do not merely see technology as a tool, but as a vital foundation for business breakthroughs.\n\nWe believe technology must serve people and deliver practical, transparent, safe, and sustainable results.",
     slogan: "STEADFAST IN TRUST",
     learnMoreLabel: "Learn more",
-    learnMoreHref: "/about",
+    learnMoreHref: "/ve-chung-toi",
     visionCards: [
       { title: "VISION", description: "To become a conglomerate with 4 strategic pillars: IT, Electrical equipment, Premium LED, Restaurant & Entertainment." },
       { title: "MISSION", description: "To fulfill every customer need, bringing the best benefits for the prosperity of Customers, Shareholders, Employees, and the Community." },

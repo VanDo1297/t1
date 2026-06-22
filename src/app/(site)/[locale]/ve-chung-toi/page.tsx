@@ -163,7 +163,11 @@ export default async function AboutPage({
                   )}
                 </div>
                 <h3 className="text-[20px] md:text-[24px] font-bold text-[#0a192f] mb-1">{data.leaders[0].name}</h3>
-                <p className="text-[16px] md:text-[20px] text-[#666] m-0 leading-[1.5]">{data.leaders[0].role}</p>
+                <p className="text-[16px] md:text-[20px] text-[#666] m-0 leading-[1.5]">
+                  {data.leaders[0].role.split(" — ").map((part, i) => (
+                    <span key={i} className="block">{part}</span>
+                  ))}
+                </p>
               </div>
             </div>
           )}
@@ -190,7 +194,11 @@ export default async function AboutPage({
                       )}
                     </div>
                     <h3 className="text-[18px] md:text-[24px] font-bold text-[#0a192f] mb-1">{leader.name}</h3>
-                    <p className="text-[14px] md:text-[20px] text-[#666] m-0 leading-[1.5]">{leader.role}</p>
+                    <p className="text-[14px] md:text-[20px] text-[#666] m-0 leading-[1.5]">
+                      {leader.role.split(" — ").map((part, i) => (
+                        <span key={i} className="block">{part}</span>
+                      ))}
+                    </p>
                   </div>
                 ))}
               </div>
