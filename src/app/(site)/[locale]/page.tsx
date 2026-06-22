@@ -47,7 +47,7 @@ export default async function HomePage({
   const toCarousel = (list: (PartnerItem | ClientItem)[]): CarouselItem[] =>
     list.map((p) => ({
       name: p.name,
-      logoUrl: p.logo ? urlFor(p.logo).width(200).height(100).fit("max").url() : LOGO_FALLBACK,
+      logoUrl: p.logo ? urlFor(p.logo).url() : LOGO_FALLBACK,
     }));
 
   return (
