@@ -37,7 +37,7 @@ function StaticRow({ items }: { items: CarouselItem[] }) {
             alt={item.name}
             width={140}
             height={70}
-            className="h-20 w-auto object-cover transition-transform duration-300 group-hover:scale-125"
+            className="max-h-20 max-w-full object-contain transition-transform duration-300 group-hover:scale-125"
           />
         </div>
       ))}
@@ -75,7 +75,7 @@ function SliderRow({ items }: { items: CarouselItem[] }) {
               alt={item.name}
               width={140}
               height={70}
-              className="h-20 w-auto object-cover transition-transform duration-300 group-hover:scale-125"
+              className="max-h-20 max-w-full object-contain transition-transform duration-300 group-hover:scale-125"
             />
           </div>
         ))}
@@ -136,7 +136,7 @@ function CarouselRow({ items, direction = "left", speed = 30 }: {
               alt={item.name}
               width={140}
               height={70}
-              className="h-20 w-auto object-cover transition-transform duration-300 group-hover:scale-125"
+              className="max-h-20 max-w-full object-contain transition-transform duration-300 group-hover:scale-125"
             />
           </div>
         ))}
