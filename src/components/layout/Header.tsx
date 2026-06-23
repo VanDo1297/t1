@@ -41,7 +41,7 @@ function MegaMenuContent({
           <div className="flex flex-col gap-0.5">
             {col.children.map((child) => (
               <Link
-                key={child.href}
+                key={child.label}
                 href={`/${locale}${child.href}`}
                 className="group/item flex items-center gap-2 rounded-lg px-4 py-2.5 text-[14px] text-gray-600 transition-colors hover:bg-gray-50 hover:text-[#1a1a1a]"
               >
@@ -70,7 +70,7 @@ function SimpleMenuContent({
     <div className="flex flex-col gap-0.5">
       {children.map((child) => (
         <Link
-          key={child.href}
+          key={child.label}
           href={`/${locale}${child.href}`}
           className="group/item flex items-center gap-2 rounded-lg px-4 py-2.5 text-[14px] text-gray-600 transition-colors hover:bg-gray-50 hover:text-[#1a1a1a]"
         >
@@ -319,7 +319,7 @@ export function Header({ data, locale }: HeaderProps) {
                       </span>
                       {col.children.map((child) => (
                         <Link
-                          key={child.href}
+                          key={child.label}
                           href={`/${locale}${child.href}`}
                           onClick={() => setIsMobileOpen(false)}
                           className="block pl-10 pr-4 py-2 rounded-xl text-sm text-white/60 transition-colors hover:bg-white/10 hover:text-white"
@@ -332,7 +332,7 @@ export function Header({ data, locale }: HeaderProps) {
                   {!item.megaMenu &&
                     item.children?.map((child) => (
                       <Link
-                        key={child.href}
+                        key={child.label}
                         href={`/${locale}${child.href}`}
                         onClick={() => setIsMobileOpen(false)}
                         className="block pl-8 pr-4 py-2.5 rounded-xl text-sm text-white/60 transition-colors hover:bg-white/10 hover:text-white"

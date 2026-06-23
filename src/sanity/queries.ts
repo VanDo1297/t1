@@ -452,7 +452,7 @@ const GIAI_PHAP_QUERY = `*[_type == "giaiPhap" && language == $lang][0]{
 
 const giaiPhapFallback: Record<string, GiaiPhapData> = {
   vi: {
-    sectionHeading: "Giới thiệu các Nền tảng,\nđược hỗ trợ bởi Precision AI",
+    sectionHeading: "Giới thiệu Giải pháp\nvà Dịch vụ của DTG",
     viewAllLabel: "Xem tất cả",
     tabs: [
       {
@@ -520,7 +520,7 @@ const giaiPhapFallback: Record<string, GiaiPhapData> = {
     ],
   },
   en: {
-    sectionHeading: "Introducing the Platforms,\npowered by Precision AI",
+    sectionHeading: "Introducing DTG's Solutions\nand Services",
     viewAllLabel: "View all",
     tabs: [
       {

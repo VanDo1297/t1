@@ -5,50 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  Shield,
-  Server,
-  Wifi,
-  Database,
-  Search,
-  ShieldCheck,
-  Eye,
-  Bug,
-  Settings,
-  Swords,
-  AlertTriangle,
-  Brain,
-  Bot,
-  Monitor,
-  TreePalm,
-  ScanText,
-  Headphones,
   ChevronLeft,
   ChevronRight,
-  type LucideIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import type { SolutionCategory, SolutionGoal } from "@/data/solutions";
-
-const iconMap: Record<string, LucideIcon> = {
-  Shield,
-  Server,
-  Wifi,
-  Database,
-  Search,
-  ShieldCheck,
-  Eye,
-  Bug,
-  Settings,
-  Swords,
-  AlertTriangle,
-  Brain,
-  Bot,
-  Monitor,
-  TreePalm,
-  ScanText,
-  Headphones,
-};
 
 interface CmsData {
   cardBgImageUrl: string | null;
@@ -330,7 +292,6 @@ function SolutionsCarousel({
         {items.map((item, i) => (
           <SolutionCard
             key={item.href}
-            iconName={item.icon}
             title={item.title[locale as "vi" | "en"]}
             description={item.description[locale as "vi" | "en"]}
             href={`${basePath}/${item.href}`}
@@ -364,7 +325,6 @@ function SolutionsCarousel({
           return (
             <SolutionCard
               key={item.href}
-              iconName={item.icon}
               title={item.title[locale as "vi" | "en"]}
               description={item.description[locale as "vi" | "en"]}
               href={`${basePath}/${item.href}`}
@@ -405,7 +365,6 @@ function SectionTitle({ locale }: { locale: string }) {
 }
 
 function SolutionCard({
-  iconName,
   title,
   description,
   href,
@@ -414,7 +373,6 @@ function SolutionCard({
   slug,
   cardBgImage,
 }: {
-  iconName: string;
   title: string;
   description: string;
   href: string;
@@ -428,8 +386,6 @@ function SolutionCard({
     preset: "fadeUp",
     delay: index * 0.08,
   });
-
-  const Icon = iconMap[iconName] || Shield;
 
   useEffect(() => {
     if (isActive && cardRef.current) {
@@ -448,35 +404,30 @@ function SolutionCard({
       <Link href={href} className="block h-full">
         <div
           ref={cardRef}
-          className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border p-8 shadow-sm transition-all duration-300 ${
+          className={`group flex h-full flex-col overflow-hidden rounded-2xl border shadow-sm transition-all duration-300 ${
             isActive
               ? "border-primary/40 shadow-lg ring-2 ring-primary/20"
               : "border-gray-100 hover:border-primary/20 hover:shadow-lg hover:-translate-y-2"
           }`}
         >
-          <div className="absolute inset-0">
+          {/* Text */}
+          <div className="p-6">
+            <h3
+              className={`font-bold transition-colors ${
+                isActive ? "text-primary" : "text-[#1a1a1a] group-hover:text-primary"
+              }`}
+              style={{ fontSize: 22 }}
+            >
+              {title}
+            </h3>
+            <p className="mt-3 leading-relaxed" style={{ fontSize: 16, color: "#555" }}>
+              {description}
+            </p>
+          </div>
+          {/* Image */}
+          <div className="relative mt-auto aspect-[16/9] w-full">
             <Image src={cardBgImage} alt="" fill className="object-cover" />
           </div>
-          <div
-            className={`relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-xl transition-colors ${
-              isActive
-                ? "bg-primary text-white"
-                : "bg-primary/8 text-primary group-hover:bg-primary group-hover:text-white"
-            }`}
-          >
-            <Icon size={28} />
-          </div>
-          <h3
-            className={`relative z-10 font-bold transition-colors ${
-              isActive ? "text-primary" : "text-[#1a1a1a] group-hover:text-primary"
-            }`}
-            style={{ fontSize: 22 }}
-          >
-            {title}
-          </h3>
-          <p className="relative z-10 mt-3 flex-1 leading-relaxed" style={{ fontSize: 16, color: "#555" }}>
-            {description}
-          </p>
         </div>
       </Link>
     </motion.div>
