@@ -11,6 +11,7 @@ interface HistoryMilestone {
 
 interface HistoryYear {
   year: string;
+  imageUrl?: string;
   milestones: HistoryMilestone[];
 }
 
