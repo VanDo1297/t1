@@ -18,6 +18,16 @@ export const footer = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
+      name: "companyName",
+      title: "Company Name",
+      type: "string",
+    }),
+    defineField({
+      name: "phoneLabel",
+      title: "Phone Label",
+      type: "string",
+    }),
+    defineField({
       name: "ctaTitle",
       title: "CTA Banner Title",
       type: "string",

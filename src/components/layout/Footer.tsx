@@ -21,11 +21,9 @@ const socialIcons: Record<string, React.ReactNode> = {
 
 interface FooterProps {
   data: FooterData;
-  locale: string;
 }
 
-export function Footer({ data, locale }: FooterProps) {
-  const isVi = locale === "vi";
+export function Footer({ data }: FooterProps) {
   const copyrightYear = new Date().getFullYear();
 
   return (
@@ -42,19 +40,9 @@ export function Footer({ data, locale }: FooterProps) {
               className="mb-8"
             />
             <p className="text-[15px] font-bold italic text-[#60a5fa]">
-              {isVi ? "Trung tâm hỗ trợ dịch vụ" : "Service Support Center"}
+              {data.companyName}
             </p>
-            <div className="mt-4 space-y-1 text-[14px] text-white/70">
-              <p>
-                <span className="font-semibold italic">Hotline:</span> {data.hotline}
-              </p>
-              <p>
-                <span className="font-semibold italic">Email:</span>{" "}
-                <a href={`mailto:${data.email}`} className="hover:text-white transition-colors">
-                  {data.email}
-                </a>
-              </p>
-            </div>
+            
             <a
               href={data.companyProfileUrl || "/assets/company-profile.pdf"}
               target="_blank"
@@ -91,7 +79,7 @@ export function Footer({ data, locale }: FooterProps) {
           <div>
             <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
               {data.offices.map((office) => (
-                <OfficeBlock key={office.name} office={office} isVi={isVi} />
+                <OfficeBlock key={office.name} office={office} phoneLabel={data.phoneLabel} />
               ))}
             </div>
           </div>
@@ -110,10 +98,10 @@ export function Footer({ data, locale }: FooterProps) {
 
 function OfficeBlock({
   office,
-  isVi,
+  phoneLabel,
 }: {
   office: FooterData["offices"][number];
-  isVi: boolean;
+  phoneLabel: string;
 }) {
   return (
     <div className="text-[15px] leading-[1.8] text-white/60">
@@ -121,7 +109,7 @@ function OfficeBlock({
       <p className="mt-2">{office.address}</p>
       {office.phone && (
         <p className="mt-2">
-          {isVi ? "Điện thoại" : "Tel"}: {office.phone}
+          {phoneLabel}: {office.phone}
         </p>
       )}
       {office.fax && (

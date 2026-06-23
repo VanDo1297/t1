@@ -11,7 +11,7 @@ export async function FooterServer({ locale = "vi" }: { locale?: string }) {
         buttonLabel={data.ctaButtonLabel}
         locale={locale}
       />
-      <Footer data={data} locale={locale} />
+      <Footer data={data} />
     </>
   );
 }

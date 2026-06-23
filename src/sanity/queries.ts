@@ -1632,6 +1632,8 @@ export interface Office {
 }
 
 export interface FooterData {
+  companyName: string;
+  phoneLabel: string;
   ctaTitle: string;
   ctaButtonLabel: string;
   hotline: string;
@@ -1642,6 +1644,8 @@ export interface FooterData {
 }
 
 const FOOTER_QUERY = `*[_type == "footer" && language == $lang][0]{
+  companyName,
+  phoneLabel,
   ctaTitle,
   ctaButtonLabel,
   hotline,
@@ -1653,6 +1657,8 @@ const FOOTER_QUERY = `*[_type == "footer" && language == $lang][0]{
 
 const footerFallback: Record<string, FooterData> = {
   vi: {
+    companyName: "CÔNG TY CỔ PHẦN CÔNG NGHỆ DTG",
+    phoneLabel: "Điện thoại",
     ctaTitle: "Bắt đầu câu chuyện nâng cấp hạ tầng ngay hôm nay",
     ctaButtonLabel: "Tư vấn ngay",
     hotline: "1800 1537",
@@ -1683,6 +1689,8 @@ const footerFallback: Record<string, FooterData> = {
     ],
   },
   en: {
+    companyName: "Service Support Center",
+    phoneLabel: "Tel",
     ctaTitle: "Start your infrastructure upgrade journey today",
     ctaButtonLabel: "Get in touch",
     hotline: "1800 1537",
