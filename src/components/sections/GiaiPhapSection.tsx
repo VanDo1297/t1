@@ -115,7 +115,7 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
                     borderColor: i === activeIndex ? tabColor : "transparent",
                     color: i === activeIndex ? tabColor : undefined,
                   }}
-                  className={`whitespace-nowrap border-b-2 pb-3 font-bold uppercase tracking-[0.05em] transition-colors ${
+                  className={`whitespace-nowrap border-b-2 pb-3 font-bold capitalize tracking-[0.05em] transition-colors ${
                     i === activeIndex
                       ? ""
                       : "text-[#1a1a1a] hover:opacity-70"
