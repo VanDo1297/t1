@@ -30,6 +30,7 @@ export const giaiPhap = defineType({
         {
           type: "object",
           fields: [
+            defineField({ name: "bgImage", title: "Background Image", type: "image", options: { hotspot: true } }),
             defineField({ name: "label", title: "Tab Label", type: "string", validation: (r) => r.required() }),
             defineField({ name: "title", title: "Title", type: "string" }),
             defineField({ name: "description", title: "Description", type: "text", rows: 4 }),

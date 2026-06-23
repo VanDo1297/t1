@@ -213,6 +213,16 @@ function TabContent({
       ref={setRef}
       className="relative overflow-hidden"
     >
+      {tab.bgImageUrl && (
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={tab.bgImageUrl}
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
 
       <div data-content className="relative z-10 px-5 py-20 sm:px-8">
         {/* Title large on top */}

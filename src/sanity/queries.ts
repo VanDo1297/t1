@@ -434,6 +434,7 @@ export interface GiaiPhapTab {
   description: string;
   ctaLabel: string;
   ctaHref: string;
+  bgImageUrl?: string;
   stats: GiaiPhapStat[];
   awards: GiaiPhapAward[];
 }
@@ -446,7 +447,7 @@ export interface GiaiPhapData {
 
 const GIAI_PHAP_QUERY = `*[_type == "giaiPhap" && language == $lang][0]{
   sectionHeading,
-  tabs[]{ label, title, description, ctaLabel, ctaHref, stats[]{ value, label }, awards[]{ source, title, "imageUrl": image.asset->url } },
+  tabs[]{ label, title, description, ctaLabel, ctaHref, "bgImageUrl": bgImage.asset->url, stats[]{ value, label }, awards[]{ source, title, "imageUrl": image.asset->url } },
   viewAllLabel
 }`;
 
