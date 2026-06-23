@@ -72,7 +72,7 @@ export default async function AboutPage({
           {data.visionCards.map((card, i) => (
             <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#eee] transition-all duration-300">
               <div className="h-[160px] md:h-[200px] relative overflow-hidden">
-                <Image src={`/assets/bg/${(i % 5) + 1}.jpg`} alt="" fill className="object-cover" />
+                <Image src={card.imageUrl || `/assets/bg/${(i % 5) + 1}.jpg`} alt="" fill className="object-cover" />
               </div>
               <div className="p-5 md:p-7 text-center">
                 <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#2563eb] text-white text-[18px] md:text-[27px] font-bold -mt-12 relative z-[2]">
