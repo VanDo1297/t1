@@ -127,9 +127,9 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
       {tabsPinned && <div style={{ height: tabsHeight }} />}
       <div
         ref={tabsBarRef}
-        className={`z-[39] border-b border-gray-200 bg-transparent px-5 py-4 backdrop-blur-md sm:px-8 ${
+        className={`z-[39] border-b bg-transparent px-5 py-4 backdrop-blur-md sm:px-8 ${
           tabsPinned ? "fixed left-0 right-0 top-[56px]" : "sticky top-[56px]"
-        }`}
+        } ${tabsPinned ? "border-white/15" : "border-gray-200"}`}
       >
         <div className="flex items-end">
           <div ref={tabListRef} className="scrollbar-none flex min-w-0 flex-1 items-end gap-6 overflow-x-auto pr-4 sm:gap-8 sm:pr-12 lg:gap-12" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
@@ -145,7 +145,7 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
                   style={{
                     fontSize: "clamp(12px, 1.2vw, 22px)",
                     borderColor: i === activeIndex ? tabColor : "transparent",
-                    color: i === activeIndex ? tabColor : undefined,
+                    color: i === activeIndex ? tabColor : tabsPinned ? "rgba(255,255,255,0.72)" : undefined,
                   }}
                   className={`whitespace-nowrap border-b-2 pb-3 font-bold capitalize tracking-[0.05em] transition-colors ${
                     i === activeIndex
@@ -161,14 +161,18 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
           <Link
             href={`/${locale}${data.tabs[activeIndex]?.ctaHref || "/"}`}
             aria-label={data.viewAllLabel}
-            className="mb-1.5 flex shrink-0 items-center justify-center pb-3 text-[#1a1a1a] transition hover:opacity-70 sm:hidden"
+            className={`mb-1.5 flex shrink-0 items-center justify-center pb-3 transition hover:opacity-70 sm:hidden ${
+              tabsPinned ? "text-white/80" : "text-[#1a1a1a]"
+            }`}
           >
             <ArrowRight size={18} />
           </Link>
           <div className="hidden shrink-0 pb-3 sm:block sm:ml-8">
             <Link
               href={`/${locale}${data.tabs[activeIndex]?.ctaHref || "/"}`}
-              className="flex items-center mb-1.5 gap-2 whitespace-nowrap font-medium text-[#1a1a1a] transition hover:opacity-70"
+              className={`mb-1.5 flex items-center gap-2 whitespace-nowrap font-medium transition hover:opacity-70 ${
+                tabsPinned ? "text-white/80" : "text-[#1a1a1a]"
+              }`}
               style={{ fontSize: "clamp(15px, 0.9vw, 18px)" }}
             >
               {data.viewAllLabel}
@@ -204,12 +208,7 @@ const tabGradients = [
   "linear-gradient(to right, #059669, #34d399)",
 ];
 
-const tabBgImages = [
-  "/assets/giaiphap/giaipgapcongnghe.jpg",
-  "/assets/giaiphap/dichvu.jpg",
-  "/assets/giaiphap/ai.jpg",
-  "/assets/giaiphap/support.jpg",
-];
+const baseTabBgImage = "/assets/bg/Unknown-13.jpg";
 
 function TabContent({
   tab,
@@ -243,40 +242,58 @@ function TabContent({
     <div
       id={`giai-phap-${index}`}
       ref={setRef}
-      className="relative overflow-hidden"
+      className="relative overflow-hidden bg-[#06112f]"
     >
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={baseTabBgImage}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+
       {tab.bgImageUrl && (
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            maskImage: "radial-gradient(ellipse 60% 55% at center, black 30%, transparent 100%)",
-            WebkitMaskImage: "radial-gradient(ellipse 60% 55% at center, black 30%, transparent 100%)",
-          }}
-        >
+        <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+          <div className="relative aspect-[16/9] w-[min(68vw,560px)] opacity-30">
           <Image
             src={tab.bgImageUrl}
             alt=""
             fill
-            className="object-cover"
+            sizes="(max-width: 768px) 68vw, 560px"
+            className="object-contain"
           />
+          </div>
         </div>
       )}
 
-      <div data-content className="relative z-10 px-5 py-20 sm:px-8">
+      <div className="absolute inset-0 z-20 bg-gradient-to-r from-[#06112f]/95 via-[#06112f]/68 to-[#06112f]/35" />
+
+      <div data-content className="relative z-30 px-5 py-24 sm:px-8">
         {/* Title large on top */}
-        <motion.h2
+        <motion.div
           ref={titleRef}
           {...titleAnim}
-          className="mb-12 font-bold uppercase tracking-[0.05em]"
-          style={{ fontSize: "clamp(32px, 3vw, 56px)", color }}
+          className="relative mb-12 pt-8"
         >
-          {tab.title}
-        </motion.h2>
+          <span
+            aria-hidden="true"
+            className="absolute left-0 top-0 h-px w-[180px] max-w-[45vw]"
+            style={{ backgroundColor: "rgba(255,255,255,0.7)" }}
+          />
+          <h2
+            className="font-bold uppercase tracking-[0.05em] text-white"
+            style={{ fontSize: "clamp(32px, 3vw, 56px)" }}
+          >
+            {tab.title}
+          </h2>
+        </motion.div>
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left - Description + Stats + CTA */}
           <motion.div ref={leftRef} {...leftAnim}>
-            <p className="mb-10 leading-[1.7]" style={{ fontSize: "clamp(16px, 1.1vw, 24px)", color: "#374151" }}>
+            <p className="mb-10 leading-[1.7] text-white/80" style={{ fontSize: "clamp(16px, 1.1vw, 24px)" }}>
               {tab.description}
             </p>
 
@@ -284,10 +301,10 @@ function TabContent({
               <div className="mb-10 flex gap-12">
                 {tab.stats.map((stat, i) => (
                   <div key={i}>
-                    <span className="font-bold leading-none" style={{ fontSize: "clamp(36px, 2.8vw, 52px)", color }}>
+                    <span className="font-bold leading-none text-white" style={{ fontSize: "clamp(36px, 2.8vw, 52px)" }}>
                       {stat.value}
                     </span>
-                    <p className="mt-2 font-bold uppercase tracking-[0.15em] text-gray-400" style={{ fontSize: "clamp(12px, 0.7vw, 14px)" }}>
+                    <p className="mt-2 font-bold uppercase tracking-[0.15em] text-white/55" style={{ fontSize: "clamp(12px, 0.7vw, 14px)" }}>
                       {stat.label}
                     </p>
                   </div>
