@@ -49,6 +49,7 @@ export const veChungToiPage = defineType({
         type: "object",
         fields: [
           defineField({ name: "year", title: "Year", type: "string", validation: (r) => r.required() }),
+          defineField({ name: "image", title: "Image", type: "image", options: { hotspot: true } }),
           defineField({
             name: "milestones",
             title: "Milestones",
@@ -58,7 +59,6 @@ export const veChungToiPage = defineType({
               fields: [
                 defineField({ name: "month", title: "Month (e.g. Tháng 07)", type: "string" }),
                 defineField({ name: "content", title: "Content", type: "string" }),
-                defineField({ name: "image", title: "Image", type: "image", options: { hotspot: true } }),
               ],
               preview: { select: { title: "month", subtitle: "content" } },
             }],

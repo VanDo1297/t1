@@ -31,8 +31,6 @@ export function AboutClientSections({
     setActiveYear(year);
   };
 
-  const images = activeData?.milestones.filter((m) => m.imageUrl) || [];
-
   return (
     <div>
       {/* Year tabs */}
@@ -71,20 +69,11 @@ export function AboutClientSections({
       </div>
 
       {activeData && (
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {/* Khung ảnh fix size, scroll nếu nhiều */}
-          <div
-            className="overflow-y-auto rounded-xl bg-gray-50 p-3"
-            style={{ height: "clamp(300px, 30vw, 500px)" }}
-          >
-            {images.length > 0 ? (
-              <div className="grid grid-cols-2 gap-3">
-                {images.map((m, i) => (
-                  <div key={i} className="relative overflow-hidden rounded-lg aspect-[4/3]">
-                    <Image src={m.imageUrl!} alt="" fill className="object-cover" />
-                  </div>
-                ))}
-              </div>
+        <div className="grid grid-cols-1 gap-8 min-[768px]:grid-cols-[35%_1fr]">
+          {/* Ảnh năm */}
+          <div className="relative overflow-hidden rounded-xl bg-gray-100 aspect-[5/3]">
+            {activeData.imageUrl ? (
+              <Image src={activeData.imageUrl} alt="" fill className="object-cover" />
             ) : (
               <div className="flex h-full items-center justify-center">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" strokeWidth="1.5">

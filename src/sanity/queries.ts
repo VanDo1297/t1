@@ -1315,8 +1315,8 @@ export async function getTinTucDetail(
 /* ── Về chúng tôi (Trang) ── */
 
 export interface VisionCard { title: string; description: string; }
-export interface HistoryMilestone { month: string; content: string; imageUrl?: string; }
-export interface HistoryYear { year: string; milestones: HistoryMilestone[]; }
+export interface HistoryMilestone { month: string; content: string; }
+export interface HistoryYear { year: string; imageUrl?: string; milestones: HistoryMilestone[]; }
 export interface Leader { name: string; role: string; photoUrl?: string; }
 export interface Certificate { year: string; title: string; }
 
@@ -1345,7 +1345,7 @@ export interface VeChungToiPageData {
 const VE_CHUNG_TOI_PAGE_QUERY = `*[_type == "veChungToiPage" && language == $lang][0]{
   brandStoryTitle, brandStoryContent, slogan, learnMoreLabel, learnMoreHref,
   visionCards[]{ title, description },
-  historyTitle, historyYears[]{ year, milestones[]{ month, content, "imageUrl": image.asset->url } },
+  historyTitle, historyYears[]{ year, "imageUrl": image.asset->url, milestones[]{ month, content } },
   leadershipTitle, leaders[]{ name, role, "photoUrl": photo.asset->url },
   cultureTitle, coreValuesTitle, coreValues, companyCultureTitle, companyCultureItems,
   "galleryImages": galleryImages[].asset->url
