@@ -367,4 +367,59 @@ export const solutionCategories: SolutionCategory[] = [
       },
     ],
   },
+  {
+    slug: "dich-vu-khac",
+    title: {
+      vi: "Dịch vụ khác",
+      en: "Other Services",
+    },
+    subtitle: {
+      vi: "Các dịch vụ hỗ trợ doanh nghiệp toàn diện",
+      en: "Comprehensive enterprise support services",
+    },
+    heroDescription: {
+      vi: "DTG cung cấp đa dạng dịch vụ hỗ trợ doanh nghiệp từ tư vấn triển khai, bảo hành bảo trì đến ứng cứu sự cố và cho thuê thiết bị.",
+      en: "DTG provides a wide range of enterprise support services from consulting & deployment, warranty & maintenance to incident response and equipment leasing.",
+    },
+    heroImage: "/assets/bg/4.jpg",
+    children: [
+      {
+        icon: "Settings",
+        title: { vi: "Tư vấn và triển khai giải pháp", en: "Consulting & Deployment" },
+        description: {
+          vi: "Tư vấn và triển khai các giải pháp công nghệ phù hợp với nhu cầu doanh nghiệp.",
+          en: "Consulting and deploying technology solutions tailored to enterprise needs.",
+        },
+        href: "tu-van-trien-khai",
+      },
+      {
+        icon: "Shield",
+        title: { vi: "Bảo hành bảo trì", en: "Warranty & Maintenance" },
+        description: {
+          vi: "Dịch vụ bảo hành, bảo trì hệ thống CNTT đảm bảo vận hành liên tục.",
+          en: "IT system warranty and maintenance services ensuring continuous operations.",
+        },
+        href: "bao-hanh-bao-tri",
+      },
+      {
+        icon: "AlertTriangle",
+        title: { vi: "Ứng cứu sự cố", en: "Incident Response" },
+        description: {
+          vi: "Đội ngũ chuyên gia sẵn sàng ứng cứu và khắc phục sự cố hệ thống nhanh chóng.",
+          en: "Expert team ready to respond and resolve system incidents quickly.",
+        },
+        href: "ung-cuu-su-co",
+      },
+      {
+        icon: "Monitor",
+        title: { vi: "Cho thuê thiết bị", en: "Equipment Leasing" },
+        description: {
+          vi: "Dịch vụ cho thuê thiết bị CNTT linh hoạt, tối ưu chi phí đầu tư.",
+          en: "Flexible IT equipment leasing services, optimizing investment costs.",
+        },
+        href: "cho-thue-thiet-bi",
+      },
+    ],
+    goals: [],
+  },
 ];

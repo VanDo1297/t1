@@ -37,6 +37,7 @@ interface SolutionDetailPageProps {
   locale: string;
   title: string;
   description: string;
+  thumbnailUrl?: string;
   fallbackBody: string[];
   body: unknown[];
   breadcrumbs: Breadcrumb[];
@@ -48,6 +49,7 @@ export function SolutionDetailPage({
   locale,
   title,
   description,
+  thumbnailUrl,
   fallbackBody,
   body,
   breadcrumbs,
@@ -55,7 +57,7 @@ export function SolutionDetailPage({
   backLabel,
 }: SolutionDetailPageProps) {
   const hasBody = body && body.length > 0;
-
+  console.log(thumbnailUrl);
   return (
     <main className="solution-detail-mobile pt-[80px]">
       {/* Hero with bg image */}
@@ -76,6 +78,11 @@ export function SolutionDetailPage({
       {/* Content */}
       <section className="bg-white px-5 pb-16 pt-10 sm:px-8" style={{ color: "#1a1a1a" }}>
         <article className="w-full">
+          {thumbnailUrl && (
+            <div className="relative mb-10 w-full overflow-hidden rounded-xl" style={{ height: "clamp(200px, 30vw, 400px)" }}>
+              <Image src={thumbnailUrl} alt={title} fill className="object-cover" />
+            </div>
+          )}
           {hasBody ? (
             <div className="article-rich-content">
               <PortableText

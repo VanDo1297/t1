@@ -23,11 +23,15 @@ export default async function CyberServiceDetailPage({
       ? `/${locale}/giai-phap-dich-vu/an-ninh-mang`
       : `/${locale}/solutions/an-ninh-mang`;
 
+  const title = article?.title || solution.title[lang];
+  const description = article?.excerpt || solution.description[lang];
+
   return (
     <SolutionDetailPage
       locale={locale}
-      title={solution.title[lang]}
-      description={solution.description[lang]}
+      title={title}
+      description={description}
+      thumbnailUrl={article?.thumbnailUrl || undefined}
       fallbackBody={article?.fallbackBody || []}
       body={article?.body || []}
       breadcrumbs={[

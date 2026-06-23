@@ -17,16 +17,17 @@ export default async function AISolutionDetailPage({
 
   const article = await getSolutionArticleDetail(locale, slug);
 
-  const categoryPath =
-    locale === "vi"
-      ? `/${locale}/giai-phap-dich-vu/ai`
-      : `/${locale}/solutions/ai`;
+  const categoryPath = `/${locale}/giai-phap-dich-vu/ai`
+
+  const title = article?.title || solution.title[lang];
+  const description = article?.excerpt || solution.description[lang];
 
   return (
     <SolutionDetailPage
       locale={locale}
-      title={solution.title[lang]}
-      description={solution.description[lang]}
+      title={title}
+      description={description}
+      thumbnailUrl={article?.thumbnailUrl || undefined}
       fallbackBody={article?.fallbackBody || []}
       body={article?.body || []}
       breadcrumbs={[

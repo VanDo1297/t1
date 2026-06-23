@@ -76,6 +76,11 @@ export default async function SolutionArticleDetailPage({
 
       <section className="bg-white px-5 pb-16 pt-10 text-[#1a1a1a] sm:px-8">
         <article className="w-full">
+          {article.thumbnailUrl && (
+            <div className="relative mb-10 w-full overflow-hidden rounded-xl" style={{ height: "clamp(200px, 30vw, 400px)" }}>
+              <Image src={article.thumbnailUrl} alt={article.title} fill className="object-cover" />
+            </div>
+          )}
           {hasBody ? (
             <div className="article-rich-content">
               <PortableText
