@@ -48,6 +48,7 @@ export default async function HomePage({
     list.map((p) => ({
       name: p.name,
       logoUrl: p.logo ? urlFor(p.logo).url() : LOGO_FALLBACK,
+      url: p.url,
     }));
 
   return (

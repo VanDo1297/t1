@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPartnersPageData, urlFor } from "@/sanity/queries";
 import { ClientsFilter } from "@/components/sections/ClientsFilter";
+import { LogoCarousel, type CarouselItem } from "@/components/sections/DoiTacSection";
 
 const BG_IMAGES = [
   "/assets/bg/1.jpg",
@@ -24,6 +25,14 @@ export default async function PartnersPage({
   const heroBgUrl = data.heroBackgroundImage
     ? urlFor(data.heroBackgroundImage).width(1920).quality(80).url()
     : HERO_FALLBACK_IMAGE;
+  const toCarousel = (items: typeof data.strategicPartners): CarouselItem[] =>
+    items.map((partner) => ({
+      name: partner.name,
+      logoUrl: partner.logo
+        ? urlFor(partner.logo).url()
+        : LOGO_FALLBACK,
+      url: partner.url,
+    }));
 
   return (
     <main className="pt-[80px]">
@@ -69,28 +78,7 @@ export default async function PartnersPage({
             {data.strategicPartnersTitle}
           </h2>
 
-          <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
-            {data.strategicPartners.map((partner) => {
-              const logoUrl = partner.logo
-                ? urlFor(partner.logo).width(200).height(100).fit("max").url()
-                : LOGO_FALLBACK;
-
-              return (
-                <div
-                  key={partner.name}
-                  className="group flex items-center justify-center rounded-lg border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-                >
-                  <Image
-                    src={logoUrl}
-                    alt={partner.name}
-                    width={160}
-                    height={80}
-                    className="h-16 w-auto object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                </div>
-              );
-            })}
-          </div>
+          <LogoCarousel items={toCarousel(data.strategicPartners)} />
         </div>
       </section>
 
@@ -107,28 +95,7 @@ export default async function PartnersPage({
             {data.networkPartnersTitle}
           </h2>
 
-          <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
-            {data.networkPartners.map((partner) => {
-              const logoUrl = partner.logo
-                ? urlFor(partner.logo).width(200).height(100).fit("max").url()
-                : LOGO_FALLBACK;
-
-              return (
-                <div
-                  key={partner.name}
-                  className="group flex items-center justify-center rounded-lg p-6 transition-shadow hover:shadow-md"
-                >
-                  <Image
-                    src={logoUrl}
-                    alt={partner.name}
-                    width={160}
-                    height={80}
-                    className="h-14 w-auto object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                </div>
-              );
-            })}
-          </div>
+          <LogoCarousel items={toCarousel(data.networkPartners)} />
         </div>
       </section>
 

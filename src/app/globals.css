@@ -17,12 +17,15 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   font-family: var(--font-body);
   background-color: var(--color-primary-dark);
   color: #ffffff;
+  max-width: 100%;
   overflow-x: hidden;
 }
 

@@ -100,7 +100,7 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
       {/* Sticky tab nav */}
       <div className="sticky top-[56px] z-30 bg-white/80 bg-transparent! backdrop-blur-md border-b border-gray-200 py-4 px-5 sm:px-8">
         <div className="flex items-end">
-          <div ref={tabListRef} className="flex min-w-0 flex-1 items-end gap-4 overflow-x-auto pr-4 sm:justify-between sm:gap-0 sm:pr-12" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          <div ref={tabListRef} className="scrollbar-none flex min-w-0 flex-1 items-end gap-4 overflow-x-auto pr-4 sm:justify-between sm:gap-0 sm:pr-12" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
             {data.tabs.map((tab, i) => {
               const tabColor = tabColors[i % tabColors.length];
               return (

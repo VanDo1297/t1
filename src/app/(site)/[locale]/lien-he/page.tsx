@@ -15,7 +15,7 @@ export default async function ContactPage({
   return (
     <main className="contact-page-mobile pt-[80px]">
       {/* Hero */}
-      <section className="site-hero site-hero--dark">
+      <section className="site-hero">
         <div className="absolute inset-0">
           <Image src="/assets/bg/2.jpg" alt="" fill className="object-cover" priority />
         </div>

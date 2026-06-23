@@ -21,7 +21,7 @@ export function GioiThieuSection({ data, locale }: GioiThieuSectionProps) {
   const right = useScrollAnimation({ preset: "rtl", delay: 0.2 });
 
   return (
-    <section id="gioi-thieu" className="relative bg-white py-24 px-5 sm:px-8">
+    <section id="gioi-thieu" className="relative overflow-hidden bg-white py-24 px-5 sm:px-8">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         {/* Left - Text */}
         <div>

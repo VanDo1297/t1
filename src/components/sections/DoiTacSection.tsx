@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -9,6 +9,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 export interface CarouselItem {
   name: string;
   logoUrl: string;
+  url?: string;
 }
 
 interface DoiTacSectionProps {
@@ -21,70 +22,120 @@ interface DoiTacSectionProps {
   clients: CarouselItem[];
 }
 
-/* ── Static grid: hiện tối đa 5 items ── */
-function StaticRow({ items }: { items: CarouselItem[] }) {
-  const visible = items.slice(0, 5);
-  return (
-    <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-      {visible.map((item) => (
-        <div
-          key={item.name}
-          className="group flex items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
-          style={{ height: 140 }}
-        >
-          <Image
-            src={item.logoUrl}
-            alt={item.name}
-            width={160}
-            height={80}
-            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-110"
-          />
-        </div>
-      ))}
-    </div>
-  );
+function useVisibleCount() {
+  const [visibleCount, setVisibleCount] = useState(5);
+
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        setVisibleCount(5);
+      } else if (window.matchMedia("(min-width: 880px)").matches) {
+        setVisibleCount(4);
+      } else if (window.matchMedia("(min-width: 768px)").matches) {
+        setVisibleCount(3);
+      } else if (window.matchMedia("(min-width: 480px)").matches) {
+        setVisibleCount(2);
+      } else {
+        setVisibleCount(1);
+      }
+    };
+
+    updateVisibleCount();
+    window.addEventListener("resize", updateVisibleCount);
+
+    return () => window.removeEventListener("resize", updateVisibleCount);
+  }, []);
+
+  return visibleCount;
 }
 
-/* ── Slider: prev/next từng item, hiện 5 tại 1 thời điểm ── */
-function SliderRow({ items }: { items: CarouselItem[] }) {
-  const perPage = 5;
-  const [offset, setOffset] = useState(0);
-  const maxOffset = Math.max(0, items.length - perPage);
+function LogoCard({ item, showName = false }: { item: CarouselItem; showName?: boolean }) {
+  const card = (
+    <div
+      className={`group flex w-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-md ${
+        showName ? "h-[220px] sm:h-[200px]" : "h-[140px] items-center justify-center"
+      }`}
+    >
+      <div className="relative min-h-0 w-full flex-1">
+        <Image
+          src={item.logoUrl}
+          alt={item.name}
+          fill
+          sizes="(max-width: 479px) 70vw, (max-width: 767px) 35vw, (max-width: 1023px) 25vw, 15vw"
+          className="object-contain transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+      {showName && (
+        <span className="mt-4 line-clamp-2 min-h-[40px] text-center text-base font-medium leading-tight text-[#1a6b5a]">
+          {item.name}
+        </span>
+      )}
+    </div>
+  );
 
-  const visible = items.slice(offset, offset + perPage);
+  if (item.url) {
+    return (
+      <a href={item.url} target="_blank" rel="noopener noreferrer" className="block">
+        {card}
+      </a>
+    );
+  }
+
+  return card;
+}
+
+/* ── Carousel: hiện tối đa 5 items, prev/next từng item ── */
+export function LogoCarousel({
+  items,
+  showName = false,
+}: {
+  items: CarouselItem[];
+  showName?: boolean;
+}) {
+  const visibleCount = useVisibleCount();
+  const [offset, setOffset] = useState(0);
+  const maxOffset = Math.max(0, items.length - visibleCount);
+  const canSlide = items.length > visibleCount;
+
+  useEffect(() => {
+    setOffset((current) => Math.min(current, maxOffset));
+  }, [maxOffset]);
+
+  if (items.length === 0) return null;
 
   return (
     <div className="mt-8 flex items-center gap-3">
       <button
         onClick={() => setOffset((o) => Math.max(0, o - 1))}
-        disabled={offset === 0}
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-300 text-[#1a1a1a] transition-all hover:bg-gray-100 disabled:opacity-20 disabled:cursor-not-allowed"
+        disabled={!canSlide || offset === 0}
+        aria-label="Previous"
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-300 text-[#1a1a1a] transition-all hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-20"
       >
         <ChevronLeft size={20} />
       </button>
 
-      <div className="flex-1 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-        {visible.map((item) => (
-          <div
-            key={item.name}
-            className="group flex items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
-            style={{ height: 140 }}
-          >
-            <Image
-              src={item.logoUrl}
-              alt={item.name}
-              width={160}
-              height={80}
-              className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-110"
-            />
-          </div>
-        ))}
+      <div className="min-w-0 flex-1 overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${offset * (100 / visibleCount)}%)` }}
+        >
+          {items.map((item, index) => (
+            <div
+              key={`${item.name}-${index}`}
+              className="shrink-0 px-2"
+              style={{ flexBasis: `${100 / visibleCount}%` }}
+            >
+              <LogoCard item={item} showName={showName} />
+            </div>
+          ))}
+        </div>
       </div>
 
       <button
         onClick={() => setOffset((o) => Math.min(maxOffset, o + 1))}
-        disabled={offset >= maxOffset}
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-300 text-[#1a1a1a] transition-all hover:bg-gray-100 disabled:opacity-20 disabled:cursor-not-allowed"
+        disabled={!canSlide || offset >= maxOffset}
+        aria-label="Next"
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-300 text-[#1a1a1a] transition-all hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-20"
       >
         <ChevronRight size={20} />
       </button>
@@ -191,7 +242,7 @@ export function DoiTacSection({
             <p className="text-center text-[15px] font-bold uppercase tracking-[0.15em] text-gray-500">
               {strategicTitle}
             </p>
-            <StaticRow items={strategicPartners} />
+            <LogoCarousel items={strategicPartners} />
           </motion.div>
 
           {/* Technology Network Partners - slider with prev/next */}
@@ -199,7 +250,7 @@ export function DoiTacSection({
             <p className="text-center text-[15px] font-bold uppercase tracking-[0.15em] text-gray-500">
               {networkTitle}
             </p>
-            <SliderRow items={networkPartners} />
+            <LogoCarousel items={networkPartners} />
           </motion.div>
         </div>
       </section>

@@ -42,17 +42,29 @@ export const veChungToiPage = defineType({
     // History Timeline
     defineField({ name: "historyTitle", title: "History Section Title", type: "string" }),
     defineField({
-      name: "historyEvents",
-      title: "History Events",
+      name: "historyYears",
+      title: "History Years",
       type: "array",
       of: [{
         type: "object",
         fields: [
-          defineField({ name: "year", title: "Year", type: "string" }),
-          defineField({ name: "month", title: "Month (e.g. Tháng 07/2021)", type: "string" }),
-          defineField({ name: "content", title: "Content", type: "string" }),
+          defineField({ name: "year", title: "Year", type: "string", validation: (r) => r.required() }),
+          defineField({
+            name: "milestones",
+            title: "Milestones",
+            type: "array",
+            of: [{
+              type: "object",
+              fields: [
+                defineField({ name: "month", title: "Month (e.g. Tháng 07)", type: "string" }),
+                defineField({ name: "content", title: "Content", type: "string" }),
+                defineField({ name: "image", title: "Image", type: "image", options: { hotspot: true } }),
+              ],
+              preview: { select: { title: "month", subtitle: "content" } },
+            }],
+          }),
         ],
-        preview: { select: { title: "month", subtitle: "content" } },
+        preview: { select: { title: "year" } },
       }],
     }),
 

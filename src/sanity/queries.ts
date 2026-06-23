@@ -1315,7 +1315,8 @@ export async function getTinTucDetail(
 /* ── Về chúng tôi (Trang) ── */
 
 export interface VisionCard { title: string; description: string; }
-export interface HistoryEvent { year: string; month: string; content: string; }
+export interface HistoryMilestone { month: string; content: string; imageUrl?: string; }
+export interface HistoryYear { year: string; milestones: HistoryMilestone[]; }
 export interface Leader { name: string; role: string; photoUrl?: string; }
 export interface Certificate { year: string; title: string; }
 
@@ -1327,7 +1328,7 @@ export interface VeChungToiPageData {
   learnMoreHref: string;
   visionCards: VisionCard[];
   historyTitle: string;
-  historyEvents: HistoryEvent[];
+  historyYears: HistoryYear[];
   leadershipTitle: string;
   leaders: Leader[];
   cultureTitle: string;
@@ -1344,7 +1345,7 @@ export interface VeChungToiPageData {
 const VE_CHUNG_TOI_PAGE_QUERY = `*[_type == "veChungToiPage" && language == $lang][0]{
   brandStoryTitle, brandStoryContent, slogan, learnMoreLabel, learnMoreHref,
   visionCards[]{ title, description },
-  historyTitle, historyEvents[]{ year, month, content },
+  historyTitle, historyYears[]{ year, milestones[]{ month, content, "imageUrl": image.asset->url } },
   leadershipTitle, leaders[]{ name, role, "photoUrl": photo.asset->url },
   cultureTitle, coreValuesTitle, coreValues, companyCultureTitle, companyCultureItems,
   "galleryImages": galleryImages[].asset->url
@@ -1363,16 +1364,28 @@ const veChungToiFallback: Record<string, VeChungToiPageData> = {
       { title: "PHƯƠNG CHÂM", description: "Luôn tiến về phía trước, dựa trên nền tảng CNTT không ngừng đổi mới." },
     ],
     historyTitle: "LỊCH SỬ HÌNH THÀNH VÀ PHÁT TRIỂN",
-    historyEvents: [
-      { year: "2021", month: "Tháng 07/2021", content: "DTG tổ chức hội thảo trực tuyến: \"Chuyển Đổi Số cùng DTG Corp với các giải pháp công nghệ từ Dell Technologies\"." },
-      { year: "2021", month: "Tháng 04/2021", content: "Chính thức đổi tên từ Công Ty Cổ Phần Công Nghệ Đại Trần Gia sang \"Công Ty Cổ Phần Công Nghệ DTG\"." },
-      { year: "2021", month: "Tháng 03/2021", content: "DTG tổ chức cuộc thi \"AI thông minh hơn phụ nữ DTG Corp\"." },
-      { year: "2021", month: "Tháng 01/2021", content: "DTG tổ chức hội thảo: \"Định hướng CBS và an toàn thông tin trong tổ chức CBS\"." },
-      { year: "2020", month: "Tháng 06/2020", content: "DTG mở rộng văn phòng tại Đà Nẵng." },
-      { year: "2019", month: "Tháng 03/2019", content: "DTG đạt chứng nhận đối tác Gold của Dell Technologies." },
-      { year: "2010", month: "Năm 2010", content: "Mở rộng sang lĩnh vực giải pháp hạ tầng CNTT cho doanh nghiệp." },
-      { year: "2007", month: "Năm 2007", content: "Đổi tên thành Công Ty Thương Mại Đại Trần Gia." },
-      { year: "2000", month: "Năm 2000", content: "Thành lập Tracinet Computer — tiền thân của DTG Corp." },
+    historyYears: [
+      { year: "2021", milestones: [
+        { month: "Tháng 07", content: "DTG tổ chức hội thảo trực tuyến: \"Chuyển Đổi Số cùng DTG Corp với các giải pháp công nghệ từ Dell Technologies\"." },
+        { month: "Tháng 04", content: "Chính thức đổi tên từ Công Ty Cổ Phần Công Nghệ Đại Trần Gia sang \"Công Ty Cổ Phần Công Nghệ DTG\"." },
+        { month: "Tháng 03", content: "DTG tổ chức cuộc thi \"AI thông minh hơn phụ nữ DTG Corp\"." },
+        { month: "Tháng 01", content: "DTG tổ chức hội thảo: \"Định hướng CBS và an toàn thông tin trong tổ chức CBS\"." },
+      ]},
+      { year: "2020", milestones: [
+        { month: "Tháng 06", content: "DTG mở rộng văn phòng tại Đà Nẵng." },
+      ]},
+      { year: "2019", milestones: [
+        { month: "Tháng 03", content: "DTG đạt chứng nhận đối tác Gold của Dell Technologies." },
+      ]},
+      { year: "2010", milestones: [
+        { month: "", content: "Mở rộng sang lĩnh vực giải pháp hạ tầng CNTT cho doanh nghiệp." },
+      ]},
+      { year: "2007", milestones: [
+        { month: "", content: "Đổi tên thành Công Ty Thương Mại Đại Trần Gia." },
+      ]},
+      { year: "2000", milestones: [
+        { month: "", content: "Thành lập Tracinet Computer — tiền thân của DTG Corp." },
+      ]},
     ],
     leadershipTitle: "BAN LÃNH ĐẠO",
     leaders: [
@@ -1416,12 +1429,18 @@ const veChungToiFallback: Record<string, VeChungToiPageData> = {
       { title: "MOTTO", description: "Always moving forward, built on a constantly innovative IT foundation." },
     ],
     historyTitle: "HISTORY & DEVELOPMENT",
-    historyEvents: [
-      { year: "2021", month: "Jul 2021", content: "DTG held online seminar on Digital Transformation with Dell Technologies." },
-      { year: "2021", month: "Apr 2021", content: "Officially renamed to DTG Technology Joint Stock Company." },
-      { year: "2021", month: "Jan 2021", content: "DTG held seminar on CBS orientation and information security." },
-      { year: "2007", month: "2007", content: "Renamed to Dai Tran Gia Trading Company." },
-      { year: "2000", month: "2000", content: "Founded Tracinet Computer — predecessor of DTG Corp." },
+    historyYears: [
+      { year: "2021", milestones: [
+        { month: "Jul", content: "DTG held online seminar on Digital Transformation with Dell Technologies." },
+        { month: "Apr", content: "Officially renamed to DTG Technology Joint Stock Company." },
+        { month: "Jan", content: "DTG held seminar on CBS orientation and information security." },
+      ]},
+      { year: "2007", milestones: [
+        { month: "", content: "Renamed to Dai Tran Gia Trading Company." },
+      ]},
+      { year: "2000", milestones: [
+        { month: "", content: "Founded Tracinet Computer — predecessor of DTG Corp." },
+      ]},
     ],
     leadershipTitle: "LEADERSHIP",
     leaders: [
@@ -1469,7 +1488,7 @@ export async function getVeChungToiPageData(
         ...fb,
         ...data,
         visionCards: data.visionCards ?? fb.visionCards,
-        historyEvents: data.historyEvents ?? fb.historyEvents,
+        historyYears: data.historyYears ?? fb.historyYears,
         leaders: data.leaders ?? fb.leaders,
         coreValues: data.coreValues ?? fb.coreValues,
         companyCultureItems: data.companyCultureItems ?? fb.companyCultureItems,
