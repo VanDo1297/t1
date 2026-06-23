@@ -1337,6 +1337,7 @@ export interface VeChungToiPageData {
   coreValues: string[];
   companyCultureTitle: string;
   companyCultureItems: string[];
+  companyCultureImages?: string[];
   certificatesTitle: string;
   certificates: Certificate[];
   galleryImages?: string[];
@@ -1349,6 +1350,7 @@ const VE_CHUNG_TOI_PAGE_QUERY = `*[_type == "veChungToiPage" && language == $lan
   historyTitle, historyYears[]{ year, "imageUrl": image.asset->url, milestones[]{ month, content } },
   leadershipTitle, leaders[]{ name, role, "photoUrl": photo.asset->url },
   cultureTitle, coreValuesTitle, coreValues, companyCultureTitle, companyCultureItems,
+  "companyCultureImages": companyCultureImages[].asset->url,
   "galleryImages": galleryImages[].asset->url
 }`;
 

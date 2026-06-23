@@ -23,7 +23,7 @@ export function CtaBanner({
 
       <div className="relative z-10 mx-auto max-w-7xl text-center">
         <div className="rounded-2xl px-8 py-12 sm:px-16 sm:py-16" style={{ backgroundColor: "rgba(255,255,255,0.3)", backdropFilter: "blur(4px)" }}>
-          <h2 className="text-2xl font-bold uppercase tracking-wide sm:text-3xl md:text-4xl" style={{ color: "#1a2d3d" }}>
+          <h2 className="text-2xl font-bold uppercase tracking-wide sm:text-2xl md:text-3xl" style={{ color: "#1a2d3d" }}>
             {title}
           </h2>
           <Link

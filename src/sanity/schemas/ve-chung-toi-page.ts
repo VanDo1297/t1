@@ -102,6 +102,13 @@ export const veChungToiPage = defineType({
       type: "array",
       of: [{ type: "string" }],
     }),
+    defineField({
+      name: "companyCultureImages",
+      title: "Company Culture Images (3 ảnh)",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+      validation: (r) => r.max(3),
+    }),
 
     // Gallery Images (positions 1-4: left→right, top→bottom)
     defineField({

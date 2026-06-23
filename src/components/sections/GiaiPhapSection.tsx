@@ -15,6 +15,10 @@ interface GiaiPhapSectionProps {
 
 export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [tabsPinned, setTabsPinned] = useState(false);
+  const [tabsHeight, setTabsHeight] = useState(0);
+  const containerRef = useRef<HTMLElement | null>(null);
+  const tabsBarRef = useRef<HTMLDivElement | null>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const tabListRef = useRef<HTMLDivElement | null>(null);
   const tabRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -44,14 +48,35 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
   }, [data.tabs.length]);
 
   useEffect(() => {
+    const subNavHeight = 56;
+
+    const updateTabsPin = () => {
+      const container = containerRef.current;
+      const tabsBar = tabsBarRef.current;
+      if (!container || !tabsBar) return;
+
+      const tabsBarHeight = tabsBar.offsetHeight;
+      const rect = container.getBoundingClientRect();
+
+      setTabsHeight(tabsBarHeight);
+      setTabsPinned(rect.top <= subNavHeight && rect.bottom > subNavHeight + tabsBarHeight);
+    };
+
+    updateTabsPin();
+    window.addEventListener("scroll", updateTabsPin, { passive: true });
+    window.addEventListener("resize", updateTabsPin);
+
+    return () => {
+      window.removeEventListener("scroll", updateTabsPin);
+      window.removeEventListener("resize", updateTabsPin);
+    };
+  }, []);
+
+  useEffect(() => {
     const tabList = tabListRef.current;
     const activeTab = tabRefs.current[activeIndex];
 
-    if (
-      !tabList ||
-      !activeTab ||
-      window.matchMedia("(min-width: 640px)").matches
-    ) {
+    if (!tabList || !activeTab) {
       return;
     }
 
@@ -70,8 +95,9 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
 
   return (
     <section
+      ref={containerRef}
       id="giai-phap"
-      className="relative overflow-x-clip overflow-y-visible text-[#1a1a1a]"
+      className="relative text-[#1a1a1a]"
       style={{
         background: `
           linear-gradient(to bottom, white 0%, transparent 15%),
@@ -98,9 +124,15 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
       </div>
 
       {/* Sticky tab nav */}
-      <div className="sticky top-[56px] z-30 bg-white/80 bg-transparent! backdrop-blur-md border-b border-gray-200 py-4 px-5 sm:px-8">
+      {tabsPinned && <div style={{ height: tabsHeight }} />}
+      <div
+        ref={tabsBarRef}
+        className={`z-[39] border-b border-gray-200 bg-transparent px-5 py-4 backdrop-blur-md sm:px-8 ${
+          tabsPinned ? "fixed left-0 right-0 top-[56px]" : "sticky top-[56px]"
+        }`}
+      >
         <div className="flex items-end">
-          <div ref={tabListRef} className="scrollbar-none flex min-w-0 flex-1 items-end gap-4 overflow-x-auto pr-4 sm:justify-between sm:gap-0 sm:pr-12" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          <div ref={tabListRef} className="scrollbar-none flex min-w-0 flex-1 items-end gap-6 overflow-x-auto pr-4 sm:gap-8 sm:pr-12 lg:gap-12" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
             {data.tabs.map((tab, i) => {
               const tabColor = tabColors[i % tabColors.length];
               return (

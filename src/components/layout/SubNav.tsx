@@ -28,7 +28,7 @@ export function SubNav({ items, ctaLabel, ctaHref, locale }: SubNavProps) {
       activeTab.scrollIntoView({
         behavior: "smooth",
         block: "nearest",
-        inline: "center",
+        inline: "nearest",
       });
     }
   }, [activeId]);
@@ -72,7 +72,7 @@ export function SubNav({ items, ctaLabel, ctaHref, locale }: SubNavProps) {
           {/* Nav items - horizontally scrollable on mobile */}
           <nav
             ref={navRef}
-            className="flex w-full items-center gap-6 overflow-x-auto sm:justify-center sm:gap-10 scrollbar-none"
+            className="scrollbar-none flex w-full items-center gap-6 overflow-x-auto px-5 sm:justify-center sm:gap-10 sm:px-0"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {items.map((item) => {
