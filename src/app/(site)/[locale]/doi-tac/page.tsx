@@ -66,7 +66,7 @@ export default async function PartnersPage({
       </section>
 
       {/* ── Đối tác chiến lược ── */}
-      <section className="relative overflow-hidden bg-white px-5 py-20 sm:px-8">
+      <section id="doi-tac" className="relative overflow-hidden bg-white px-5 py-20 sm:px-8">
         <Image
           src={BG_IMAGES[1]}
           alt=""
@@ -74,6 +74,11 @@ export default async function PartnersPage({
           className="object-cover opacity-5"
         />
         <div className="relative z-10 mx-auto max-w-6xl">
+          {data.sectionTitle && (
+            <p className="mb-4 text-center text-[16px] font-medium uppercase tracking-[0.15em] text-[#2563eb]">
+              {data.sectionTitle}
+            </p>
+          )}
           <h2 className="text-center font-heading text-2xl font-bold tracking-wide text-[#1a1a1a] sm:text-3xl">
             {data.strategicPartnersTitle}
           </h2>
@@ -100,7 +105,7 @@ export default async function PartnersPage({
       </section>
 
       {/* ── Khách hàng đa lĩnh vực ── */}
-      <section className="relative overflow-hidden bg-[#f9f9f7] px-5 py-20 sm:px-8">
+      <section id="khach-hang" className="relative overflow-hidden bg-[#f9f9f7] px-5 py-20 sm:px-8">
         <Image
           src={BG_IMAGES[3]}
           alt=""

@@ -18,6 +18,12 @@ export const partnersPage = defineType({
       validation: (r) => r.required(),
     }),
 
+    defineField({
+      name: "tieuDeMuc",
+      title: "Tiêu đề mục (vd: Đối tác đồng hành cùng chúng tôi)",
+      type: "string",
+    }),
+
     // Phần Hero
     defineField({
       name: "tieuDeHero",

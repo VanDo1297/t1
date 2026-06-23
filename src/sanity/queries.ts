@@ -790,6 +790,7 @@ export async function getHeroData(lang: string): Promise<HeroData> {
 /* ── Partners Page ── */
 
 const PARTNERS_PAGE_QUERY = `*[_type == "trangDoiTac" && ngonNgu == $lang][0]{
+  "sectionTitle": tieuDeMuc,
   "heroTitle": tieuDeHero,
   "heroDescription": moTaHero,
   "heroBackgroundImage": anhNenHero,
