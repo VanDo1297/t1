@@ -35,11 +35,11 @@ export function Footer({ data }: FooterProps) {
             <Image
               src="/assets/dtg-logo.png"
               alt="DTS"
-              width={120}
-              height={40}
+              width={160}
+              height={60}
               className="mb-8"
             />
-            <p className="text-[15px] font-bold italic text-[#60a5fa]">
+            <p className="text-[18px] font-bold  text-white">
               {data.companyName}
             </p>
             

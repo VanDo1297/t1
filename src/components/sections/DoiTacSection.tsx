@@ -239,17 +239,25 @@ export function DoiTacSection({
 
           {/* Strategic Partners - static 5 items */}
           <motion.div ref={strategicRef} {...strategicAnim} className="mt-14">
-            <p className="text-center text-[15px] font-bold uppercase tracking-[0.15em] text-gray-500">
-              {strategicTitle}
-            </p>
+            <div className="flex items-center justify-center gap-4">
+              <span className="h-px w-12 bg-gray-300" />
+              <p className="text-center text-[15px] font-bold uppercase tracking-[0.15em] text-gray-500">
+                {strategicTitle}
+              </p>
+              <span className="h-px w-12 bg-gray-300" />
+            </div>
             <LogoCarousel items={strategicPartners} />
           </motion.div>
 
           {/* Technology Network Partners - slider with prev/next */}
           <motion.div ref={networkRef} {...networkAnim} className="mt-14">
-            <p className="text-center text-[15px] font-bold uppercase tracking-[0.15em] text-gray-500">
-              {networkTitle}
-            </p>
+            <div className="flex items-center justify-center gap-4">
+              <span className="h-px w-12 bg-gray-300" />
+              <p className="text-center text-[15px] font-bold uppercase tracking-[0.15em] text-gray-500">
+                {networkTitle}
+              </p>
+              <span className="h-px w-12 bg-gray-300" />
+            </div>
             <LogoCarousel items={networkPartners} />
           </motion.div>
         </div>

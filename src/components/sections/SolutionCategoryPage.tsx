@@ -249,11 +249,11 @@ function LoTrinhStepCard({
       className="relative flex flex-1 flex-col items-center text-center pt-[32px] transition-transform duration-300 hover:-translate-y-2"
     >
       {/* Number badge - centered on top border of card */}
-      <div className="absolute top-0 z-10 flex h-16 w-16 items-center justify-center rounded-xl border-[2.5px] border-[#0f1d3a] bg-white font-bold text-[#0f1d3a]" style={{ fontSize: 24 }}>
+      <div className="absolute top-0 z-10 flex h-16 w-16 items-center justify-center rounded-xl border-[2.5px] border-[#0f1d3a] bg-[rgb(226,247,255)] font-bold text-[#0f1d3a]" style={{ fontSize: 24 }}>
         {String(index + 1).padStart(2, "0")}
       </div>
       {/* Card with border */}
-      <div className="flex w-full flex-col items-center rounded-2xl border-[2px] border-[#0f1d3a] px-4 pb-16 pt-18">
+      <div className="flex w-full flex-col items-center rounded-2xl border-[2px] border-[#0f1d3a] bg-[rgb(226,247,255)] px-4 pb-16 pt-18">
         <h3 className="font-bold uppercase tracking-[0.05em] text-[#0f1d3a]" style={{ fontSize: 18 }}>
           {step.title[locale]}
         </h3>

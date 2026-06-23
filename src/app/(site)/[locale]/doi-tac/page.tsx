@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { SanityImageSource } from "@sanity/image-url";
 import { getPartnersPageData, urlFor } from "@/sanity/queries";
-import { ClientsFilter } from "@/components/sections/ClientsFilter";
-import { LogoCarousel, type CarouselItem } from "@/components/sections/DoiTacSection";
 
 const BG_IMAGES = [
   "/assets/bg/1.jpg",
@@ -13,6 +12,54 @@ const BG_IMAGES = [
 ];
 const HERO_FALLBACK_IMAGE = BG_IMAGES[0];
 const LOGO_FALLBACK = "/assets/dtg-logo.png";
+
+interface LogoGridItem {
+  name: string;
+  logo: SanityImageSource | null;
+  url?: string;
+}
+
+function LogoGrid({ items, showName = false, bg = false }: { items: LogoGridItem[]; showName?: boolean, bg?:boolean }) {
+  return (
+    <div className="mx-auto mt-12 grid w-full grid-cols-1 justify-items-center gap-6 min-[420px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      {items.map((item, index) => {
+        const logoUrl = item.logo ? urlFor(item.logo).url() : LOGO_FALLBACK;
+        const card = (
+          <div
+            className={`group flex w-full items-center justify-center overflow-hidden rounded-xl border border-gray-100 p-5 shadow-sm transition-shadow hover:shadow-md ${
+              showName ? "h-[260px] flex-col gap-4 sm:h-[280px]" : "h-[140px]"
+            } ${bg ? "bg-[rgb(226,247,255)]" : "bg-white"}`}
+          >
+            <div className={`flex min-h-0 w-full items-center justify-center ${showName ? "h-[170px] sm:h-[190px]" : "h-full"}`}>
+              <Image
+                src={logoUrl}
+                alt={item.name}
+                width={180}
+                height={100}
+                className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            {showName && (
+              <span className="flex min-h-[44px] items-start justify-center text-center text-sm font-medium leading-tight text-[#1a6b5a]">
+                {item.name}
+              </span>
+            )}
+          </div>
+        );
+
+        if (item.url) {
+          return (
+            <a key={`${item.name}-${index}`} href={item.url} target="_blank" rel="noopener noreferrer" className="w-full">
+              {card}
+            </a>
+          );
+        }
+
+        return <div key={`${item.name}-${index}`} className="w-full">{card}</div>;
+      })}
+    </div>
+  );
+}
 
 export default async function PartnersPage({
   params,
@@ -25,14 +72,6 @@ export default async function PartnersPage({
   const heroBgUrl = data.heroBackgroundImage
     ? urlFor(data.heroBackgroundImage).width(1920).quality(80).url()
     : HERO_FALLBACK_IMAGE;
-  const toCarousel = (items: typeof data.strategicPartners): CarouselItem[] =>
-    items.map((partner) => ({
-      name: partner.name,
-      logoUrl: partner.logo
-        ? urlFor(partner.logo).url()
-        : LOGO_FALLBACK,
-      url: partner.url,
-    }));
 
   return (
     <main className="pt-[80px]">
@@ -73,17 +112,12 @@ export default async function PartnersPage({
           fill
           className="object-cover opacity-5"
         />
-        <div className="relative z-10 mx-auto max-w-6xl">
-          {data.sectionTitle && (
-            <p className="mb-4 text-center text-[16px] font-medium uppercase tracking-[0.15em] text-[#2563eb]">
-              {data.sectionTitle}
-            </p>
-          )}
+        <div className="relative z-10 mx-auto w-full max-w-[1440px]">
           <h2 className="text-center font-heading text-2xl font-bold tracking-wide text-[#1a1a1a] sm:text-3xl">
             {data.strategicPartnersTitle}
           </h2>
 
-          <LogoCarousel items={toCarousel(data.strategicPartners)} />
+          <LogoGrid items={data.strategicPartners} bg/>
         </div>
       </section>
 
@@ -95,12 +129,12 @@ export default async function PartnersPage({
           fill
           className="object-cover opacity-5"
         />
-        <div className="relative z-10 mx-auto max-w-6xl border-t border-gray-100 pt-16">
+        <div className="relative z-10 mx-auto w-full max-w-[1440px] border-t border-gray-100 pt-16">
           <h2 className="text-center font-heading text-2xl font-bold tracking-wide text-[#1a1a1a] sm:text-3xl">
             {data.networkPartnersTitle}
           </h2>
 
-          <LogoCarousel items={toCarousel(data.networkPartners)} />
+          <LogoGrid items={data.networkPartners} />
         </div>
       </section>
 
@@ -112,16 +146,12 @@ export default async function PartnersPage({
           fill
           className="object-cover opacity-5"
         />
-        <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="relative z-10 mx-auto w-full max-w-[1440px]">
           <h2 className="text-center font-heading text-2xl font-bold tracking-wide text-[#1a1a1a] sm:text-3xl">
             {data.clientsTitle}
           </h2>
 
-          <ClientsFilter
-            categories={data.clientCategories}
-            clients={data.clients}
-            allLabel={data.clientCategories[0] || ""}
-          />
+          <LogoGrid items={data.clients} showName />
         </div>
       </section>
     </main>
