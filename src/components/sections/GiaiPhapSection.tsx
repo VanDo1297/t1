@@ -214,7 +214,13 @@ function TabContent({
       className="relative overflow-hidden"
     >
       {tab.bgImageUrl && (
-        <div className="absolute inset-0 z-0">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            maskImage: "radial-gradient(ellipse 60% 55% at center, black 30%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(ellipse 60% 55% at center, black 30%, transparent 100%)",
+          }}
+        >
           <Image
             src={tab.bgImageUrl}
             alt=""
