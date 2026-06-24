@@ -134,9 +134,13 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
         <motion.h2
           ref={titleRef}
           {...titleAnim}
-          className="whitespace-pre-line font-bold leading-[1.2] text-red-600"
-          style={{ fontSize: "clamp(36px, 3vw, 60px)" }}
-        >
+          className="whitespace-pre-line font-bold leading-[1.2] text-red-500"
+          style={{
+            fontSize: "clamp(36px, 3vw, 60px)",
+         
+          }}
+        > 
+          <div className="h-[5px] w-[50%] bg-red-500 mb-5"></div>
           {data.sectionHeading}
         </motion.h2>
       </div>
