@@ -274,14 +274,14 @@ function TabContent({
 
       {tab.bgImageUrl && (
         <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
-          <div className="relative aspect-[16/9] w-[min(68vw,560px)] opacity-30">
-          <Image
-            src={tab.bgImageUrl}
-            alt=""
-            fill
-            sizes="(max-width: 768px) 68vw, 560px"
-            className="object-contain"
-          />
+          <div className="relative aspect-[16/9] w-[min(102vw,840px)] opacity-30">
+            <Image
+              src={tab.bgImageUrl}
+              alt=""
+              fill
+              sizes="(max-width: 768px) 102vw, 840px"
+              className="object-contain"
+            />
           </div>
         </div>
       )}
