@@ -24,7 +24,7 @@ const footerVi = {
       _key: "hcm",
       name: "Trụ sở chính",
       address:
-        "Tòa nhà DTS, 287B Điện Biên Phủ, P. Xuân Hòa, TP. Hồ Chí Minh, Việt Nam",
+        "Tòa nhà DTG, 287B Điện Biên Phủ, P. Xuân Hòa, TP. Hồ Chí Minh, Việt Nam",
       phone: "+(84) 28 3933 6666",
       fax: "+(84) 28 3932 2369",
     },
@@ -61,7 +61,7 @@ const footerEn = {
       _key: "hcm",
       name: "Headquarters",
       address:
-        "DTS Building, 287B Dien Bien Phu, Xuan Hoa Ward, Ho Chi Minh City, Vietnam",
+        "DTG Building, 287B Dien Bien Phu, Xuan Hoa Ward, Ho Chi Minh City, Vietnam",
       phone: "+(84) 28 3933 6666",
       fax: "+(84) 28 3932 2369",
     },

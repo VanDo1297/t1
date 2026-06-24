@@ -34,7 +34,7 @@ export function Footer({ data }: FooterProps) {
           <div>
             <Image
               src="/assets/dtg-logo.png"
-              alt="DTS"
+              alt="DTG"
               width={160}
               height={60}
               className="mb-8"

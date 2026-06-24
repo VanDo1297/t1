@@ -391,7 +391,7 @@ const gioiThieuFallback: Record<string, GioiThieuData> = {
     label: "Giới thiệu về chúng tôi",
     title: "Let's shape\nthe future",
     description:
-      "DTS tự hào là một thương hiệu uy tín cung cấp các giải pháp tổng thể bao gồm: Tư vấn giải pháp, kiến trúc hệ thống và cung cấp thiết bị, triển khai, vận hành, đào tạo. Từ khi thành lập đến nay, với chiến lược kinh doanh, doanh số, thị phần và uy tín của DTS không ngừng tăng trưởng và trở thành nhà tích hợp hệ thống hàng đầu tại Việt Nam.",
+      "DTG tự hào là một thương hiệu uy tín cung cấp các giải pháp tổng thể bao gồm: Tư vấn giải pháp, kiến trúc hệ thống và cung cấp thiết bị, triển khai, vận hành, đào tạo. Từ khi thành lập đến nay, với chiến lược kinh doanh, doanh số, thị phần và uy tín của DTG không ngừng tăng trưởng và trở thành nhà tích hợp hệ thống hàng đầu tại Việt Nam.",
     imageUrl: null,
     ctaLabel: "Tìm hiểu thêm",
     ctaHref: "/ve-chung-toi",
@@ -400,7 +400,7 @@ const gioiThieuFallback: Record<string, GioiThieuData> = {
     label: "About Us",
     title: "Let's shape\nthe future",
     description:
-      "DTS is proud to be a reputable brand providing comprehensive solutions including: Solution consulting, system architecture, equipment supply, deployment, operation, and training. Since its establishment, DTS has continuously grown in business strategy, revenue, market share and reputation to become a leading system integrator in Vietnam.",
+      "DTG is proud to be a reputable brand providing comprehensive solutions including: Solution consulting, system architecture, equipment supply, deployment, operation, and training. Since its establishment, DTG has continuously grown in business strategy, revenue, market share and reputation to become a leading system integrator in Vietnam.",
     imageUrl: null,
     ctaLabel: "Learn more",
     ctaHref: "/ve-chung-toi",
@@ -810,7 +810,7 @@ const partnersFallback: Record<string, PartnersPageData> = {
     sectionTitle: "Đối tác đồng hành cùng chúng tôi",
     heroTitle: "Khách hàng – Đối tác",
     heroDescription:
-      "DTS phát huy sức mạnh từ vị thế là một trong những nhà tích hợp hệ thống hàng đầu tại Việt Nam qua các chiến lược hợp tác kinh doanh với những đối tác công nghệ hàng đầu trong và ngoài nước. Chúng tôi mang đến cho khách hàng nhiều sự lựa chọn về sản phẩm – công nghệ tối ưu, tiên tiến và phù hợp với thực trạng ngành Công nghệ thông tin tại Việt Nam. Sự hài lòng của khách hàng là ưu tiên hàng đầu với chúng tôi.",
+      "DTG phát huy sức mạnh từ vị thế là một trong những nhà tích hợp hệ thống hàng đầu tại Việt Nam qua các chiến lược hợp tác kinh doanh với những đối tác công nghệ hàng đầu trong và ngoài nước. Chúng tôi mang đến cho khách hàng nhiều sự lựa chọn về sản phẩm – công nghệ tối ưu, tiên tiến và phù hợp với thực trạng ngành Công nghệ thông tin tại Việt Nam. Sự hài lòng của khách hàng là ưu tiên hàng đầu với chúng tôi.",
     heroBackgroundImage: null,
     ctaButtonLabel: "Tư vấn",
     ctaButtonHref: "/lien-he",
@@ -826,7 +826,7 @@ const partnersFallback: Record<string, PartnersPageData> = {
     sectionTitle: "Our Partners",
     heroTitle: "Clients & Partners",
     heroDescription:
-      "DTS leverages its position as one of the leading system integrators in Vietnam through strategic business partnerships with top technology partners domestically and internationally. We provide customers with a wide range of optimal, advanced products and technologies suited to the IT landscape in Vietnam. Customer satisfaction is our top priority.",
+      "DTG leverages its position as one of the leading system integrators in Vietnam through strategic business partnerships with top technology partners domestically and internationally. We provide customers with a wide range of optimal, advanced products and technologies suited to the IT landscape in Vietnam. Customer satisfaction is our top priority.",
     heroBackgroundImage: null,
     ctaButtonLabel: "Consult",
     ctaButtonHref: "/lien-he",
@@ -906,11 +906,11 @@ const lienHeFallback: Record<string, LienHeData> = {
   vi: {
     title: "Liên hệ",
     infoTitle: "Thông tin liên hệ",
-    address: "Tòa nhà DTS, 287B Điện Biên Phủ, P. Xuân Hòa, TP. Hồ Chí Minh",
+    address: "Tòa nhà DTG, 287B Điện Biên Phủ, P. Xuân Hòa, TP. Hồ Chí Minh",
     phones: [
-      { label: "DTS HCM", number: "+(84) 28 3933 6666" },
-      { label: "DTS Hà Nội", number: "+(84) 24 3942 6568" },
-      { label: "DTS Đà Nẵng", number: "+(84) 236 381 2936" },
+      { label: "DTG HCM", number: "+(84) 28 3933 6666" },
+      { label: "DTG Hà Nội", number: "+(84) 24 3942 6568" },
+      { label: "DTG Đà Nẵng", number: "+(84) 236 381 2936" },
     ],
     email: "support@dts.com.vn",
     fax: "+(84) 28 3932 2369",
@@ -935,11 +935,11 @@ const lienHeFallback: Record<string, LienHeData> = {
   en: {
     title: "Contact",
     infoTitle: "Contact Information",
-    address: "DTS Building, 287B Dien Bien Phu, Xuan Hoa Ward, Ho Chi Minh City",
+    address: "DTG Building, 287B Dien Bien Phu, Xuan Hoa Ward, Ho Chi Minh City",
     phones: [
-      { label: "DTS HCM", number: "+(84) 28 3933 6666" },
-      { label: "DTS Hanoi", number: "+(84) 24 3942 6568" },
-      { label: "DTS Da Nang", number: "+(84) 236 381 2936" },
+      { label: "DTG HCM", number: "+(84) 28 3933 6666" },
+      { label: "DTG Hanoi", number: "+(84) 24 3942 6568" },
+      { label: "DTG Da Nang", number: "+(84) 236 381 2936" },
     ],
     email: "support@dts.com.vn",
     fax: "+(84) 28 3932 2369",
@@ -1694,7 +1694,7 @@ const footerFallback: Record<string, FooterData> = {
     offices: [
       {
         name: "Trụ sở chính",
-        address: "Tòa nhà DTS, 287B Điện Biên Phủ, P. Xuân Hòa, TP. Hồ Chí Minh, Việt Nam",
+        address: "Tòa nhà DTG, 287B Điện Biên Phủ, P. Xuân Hòa, TP. Hồ Chí Minh, Việt Nam",
         phone: "+(84) 28 3933 6666",
         fax: "+(84) 28 3932 2369",
       },
@@ -1726,7 +1726,7 @@ const footerFallback: Record<string, FooterData> = {
     offices: [
       {
         name: "Headquarters",
-        address: "DTS Building, 287B Dien Bien Phu, Xuan Hoa Ward, Ho Chi Minh City, Vietnam",
+        address: "DTG Building, 287B Dien Bien Phu, Xuan Hoa Ward, Ho Chi Minh City, Vietnam",
         phone: "+(84) 28 3933 6666",
         fax: "+(84) 28 3932 2369",
       },
@@ -1795,7 +1795,7 @@ const thongBaoDuLieuFallback: Record<string, ThongBaoDuLieuData> = {
     contentTitle: "NỘI DUNG",
     body: [],
     fallbackBody: [
-      'Bằng việc tích vào ô "Đồng ý", Tôi xác nhận đã đọc, hiểu và đồng ý với những điều kiện và điều khoản về hoạt động xử lý Dữ liệu cá nhân của Công ty Cổ phần Công nghệ Truyền thông DTS và Công ty TNHH MetaServ (METASERV) là công ty thành viên do DTS sở hữu 100% vốn) - sau đây gọi chung là "Công ty" - cụ thể như sau.',
+      'Bằng việc tích vào ô "Đồng ý", Tôi xác nhận đã đọc, hiểu và đồng ý với những điều kiện và điều khoản về hoạt động xử lý Dữ liệu cá nhân của Công ty Cổ phần Công nghệ Truyền thông DTG và Công ty TNHH MetaServ (METASERV) là công ty thành viên do DTG sở hữu 100% vốn) - sau đây gọi chung là "Công ty" - cụ thể như sau.',
       '1. Định nghĩa:\n1.1. Dữ liệu cá nhân là dữ liệu số hoặc thông tin dưới dạng khác xác định hoặc giúp xác định một con người cụ thể, bao gồm: dữ liệu cá nhân cơ bản và dữ liệu cá nhân nhạy cảm. Dữ liệu cá nhân sau khi khử nhận dạng không còn là dữ liệu cá nhân.\n1.2. Mối quan hệ của Tôi và Công ty trong quá trình xử lý Dữ liệu cá nhân của Tôi như sau:\n- Tôi là Chủ thể dữ liệu\n- Công ty là Bên kiểm soát dữ liệu hoặc Bên kiểm soát và xử lý dữ liệu cá nhân của Tôi\n- Bên được Công ty ủy quyền tiến hành xử lý những dữ liệu cá nhân do Tôi cung cấp sẽ là Bên xử lý dữ liệu\n1.3. Xử lý Dữ liệu cá nhân là hoạt động tác động đến Dữ liệu cá nhân, bao gồm một hoặc nhiều hoạt động như sau: thu thập, phân tích, tổng hợp, mã hóa, giải mã, chỉnh sửa, xóa, hủy, khử nhận dạng, cung cấp, công khai, chuyển giao Dữ liệu cá nhân và hoạt động khác tác động đến Dữ liệu cá nhân.\n1.4. Quan hệ tuyển dụng: là quan hệ phát sinh giữa Công ty và cá nhân ứng tuyển trong quá trình Công ty tiếp nhận, xem xét, đánh giá hồ sơ, phỏng vấn, kiểm tra, xác minh thông tin, thương lượng điều kiện làm việc và quyết định tuyển dụng hoặc không tuyển dụng, bao gồm cả các hoạt động chuẩn bị cho việc giao kết hợp đồng lao động.',
       '2. Phạm vi Dữ liệu cá nhân được xử lý:\nTrong quá trình thực hiện quy trình tuyển dụng, Công ty có thể thu thập, lưu trữ, sử dụng và xử lý Dữ liệu cá nhân của Tôi theo quy định pháp luật, theo đó:\n2.1. Dữ liệu cá nhân cơ bản bao gồm: Họ, chữ đệm và tên khai sinh, tên gọi khác (nếu có); Ngày, tháng, năm sinh; Giới tính; Nơi sinh, nơi đăng ký khai sinh, nơi đăng ký thường trú, nơi ở hiện tại, quê quán, địa chỉ liên hệ; Quốc tịch; Hình ảnh của cá nhân; Số điện thoại, số định danh cá nhân, số hộ chiếu, số giấy phép lái xe; Tình trạng hôn nhân; Thông tin về mối quan hệ gia đình; Thông tin về tài khoản số của cá nhân.\n2.2. Dữ liệu cá nhân nhạy cảm bao gồm: Dữ liệu tiết lộ nguồn gốc chủng tộc, nguồn gốc dân tộc; Quan điểm về chính trị, tôn giáo, tín ngưỡng; Tình trạng sức khỏe; Dữ liệu sinh trắc học, đặc điểm di truyền; Dữ liệu về tội phạm, vi phạm pháp luật; Hình ảnh thẻ căn cước, chứng minh nhân dân.',
       '3. Mục đích xử lý Dữ liệu cá nhân:\nCông ty sẽ tự mình hoặc thông qua Bên xử lý dữ liệu để xử lý dữ liệu cá nhân của Tôi nhằm các mục đích:\n● (Bắt buộc) Tuyển dụng: Xác nhận, xác thực thông tin và đánh giá năng lực của Tôi trong suốt quy trình tuyển dụng tại Công ty;\n● (Bắt buộc) Quản trị nội bộ: Thực hiện các hoạt động quản lý lao động, hành chính, kế toán, tài chính, an ninh - an toàn hệ thống;\n● (Bắt buộc) Thiết lập hồ sơ nhân sự: Sử dụng làm thông tin đầu vào để soạn thảo các văn bản và hồ sơ liên quan khi Tôi được tuyển dụng;\n● (Tùy chọn) Lưu trữ thông tin để xem xét và liên hệ cho các vị trí công việc phù hợp trong tương lai.',
@@ -1804,7 +1804,7 @@ const thongBaoDuLieuFallback: Record<string, ThongBaoDuLieuData> = {
       '6. Quyền và nghĩa vụ của Chủ thể dữ liệu:\n6.1. Quyền: Xem hoặc yêu cầu chỉnh sửa Dữ liệu cá nhân; Đồng ý hoặc không đồng ý, yêu cầu rút lại sự đồng ý; Yêu cầu cung cấp, xóa, hạn chế xử lý Dữ liệu cá nhân.\n6.2. Nghĩa vụ: Tự bảo vệ dữ liệu cá nhân của mình; Tôn trọng, bảo vệ dữ liệu cá nhân của người khác; Cung cấp đầy đủ, chính xác dữ liệu cá nhân; Chấp hành pháp luật về bảo vệ dữ liệu cá nhân.',
       '7. Lưu trữ Dữ liệu cá nhân:\nDữ liệu cá nhân của Tôi sẽ được lưu trữ kể từ thời điểm Tôi đồng ý cho đến khi hết 05 năm hoặc khi tôi yêu cầu xóa. Trường hợp Tôi trúng tuyển và trở thành người lao động, dữ liệu này sẽ được chuyển giao và lưu trữ theo chế độ của quan hệ lao động.',
       '8. Kiểm tra tham chiếu:\nCông ty có thể tự mình tiến hành kiểm tra lý lịch hoặc thông qua bên thứ ba. Việc kiểm tra tham chiếu sẽ chỉ liên quan đến thông tin về quá trình làm việc trước đó hoặc phạm vi khác được pháp luật cho phép.',
-      '9. Rút lại sự đồng ý:\nTôi có quyền rút lại việc đồng ý bằng cách gửi yêu cầu bằng văn bản trực tiếp hoặc thư điện tử đến:\n- Bộ phận Bảo vệ dữ liệu cá nhân - Công ty Cổ phần Công nghệ Truyền thông DTS\n- Địa chỉ: Số 287B Điện Biên Phủ, Phường Xuân Hòa, TP. Hồ Chí Minh, Việt Nam\n- Email: bvdlcn@dts.com.vn\nCông ty sẽ xử lý yêu cầu trong vòng 02 ngày làm việc.',
+      '9. Rút lại sự đồng ý:\nTôi có quyền rút lại việc đồng ý bằng cách gửi yêu cầu bằng văn bản trực tiếp hoặc thư điện tử đến:\n- Bộ phận Bảo vệ dữ liệu cá nhân - Công ty Cổ phần Công nghệ Truyền thông DTG\n- Địa chỉ: Số 287B Điện Biên Phủ, Phường Xuân Hòa, TP. Hồ Chí Minh, Việt Nam\n- Email: bvdlcn@dts.com.vn\nCông ty sẽ xử lý yêu cầu trong vòng 02 ngày làm việc.',
       '10. Các rủi ro và biện pháp an toàn:\nTôi hiểu rằng trong trường hợp xảy ra sự cố an ninh thông tin hoặc các sự kiện bất khả kháng, dữ liệu cá nhân có thể bị truy cập trái phép. Công ty đã và đang áp dụng các biện pháp kỹ thuật, quản lý và tổ chức phù hợp để bảo vệ dữ liệu.',
       '11. Xác nhận đồng ý:\nBằng việc tích chọn vào ô "Đồng ý", Tôi xác nhận rằng: (i) Tôi đã đọc, hiểu rõ toàn bộ nội dung; (ii) Tôi đồng ý cho phép Công ty xử lý dữ liệu cá nhân theo đúng phạm vi, mục đích, thời hạn đã quy định; (iii) Nội dung có hiệu lực ngay tại thời điểm Tôi xác nhận đồng ý.',
     ],
@@ -1822,7 +1822,7 @@ const thongBaoDuLieuFallback: Record<string, ThongBaoDuLieuData> = {
     contentTitle: "CONTENT",
     body: [],
     fallbackBody: [
-      'By checking the "Agree" box, I confirm that I have read, understood and agreed to the terms and conditions regarding the personal data processing activities of DTS Communications Technology Joint Stock Company and MetaServ Co., Ltd (METASERV), a subsidiary wholly owned by DTS – hereinafter collectively referred to as "the Company" – specifically as follows.',
+      'By checking the "Agree" box, I confirm that I have read, understood and agreed to the terms and conditions regarding the personal data processing activities of DTG Communications Technology Joint Stock Company and MetaServ Co., Ltd (METASERV), a subsidiary wholly owned by DTG – hereinafter collectively referred to as "the Company" – specifically as follows.',
     ],
     consentLabel: "I have read, understood and agreed to the terms of personal data processing stated above.",
     submitLabel: "Confirm & Agree",

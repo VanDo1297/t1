@@ -265,8 +265,8 @@ export function HumanResourcesSection({ isVi }: { isVi: boolean }) {
           style={{ fontSize: "clamp(16px, 1.1vw, 20px)", maxWidth: 900, lineHeight: 1.7 }}
         >
           {isVi
-            ? "Con người là một trong những tài sản lớn nhất được chú trọng đầu tư và phát triển tại DTS. Đội ngũ nhân lực ưu tú là nền tảng vững chắc giúp DTS không ngừng tạo nên những giá trị to lớn cho khách hàng."
-            : "People are one of the greatest assets that DTS invests in and develops. Our talented workforce is the solid foundation helping DTS continuously create great value for customers."}
+            ? "Con người là một trong những tài sản lớn nhất được chú trọng đầu tư và phát triển tại DTG. Đội ngũ nhân lực ưu tú là nền tảng vững chắc giúp DTG không ngừng tạo nên những giá trị to lớn cho khách hàng."
+            : "People are one of the greatest assets that DTG invests in and develops. Our talented workforce is the solid foundation helping DTG continuously create great value for customers."}
         </motion.p>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -292,8 +292,8 @@ export function HumanResourcesSection({ isVi }: { isVi: boolean }) {
                 </h3>
                 <p className="text-[13px] md:text-[14px] text-[#666] leading-[1.7] m-0">
                   {isVi
-                    ? "Đội ngũ kỹ sư tại DTS được tuyển chọn từ các trường Đại học danh tiếng tại Việt Nam và nước ngoài. Các kỹ sư được đào tạo chuyên môn, tự nghiên cứu và qua các khoá đào tạo quốc tế uy tín."
-                    : "DTS engineers are selected from prestigious universities in Vietnam and abroad. Engineers are professionally trained through self-study and internationally accredited courses."}
+                    ? "Đội ngũ kỹ sư tại DTG được tuyển chọn từ các trường Đại học danh tiếng tại Việt Nam và nước ngoài. Các kỹ sư được đào tạo chuyên môn, tự nghiên cứu và qua các khoá đào tạo quốc tế uy tín."
+                    : "DTG engineers are selected from prestigious universities in Vietnam and abroad. Engineers are professionally trained through self-study and internationally accredited courses."}
                 </p>
               </div>
             </div>

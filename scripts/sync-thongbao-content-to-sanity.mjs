@@ -20,7 +20,7 @@ function block(text, key) {
 }
 
 const bodyVi = [
-  block('Bằng việc tích vào ô "Đồng ý", Tôi xác nhận đã đọc, hiểu và đồng ý với những điều kiện và điều khoản về hoạt động xử lý Dữ liệu cá nhân của Công ty Cổ phần Công nghệ Truyền thông DTS và Công ty TNHH MetaServ (METASERV) là công ty thành viên do DTS sở hữu 100% vốn) - sau đây gọi chung là "Công ty" - cụ thể như sau.', "b0"),
+  block('Bằng việc tích vào ô "Đồng ý", Tôi xác nhận đã đọc, hiểu và đồng ý với những điều kiện và điều khoản về hoạt động xử lý Dữ liệu cá nhân của Công ty Cổ phần Công nghệ Truyền thông DTG và Công ty TNHH MetaServ (METASERV) là công ty thành viên do DTG sở hữu 100% vốn) - sau đây gọi chung là "Công ty" - cụ thể như sau.', "b0"),
   block("1. Định nghĩa:", "b1"),
   block("1.1. Dữ liệu cá nhân là dữ liệu số hoặc thông tin dưới dạng khác xác định hoặc giúp xác định một con người cụ thể, bao gồm: dữ liệu cá nhân cơ bản và dữ liệu cá nhân nhạy cảm. Dữ liệu cá nhân sau khi khử nhận dạng không còn là dữ liệu cá nhân.", "b2"),
   block("1.2. Mối quan hệ của Tôi và Công ty trong quá trình xử lý Dữ liệu cá nhân của Tôi như sau:\n- Tôi là Chủ thể dữ liệu\n- Công ty là Bên kiểm soát dữ liệu hoặc Bên kiểm soát và xử lý dữ liệu cá nhân của Tôi\n- Bên được Công ty ủy quyền tiến hành xử lý những dữ liệu cá nhân do Tôi cung cấp sẽ là Bên xử lý dữ liệu", "b3"),
@@ -37,7 +37,7 @@ const bodyVi = [
   block("6. Quyền và nghĩa vụ của Chủ thể dữ liệu:\n6.1. Quyền: Xem hoặc yêu cầu chỉnh sửa; Đồng ý hoặc không đồng ý, yêu cầu rút lại sự đồng ý; Yêu cầu cung cấp, xóa, hạn chế xử lý.\n6.2. Nghĩa vụ: Tự bảo vệ dữ liệu cá nhân; Tôn trọng, bảo vệ dữ liệu người khác; Cung cấp đầy đủ, chính xác; Chấp hành pháp luật.", "b14"),
   block("7. Lưu trữ: Dữ liệu được lưu trữ đến khi hết 05 năm hoặc khi yêu cầu xóa.", "b15"),
   block("8. Kiểm tra tham chiếu: Công ty có thể tiến hành kiểm tra lý lịch hoặc thông qua bên thứ ba.", "b16"),
-  block("9. Rút lại sự đồng ý: Gửi yêu cầu đến Bộ phận Bảo vệ dữ liệu cá nhân - Công ty Cổ phần Công nghệ Truyền thông DTS - Email: bvdlcn@dts.com.vn. Công ty sẽ xử lý trong vòng 02 ngày làm việc.", "b17"),
+  block("9. Rút lại sự đồng ý: Gửi yêu cầu đến Bộ phận Bảo vệ dữ liệu cá nhân - Công ty Cổ phần Công nghệ Truyền thông DTG - Email: bvdlcn@dts.com.vn. Công ty sẽ xử lý trong vòng 02 ngày làm việc.", "b17"),
   block("10. Các rủi ro và biện pháp an toàn: Công ty đã và đang áp dụng các biện pháp kỹ thuật, quản lý và tổ chức phù hợp để bảo vệ dữ liệu.", "b18"),
   block("11. Xác nhận đồng ý: Bằng việc tích chọn vào ô \"Đồng ý\", Tôi xác nhận đã đọc, hiểu rõ toàn bộ nội dung và đồng ý cho phép Công ty xử lý dữ liệu cá nhân theo đúng phạm vi, mục đích, thời hạn đã quy định.", "b19"),
 ];
