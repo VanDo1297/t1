@@ -55,8 +55,8 @@ export default async function AboutPage({
       <CoreValuesSection title={data.coreValuesTitle} icons={data.coreValueIcons} isVi={isVi} />
 
       {/* History Timeline */}
-      <section id="lich-su" className="bg-white px-5 py-12 md:py-20">
-        <div>
+      <section id="lich-su" className="relative overflow-hidden bg-[#174c96] px-5 py-14 text-white md:py-20">
+        <div className="mx-auto max-w-[1440px]">
           <HistoryTitle title={data.historyTitle} />
           <AboutClientSections
             historyYears={data.historyYears}

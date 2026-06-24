@@ -174,6 +174,149 @@ body {
   overflow-x: hidden;
 }
 
+.history-year-rail-shell {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 32px;
+  align-items: end;
+  gap: 4px;
+  margin-bottom: 40px;
+}
+
+.history-year-arrow {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border-radius: 9999px;
+  color: #fff;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.history-year-arrow:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.history-year-arrow:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.history-year-track {
+  position: relative;
+  min-width: 0;
+}
+
+.history-year-track-border {
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  left: 0;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+.history-year-rail {
+  display: flex;
+  min-width: 0;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+}
+
+.history-year-item {
+  position: relative;
+  display: flex;
+  flex: 0 0 144px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  scroll-snap-align: center;
+  transition: color 0.2s;
+}
+
+.history-year-thumbnail {
+  position: relative;
+  width: 112px;
+  overflow: hidden;
+  border-width: 1px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.history-year-label {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.history-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .history-year-rail-shell {
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    gap: 8px;
+    margin-bottom: 48px;
+  }
+
+  .history-year-arrow {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 14px;
+  }
+
+  .history-year-track-border {
+    height: 48px;
+  }
+
+  .history-year-rail {
+    gap: 24px;
+  }
+
+  .history-year-item {
+    flex-basis: calc((100% - 48px) / 3);
+    gap: 24px;
+  }
+
+  .history-year-thumbnail {
+    width: min(176px, 80%);
+  }
+
+  .history-year-label {
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .history-content-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .history-year-item {
+    flex-basis: calc((100% - 72px) / 4);
+  }
+
+  .history-content-grid {
+    gap: 56px;
+  }
+}
+
 .article-detail-mobile .site-hero-title {
   font-size: 48px !important;
   line-height: 1.16 !important;

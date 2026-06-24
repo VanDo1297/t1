@@ -1317,7 +1317,7 @@ export async function getTinTucDetail(
 
 export interface VisionCard { title: string; description: string; imageUrl?: string; }
 export interface HistoryMilestone { month: string; content: string; }
-export interface HistoryYear { year: string; imageUrl?: string; milestones: HistoryMilestone[]; }
+export interface HistoryYear { year: string; imageUrl?: string; thumbnailImageUrl?: string; milestones: HistoryMilestone[]; }
 export interface Leader { name: string; role: string; photoUrl?: string; }
 export interface Certificate { year: string; title: string; }
 
@@ -1347,7 +1347,7 @@ export interface VeChungToiPageData {
 const VE_CHUNG_TOI_PAGE_QUERY = `*[_type == "veChungToiPage" && language == $lang][0]{
   brandStoryTitle, brandStoryContent, slogan, learnMoreLabel, learnMoreHref,
   visionCards[]{ title, description, "imageUrl": image.asset->url },
-  historyTitle, historyYears[]{ year, "imageUrl": image.asset->url, milestones[]{ month, content } },
+  historyTitle, historyYears[]{ year, "imageUrl": image.asset->url, "thumbnailImageUrl": thumbnailImage.asset->url, milestones[]{ month, content } },
   leadershipTitle, leaders[]{ name, role, "photoUrl": photo.asset->url },
   cultureTitle, coreValuesTitle, coreValues, companyCultureTitle, companyCultureItems,
   "companyCultureImages": companyCultureImages[].asset->url,

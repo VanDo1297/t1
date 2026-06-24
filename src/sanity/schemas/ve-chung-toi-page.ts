@@ -52,6 +52,13 @@ export const veChungToiPage = defineType({
           defineField({ name: "year", title: "Year", type: "string", validation: (r) => r.required() }),
           defineField({ name: "image", title: "Image", type: "image", options: { hotspot: true } }),
           defineField({
+            name: "thumbnailImage",
+            title: "Thumbnail Image",
+            description: "Small image used in the history year rail.",
+            type: "image",
+            options: { hotspot: true },
+          }),
+          defineField({
             name: "milestones",
             title: "Milestones",
             type: "array",

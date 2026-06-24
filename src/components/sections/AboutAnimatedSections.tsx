@@ -150,7 +150,7 @@ export function HistoryTitle({ title }: { title: string }) {
     <motion.h2
       ref={anim.ref}
       {...anim.animationProps}
-      className="text-[24px] md:text-[36px] font-bold text-[#0a192f] uppercase tracking-wider mb-8 md:mb-10"
+      className="mb-8 text-[28px] font-bold uppercase tracking-wide text-white md:mb-12 md:text-[42px]"
     >
       {title}
     </motion.h2>
