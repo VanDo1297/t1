@@ -89,7 +89,7 @@ export function Footer({ data }: FooterProps) {
       {/* Copyright */}
       <div className="border-t border-white/10">
         <p className="py-4 text-center text-[12px] text-white/40">
-          &copy; {copyrightYear} DTS. All rights reserved.
+          &copy; {copyrightYear} DTG. All rights reserved.
         </p>
       </div>
     </footer>
