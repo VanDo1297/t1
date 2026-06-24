@@ -115,7 +115,12 @@ export function AboutClientSections({
                       </div>
                     )}
                   </div>
-                  <span className="history-year-label">{y.year}</span>
+                  <span
+                    className="history-year-label"
+                    style={{ lineHeight: 1, transform: "translateY(6px)" }}
+                  >
+                    {y.year}
+                  </span>
                 </button>
               );
             })}
