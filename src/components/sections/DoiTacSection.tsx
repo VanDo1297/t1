@@ -249,7 +249,7 @@ export function DoiTacSection({
             <LogoCarousel items={strategicPartners} />
           </motion.div>
 
-          {/* Technology Network Partners - slider with prev/next */}
+          {/* Technology Network Partners - auto carousel */}
           <motion.div ref={networkRef} {...networkAnim} className="mt-14">
             <div className="flex items-center justify-center gap-4">
               <span className="h-px w-12 bg-gray-300" />
@@ -258,7 +258,7 @@ export function DoiTacSection({
               </p>
               <span className="h-px w-12 bg-gray-300" />
             </div>
-            <LogoCarousel items={networkPartners} />
+            <CarouselRow items={networkPartners} direction="left" speed={25} />
           </motion.div>
         </div>
       </section>
