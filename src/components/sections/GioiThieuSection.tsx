@@ -22,7 +22,13 @@ export function GioiThieuSection({ data, locale }: GioiThieuSectionProps) {
 
   return (
     <section id="gioi-thieu" className="relative overflow-hidden bg-white py-24 px-5 sm:px-8">
-      <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+           {/* eslint-disable-next-line @next/next/no-img-element */}                                 
+            <img                                                                                         
+            src="/assets/bg/red-wave-3.jpg"                                                          
+              alt=""                                                                              
+             className="absolute opacity-70 inset-0 w-full h-full pointer-events-none object-cover"         
+            />                                                                                    
+            <div className="relative z-[1] grid items-center gap-12 lg:grid-cols-2 lg:gap-20">    
         {/* Left - Text */}
         <div>
           <motion.p
@@ -36,7 +42,7 @@ export function GioiThieuSection({ data, locale }: GioiThieuSectionProps) {
           <motion.h2
             ref={left.ref}
             {...left.animationProps}
-            className="mb-8 font-medium leading-[1.15] tracking-[-0.02em] text-dark whitespace-pre-line"
+            className="mb-8 font-bold leading-[1.15] tracking-[-0.02em] text-red-500 whitespace-pre-line"
             style={{ fontSize: "clamp(40px, 3vw, 60px)" }}
           >
             {data.title}
@@ -44,7 +50,7 @@ export function GioiThieuSection({ data, locale }: GioiThieuSectionProps) {
           <motion.p
             ref={left.ref}
             {...left.animationProps}
-            className="leading-[1.8] text-gray-500"
+            className="leading-[1.8] text-dark"
             style={{ fontSize: "clamp(18px, 1.1vw, 27px)" }}
           >
             {data.description}

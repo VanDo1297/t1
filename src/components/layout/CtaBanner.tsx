@@ -12,12 +12,12 @@ export function CtaBanner({
 }) {
   return (
     <section className="relative overflow-hidden px-5 py-20 sm:px-8">
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-white">
         <Image
-          src="/assets/bg/4.jpg"
+          src="/assets/bg/red-wave-3.jpg"
           alt=""
           fill
-          className="object-cover"
+          className="object-cover opacity-80"
         />
       </div>
 

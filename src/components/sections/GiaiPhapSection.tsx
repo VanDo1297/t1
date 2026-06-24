@@ -134,7 +134,7 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
         <motion.h2
           ref={titleRef}
           {...titleAnim}
-          className="whitespace-pre-line font-medium leading-[1.2] text-[#1a1a1a]"
+          className="whitespace-pre-line font-bold leading-[1.2] text-red-600"
           style={{ fontSize: "clamp(36px, 3vw, 60px)" }}
         >
           {data.sectionHeading}
@@ -218,10 +218,10 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
   );
 }
 
-const tabColors = ["#2563eb", "#7c3aed", "#0891b2", "#059669"];
+const tabColors = ["#2563eb", "#dc2626", "#0891b2", "#059669"];
 const tabGradients = [
   "linear-gradient(to right, #2563eb, #60a5fa)",
-  "linear-gradient(to right, #7c3aed, #a78bfa)",
+  "linear-gradient(to right, #dc2626, #f87171)",
   "linear-gradient(to right, #0891b2, #22d3ee)",
   "linear-gradient(to right, #059669, #34d399)",
 ];
