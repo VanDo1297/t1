@@ -80,11 +80,29 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
       return;
     }
 
-    const centeredScrollLeft =
-      activeTab.offsetLeft - (tabList.clientWidth - activeTab.offsetWidth) / 2;
+    if (tabList.scrollWidth <= tabList.clientWidth + 1) {
+      tabList.scrollTo({ left: 0, behavior: "smooth" });
+      return;
+    }
+
+    const padding = 24;
+    const currentLeft = tabList.scrollLeft;
+    const activeLeft = activeTab.offsetLeft;
+    const activeRight = activeLeft + activeTab.offsetWidth;
+    const visibleLeft = currentLeft + padding;
+    const visibleRight = currentLeft + tabList.clientWidth - padding;
+
+    let nextScrollLeft = currentLeft;
+    if (activeLeft < visibleLeft) {
+      nextScrollLeft = activeLeft - padding;
+    } else if (activeRight > visibleRight) {
+      nextScrollLeft = activeRight - tabList.clientWidth + padding;
+    } else {
+      return;
+    }
 
     tabList.scrollTo({
-      left: Math.max(0, centeredScrollLeft),
+      left: Math.max(0, nextScrollLeft),
       behavior: "smooth",
     });
   }, [activeIndex]);
@@ -131,8 +149,8 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
           tabsPinned ? "fixed left-0 right-0 top-[56px]" : "sticky top-[56px]"
         } ${tabsPinned ? "border-white/15" : "border-gray-200"}`}
       >
-        <div className="flex items-end">
-          <div ref={tabListRef} className="scrollbar-none flex min-w-0 flex-1 items-end gap-6 overflow-x-auto pr-4 sm:gap-8 sm:pr-12 lg:gap-12" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+        <div className="flex items-end gap-4 sm:gap-8">
+          <div ref={tabListRef} className="scrollbar-none flex min-w-0 flex-1 items-end gap-4 overflow-x-auto sm:gap-6 lg:gap-8" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
             {data.tabs.map((tab, i) => {
               const tabColor = tabColors[i % tabColors.length];
               return (
@@ -147,7 +165,7 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
                     borderColor: i === activeIndex ? tabColor : "transparent",
                     color: i === activeIndex ? tabColor : tabsPinned ? "rgba(255,255,255,0.72)" : undefined,
                   }}
-                  className={`whitespace-nowrap border-b-2 pb-3 font-bold capitalize tracking-[0.05em] transition-colors ${
+                  className={`flex min-w-max flex-1 justify-center whitespace-nowrap border-b-2 px-1 pb-3 text-center font-bold capitalize tracking-[0.05em] transition-colors ${
                     i === activeIndex
                       ? ""
                       : "text-[#1a1a1a] hover:opacity-70"
@@ -161,16 +179,16 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
           <Link
             href={`/${locale}${data.tabs[activeIndex]?.ctaHref || "/"}`}
             aria-label={data.viewAllLabel}
-            className={`mb-1.5 flex shrink-0 items-center justify-center pb-3 transition hover:opacity-70 sm:hidden ${
+            className={`flex shrink-0 items-center justify-center border-b-2 border-transparent pb-3 transition hover:opacity-70 sm:hidden ${
               tabsPinned ? "text-white/80" : "text-[#1a1a1a]"
             }`}
           >
             <ArrowRight size={18} />
           </Link>
-          <div className="hidden shrink-0 pb-3 sm:block sm:ml-8">
+          <div className="hidden shrink-0 sm:block">
             <Link
               href={`/${locale}${data.tabs[activeIndex]?.ctaHref || "/"}`}
-              className={`mb-1.5 flex items-center gap-2 whitespace-nowrap font-medium transition hover:opacity-70 ${
+              className={`flex items-center gap-2 whitespace-nowrap border-b-2 border-transparent pb-3 font-medium transition hover:opacity-70 ${
                 tabsPinned ? "text-white/80" : "text-[#1a1a1a]"
               }`}
               style={{ fontSize: "clamp(15px, 0.9vw, 18px)" }}

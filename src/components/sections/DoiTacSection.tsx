@@ -271,7 +271,7 @@ export function DoiTacSection({
               <p className="text-center text-[28px] font-bold uppercase tracking-wider text-[#1a1a1a] sm:text-[32px]">
                 {clientsTitle}
               </p>
-              <CarouselRow items={clients} direction="left" speed={25} />
+              <CarouselRow items={clients} direction="right" speed={25} />
             </motion.div>
           </div>
         </section>
