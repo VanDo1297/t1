@@ -71,9 +71,9 @@ interface UseScrollAnimationOptions {
   delay?: number;
   /** Easing curve (default: [0.25, 0.1, 0.25, 1]) */
   ease?: AnimationEase;
-  /** IntersectionObserver margin (default: "-20% 0px -20% 0px") */
+  /** IntersectionObserver margin (default: "0px 0px 100px 0px" — eager, triggers ~100px before entering) */
   margin?: UseInViewOptions["margin"];
-  /** Only animate on first appearance (default: false) */
+  /** Only animate on first appearance (default: true) */
   once?: boolean;
 }
 
@@ -100,8 +100,8 @@ export function useScrollAnimation({
   duration = 0.75,
   delay = 0,
   ease = [0.25, 0.1, 0.25, 1],
-  margin = "-20% 0px -20% 0px",
-  once = false,
+  margin = "0px 0px 100px 0px",
+  once = true,
 }: UseScrollAnimationOptions = {}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, margin });

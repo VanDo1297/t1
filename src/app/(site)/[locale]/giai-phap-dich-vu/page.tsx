@@ -3,29 +3,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { solutionCategories } from "@/data/solutions";
 
-const otherServices = {
-  vi: {
-    title: "DỊCH VỤ KHÁC",
-    description: "Các dịch vụ hỗ trợ toàn diện, đồng hành cùng doanh nghiệp trong suốt quá trình vận hành.",
-    children: [
-      { title: "Dịch vụ tư vấn và triển khai giải pháp", description: "Tư vấn chiến lược, thiết kế và triển khai các giải pháp công nghệ phù hợp với nhu cầu và mục tiêu của doanh nghiệp." },
-      { title: "Dịch vụ bảo hành bảo trì", description: "Đảm bảo hệ thống vận hành ổn định, bảo trì định kỳ và hỗ trợ kỹ thuật chuyên nghiệp." },
-      { title: "Dịch vụ ứng cứu sự cố", description: "Hỗ trợ kịp thời khi xảy ra sự cố kỹ thuật, giảm thiểu gián đoạn và rủi ro cho doanh nghiệp." },
-      { title: "Dịch vụ cho thuê thiết bị", description: "Cung cấp thiết bị công nghệ chính hãng với chi phí tối ưu và linh hoạt theo nhu cầu." },
-    ],
-  },
-  en: {
-    title: "OTHER SERVICES",
-    description: "Comprehensive support services accompanying enterprises throughout their operations.",
-    children: [
-      { title: "Consulting & Deployment", description: "Strategic consulting, designing and deploying technology solutions tailored to business needs." },
-      { title: "Warranty & Maintenance", description: "Ensure stable system operation, periodic maintenance and professional technical support." },
-      { title: "Incident Response", description: "Timely support when technical incidents occur, minimizing disruption and risk." },
-      { title: "Equipment Leasing", description: "Provide genuine technology equipment with optimal cost and flexible terms." },
-    ],
-  },
-};
-
 export default async function SolutionsPage({
   params,
 }: {
@@ -33,7 +10,6 @@ export default async function SolutionsPage({
 }) {
   const { locale } = await params;
   const lang = locale as "vi" | "en";
-  const other = otherServices[lang];
 
   return (
     <main className="solutions-overview-mobile pt-[80px]">
@@ -71,14 +47,14 @@ export default async function SolutionsPage({
       {/* 4 Columns */}
       <section className="px-5 py-20 sm:px-8" style={{ backgroundColor: "rgb(221,234,234)" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
-          {/* 3 solution categories */}
+          {/* 4 solution categories (gồm cả "Dịch vụ khác") */}
           {solutionCategories.map((cat) => {
             const href = lang === "vi"
               ? `/${locale}/giai-phap-dich-vu/${cat.slug}`
               : `/${locale}/solutions/${cat.slug}`;
 
             return (
-              <div key={cat.slug} style={{ backgroundColor: "#fff", borderRadius: 16, padding: 32, border: "1px solid #eee" }}>
+              <div key={cat.slug} id={cat.slug} style={{ backgroundColor: "#fff", borderRadius: 16, padding: 32, border: "1px solid #eee" }}>
                 {/* Column header */}
                 <Link href={href} style={{ textDecoration: "none" }}>
                   <h2 className="font-bold uppercase" style={{ fontSize: 20, color: "#1a2d3d", letterSpacing: 1 }}>
@@ -116,29 +92,6 @@ export default async function SolutionsPage({
               </div>
             );
           })}
-
-          {/* 4th column: Dịch vụ khác */}
-          <div id="dich-vu-khac" style={{ backgroundColor: "#fff", borderRadius: 16, padding: 32, border: "1px solid #eee" }}>
-            <h2 className="font-bold uppercase" style={{ fontSize: 20, color: "#1a2d3d", letterSpacing: 1 }}>
-              {other.title}
-            </h2>
-            <p style={{ fontSize: 14, color: "#555", marginTop: 12, lineHeight: 1.7 }}>
-              {other.description}
-            </p>
-
-            <div style={{ marginTop: 24, display: "flex", flexDirection: "column", gap: 20 }}>
-              {other.children.map((item, i) => (
-                <div key={i}>
-                  <h3 className="font-bold" style={{ fontSize: 15, color: "#1a2d3d" }}>
-                    {item.title}
-                  </h3>
-                  <p style={{ fontSize: 13, color: "#777", marginTop: 4, lineHeight: 1.6 }}>
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
     </main>

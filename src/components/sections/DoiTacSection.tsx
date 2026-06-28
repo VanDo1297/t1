@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -33,10 +33,8 @@ function useVisibleCount() {
         setVisibleCount(4);
       } else if (window.matchMedia("(min-width: 768px)").matches) {
         setVisibleCount(3);
-      } else if (window.matchMedia("(min-width: 480px)").matches) {
-        setVisibleCount(2);
       } else {
-        setVisibleCount(1);
+        setVisibleCount(2);
       }
     };
 
@@ -52,8 +50,8 @@ function useVisibleCount() {
 function LogoCard({ item, showName = false }: { item: CarouselItem; showName?: boolean }) {
   const card = (
     <div
-      className={`group flex w-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-md ${
-        showName ? "h-[220px] sm:h-[200px]" : "h-[140px] items-center justify-center"
+      className={`group flex w-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-shadow hover:shadow-md ${
+        showName ? "h-[220px] sm:h-[200px]" : "h-[110px] items-center justify-center sm:h-[120px]"
       }`}
     >
       <div className="relative min-h-0 w-full flex-1">
@@ -84,7 +82,7 @@ function LogoCard({ item, showName = false }: { item: CarouselItem; showName?: b
   return card;
 }
 
-/* ── Carousel: hiện tối đa 5 items, prev/next từng item ── */
+/* ── Carousel: vuốt ngang kiểu slick (scroll-snap) trên mobile, prev/next trên desktop ── */
 export function LogoCarousel({
   items,
   showName = false,
@@ -93,49 +91,63 @@ export function LogoCarousel({
   showName?: boolean;
 }) {
   const visibleCount = useVisibleCount();
-  const [offset, setOffset] = useState(0);
-  const maxOffset = Math.max(0, items.length - visibleCount);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const canSlide = items.length > visibleCount;
 
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  const updateBounds = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setAtStart(el.scrollLeft <= 1);
+    setAtEnd(el.scrollLeft >= el.scrollWidth - el.clientWidth - 1);
+  }, []);
+
   useEffect(() => {
-    setOffset((current) => Math.min(current, maxOffset));
-  }, [maxOffset]);
+    updateBounds();
+  }, [updateBounds, visibleCount, items.length]);
+
+  const scrollByItems = (dir: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * (el.clientWidth / visibleCount), behavior: "smooth" });
+  };
 
   if (items.length === 0) return null;
 
   return (
     <div className="mt-8 flex items-center gap-3">
       <button
-        onClick={() => setOffset((o) => Math.max(0, o - 1))}
-        disabled={!canSlide || offset === 0}
+        onClick={() => scrollByItems(-1)}
+        disabled={!canSlide || atStart}
         aria-label="Previous"
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-300 text-[#1a1a1a] transition-all hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-20"
+        className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-300 text-[#1a1a1a] transition-all hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-20 sm:flex"
       >
         <ChevronLeft size={20} />
       </button>
 
-      <div className="min-w-0 flex-1 overflow-hidden">
-        <div
-          className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${offset * (100 / visibleCount)}%)` }}
-        >
-          {items.map((item, index) => (
-            <div
-              key={`${item.name}-${index}`}
-              className="shrink-0 px-2"
-              style={{ flexBasis: `${100 / visibleCount}%` }}
-            >
-              <LogoCard item={item} showName={showName} />
-            </div>
-          ))}
-        </div>
+      <div
+        ref={scrollRef}
+        onScroll={updateBounds}
+        className="flex min-w-0 flex-1 snap-x snap-mandatory overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {items.map((item, index) => (
+          <div
+            key={`${item.name}-${index}`}
+            className="shrink-0 snap-start px-2"
+            style={{ width: `${100 / visibleCount}%` }}
+          >
+            <LogoCard item={item} showName={showName} />
+          </div>
+        ))}
       </div>
 
       <button
-        onClick={() => setOffset((o) => Math.min(maxOffset, o + 1))}
-        disabled={!canSlide || offset >= maxOffset}
+        onClick={() => scrollByItems(1)}
+        disabled={!canSlide || atEnd}
         aria-label="Next"
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-300 text-[#1a1a1a] transition-all hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-20"
+        className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-300 text-[#1a1a1a] transition-all hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-20 sm:flex"
       >
         <ChevronRight size={20} />
       </button>
@@ -153,8 +165,9 @@ function CarouselRow({ items, direction = "left", speed = 30 }: {
 
   if (items.length === 0) return null;
 
+  const CARD_W = 200;
   const looped = [...items, ...items, ...items];
-  const totalWidth = items.length * 280;
+  const totalWidth = items.length * (CARD_W + 32);
 
   return (
     <div
@@ -163,7 +176,7 @@ function CarouselRow({ items, direction = "left", speed = 30 }: {
       onMouseLeave={() => setPaused(false)}
     >
       <motion.div
-        className="flex items-center gap-12"
+        className="flex items-center gap-8"
         animate={paused ? {} : {
           x: direction === "left" ? [0, -totalWidth] : [-totalWidth, 0],
         }}
@@ -179,14 +192,14 @@ function CarouselRow({ items, direction = "left", speed = 30 }: {
         {looped.map((item, i) => (
           <div
             key={`${item.name}-${i}`}
-            style={{ minWidth: 280, maxWidth: 280, width: 280, height: 140 }}
-            className="group flex shrink-0 relative items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+            style={{ minWidth: CARD_W, maxWidth: CARD_W, width: CARD_W, height: 120 }}
+            className="group flex shrink-0 relative items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
           >
             <Image
               src={item.logoUrl}
               alt={item.name}
-              width={160}
-              height={80}
+              width={140}
+              height={70}
               className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-110"
             />
           </div>

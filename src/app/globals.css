@@ -324,6 +324,14 @@ body {
   line-height: 1.16 !important;
 }
 
+/* Giới hạn title (hero) về 1024px, khớp với nội dung bài viết */
+.article-detail-mobile .site-hero-content,
+.solution-detail-mobile .site-hero-content {
+  max-width: 1064px; /* 1024 + 2*20px padding ngang → mép trong khớp 1024px */
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .ai-world-bg {
   background:
     radial-gradient(circle at 18% 18%, rgba(37, 99, 235, 0.34), transparent 24%),
@@ -1044,4 +1052,34 @@ body {
     font-size: 32px !important;
     line-height: 1.25 !important;
   }
+}
+
+/* ── Leadership slider (react-slick) ── */
+/* Các card cao bằng nhau */
+.leadership-slider .slick-track {
+  display: flex;
+  /* Căn giữa khi tổng chiều rộng các card chưa lấp đầy khung */
+  margin-left: auto;
+  margin-right: auto;
+}
+.leadership-slider .slick-slide {
+  height: auto;
+}
+.leadership-slider .slick-slide > div {
+  height: 100%;
+}
+
+/* ── Gallery slider (mobile) ── */
+.gallery-slider {
+  margin-bottom: 28px;
+}
+.gallery-slider .slick-dots {
+  bottom: -28px;
+}
+.gallery-slider .slick-dots li button:before {
+  font-size: 9px;
+  color: #2563eb;
+}
+.gallery-slider .slick-dots li.slick-active button:before {
+  color: #2563eb;
 }

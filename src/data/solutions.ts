@@ -74,6 +74,24 @@ export const solutionCategories: SolutionCategory[] = [
         },
         href: "bao-ve-du-lieu",
       },
+      {
+        icon: "Laptop",
+        title: { vi: "Môi trường làm việc số", en: "Digital Workplace" },
+        description: {
+          vi: "Xây dựng môi trường làm việc số hiện đại với các giải pháp cộng tác, quản lý thiết bị đầu cuối và làm việc từ xa an toàn.",
+          en: "Build a modern digital workplace with collaboration tools, endpoint management and secure remote work solutions.",
+        },
+        href: "moi-truong-lam-viec-so",
+      },
+      {
+        icon: "Cpu",
+        title: { vi: "Internet vạn vật (IoT)", en: "Internet of Things (IoT)" },
+        description: {
+          vi: "Giải pháp kết nối và quản lý thiết bị IoT, thu thập và phân tích dữ liệu từ cảm biến phục vụ chuyển đổi số.",
+          en: "Solutions for connecting and managing IoT devices, collecting and analyzing sensor data for digital transformation.",
+        },
+        href: "iot",
+      },
     ],
     goals: [
       {

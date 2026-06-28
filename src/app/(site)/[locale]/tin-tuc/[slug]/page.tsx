@@ -68,7 +68,7 @@ export default async function NewsDetailPage({
 
       {/* Article content */}
       <section className="bg-white px-5 pb-16 pt-10 text-[#1a1a1a] sm:px-8">
-        <article className="w-full">
+        <article className="mx-auto w-full max-w-[1024px]">
           {/* Body from CMS */}
           {hasBody ? (
             <div className="article-rich-content">

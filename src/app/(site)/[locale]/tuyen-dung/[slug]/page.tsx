@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getTuyenDungData } from "@/sanity/queries";
+import { getTuyenDungData, getThongBaoDuLieuData } from "@/sanity/queries";
 import { JobDetailContent } from "@/components/sections/JobDetailContent";
 
 export default async function JobDetailPage({
@@ -10,7 +10,10 @@ export default async function JobDetailPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const data = await getTuyenDungData(locale);
+  const [data, applyFormData] = await Promise.all([
+    getTuyenDungData(locale),
+    getThongBaoDuLieuData(locale),
+  ]);
   const job = data.jobs.find((j) => j.slug === slug);
   const isVi = locale === "vi";
 
@@ -46,6 +49,7 @@ export default async function JobDetailPage({
         locale={locale}
         contactEmail={data.contactEmail}
         contactPhone={data.contactPhone}
+        applyFormData={applyFormData}
       />
     </main>
   );

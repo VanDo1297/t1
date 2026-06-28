@@ -100,6 +100,8 @@ const fallback: Record<string, HeaderData> = {
               { label: "Trung tâm Dữ liệu", href: "/giai-phap-dich-vu/cong-nghe/trung-tam-du-lieu", description: "Data Center & Điện toán Đám mây" },
               { label: "Hệ thống Mạng", href: "/giai-phap-dich-vu/cong-nghe/he-thong-mang", description: "Network & Kết nối" },
               { label: "Bảo vệ Dữ liệu", href: "/giai-phap-dich-vu/cong-nghe/bao-ve-du-lieu", description: "Data Protection & Phục hồi" },
+              { label: "Môi trường làm việc số", href: "/giai-phap-dich-vu/cong-nghe/moi-truong-lam-viec-so", description: "Digital Workplace" },
+              { label: "Internet vạn vật (IoT)", href: "/giai-phap-dich-vu/cong-nghe/iot", description: "Internet of Things" },
             ],
           },
           {
@@ -188,6 +190,8 @@ const fallback: Record<string, HeaderData> = {
               { label: "Data Center", href: "/giai-phap-dich-vu/cong-nghe/trung-tam-du-lieu", description: "Data Center & Cloud Computing" },
               { label: "Network", href: "/giai-phap-dich-vu/cong-nghe/he-thong-mang", description: "Network & Connectivity" },
               { label: "Data Protection", href: "/giai-phap-dich-vu/cong-nghe/bao-ve-du-lieu", description: "Data Protection & Recovery" },
+              { label: "Digital Workplace", href: "/giai-phap-dich-vu/cong-nghe/moi-truong-lam-viec-so", description: "Digital Workplace" },
+              { label: "Internet of Things (IoT)", href: "/giai-phap-dich-vu/cong-nghe/iot", description: "Internet of Things" },
             ],
           },
           {
@@ -1776,11 +1780,24 @@ export interface ThongBaoDuLieuData {
   fallbackBody?: string[];
   consentLabel: string;
   submitLabel: string;
+  // Dialog ứng tuyển
+  positionPrefixLabel: string;
+  deadlinePrefixLabel: string;
+  instruction: string;
+  dobLabel: string;
+  cvLabel: string;
+  attachButtonLabel: string;
+  consentBoxTitle: string;
+  optionalConsentLabel: string;
+  applyButtonLabel: string;
+  successMessage: string;
 }
 
 const THONG_BAO_DU_LIEU_QUERY = `*[_type == "thongBaoDuLieu" && language == $lang][0]{
   heroTitle, formSectionTitle, nameLabel, phoneLabel, emailLabel, positionLabel, positions,
-  contentTitle, body, consentLabel, submitLabel
+  contentTitle, body, consentLabel, submitLabel,
+  positionPrefixLabel, deadlinePrefixLabel, instruction, dobLabel, cvLabel, attachButtonLabel,
+  consentBoxTitle, optionalConsentLabel, applyButtonLabel, successMessage
 }`;
 
 const thongBaoDuLieuFallback: Record<string, ThongBaoDuLieuData> = {
@@ -1810,6 +1827,16 @@ const thongBaoDuLieuFallback: Record<string, ThongBaoDuLieuData> = {
     ],
     consentLabel: "Tôi đã đọc, hiểu và đồng ý với các nội dung tại Thông báo và đồng ý xử lý dữ liệu cá nhân của Công ty. Tôi hiểu rằng việc đồng ý này là điều kiện cần thiết để thực hiện quy trình tuyển dụng.",
     submitLabel: "XÁC NHẬN",
+    positionPrefixLabel: "Vị trí ứng tuyển",
+    deadlinePrefixLabel: "Hạn nộp hồ sơ",
+    instruction: "(Vui lòng nhập đầy đủ các trường thông tin trong mẫu ứng tuyển)",
+    dobLabel: "Ngày sinh",
+    cvLabel: "Đính kèm CV",
+    attachButtonLabel: "Chọn file đính kèm",
+    consentBoxTitle: "THÔNG BÁO VÀ ĐỒNG Ý VỀ VIỆC XỬ LÝ DỮ LIỆU CÁ NHÂN",
+    optionalConsentLabel: "Tôi đồng ý cho Công ty lưu giữ hồ sơ để liên hệ cho các vị trí công việc phù hợp trong tương lai. (Tùy chọn)",
+    applyButtonLabel: "Ứng tuyển",
+    successMessage: "Cảm ơn bạn! Hồ sơ ứng tuyển đã được gửi thành công.",
   },
   en: {
     heroTitle: "Notice and consent on\npersonal data processing",
@@ -1826,6 +1853,16 @@ const thongBaoDuLieuFallback: Record<string, ThongBaoDuLieuData> = {
     ],
     consentLabel: "I have read, understood and agreed to the terms of personal data processing stated above.",
     submitLabel: "Confirm & Agree",
+    positionPrefixLabel: "Position",
+    deadlinePrefixLabel: "Application deadline",
+    instruction: "(Please fill in all fields in the application form)",
+    dobLabel: "Date of birth",
+    cvLabel: "Attach CV",
+    attachButtonLabel: "Choose file",
+    consentBoxTitle: "NOTICE AND CONSENT ON PERSONAL DATA PROCESSING",
+    optionalConsentLabel: "I agree for the Company to retain my profile to contact me for suitable positions in the future. (Optional)",
+    applyButtonLabel: "Apply",
+    successMessage: "Thank you! Your application has been submitted successfully.",
   },
 };
 
@@ -1834,9 +1871,13 @@ export async function getThongBaoDuLieuData(lang: string): Promise<ThongBaoDuLie
   try {
     const data = await client.fetch<ThongBaoDuLieuData | null>(THONG_BAO_DU_LIEU_QUERY, { lang });
     if (data?.heroTitle) {
+      // Bỏ field null/undefined từ CMS để không đè giá trị fallback (field mới chưa nhập trong Studio)
+      const clean = Object.fromEntries(
+        Object.entries(data).filter(([, v]) => v !== null && v !== undefined)
+      ) as Partial<ThongBaoDuLieuData>;
       return {
         ...fb,
-        ...data,
+        ...clean,
         positions: data.positions ?? fb.positions,
         fallbackBody: data.body?.length ? [] : fb.fallbackBody,
       };

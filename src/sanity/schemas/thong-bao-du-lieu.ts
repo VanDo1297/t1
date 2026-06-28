@@ -69,6 +69,59 @@ export const thongBaoDuLieu = defineType({
       title: "Submit Button Label",
       type: "string",
     }),
+
+    /* ── Dialog ứng tuyển (popup ở trang chi tiết tuyển dụng) ── */
+    defineField({
+      name: "positionPrefixLabel",
+      title: "[Dialog] Nhãn 'Vị trí ứng tuyển'",
+      type: "string",
+    }),
+    defineField({
+      name: "deadlinePrefixLabel",
+      title: "[Dialog] Nhãn 'Hạn nộp hồ sơ'",
+      type: "string",
+    }),
+    defineField({
+      name: "instruction",
+      title: "[Dialog] Câu hướng dẫn (dưới tiêu đề)",
+      type: "string",
+    }),
+    defineField({
+      name: "dobLabel",
+      title: "[Dialog] Nhãn 'Ngày sinh'",
+      type: "string",
+    }),
+    defineField({
+      name: "cvLabel",
+      title: "[Dialog] Nhãn 'Đính kèm CV'",
+      type: "string",
+    }),
+    defineField({
+      name: "attachButtonLabel",
+      title: "[Dialog] Nhãn nút 'Chọn file đính kèm'",
+      type: "string",
+    }),
+    defineField({
+      name: "consentBoxTitle",
+      title: "[Dialog] Tiêu đề khung nội dung đồng ý",
+      type: "string",
+    }),
+    defineField({
+      name: "optionalConsentLabel",
+      title: "[Dialog] Nhãn ô đồng ý (tùy chọn)",
+      type: "text",
+      rows: 2,
+    }),
+    defineField({
+      name: "applyButtonLabel",
+      title: "[Dialog] Nhãn nút 'Ứng tuyển'",
+      type: "string",
+    }),
+    defineField({
+      name: "successMessage",
+      title: "[Dialog] Thông báo gửi thành công",
+      type: "string",
+    }),
   ],
   preview: {
     select: { lang: "language" },

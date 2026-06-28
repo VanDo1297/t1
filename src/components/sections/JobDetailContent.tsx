@@ -1,19 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowLeft, MapPin, Briefcase, Mail, Phone } from "lucide-react";
-import type { JobListing } from "@/sanity/queries";
+import { MapPin, Briefcase, Mail, Phone, Wallet, CalendarClock } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { JobListing, ThongBaoDuLieuData } from "@/sanity/queries";
+import { JobApplicationDialog } from "@/components/sections/JobApplicationDialog";
 
 export function JobDetailContent({
   job,
   locale,
   contactEmail,
   contactPhone,
+  applyFormData,
 }: {
   job: JobListing;
   locale: string;
   contactEmail: string;
   contactPhone: string;
+  applyFormData: ThongBaoDuLieuData;
 }) {
   const isVi = locale === "vi";
   const email = job.contactEmail || contactEmail;
@@ -46,18 +49,19 @@ export function JobDetailContent({
               </span>
             </div>
           </div>
-          <a
-            href={`mailto:${email}?subject=${encodeURIComponent(job.title)}`}
-            className="inline-flex items-center justify-center rounded-lg bg-[#f97316] px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#ea580c]"
-          >
-            {isVi ? "Nộp đơn" : "Apply Now"}
-          </a>
+          <JobApplicationDialog
+            job={job}
+            locale={locale}
+            data={applyFormData}
+            triggerLabel={isVi ? "Nộp đơn" : "Apply Now"}
+            triggerClassName="inline-flex items-center justify-center rounded-lg bg-[#f97316] px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#ea580c]"
+          />
         </div>
       </div>
 
       {/* Content */}
       <div className="bg-white p-5">
-        <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
+        <div className="grid gap-10 lg:grid-cols-[1fr_570px]">
           {/* Left */}
           <div className="space-y-10">
             {job.jobDescription && (
@@ -87,49 +91,51 @@ export function JobDetailContent({
           </div>
 
           {/* Right sidebar */}
-          <div className="space-y-6">
-            <SidebarCard
+          <div className="self-start rounded-2xl border border-[#cfe8e2] bg-[#f6fbfa] px-6">
+            <SidebarRow
+              icon={Briefcase}
               label={isVi ? "Hình thức làm việc" : "Work Type"}
-              value={job.type}
-            />
+              first
+            >
+              {job.type}
+            </SidebarRow>
             {job.salary && (
-              <SidebarCard
-                label={isVi ? "Mức lương" : "Salary"}
-                value={job.salary}
-              />
+              <SidebarRow icon={Wallet} label={isVi ? "Mức lương" : "Salary"}>
+                {job.salary}
+              </SidebarRow>
             )}
             {job.deadline && (
-              <SidebarCard
+              <SidebarRow
+                icon={CalendarClock}
                 label={isVi ? "Hạn nộp hồ sơ" : "Deadline"}
-                value={job.deadline}
-              />
+              >
+                {job.deadline}
+              </SidebarRow>
             )}
-
-            <div className="rounded-xl border border-gray-100 bg-[#f9fafb] p-6">
-              <h3 className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-gray-400">
-                {isVi ? "Liên hệ" : "Contact"}
-              </h3>
-              <div className="space-y-3">
-                {email && (
-                  <a
-                    href={`mailto:${email}`}
-                    className="flex items-center gap-2 text-[13px] text-primary hover:underline"
-                  >
-                    <Mail size={14} />
-                    {email}
-                  </a>
-                )}
-                {phone && (
-                  <a
-                    href={`tel:${phone.replace(/[^\d+]/g, "")}`}
-                    className="flex items-center gap-2 text-[13px] text-primary hover:underline"
-                  >
-                    <Phone size={14} />
-                    {phone}
-                  </a>
-                )}
-              </div>
-            </div>
+            {(email || phone) && (
+              <SidebarRow icon={Mail} label={isVi ? "Liên hệ" : "Contact"}>
+                <div className="space-y-1.5">
+                  {email && (
+                    <a
+                      href={`mailto:${email}`}
+                      className="flex items-center gap-2 text-[15px] text-primary hover:underline"
+                    >
+                      <Mail size={14} className="shrink-0" />
+                      {email}
+                    </a>
+                  )}
+                  {phone && (
+                    <a
+                      href={`tel:${phone.replace(/[^\d+]/g, "")}`}
+                      className="flex items-center gap-2 text-[15px] text-primary hover:underline"
+                    >
+                      <Phone size={14} className="shrink-0" />
+                      {phone}
+                    </a>
+                  )}
+                </div>
+              </SidebarRow>
+            )}
           </div>
         </div>
       </div>
@@ -137,13 +143,28 @@ export function JobDetailContent({
   );
 }
 
-function SidebarCard({ label, value }: { label: string; value: string }) {
+function SidebarRow({
+  icon: Icon,
+  label,
+  children,
+  first = false,
+}: {
+  icon: LucideIcon;
+  label: string;
+  children: React.ReactNode;
+  first?: boolean;
+}) {
   return (
-    <div className="rounded-xl border border-gray-100 bg-[#f9fafb] p-6">
-      <h3 className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-gray-400">
-        {label}
-      </h3>
-      <p className="text-[15px] font-semibold text-[#1a1a1a]">{value}</p>
+    <div
+      className={`flex items-start gap-3 py-5 ${
+        first ? "" : "border-t border-[#dbeee9]"
+      }`}
+    >
+      <Icon size={20} className="mt-0.5 shrink-0 text-[#1a6b5a]" />
+      <div className="min-w-0">
+        <p className="text-[16px] font-semibold text-[#1a6b5a]">{label}</p>
+        <div className="mt-1 text-[15px] font-medium text-[#1a1a1a]">{children}</div>
+      </div>
     </div>
   );
 }

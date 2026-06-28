@@ -75,6 +75,8 @@ const headers = {
               { label: "Trung tâm Dữ liệu", href: "/giai-phap-dich-vu/cong-nghe/trung-tam-du-lieu", description: "Data Center & Điện toán Đám mây" },
               { label: "Hệ thống Mạng", href: "/giai-phap-dich-vu/cong-nghe/he-thong-mang", description: "Network & Kết nối" },
               { label: "Bảo vệ Dữ liệu", href: "/giai-phap-dich-vu/cong-nghe/bao-ve-du-lieu", description: "Data Protection & Phục hồi" },
+              { label: "Môi trường làm việc số", href: "/giai-phap-dich-vu/cong-nghe/moi-truong-lam-viec-so", description: "Digital Workplace" },
+              { label: "Internet vạn vật (IoT)", href: "/giai-phap-dich-vu/cong-nghe/iot", description: "Internet of Things" },
             ],
           },
           {
@@ -106,18 +108,25 @@ const headers = {
           },
           {
             title: "Dịch vụ khác",
-            href: "/giai-phap-dich-vu#dich-vu-khac",
+            href: "/giai-phap-dich-vu/dich-vu-khac",
             description: "Other Services",
             children: [
-              { label: "Tư vấn và triển khai giải pháp", href: "/giai-phap-dich-vu#dich-vu-khac" },
-              { label: "Bảo hành bảo trì", href: "/giai-phap-dich-vu#dich-vu-khac" },
-              { label: "Ứng cứu sự cố", href: "/giai-phap-dich-vu#dich-vu-khac" },
-              { label: "Cho thuê thiết bị", href: "/giai-phap-dich-vu#dich-vu-khac" },
+              { label: "Tư vấn và triển khai giải pháp", href: "/giai-phap-dich-vu/dich-vu-khac" },
+              { label: "Bảo hành bảo trì", href: "/giai-phap-dich-vu/dich-vu-khac" },
+              { label: "Ứng cứu sự cố", href: "/giai-phap-dich-vu/dich-vu-khac" },
+              { label: "Cho thuê thiết bị", href: "/giai-phap-dich-vu/dich-vu-khac" },
             ],
           },
         ],
       },
-      { label: "Đối tác & Khách hàng", href: "/doi-tac" },
+      {
+        label: "Đối tác & Khách hàng",
+        href: "/doi-tac",
+        children: [
+          { label: "Đối tác", href: "/doi-tac#doi-tac" },
+          { label: "Khách hàng", href: "/doi-tac#khach-hang" },
+        ],
+      },
       {
         label: "Tin tức",
         href: "/tin-tuc",
@@ -156,6 +165,8 @@ const headers = {
               { label: "Data Center", href: "/giai-phap-dich-vu/cong-nghe/trung-tam-du-lieu", description: "Data Center & Cloud Computing" },
               { label: "Network", href: "/giai-phap-dich-vu/cong-nghe/he-thong-mang", description: "Network & Connectivity" },
               { label: "Data Protection", href: "/giai-phap-dich-vu/cong-nghe/bao-ve-du-lieu", description: "Data Protection & Recovery" },
+              { label: "Digital Workplace", href: "/giai-phap-dich-vu/cong-nghe/moi-truong-lam-viec-so", description: "Digital Workplace" },
+              { label: "Internet of Things (IoT)", href: "/giai-phap-dich-vu/cong-nghe/iot", description: "Internet of Things" },
             ],
           },
           {
@@ -187,18 +198,25 @@ const headers = {
           },
           {
             title: "Other Services",
-            href: "/giai-phap-dich-vu#dich-vu-khac",
+            href: "/giai-phap-dich-vu/dich-vu-khac",
             description: "Dịch vụ khác",
             children: [
-              { label: "Consulting & Deployment", href: "/giai-phap-dich-vu#dich-vu-khac" },
-              { label: "Warranty & Maintenance", href: "/giai-phap-dich-vu#dich-vu-khac" },
-              { label: "Incident Response", href: "/giai-phap-dich-vu#dich-vu-khac" },
-              { label: "Equipment Leasing", href: "/giai-phap-dich-vu#dich-vu-khac" },
+              { label: "Consulting & Deployment", href: "/giai-phap-dich-vu/dich-vu-khac" },
+              { label: "Warranty & Maintenance", href: "/giai-phap-dich-vu/dich-vu-khac" },
+              { label: "Incident Response", href: "/giai-phap-dich-vu/dich-vu-khac" },
+              { label: "Equipment Leasing", href: "/giai-phap-dich-vu/dich-vu-khac" },
             ],
           },
         ],
       },
-      { label: "Partners & Clients", href: "/doi-tac" },
+      {
+        label: "Partners & Clients",
+        href: "/doi-tac",
+        children: [
+          { label: "Partners", href: "/doi-tac#doi-tac" },
+          { label: "Clients", href: "/doi-tac#khach-hang" },
+        ],
+      },
       {
         label: "News",
         href: "/tin-tuc",

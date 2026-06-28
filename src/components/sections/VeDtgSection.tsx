@@ -121,7 +121,7 @@ function RecognitionBar({ recognition, index, delay }: { recognition: VeDtgRecog
 /* ── Main section ── */
 
 export function VeDtgSection({ data }: { data: VeDtgData }) {
-  const header = useScrollAnimation({ preset: "ltr", margin: "-5% 0px -5% 0px" });
+  const header = useScrollAnimation({ preset: "ltr" });
   const stats = useScrollAnimation({ preset: "ttb", delay: 0.15 });
   const commit = useScrollAnimation({ preset: "ltr" });
   const recog = useScrollAnimation({ preset: "ttb", delay: 0.15 });

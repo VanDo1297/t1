@@ -30,7 +30,7 @@ export function GioiThieuSection({ data, locale }: GioiThieuSectionProps) {
             />                                                                                    
             <div className="relative z-[1] grid items-center gap-12 lg:grid-cols-2 lg:gap-20">    
         {/* Left - Text */}
-        <div>
+        <div ref={left.ref}>
           <motion.p
             ref={label.ref}
             {...label.animationProps}
@@ -40,7 +40,6 @@ export function GioiThieuSection({ data, locale }: GioiThieuSectionProps) {
             {data.label}
           </motion.p>
           <motion.h2
-            ref={left.ref}
             {...left.animationProps}
             className="mb-8 font-bold leading-[1.15] tracking-[-0.02em] text-red-500 whitespace-pre-line"
             style={{ fontSize: "clamp(40px, 3vw, 60px)" }}
@@ -48,7 +47,6 @@ export function GioiThieuSection({ data, locale }: GioiThieuSectionProps) {
             {data.title}
           </motion.h2>
           <motion.p
-            ref={left.ref}
             {...left.animationProps}
             className="leading-[1.8] text-dark"
             style={{ fontSize: "clamp(18px, 1.1vw, 27px)" }}
@@ -56,7 +54,7 @@ export function GioiThieuSection({ data, locale }: GioiThieuSectionProps) {
             {data.description}
           </motion.p>
           {data.ctaLabel && data.ctaHref && (
-            <motion.div ref={left.ref} {...left.animationProps}>
+            <motion.div {...left.animationProps}>
               <Link
                 href={`/${locale}${data.ctaHref}`}
                 className="mt-8 inline-flex items-center gap-3 rounded-full px-8 py-4 font-semibold text-white transition-opacity hover:opacity-90"

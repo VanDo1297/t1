@@ -134,13 +134,17 @@ export function GiaiPhapSection({ data, locale }: GiaiPhapSectionProps) {
         <motion.h2
           ref={titleRef}
           {...titleAnim}
-          className="whitespace-pre-line font-bold leading-[1.2] text-red-500"
+          className="relative whitespace-pre-line font-bold leading-[1.2] text-primary"
           style={{
             fontSize: "clamp(36px, 3vw, 60px)",
-         
+            paddingLeft: 28,
+            paddingTop: "0.9em",
           }}
-        > 
-          <div className="h-[5px] w-[50%] bg-red-500 mb-5"></div>
+        >
+          {/* thanh dọc — cao cố định (tùy chỉnh height), căn giữa theo thanh ngang */}
+          <span className="absolute left-0 bg-red-500" style={{ width: 3, height: 56, top: "0.6em", transform: "translateY(-50%)" }} aria-hidden="true" />
+          {/* thanh ngang */}
+          <span className="absolute left-0 bg-red-500" style={{ height: 3, width: "55%", top: "0.6em", transform: "translateY(-50%)" }} aria-hidden="true" />
           {data.sectionHeading}
         </motion.h2>
       </div>

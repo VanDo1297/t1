@@ -1,7 +1,11 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 /* ── Gallery ── */
@@ -11,26 +15,54 @@ export function GallerySection({ images }: { images?: string[] }) {
   const anim3 = useScrollAnimation({ preset: "ltr", delay: 0.2 });
   const anim4 = useScrollAnimation({ preset: "rtl", delay: 0.15 });
 
+  const fallback = ["/assets/bg/1.jpg", "/assets/bg/2.jpg", "/assets/bg/3.jpg", "/assets/bg/4.jpg"];
+  const imgs = images && images.length ? images : fallback;
+
   return (
     <section className="bg-white px-5 py-20 sm:px-8">
       <div className="mx-auto">
-        <div className="grid grid-cols-2 gap-4" style={{ height: "clamp(280px, 35vw, 560px)" }}>
+        {/* Desktop / tablet: mosaic */}
+        <div className="hidden sm:grid grid-cols-2 gap-4" style={{ height: "clamp(280px, 35vw, 560px)" }}>
           <div className="grid grid-rows-2 gap-4">
             <div className="grid grid-cols-2 gap-4">
               <motion.div ref={anim1.ref} {...anim1.animationProps} className="relative overflow-hidden rounded-2xl">
-                <Image src={images?.[0] || "/assets/bg/1.jpg"} alt="Gallery 1" fill className="object-cover" />
+                <Image src={imgs[0] || fallback[0]} alt="Gallery 1" fill className="object-cover" />
               </motion.div>
               <motion.div ref={anim2.ref} {...anim2.animationProps} className="relative overflow-hidden rounded-2xl">
-                <Image src={images?.[1] || "/assets/bg/2.jpg"} alt="Gallery 2" fill className="object-cover" />
+                <Image src={imgs[1] || fallback[1]} alt="Gallery 2" fill className="object-cover" />
               </motion.div>
             </div>
             <motion.div ref={anim3.ref} {...anim3.animationProps} className="relative overflow-hidden rounded-2xl">
-              <Image src={images?.[2] || "/assets/bg/3.jpg"} alt="Gallery 3" fill className="object-cover" />
+              <Image src={imgs[2] || fallback[2]} alt="Gallery 3" fill className="object-cover" />
             </motion.div>
           </div>
           <motion.div ref={anim4.ref} {...anim4.animationProps} className="relative overflow-hidden rounded-2xl">
-            <Image src={images?.[3] || "/assets/bg/4.jpg"} alt="Gallery 4" fill className="object-cover" />
+            <Image src={imgs[3] || fallback[3]} alt="Gallery 4" fill className="object-cover" />
           </motion.div>
+        </div>
+
+        {/* Mobile: carousel react-slick, chỉ vuốt */}
+        <div className="sm:hidden">
+          <Slider
+            className="gallery-slider"
+            dots
+            arrows={false}
+            infinite
+            speed={400}
+            slidesToShow={1}
+            slidesToScroll={1}
+            centerMode
+            centerPadding="28px"
+            swipeToSlide
+          >
+            {imgs.map((src, i) => (
+              <div key={i} className="px-2">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                  <Image src={src} alt={`Gallery ${i + 1}`} fill className="object-cover" />
+                </div>
+              </div>
+            ))}
+          </Slider>
         </div>
       </div>
     </section>
@@ -164,10 +196,28 @@ interface Leader {
   photoUrl?: string;
 }
 
+const LEADER_CARD_W = 304; // 280px card + 24px padding ngang
+
 export function LeadershipSection({ title, leaders }: { title: string; leaders: Leader[] }) {
   const titleAnim = useScrollAnimation({ preset: "fadeUp" });
   const topAnim = useScrollAnimation({ preset: "scaleUp", delay: 0.15 });
   const bottomAnim = useScrollAnimation({ preset: "fadeUp", delay: 0.3 });
+
+  const bottomLeaders = leaders.slice(1);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [fits, setFits] = useState(false);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const check = () => {
+      setFits(bottomLeaders.length * LEADER_CARD_W <= el.clientWidth);
+    };
+    check();
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [bottomLeaders.length]);
 
   return (
     <section id="lanh-dao" className="bg-white px-5 py-12 md:py-20">
@@ -192,14 +242,37 @@ export function LeadershipSection({ title, leaders }: { title: string; leaders: 
           <div className="w-[2px] h-10 bg-[#d1d5db]" />
         </div>
 
-        {leaders.length > 1 && (
-          <motion.div ref={bottomAnim.ref} {...bottomAnim.animationProps} className="flex justify-center">
-            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
-              {leaders.slice(1).map((leader, i) => (
-                <div key={i} className="w-[280px]">
-                  <LeaderCard leader={leader} />
+        {bottomLeaders.length > 0 && (
+          <motion.div ref={bottomAnim.ref} {...bottomAnim.animationProps}>
+            <div ref={wrapRef} className="relative px-2 md:px-8">
+              {fits ? (
+                /* Vừa khung → hàng flex căn giữa */
+                <div className="flex items-stretch justify-center">
+                  {bottomLeaders.map((leader, i) => (
+                    <div key={i} style={{ width: LEADER_CARD_W }} className="px-3">
+                      <LeaderCard leader={leader} />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : (
+                /* Không vừa → carousel react-slick để trượt ngang */
+                <Slider
+                  className="leadership-slider"
+                  dots={false}
+                  arrows={false}
+                  infinite={false}
+                  speed={400}
+                  slidesToScroll={1}
+                  swipeToSlide
+                  variableWidth
+                >
+                  {bottomLeaders.map((leader, i) => (
+                    <div key={i} style={{ width: LEADER_CARD_W }} className="h-full px-3">
+                      <LeaderCard leader={leader} />
+                    </div>
+                  ))}
+                </Slider>
+              )}
             </div>
           </motion.div>
         )}
@@ -210,7 +283,7 @@ export function LeadershipSection({ title, leaders }: { title: string; leaders: 
 
 function LeaderCard({ leader }: { leader: Leader }) {
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <div className="relative overflow-hidden rounded-t-2xl border border-b-0 border-[#eee] aspect-square bg-white">
         {leader.photoUrl ? (
           <Image src={leader.photoUrl} alt={leader.name} fill className="object-cover" />
@@ -224,13 +297,13 @@ function LeaderCard({ leader }: { leader: Leader }) {
         )}
       </div>
       <div
-        className="px-4 py-4 text-center"
+        className="flex-1 px-4 py-4 text-center"
         style={{ background: "linear-gradient(to right, #2563eb 70%, #ffffff)" }}
       >
-        <h3 className="text-[16px] md:text-[20px] font-bold text-white mb-1">
+        <h3 className="text-[15px] md:text-[18px] font-bold text-white mb-1">
           {leader.name}
         </h3>
-        <p className="text-[13px] md:text-[15px] text-white/80 m-0 leading-[1.5]">
+        <p className="text-[12px] md:text-[13px] text-white/80 m-0 leading-[1.45]">
           {leader.role.split(" — ").map((part, i) => (
             <span key={i} className="block">{part}</span>
           ))}
