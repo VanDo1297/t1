@@ -38,6 +38,10 @@ export function ContactForm({
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const uniqueSolutions = solutions.filter(
+    (item, index, list) =>
+      item.key && list.findIndex((candidate) => candidate.key === item.key) === index,
+  );
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -145,7 +149,7 @@ export function ContactForm({
             <option value="" disabled>
               -- {formSolutionLabel} --
             </option>
-            {solutions.map((s) => (
+            {uniqueSolutions.map((s) => (
               <option key={s.key} value={s.key}>
                 {s.label}
               </option>

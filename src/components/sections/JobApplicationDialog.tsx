@@ -107,11 +107,11 @@ export function JobApplicationDialog({
 
       {open && (
         <div
-          className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/50 p-4 sm:items-center"
+          className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/50 px-4 py-6 sm:px-6 sm:py-10"
           onClick={close}
         >
           <div
-            className="relative my-4 w-full max-w-3xl rounded-2xl bg-white shadow-2xl"
+            className="relative max-h-[calc(100dvh-3rem)] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white shadow-2xl sm:max-h-[calc(100dvh-5rem)]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close */}
